@@ -11,12 +11,26 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
-    var window: UIWindow?
-
+    lazy var window: UIWindow = {
+        let win = UIWindow(frame: UIScreen.mainScreen().bounds)
+        win.backgroundColor = UIColor.whiteColor()
+        win.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        return win
+    }()
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
-        // Override point for customization after application launch.
+        window.makeKeyAndVisible()
+        setupStyle()
         return true
+    }
+
+    func setupStyle() {
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        UINavigationBar.appearance().barTintColor = UIColor.HopperBusBrandColor()
+        UINavigationBar.appearance().translucent = true
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: "Avenir", size: 18.0)]
     }
 
     func applicationWillResignActive(application: UIApplication!) {

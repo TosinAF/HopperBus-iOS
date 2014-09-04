@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4ECFBE5E19B8387200523219 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ECFBE5D19B8387200523219 /* Info.plist */; };
+		4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */; };
+		4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */; };
+		4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6119B8387C00523219 /* TabBar.swift */; };
+		4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6219B8387C00523219 /* TabBarItem.swift */; };
+		4ECFBE6819B8388900523219 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6719B8388900523219 /* HomeViewController.swift */; };
+		4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6919B8389900523219 /* Extensions.swift */; };
 		4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4CF619A7C08900892A7C /* AppDelegate.swift */; };
-		4EDD4CF919A7C08900892A7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4CF819A7C08900892A7C /* ViewController.swift */; };
-		4EDD4CFC19A7C08900892A7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4CFA19A7C08900892A7C /* Main.storyboard */; };
 		4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4CFD19A7C08900892A7C /* Images.xcassets */; };
 		4EDD4D0A19A7C08900892A7C /* HopperBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */; };
 /* End PBXBuildFile section */
@@ -25,11 +30,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4ECFBE5D19B8387200523219 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
+		4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteHeaderView.swift; path = Views/RouteHeaderView.swift; sourceTree = "<group>"; };
+		4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTableViewCell.swift; path = Views/StopTableViewCell.swift; sourceTree = "<group>"; };
+		4ECFBE6119B8387C00523219 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBar.swift; path = Views/TabBar.swift; sourceTree = "<group>"; };
+		4ECFBE6219B8387C00523219 /* TabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarItem.swift; path = Views/TabBarItem.swift; sourceTree = "<group>"; };
+		4ECFBE6719B8388900523219 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
+		4ECFBE6919B8389900523219 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Utility/Extensions.swift; sourceTree = "<group>"; };
 		4EDD4CF119A7C08900892A7C /* HopperBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HopperBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4EDD4CF519A7C08900892A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EDD4CF619A7C08900892A7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4EDD4CF819A7C08900892A7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4EDD4CFB19A7C08900892A7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4EDD4CFD19A7C08900892A7C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4EDD4D0319A7C08900892A7C /* HopperBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HopperBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDD4D0819A7C08900892A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +63,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4ECFBE5A19B837D500523219 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4ECFBE6719B8388900523219 /* HomeViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4ECFBE5C19B837E100523219 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4ECFBE6919B8389900523219 /* Extensions.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		4EDD4CE819A7C08900892A7C = {
 			isa = PBXGroup;
 			children = (
@@ -76,8 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				4EDD4CF619A7C08900892A7C /* AppDelegate.swift */,
-				4EDD4CF819A7C08900892A7C /* ViewController.swift */,
-				4EDD4CFA19A7C08900892A7C /* Main.storyboard */,
+				4ECFBE5A19B837D500523219 /* Controllers */,
+				4EDD4D1519A7C87F00892A7C /* Views */,
+				4ECFBE5C19B837E100523219 /* Utility */,
 				4EDD4CFD19A7C08900892A7C /* Images.xcassets */,
 				4EDD4CF419A7C08900892A7C /* Supporting Files */,
 			);
@@ -87,7 +113,7 @@
 		4EDD4CF419A7C08900892A7C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4EDD4CF519A7C08900892A7C /* Info.plist */,
+				4ECFBE5D19B8387200523219 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -107,6 +133,17 @@
 				4EDD4D0819A7C08900892A7C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4EDD4D1519A7C87F00892A7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */,
+				4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */,
+				4ECFBE6119B8387C00523219 /* TabBar.swift */,
+				4ECFBE6219B8387C00523219 /* TabBarItem.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EDD4CFC19A7C08900892A7C /* Main.storyboard in Resources */,
+				4ECFBE5E19B8387200523219 /* Info.plist in Resources */,
 				4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,8 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EDD4CF919A7C08900892A7C /* ViewController.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
+				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
+				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
+				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
+				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
+				4ECFBE6819B8388900523219 /* HomeViewController.swift in Sources */,
+				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,17 +272,6 @@
 			targetProxy = 4EDD4D0419A7C08900892A7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		4EDD4CFA19A7C08900892A7C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4EDD4CFB19A7C08900892A7C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4EDD4D0B19A7C08900892A7C /* Debug */ = {
@@ -325,7 +356,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HopperBus",
+				);
 				INFOPLIST_FILE = HopperBus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -336,7 +372,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HopperBus",
+				);
 				INFOPLIST_FILE = HopperBus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -395,6 +436,7 @@
 				4EDD4D0F19A7C08900892A7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4EDD4D1019A7C08900892A7C /* Build configuration list for PBXNativeTarget "HopperBusTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +445,7 @@
 				4EDD4D1219A7C08900892A7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
