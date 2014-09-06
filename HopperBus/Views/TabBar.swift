@@ -10,20 +10,24 @@ import UIKit
 
 
 @objc protocol TabBarDelegate {
-    func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, withTag tag: Int)
+    func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int)
 }
 
 class TabBar: UIView {
 
-     // MARK: - Properties
+    // MARK: - Properties
 
-    var tabBarItemCount: Int
-    var currentTabBarItem: TabBarItem?
+    var selectedIndex = 0
+    var tabBarItems: [TabBarItem] = []
+    var numberOfTabBarItems: Int {
+        return tabBarItems.count
+    }
+
     weak var delegate: TabBarDelegate?
 
     var visualFormatForHorizontalConstrints: String {
-        var vflString = "H:|"
-        for i in 1...tabBarItemCount {
+        var vflString = "|"
+        for i in 1...numberOfTabBarItems {
             vflString += "[tabBarItem\(i)]"
         }
         return vflString
@@ -32,32 +36,31 @@ class TabBar: UIView {
     // MARK: - Initializers
 
     required init(coder aDecoder: NSCoder) {
-        tabBarItemCount = 0
         super.init(coder: aDecoder)
     }
 
     init(options: [String: AnyObject]) {
-        tabBarItemCount = options["tabCount"]! as Int
         super.init(frame: CGRectZero)
-
-        let buttonTitles: [String] = options["titles"]! as [String]
 
         var views: [String: TabBarItem] = [String: TabBarItem]()
 
-        for i in 0..<tabBarItemCount {
+        let buttonTitles: [String] = options["titles"]! as [String]
+        let count = options["tabBarItemCount"]! as Int
+
+        for i in 0..<count {
             let tabItem = TabBarItem(title: buttonTitles[i])
             tabItem.tag = i
             tabItem.setTranslatesAutoresizingMaskIntoConstraints(false)
             tabItem.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
             views["tabBarItem\(i+1)"] = tabItem
+            tabBarItems.append(tabItem)
             addSubview(tabItem)
         }
 
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[tabBarItem1]|", options: nil, metrics: nil, views:views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(visualFormatForHorizontalConstrints, options: .AlignAllCenterY, metrics: nil, views:views))
 
-        currentTabBarItem = views["tabBarItem1"]
-        currentTabBarItem!.selected = true
+        tabBarItems[selectedIndex].selected = true
     }
 
     // MARK: - Actions
@@ -65,15 +68,23 @@ class TabBar: UIView {
     func onTap(sender: AnyObject) {
         var clickedTabBarItem = sender as TabBarItem
 
-        if currentTabBarItem! == clickedTabBarItem {
+        if selectedIndex == clickedTabBarItem.tag {
             return;
         }
 
-        clickedTabBarItem.selected = !clickedTabBarItem.selected
-        currentTabBarItem!.selected = false
-        currentTabBarItem = clickedTabBarItem
+        setSelectedIndex(clickedTabBarItem.tag)
+        self.delegate?.tabBar(self, didSelectItem: clickedTabBarItem, atIndex: clickedTabBarItem.tag)
+    }
 
-        self.delegate?.tabBar(self, didSelectItem: clickedTabBarItem, withTag: clickedTabBarItem.tag)
+    // MARK: - State Methods
+
+    func setSelectedIndex(index:Int) {
+        let previousTabBarItem = tabBarItems[selectedIndex]
+        let newTabBarItem = tabBarItems[index]
+
+        selectedIndex = index
+        previousTabBarItem.selected = false
+        newTabBarItem.selected = true
     }
 
     // MARK: - Autolayout Overrides

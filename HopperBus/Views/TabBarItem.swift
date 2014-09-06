@@ -39,11 +39,11 @@ class TabBarItem: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        self.setBackgroundImage(UIImage.imageWithColor(UIColor.normalStateBackgroundColor()), forState: .Normal)
-        self.setBackgroundImage(UIImage.imageWithColor(UIColor.normalStateBackgroundColor()), forState: .Highlighted)
-        self.setBackgroundImage(UIImage.imageWithColor(UIColor.selectedStateBackgroundColor()), forState: .Selected)
-        self.titleLabel!.font = UIFont(name: "Avenir", size: 18.0)
+        setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        setBackgroundImage(UIImage.imageWithColor(UIColor.normalStateBackgroundColor()), forState: .Normal)
+        setBackgroundImage(UIImage.imageWithColor(UIColor.normalStateBackgroundColor()), forState: .Highlighted)
+        setBackgroundImage(UIImage.imageWithColor(UIColor.selectedStateBackgroundColor()), forState: .Selected)
+        titleLabel!.font = UIFont(name: "Avenir", size: 18.0)
 
         let views = [
             "topBorder" : topBorder

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4ECFBE5E19B8387200523219 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ECFBE5D19B8387200523219 /* Info.plist */; };
+		4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE724B19B9DAFE0021C4DF /* HexColor.swift */; };
 		4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */; };
 		4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */; };
 		4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6119B8387C00523219 /* TabBar.swift */; };
@@ -30,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4EAE724B19B9DAFE0021C4DF /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexColor.swift; path = Utility/HexColor.swift; sourceTree = "<group>"; };
 		4ECFBE5D19B8387200523219 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteHeaderView.swift; path = Views/RouteHeaderView.swift; sourceTree = "<group>"; };
 		4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTableViewCell.swift; path = Views/StopTableViewCell.swift; sourceTree = "<group>"; };
@@ -63,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4EAE724A19B92B6A0021C4DF /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4ECFBE6119B8387C00523219 /* TabBar.swift */,
+				4ECFBE6219B8387C00523219 /* TabBarItem.swift */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
 		4ECFBE5A19B837D500523219 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
+				4EAE724B19B9DAFE0021C4DF /* HexColor.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -138,10 +149,9 @@
 		4EDD4D1519A7C87F00892A7C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */,
+				4EAE724A19B92B6A0021C4DF /* TabBar */,
 				4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */,
-				4ECFBE6119B8387C00523219 /* TabBar.swift */,
-				4ECFBE6219B8387C00523219 /* TabBarItem.swift */,
+				4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -195,6 +205,7 @@
 				TargetAttributes = {
 					4EDD4CF019A7C08900892A7C = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 3XXD9JUN7B;
 					};
 					4EDD4D0219A7C08900892A7C = {
 						CreatedOnToolsVersion = 6.0;
@@ -226,7 +237,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ECFBE5E19B8387200523219 /* Info.plist in Resources */,
 				4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +260,7 @@
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
+				4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */,
 				4ECFBE6819B8388900523219 /* HomeViewController.swift in Sources */,
 				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,
 			);
@@ -356,11 +367,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
 				);
-				INFOPLIST_FILE = HopperBus/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -372,11 +384,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
 				);
-				INFOPLIST_FILE = HopperBus/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

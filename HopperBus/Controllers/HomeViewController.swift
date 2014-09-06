@@ -27,9 +27,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // MARK: - Properties
 
+    let LastViewedRouteKey = "LastViewedRoute"
+
+    var initialRoute : HopperBusRoutes {
+        var route: HopperBusRoutes = HopperBusRoutes.SB901
+        if let lastViewedRoute = NSUserDefaults.standardUserDefaults().objectForKey(LastViewedRouteKey) as? Int {
+            route = HopperBusRoutes.fromRaw(lastViewedRoute)!
+        }
+        return route
+    }
+
+    lazy var currentRoute: HopperBusRoutes = self.initialRoute
+
     lazy var routeHeaderView: RouteHeaderView = {
         let view = RouteHeaderView()
-        view.titleLabel.text = HopperBusRoutes.SB901.title.uppercaseString
+        view.titleLabel.text = self.currentRoute.title.uppercaseString
         return view
     }()
 
@@ -44,12 +56,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     lazy var tabBar: TabBar = {
-        let tabBarOptions: [String: AnyObject] = ["tabCount" : 4, "titles" : ["901","902","903","904"]]
+        let tabBarOptions: [String: AnyObject] = ["tabBarItemCount" : 4, "titles" : ["901","902","903","904"]]
         let tabBar =  TabBar(options:tabBarOptions)
         tabBar.delegate = self
+        tabBar.setSelectedIndex(self.currentRoute.toRaw())
         tabBar.setTranslatesAutoresizingMaskIntoConstraints(false)
         return tabBar
-        }()
+    }()
 
     // MARK: - View Lifecycle
 
@@ -57,24 +70,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         self.title = "Hopper Bus"
 
-        self.view.addSubview(tableView)
-        self.view.addSubview(tabBar)
+
+        view.addSubview(tableView)
+        view.addSubview(tabBar)
 
         let views = [
             "tabBar": tabBar,
             "tableView": tableView
         ]
 
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView][tabBar]|", options: nil, metrics: nil, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tabBar]", options: nil, metrics: nil, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView][tabBar]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
     }
 
     // MARK: - TableViewDataSource Methods
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 11
@@ -168,8 +178,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // MARK: - TabBarDelegate Methods
 
-    func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, withTag tag: Int) {
-        let title = HopperBusRoutes.fromRaw(tag)?.title
-        routeHeaderView.titleLabel.text = title?.uppercaseString
+    func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int) {
+        let route = HopperBusRoutes.fromRaw(index)!
+        let title = route.title
+        routeHeaderView.titleLabel.text = title.uppercaseString
+        currentRoute = route
+    }
+
+    // MARK: - AppDelegate Methods
+
+    func saveCurrentRoute() {
+        NSUserDefaults.standardUserDefaults().setObject(currentRoute.toRaw(), forKey: LastViewedRouteKey)
     }
 }
