@@ -68,8 +68,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Hopper Bus"
+        title = "HOPPER BUS"
 
+        let mapButtonImage = UIImage(named: "mapButtonImage")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: mapButtonImage, style: .Done, target: self, action: "onMapButtonTap")
 
         view.addSubview(tableView)
         view.addSubview(tabBar)
@@ -82,6 +84,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView][tabBar]|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
+    }
+
+    // MARK: - Actions
+
+    func onMapButtonTap() {
+        let mapViewController = MapViewController()
+        self.navigationController?.pushViewController(mapViewController, animated: true)
     }
 
     // MARK: - TableViewDataSource Methods

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
+		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
+		4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */; };
+		4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */; };
+		4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */; };
+		4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AA48419CB9F360048FB11 /* MapViewController.swift */; };
 		4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE724B19B9DAFE0021C4DF /* HexColor.swift */; };
 		4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */; };
 		4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */; };
@@ -17,6 +23,7 @@
 		4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4CF619A7C08900892A7C /* AppDelegate.swift */; };
 		4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4CFD19A7C08900892A7C /* Images.xcassets */; };
 		4EDD4D0A19A7C08900892A7C /* HopperBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */; };
+		7B4AA58A492C4E4180CF282D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF69A0F5AB64083B3DB10FB /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E7AA46F19CB6FCF0048FB11 /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
+		4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = SuttonBoningtonCampus.pdf; path = HopperBus/Resources/Maps/SuttonBoningtonCampus.pdf; sourceTree = "<group>"; };
+		4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = UniversityParkCampus.pdf; path = HopperBus/Resources/Maps/UniversityParkCampus.pdf; sourceTree = "<group>"; };
+		4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		4E7AA48419CB9F360048FB11 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
 		4EAE724B19B9DAFE0021C4DF /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexColor.swift; path = Utility/HexColor.swift; sourceTree = "<group>"; };
 		4ECFBE5D19B8387200523219 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteHeaderView.swift; path = Views/RouteHeaderView.swift; sourceTree = "<group>"; };
@@ -44,6 +58,8 @@
 		4EDD4D0319A7C08900892A7C /* HopperBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HopperBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDD4D0819A7C08900892A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopperBusTests.swift; sourceTree = "<group>"; };
+		B8B9279D1DDC447D82840542 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		EBF69A0F5AB64083B3DB10FB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B4AA58A492C4E4180CF282D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +81,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E7AA47319CB98F90048FB11 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4E7AA47F19CB9EFA0048FB11 /* Fonts */,
+				4E7AA47419CB99070048FB11 /* Maps */,
+			);
+			name = Resources;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4E7AA47419CB99070048FB11 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */,
+				4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */,
+				4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		4E7AA47F19CB9EFA0048FB11 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */,
+				4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		4EAE724A19B92B6A0021C4DF /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				4ECFBE6719B8388900523219 /* HomeViewController.swift */,
+				4E7AA48419CB9F360048FB11 /* MapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -96,6 +143,8 @@
 				4EDD4CF319A7C08900892A7C /* HopperBus */,
 				4EDD4D0619A7C08900892A7C /* HopperBusTests */,
 				4EDD4CF219A7C08900892A7C /* Products */,
+				B8B9279D1DDC447D82840542 /* Pods.xcconfig */,
+				9782702C7AE046DD969C2921 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,8 +164,9 @@
 				4ECFBE5A19B837D500523219 /* Controllers */,
 				4EDD4D1519A7C87F00892A7C /* Views */,
 				4ECFBE5C19B837E100523219 /* Utility */,
-				4EDD4CFD19A7C08900892A7C /* Images.xcassets */,
+				4E7AA47319CB98F90048FB11 /* Resources */,
 				4EDD4CF419A7C08900892A7C /* Supporting Files */,
+				4EDD4CFD19A7C08900892A7C /* Images.xcassets */,
 			);
 			path = HopperBus;
 			sourceTree = "<group>";
@@ -124,6 +174,7 @@
 		4EDD4CF419A7C08900892A7C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E7AA46F19CB6FCF0048FB11 /* HopperBus-Bridging-Header.h */,
 				4ECFBE5D19B8387200523219 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -156,6 +207,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		9782702C7AE046DD969C2921 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBF69A0F5AB64083B3DB10FB /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,9 +222,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4EDD4D0D19A7C08900892A7C /* Build configuration list for PBXNativeTarget "HopperBus" */;
 			buildPhases = (
+				8E6C0F0F28B04398927CBF35 /* Check Pods Manifest.lock */,
 				4EDD4CED19A7C08900892A7C /* Sources */,
 				4EDD4CEE19A7C08900892A7C /* Frameworks */,
 				4EDD4CEF19A7C08900892A7C /* Resources */,
+				CC4545332CFC4D6A8335F904 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,6 +298,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */,
+				4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */,
+				4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */,
+				4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */,
+				4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */,
 				4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +316,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8E6C0F0F28B04398927CBF35 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC4545332CFC4D6A8335F904 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4EDD4CED19A7C08900892A7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -259,6 +358,7 @@
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
+				4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */,
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
 				4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */,
 				4ECFBE6819B8388900523219 /* HomeViewController.swift in Sources */,
@@ -364,9 +464,11 @@
 		};
 		4EDD4D0E19A7C08900892A7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8B9279D1DDC447D82840542 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -376,14 +478,18 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/HopperBus-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		4EDD4D0F19A7C08900892A7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8B9279D1DDC447D82840542 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,6 +499,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/HopperBus-Bridging-Header.h";
 			};
 			name = Release;
 		};

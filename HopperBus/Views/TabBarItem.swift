@@ -17,14 +17,14 @@ class TabBarItem: UIButton {
     var width: CGFloat = 80.0
 
     override var selected: Bool {
-        willSet {
-            self.topBorder.backgroundColor =  newValue ? UIColor.selectedStateTopBorderColor() : UIColor.normalStateTopBorderColor()
+        willSet(isSelected) {
+            self.topBorder.backgroundColor =  isSelected ? UIColor.topBorderColorForSelectedState() : UIColor.topBorderColorForNormalState()
         }
     }
 
     lazy var topBorder: UIView = {
         let border = UIView()
-        border.backgroundColor = UIColor.normalStateTopBorderColor()
+        border.backgroundColor = UIColor.topBorderColorForNormalState()
         border.setTranslatesAutoresizingMaskIntoConstraints(false)
         return border
     }()
@@ -40,10 +40,10 @@ class TabBarItem: UIButton {
         super.init(frame: frame)
 
         setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        setBackgroundImage(UIImage.imageWithColor(UIColor.normalStateBackgroundColor()), forState: .Normal)
-        setBackgroundImage(UIImage.imageWithColor(UIColor.normalStateBackgroundColor()), forState: .Highlighted)
-        setBackgroundImage(UIImage.imageWithColor(UIColor.selectedStateBackgroundColor()), forState: .Selected)
-        titleLabel!.font = UIFont(name: "Avenir", size: 18.0)
+        setBackgroundImage(UIImage.imageWithColor(UIColor.backgroundColorForNormalState()), forState: .Normal)
+        setBackgroundImage(UIImage.imageWithColor(UIColor.backgroundColorForNormalState()), forState: .Highlighted)
+        setBackgroundImage(UIImage.imageWithColor(UIColor.backgroundColorForSelectedState()), forState: .Selected)
+        titleLabel!.font = UIFont(name: "Montserrat", size: 18.0)
 
         let views = [
             "topBorder" : topBorder
@@ -71,19 +71,19 @@ class TabBarItem: UIButton {
 
 private extension UIColor {
 
-    class func normalStateBackgroundColor() -> UIColor {
+    class func backgroundColorForNormalState() -> UIColor {
         return UIColor(red: 0.145, green: 0.392, blue: 0.498, alpha: 1.0)
     }
 
-    class func selectedStateBackgroundColor() -> UIColor {
+    class func backgroundColorForSelectedState() -> UIColor {
         return UIColor(red: 0.047, green: 0.294, blue: 0.400, alpha: 1.0)
     }
 
-    class func normalStateTopBorderColor() -> UIColor {
+    class func topBorderColorForNormalState() -> UIColor {
         return UIColor(red: 0.047, green: 0.294, blue: 0.400, alpha: 1.0)
     }
 
-    class func selectedStateTopBorderColor() -> UIColor {
+    class func topBorderColorForSelectedState() -> UIColor {
         return UIColor(red: 0.000, green: 0.196, blue: 0.302, alpha: 1.0)
     }
 }
