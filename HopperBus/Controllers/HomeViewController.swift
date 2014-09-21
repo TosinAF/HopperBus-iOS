@@ -23,7 +23,7 @@ enum HopperBusRoutes: Int {
     }
 }
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TabBarDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TabBarDelegate, UIViewControllerTransitioningDelegate {
 
     // MARK: - Properties
 
@@ -64,6 +64,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return tabBar
     }()
 
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -82,7 +83,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ]
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView][tabBar]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
     }
 
@@ -90,7 +91,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func onMapButtonTap() {
         let mapViewController = MapViewController()
-        self.navigationController?.pushViewController(mapViewController, animated: true)
+        mapViewController.modalPresentationStyle = .Custom
+        mapViewController.transitioningDelegate = self
+        presentViewController(mapViewController, animated: true, completion:nil)
     }
 
     // MARK: - TableViewDataSource Methods
@@ -198,5 +201,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func saveCurrentRoute() {
         NSUserDefaults.standardUserDefaults().setObject(currentRoute.toRaw(), forKey: LastViewedRouteKey)
+    }
+
+    // MARK: - Transitioning Delegate
+
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentMapViewController()
+    }
+
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissMapViewController()
     }
 }

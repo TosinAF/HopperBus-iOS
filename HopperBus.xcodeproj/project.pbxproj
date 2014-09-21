@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E50244C19CBA28C002F5A11 /* PresentMapVCTransistion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapVCTransistion.swift */; };
 		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
 		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
 		4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */; };
 		4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */; };
 		4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */; };
 		4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AA48419CB9F360048FB11 /* MapViewController.swift */; };
+		4E845FAA19CD39A100CB4D03 /* DismissMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */; };
 		4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE724B19B9DAFE0021C4DF /* HexColor.swift */; };
 		4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */; };
 		4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E50244B19CBA28C002F5A11 /* PresentMapVCTransistion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapVCTransistion.swift; path = Utility/PresentMapVCTransistion.swift; sourceTree = "<group>"; };
+		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4E7AA46F19CB6FCF0048FB11 /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = SuttonBoningtonCampus.pdf; path = HopperBus/Resources/Maps/SuttonBoningtonCampus.pdf; sourceTree = "<group>"; };
@@ -44,6 +48,7 @@
 		4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		4E7AA48419CB9F360048FB11 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
+		4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissMapViewController.swift; path = Utility/DismissMapViewController.swift; sourceTree = "<group>"; };
 		4EAE724B19B9DAFE0021C4DF /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexColor.swift; path = Utility/HexColor.swift; sourceTree = "<group>"; };
 		4ECFBE5D19B8387200523219 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteHeaderView.swift; path = Views/RouteHeaderView.swift; sourceTree = "<group>"; };
@@ -133,6 +138,8 @@
 			children = (
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
 				4EAE724B19B9DAFE0021C4DF /* HexColor.swift */,
+				4E50244B19CBA28C002F5A11 /* PresentMapVCTransistion.swift */,
+				4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 		9782702C7AE046DD969C2921 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E50244D19CC6714002F5A11 /* QuartzCore.framework */,
 				EBF69A0F5AB64083B3DB10FB /* libPods.a */,
 			);
 			name = Frameworks;
@@ -354,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E50244C19CBA28C002F5A11 /* PresentMapVCTransistion.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
@@ -362,6 +371,7 @@
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
 				4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */,
 				4ECFBE6819B8388900523219 /* HomeViewController.swift in Sources */,
+				4E845FAA19CD39A100CB4D03 /* DismissMapViewController.swift in Sources */,
 				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
