@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E50244C19CBA28C002F5A11 /* PresentMapVCTransistion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapVCTransistion.swift */; };
+		4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */; };
 		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
 		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
 		4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */; };
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4E50244B19CBA28C002F5A11 /* PresentMapVCTransistion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapVCTransistion.swift; path = Utility/PresentMapVCTransistion.swift; sourceTree = "<group>"; };
+		4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapViewController.swift; path = Utility/PresentMapViewController.swift; sourceTree = "<group>"; };
 		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4E7AA46F19CB6FCF0048FB11 /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			children = (
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
 				4EAE724B19B9DAFE0021C4DF /* HexColor.swift */,
-				4E50244B19CBA28C002F5A11 /* PresentMapVCTransistion.swift */,
+				4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */,
 				4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */,
 			);
 			name = Utility;
@@ -362,7 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E50244C19CBA28C002F5A11 /* PresentMapVCTransistion.swift in Sources */,
+				4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,

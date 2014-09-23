@@ -26,11 +26,17 @@ enum UniversityCampusMaps: Int {
 
         let centerPoints = [
             CGPointMake(50,50),
-            CGPointMake(370,300),
-            CGPointMake(300,0)
+            CGPointMake(370,110),
+            CGPointMake(270,30)
         ]
 
         return centerPoints[toRaw()]
+    }
+
+    var indicatorHConstraintConstantValue: CGFloat {
+
+        let constraintValues: [CGFloat] = [-97, -1, 89]
+        return constraintValues[toRaw()]
     }
 }
 
@@ -60,6 +66,16 @@ class MapViewController: UIViewController, POPAnimationDelegate {
         return view
     }()
 
+    lazy var currentMapIndicator: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 2.5
+        view.backgroundColor = UIColor.whiteColor()
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return view
+    }()
+
+    var currentMapIndicatorHConstraint: NSLayoutConstraint?
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -78,7 +94,8 @@ class MapViewController: UIViewController, POPAnimationDelegate {
         var views = [
             "dismissButton": dismissButton,
             "pdfView": pdfView,
-            "optionsContainer": optionsContainer
+            "optionsContainer": optionsContainer,
+            "currentMapIndicator": currentMapIndicator
         ]
 
         let optionTitles = ["SB", "UP", "JB"]
@@ -95,6 +112,9 @@ class MapViewController: UIViewController, POPAnimationDelegate {
             optionsContainer.addSubview(button)
         }
 
+        optionsContainer.addSubview(currentMapIndicator)
+
+
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-25-[dismissButton]", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton]-20-|", options: nil, metrics: nil, views: views))
 
@@ -109,6 +129,16 @@ class MapViewController: UIViewController, POPAnimationDelegate {
 
         view.addConstraint(NSLayoutConstraint(item: optionsContainer, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[optionsContainer(30)]-10-|", options: nil, metrics: nil, views: views))
+
+        currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[currentMapIndicator(5)]", options: nil, metrics: nil, views: views))
+        currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator(5)]", options: nil, metrics: nil, views: views))
+
+        currentMapIndicatorHConstraint = NSLayoutConstraint(item: currentMapIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: views["UPButton"], attribute: .CenterX, multiplier: 1.0, constant: self.currentMap.indicatorHConstraintConstantValue)
+
+        optionsContainer.addConstraint(currentMapIndicatorHConstraint!)
+
+        optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator]|", options: nil, metrics: nil, views: views))
+
     }
 
     func createPDFViewForMap(type: UniversityCampusMaps) -> JCTiledPDFScrollView {
@@ -131,6 +161,12 @@ class MapViewController: UIViewController, POPAnimationDelegate {
         let button = sender as UIButton
         let map = UniversityCampusMaps.fromRaw(button.tag)
 
+        let currentMapIndicatorAnim = POPSpringAnimation(propertyNamed: kPOPLayoutConstraintConstant)
+        currentMapIndicatorAnim.springBounciness = 1
+        currentMapIndicatorAnim.springSpeed = 1
+        currentMapIndicatorAnim.fromValue = currentMapIndicatorHConstraint!.constant
+        currentMapIndicatorAnim.toValue = map!.indicatorHConstraintConstantValue
+
         if map != currentMap {
 
             UIView.animateWithDuration(0.0001, animations: { () -> Void in
@@ -146,6 +182,8 @@ class MapViewController: UIViewController, POPAnimationDelegate {
 
                 self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-7-[pdfView]-7-|", options: nil, metrics: nil, views: views))
                 self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-60-[pdfView]-50-|", options: nil, metrics: nil, views: views))
+
+                self.currentMapIndicatorHConstraint!.pop_addAnimation(currentMapIndicatorAnim, forKey: "constantAnimation")
 
                 UIView.animateWithDuration(0.0001, animations: { () -> Void in
                     self.pdfView.alpha = 1.0
