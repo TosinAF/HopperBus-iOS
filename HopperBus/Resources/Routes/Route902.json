@@ -1,0 +1,350 @@
+{
+	"term_time_services": [
+		{
+			"University Park, East Drive"			: "07:45",
+			"Arts Centre"							: "07:47",
+			"Kings Meadow"							: "07:55",
+			"University East Entrance (stop QM01)"	: "08:00",
+			"9 Triumph Road (stop RA55)"			: "08:03",
+			"Jubilee Campus, Newark Hall"			: "08:04",
+			"Jubilee Campus, The Exchange"			: "08:05",
+			"George Green Library"					: "08:10",
+			"University Park, East Drive"			: "08:12"
+		}, 
+
+		{
+			"University Park, East Drive"			: "08:15",
+			"Arts Centre"							: "08:17",
+			"Kings Meadow"							: "08:25",
+			"University East Entrance (stop QM01)"	: "08:30",
+			"9 Triumph Road (stop RA55)"			: "08:33",
+			"Jubilee Campus, Newark Hall"			: "08:34",
+			"Jubilee Campus, The Exchange"			: "08:35",
+			"George Green Library"					: "08:40",
+			"University Park, East Drive"			: "08:42"
+		}, 
+
+		{
+			"University Park, East Drive"			: "08:45",
+			"Arts Centre"							: "08:47",
+			"Kings Meadow"							: "08:55",
+			"University East Entrance (stop QM01)"	: "09:00",
+			"9 Triumph Road (stop RA55)"			: "09:03",
+			"Jubilee Campus, Newark Hall"			: "09:04",
+			"Jubilee Campus, The Exchange"			: "09:05",
+			"George Green Library"					: "09:10",
+			"University Park, East Drive"			: "09:12"
+		}, 
+
+		{
+			"University Park, East Drive"			: "09:15",
+			"Arts Centre"							: "09:17",
+			"Kings Meadow"							: "09:25",
+			"University East Entrance (stop QM01)"	: "09:30",
+			"9 Triumph Road (stop RA55)"			: "09:33",
+			"Jubilee Campus, Newark Hall"			: "09:34",
+			"Jubilee Campus, The Exchange"			: "09:35",
+			"George Green Library"					: "09:40",
+			"University Park, East Drive"			: "09:42"
+		}, 
+
+		{
+			"University Park, East Drive"			: "09:45",
+			"Arts Centre"							: "09:47",
+			"Kings Meadow"							: "09:55",
+			"University East Entrance (stop QM01)"	: "10:00",
+			"9 Triumph Road (stop RA55)"			: "10:03",
+			"Jubilee Campus, Newark Hall"			: "10:04",
+			"Jubilee Campus, The Exchange"			: "10:05",
+			"George Green Library"					: "10:10",
+			"University Park, East Drive"			: "10:12"
+		}, 
+
+		{
+			"University Park, East Drive"			: "10:15",
+			"Arts Centre"							: "10:17",
+			"Kings Meadow"							: "10:25",
+			"University East Entrance (stop QM01)"	: "10:30",
+			"9 Triumph Road (stop RA55)"			: "10:33",
+			"Jubilee Campus, Newark Hall"			: "10:34",
+			"Jubilee Campus, The Exchange"			: "10:35",
+			"George Green Library"					: "10:40",
+			"University Park, East Drive"			: "10:42"
+		}, 
+
+		{
+			"University Park, East Drive"			: "10:45",
+			"Arts Centre"							: "10:47",
+			"Kings Meadow"							: "10:55",
+			"University East Entrance (stop QM01)"	: "11:00",
+			"9 Triumph Road (stop RA55)"			: "11:03",
+			"Jubilee Campus, Newark Hall"			: "11:04",
+			"Jubilee Campus, The Exchange"			: "11:05",
+			"George Green Library"					: "11:10",
+			"University Park, East Drive"			: "11:12"
+		},
+
+		{
+			"University Park, East Drive"			: "11:15",
+			"Arts Centre"							: "11:17",
+			"Kings Meadow"							: "11:25",
+			"University East Entrance (stop QM01)"	: "11:30",
+			"9 Triumph Road (stop RA55)"			: "11:33",
+			"Jubilee Campus, Newark Hall"			: "11:34",
+			"Jubilee Campus, The Exchange"			: "11:35",
+			"George Green Library"					: "11:40",
+			"University Park, East Drive"			: "11:42"
+		}, 
+
+		{
+			"University Park, East Drive"			: "11:45",
+			"Arts Centre"							: "11:47",
+			"Kings Meadow"							: "11:55",
+			"University East Entrance (stop QM01)"	: "12:00",
+			"9 Triumph Road (stop RA55)"			: "12:03",
+			"Jubilee Campus, Newark Hall"			: "12:04",
+			"Jubilee Campus, The Exchange"			: "12:05",
+			"George Green Library"					: "12:10",
+			"University Park, East Drive"			: "12:12"
+		},
+
+		{
+			"University Park, East Drive"			: "12:15",
+			"Arts Centre"							: "12:17",
+			"Kings Meadow"							: "12:25",
+			"University East Entrance (stop QM01)"	: "12:30",
+			"9 Triumph Road (stop RA55)"			: "12:33",
+			"Jubilee Campus, Newark Hall"			: "12:34",
+			"Jubilee Campus, The Exchange"			: "12:35",
+			"George Green Library"					: "12:40",
+			"University Park, East Drive"			: "12:42"
+		},
+
+		{
+			"University Park, East Drive"			: "12:45",
+			"Arts Centre"							: "12:47",
+			"Kings Meadow"							: "12:55",
+			"University East Entrance (stop QM01)"	: "13:00",
+			"9 Triumph Road (stop RA55)"			: "13:03",
+			"Jubilee Campus, Newark Hall"			: "13:04",
+			"Jubilee Campus, The Exchange"			: "13:05",
+			"George Green Library"					: "13:10",
+			"University Park, East Drive"			: "13:12"
+		},
+
+		{
+			"University Park, East Drive"			: "13:15",
+			"Arts Centre"							: "13:17",
+			"Kings Meadow"							: "13:25",
+			"University East Entrance (stop QM01)"	: "13:30",
+			"9 Triumph Road (stop RA55)"			: "13:33",
+			"Jubilee Campus, Newark Hall"			: "13:34",
+			"Jubilee Campus, The Exchange"			: "13:35",
+			"George Green Library"					: "13:40",
+			"University Park, East Drive"			: "13:42"
+		},
+
+		{
+			"University Park, East Drive"			: "13:45",
+			"Arts Centre"							: "13:47",
+			"Kings Meadow"							: "13:55",
+			"University East Entrance (stop QM01)"	: "14:00",
+			"9 Triumph Road (stop RA55)"			: "14:03",
+			"Jubilee Campus, Newark Hall"			: "14:04",
+			"Jubilee Campus, The Exchange"			: "14:05",
+			"George Green Library"					: "14:10",
+			"University Park, East Drive"			: "14:12"
+		},
+
+		{
+			"University Park, East Drive"			: "14:15",
+			"Arts Centre"							: "14:17",
+			"Kings Meadow"							: "14:25",
+			"University East Entrance (stop QM01)"	: "14:30",
+			"9 Triumph Road (stop RA55)"			: "14:33",
+			"Jubilee Campus, Newark Hall"			: "14:34",
+			"Jubilee Campus, The Exchange"			: "14:35",
+			"George Green Library"					: "14:40",
+			"University Park, East Drive"			: "14:42"
+		},
+
+		{
+			"University Park, East Drive"			: "14:45",
+			"Arts Centre"							: "14:47",
+			"Kings Meadow"							: "14:55",
+			"University East Entrance (stop QM01)"	: "15:00",
+			"9 Triumph Road (stop RA55)"			: "15:03",
+			"Jubilee Campus, Newark Hall"			: "15:04",
+			"Jubilee Campus, The Exchange"			: "15:05",
+			"George Green Library"					: "15:10",
+			"University Park, East Drive"			: "15:12"
+		},
+
+		{
+			"University Park, East Drive"			: "15:15",
+			"Arts Centre"							: "15:17",
+			"Kings Meadow"							: "15:25",
+			"University East Entrance (stop QM01)"	: "15:30",
+			"9 Triumph Road (stop RA55)"			: "15:33",
+			"Jubilee Campus, Newark Hall"			: "15:34",
+			"Jubilee Campus, The Exchange"			: "15:35",
+			"George Green Library"					: "15:40",
+			"University Park, East Drive"			: "15:42"
+		},
+
+		{
+			"University Park, East Drive"			: "15:45",
+			"Arts Centre"							: "15:47",
+			"Kings Meadow"							: "15:55",
+			"University East Entrance (stop QM01)"	: "16:00",
+			"9 Triumph Road (stop RA55)"			: "16:03",
+			"Jubilee Campus, Newark Hall"			: "16:04",
+			"Jubilee Campus, The Exchange"			: "16:05",
+			"George Green Library"					: "16:10",
+			"University Park, East Drive"			: "16:12"
+		},
+
+		{
+			"University Park, East Drive"			: "16:15",
+			"Arts Centre"							: "16:17",
+			"Kings Meadow"							: "16:25",
+			"University East Entrance (stop QM01)"	: "16:30",
+			"George Green Library"					: "16:40",
+			"University Park, East Drive"			: "16:42"
+		},
+
+		{
+			"University Park, East Drive"			: "16:45",
+			"Arts Centre"							: "16:47",
+			"Kings Meadow"							: "16:55",
+			"University East Entrance (stop QM01)"	: "17:00",
+			"George Green Library"					: "17:10",
+			"University Park, East Drive"			: "17:12"
+		},
+
+		{
+			"University Park, East Drive"			: "17:15",
+			"Arts Centre"							: "17:17",
+			"Kings Meadow"							: "17:25",
+			"University East Entrance (stop QM01)"	: "17:30",
+			"George Green Library"					: "17:40",
+			"University Park, East Drive"			: "17:42"
+		},
+
+		{
+			"University Park, East Drive"			: "17:45",
+			"Arts Centre"							: "17:47",
+			"Kings Meadow"							: "17:55",
+			"University East Entrance (stop QM01)"	: "18:00",
+			"George Green Library"					: "18:10",
+			"University Park, East Drive"			: "18:12"
+		},
+
+		{
+			"University Park, East Drive"			: "18:15",
+			"Arts Centre"							: "18:17",
+			"Kings Meadow"							: "18:25",
+			"University East Entrance (stop QM01)"	: "18:30",
+			"George Green Library"					: "18:40",
+			"University Park, East Drive"			: "18:42"
+		},
+	],
+
+	"stops" : [
+
+        {
+            "name": "University Park, East Drive",
+            "term_time": [
+                "7.45", "8.15", "8.45", "9.15", "9.45",
+                "10.15", "10.45", "11.15", "11.45", "12.15",
+                "12.45", "13.15", "13.45", "14.15", "14.45",
+                "15.15", "15.45", "16.15", "16.45", "17.15",
+                "17.45", "18.15"
+            ]
+        },
+
+        {
+            "name": "Arts Centre",
+            "term_time": [
+                "7.47", "8.17", "8.47", "9.17", "9.47",
+                "10.17", "10.47", "11.17", "11.47", "12.17",
+                "12.47", "13.17", "13.47", "14.17", "14.47",
+                "15.17", "15.47", "16.17", "16.47", "17.17",
+                "17.47", "18.17"
+            ]
+        },
+
+        {
+            "name": "King’s Meadow",
+            "term_time": [
+                "7.55", "8.25", "8.55", "9.25", "9.55",
+                "10.25", "10.55", "11.25", "11.55", "12.25",
+                "12.55", "13.25", "13.55", "14.25", "14.55",
+                "15.25", "15.55", "16.25", "16.55", "17.25",
+                "17.55", "18.25"
+            ]
+        },
+
+        {
+            "name": "University East Entrance (stop QM01)",
+            "term_time": [
+              "8.00", "8.30", "9.00", "9.30", "10.00",
+              "10.30", "11.00", "11.30", "12.00", "12.30", "13.00",
+              "13.30", "14.00", "14.30", "15.00", "15.30", "16.00",
+              "16.30", "17.00", "17.30", "18.00", "18.30"
+            ]
+        },
+
+        {
+            "name": "9 Triumph Road (stop RA55)",
+            "term_time": [
+                "8.03", "8.33", "9.03", "9.33", "10.03",
+                "10.33", "11.03", "11.33", "12.03", "12.33",
+                "13.03", "13.33", "14.03", "14.33", "15.03",
+                "15.33", "16.03"
+            ]
+        },
+
+        {
+            "name": "Jubilee Campus, Newark Hall",
+            "term_time": [
+                "8.04", "8.34", "9.04", "9.34", "10.04",
+                "10.34", "11.04", "11.34", "12.04", "12.34",
+                "13.04", "13.34", "14.04", "14.34", "15.04",
+                "15.34", "16.04"
+            ]
+        },  
+
+        {
+            "name": "Jubilee Campus, The Exchange",
+            "term_time": [
+                "8.05", "8.35", "9.05", "9.35", "10.05",
+                "10.35", "11.05", "11.35", "12.05", "12.35",
+                "13.05", "13.35", "14.05", "14.35", "15.05",
+                "15.35", "16.05"
+            ]
+        },
+
+        {
+            "name": "George Green Library",
+            "term_time": [
+                "8.10", "8.40", "9.10", "9.40", "10.10", 
+                "10.40", "11.10", "11.40", "12.10", "12.40",
+                "13.10", "13.40", "14.10", "14.40", "15.10",
+                "15.40", "16.10", "16.40", "17.10", "17.40",
+                "18.10", "18.40"
+            ]
+        },
+
+        {
+            "name": "University Park, East Drive",
+            "term_time": [
+                "8.12", "8.42", "9.12", "9.42", "10.12", 
+                "10.42", "11.12", "11.42", "12.12", "12.42",
+                "13.12", "13.42", "14.12", "14.42", "15.12",
+                "15.42", "16.12", "16.42", "17.12", "17.42",
+                "18.12"
+            ]
+        }
+    ]
+}

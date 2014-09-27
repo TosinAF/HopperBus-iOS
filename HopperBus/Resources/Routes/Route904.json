@@ -1,0 +1,88 @@
+{
+	"term_time_schedule": [
+
+		[
+			["University Park, East Drive (stop UN42)",		"07:50", "UPED-1"],
+			["University Park, West Entrance (stop UN33)", 	"07:55", "UPWE-1"],
+			["Royal Derby Hospital Centre (stop D) arr.", 	"08:45", "RDHC-1"],
+			["Royal Derby Hospital Centre (stop D) dep.", 	"08:55", "RDHC-2"],
+			["University Park, West Entrance (stop UN28)", 	"08:55", "UPWE-2"],
+			["University Park, East Drive (stop UN42)",		"09:40", "UPED-2"]
+		], 
+
+		[
+			["University Park, East Drive (stop UN42)",	 	"10:05", "UPED-1"],
+			["University Park, West Entrance (stop UN33)",	"10:10", "UPWE-1"],
+			["Royal Derby Hospital Centre (stop D) arr.",	"10:50", "RDHC-1"],
+			["Royal Derby Hospital Centre (stop D) dep.", 	"11:05", "RDHC-2"],
+			["University Park, West Entrance (stop UN28)", 	"11:45", "UPWE-2"],
+			["University Park, East Drive (stop UN42)",	 	"11:50", "UPED-2"]
+		],
+
+		[
+			["University Park, East Drive (stop UN42)", 	"12:05", "UPED-1"],
+			["University Park, West Entrance (stop UN33)", 	"12:10", "UPWE-1"],
+			["Royal Derby Hospital Centre (stop D) arr.", 	"12:50", "RDHC-1"],
+			["Royal Derby Hospital Centre (stop D) dep.",	"13:05", "RDHC-2"],
+			["University Park, West Entrance (stop UN28)", 	"13:45", "UPWE-2"],
+			["University Park, East Drive (stop UN42)",		"13:50", "UPED-2"]
+		],
+
+		[
+			["University Park, East Drive (stop UN42)",		"14:15", "UPED-1"],
+			["University Park, West Entrance (stop UN33)",	"14:20", "UPWE-1"],
+			["Royal Derby Hospital Centre (stop D) arr.", 	"15:00", "RDHC-1"],
+			["Royal Derby Hospital Centre (stop D) dep.",	"15:15", "RDHC-2"],
+			["University Park, West Entrance (stop UN28)", 	"15:55", "UPWE-2"],
+			["University Park, East Drive (stop UN42)", 	"16:00", "UPED-2"]
+		],
+
+		[
+			["University Park, East Drive (stop UN42)",    	"16:15", "UPED-1"],
+			["University Park, West Entrance (stop UN33)", 	"16:20", "UPWE-1"],
+			["Royal Derby Hospital Centre (stop D) arr.", 	"17:00", "RDHC-1"],
+			["Royal Derby Hospital Centre (stop D) dep.", 	"17:15", "RDHC-2"],
+			["University Park, West Entrance (stop UN28)", 	"17:55", "UPWE-2"],
+			["University Park, East Drive (stop UN42)",		"18:00", "UPED-2"]
+		]
+	],
+
+	"stop_times": [
+
+	    {
+	    	"id": "UPED-1", 
+	      	"name": "University Park, East Drive (stop UN42)",
+	      	"term_time": ["7.50", "10.05", "12.05", "14.15", "16.15"]
+	    },
+
+	    {
+	    	"id": "UPWE-1",
+	      	"name": "University Park, West Entrance (stop UN33)",
+	      	"term_time": [ "7.55", "10.10", "12.10", "14.20", "16.20"]
+	    },
+
+	    {
+	    	"id": "RDHC-1",
+	      	"name": "Royal Derby Hospital Centre (stop D) arr",
+	      	"term_time": ["8.45", "10.50", "12.50", "15.00", "17.00"]
+	    },
+
+	    {
+	    	"id": "RDHC-2",
+	      	"name": "Royal Derby Hospital Centre (stop D) dep",
+	      	"term_time": ["8.55", "11.05", "13.05", "15.15", "17.15"]
+	    },
+
+	    {
+	    	"id": "UPWE-2",
+	      	"name": "University Park, West Entrance (stop UN28)",
+	      	"term_time": ["9.35", "11.45", "13.45", "15.55", "17.55"]
+	    },
+
+	    {
+	    	"id": "UPED-2",
+	      	"name": "University Park, East Drive (stop UN42)",
+	      	"term_time": ["9.40", "11.50", "13.50", "16.00", "18.00"]
+	    }
+  	]
+}

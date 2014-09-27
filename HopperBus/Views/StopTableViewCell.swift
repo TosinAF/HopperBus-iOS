@@ -13,14 +13,24 @@ class StopTableViewCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.font = UIFont(name: "Avenir", size: 16)
+        label.font = UIFont(name: "Avenir", size: 14)
+        label.numberOfLines = 2
         return label
     }()
 
     lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.font = UIFont(name: "Avenir-Light", size: 16)
+        label.font = UIFont(name: "Avenir-Light", size: 14)
+        label.textColor = UIColor(red: 0.631, green: 0.651, blue: 0.678, alpha: 1)
+        label.textAlignment = .Right
+        return label
+    }()
+
+    lazy var timeLabel2: UILabel = {
+        let label = UILabel()
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.font = UIFont(name: "Avenir-Light", size: 14)
         label.textColor = UIColor(red: 0.631, green: 0.651, blue: 0.678, alpha: 1)
         label.textAlignment = .Right
         return label
@@ -45,10 +55,14 @@ class StopTableViewCell: UITableViewCell {
 
     var isLastCell: Bool = false {
         willSet {
-            let multiplier: CGFloat = newValue ? 0.5 : 1.0
-            contentView.addConstraint(NSLayoutConstraint(item: lineView, attribute: .Height, relatedBy: .Equal, toItem: contentView, attribute: .Height, multiplier: multiplier, constant: 0))
+            let constant: CGFloat = newValue ? -0.5 * self.contentView.frame.size.height : 0
+            lineViewYConstraint.constant = constant
         }
     }
+
+    lazy var lineViewYConstraint: NSLayoutConstraint = {
+        return NSLayoutConstraint(item: self.lineView, attribute: .Height, relatedBy: .Equal, toItem: self.contentView, attribute: .Height, multiplier: 1.0, constant: 0)
+    }()
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -56,15 +70,18 @@ class StopTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .None
 
         contentView.addSubview(titleLabel)
         contentView.addSubview(timeLabel)
+        contentView.addSubview(timeLabel2)
         contentView.addSubview(lineView)
         contentView.addSubview(circleView)
 
         let views = [
             "timeLabel": timeLabel,
             "titleLabel": titleLabel,
+            "timeLabel2": timeLabel2,
             "lineView": lineView,
             "circleView": circleView
         ]
@@ -76,12 +93,15 @@ class StopTableViewCell: UITableViewCell {
         ]
 
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[timeLabel(80)]-(lineMargin)-[lineView(2)]-(lineMargin)-[titleLabel]-|", options: nil, metrics: metrics, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(margin)-[titleLabel]-(margin)-|", options: nil, metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[timeLabel2(80)]-(lineMargin)-[lineView(2)]-(lineMargin)-[titleLabel]-|", options: nil, metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[titleLabel]|", options: nil, metrics: metrics, views: views))
+
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[timeLabel]-5-[timeLabel2]|", options: nil, metrics: metrics, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[lineView]", options: nil, metrics: metrics, views: views))
-        contentView.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: timeLabel, attribute: .CenterY, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .CenterX, relatedBy: .Equal, toItem: lineView, attribute: .CenterX, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .CenterY, relatedBy: .Equal, toItem: titleLabel, attribute: .CenterY, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
+        contentView.addConstraint(lineViewYConstraint)
     }
 }

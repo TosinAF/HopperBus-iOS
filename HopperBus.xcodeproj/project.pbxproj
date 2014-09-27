@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E3B44D419D44D05004D275F /* Route903StopTimes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E3B44D319D44D05004D275F /* Route903StopTimes.json */; };
 		4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */; };
+		4E6ED67E19D60FAB00D903F6 /* Route903Services.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED67C19D60FAB00D903F6 /* Route903Services.json */; };
+		4E6ED68319D61C7100D903F6 /* Route902.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED68019D61C7100D903F6 /* Route902.json */; };
+		4E6ED68419D61C7100D903F6 /* Route903.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED68119D61C7100D903F6 /* Route903.json */; };
+		4E6ED68519D61C7100D903F6 /* Route904.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED68219D61C7100D903F6 /* Route904.json */; };
+		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
+		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
+		4E6F0FA619D1E01D00EC776B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA519D1E01D00EC776B /* SwiftyJSON.swift */; };
+		4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA719D3409400EC776B /* RouteViewModel.swift */; };
 		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
 		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
 		4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */; };
@@ -20,7 +29,7 @@
 		4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */; };
 		4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6119B8387C00523219 /* TabBar.swift */; };
 		4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6219B8387C00523219 /* TabBarItem.swift */; };
-		4ECFBE6819B8388900523219 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6719B8388900523219 /* HomeViewController.swift */; };
+		4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6719B8388900523219 /* RouteViewController.swift */; };
 		4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6919B8389900523219 /* Extensions.swift */; };
 		4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4CF619A7C08900892A7C /* AppDelegate.swift */; };
 		4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4CFD19A7C08900892A7C /* Images.xcassets */; };
@@ -39,8 +48,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E3B44D319D44D05004D275F /* Route903StopTimes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route903StopTimes.json; path = HopperBus/Resources/Routes/Route903StopTimes.json; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapViewController.swift; path = Utility/PresentMapViewController.swift; sourceTree = "<group>"; };
 		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4E6ED67C19D60FAB00D903F6 /* Route903Services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route903Services.json; path = HopperBus/Resources/Routes/Route903Services.json; sourceTree = "<group>"; };
+		4E6ED68019D61C7100D903F6 /* Route902.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route902.json; path = HopperBus/Resources/Routes/Route902.json; sourceTree = "<group>"; };
+		4E6ED68119D61C7100D903F6 /* Route903.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route903.json; path = HopperBus/Resources/Routes/Route903.json; sourceTree = "<group>"; };
+		4E6ED68219D61C7100D903F6 /* Route904.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route904.json; path = HopperBus/Resources/Routes/Route904.json; sourceTree = "<group>"; };
+		4E6ED68619D61CC900D903F6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Models/Models.swift; sourceTree = "<group>"; };
+		4E6F0F9D19D1D07100EC776B /* SwiftJSONParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftJSONParser.framework; path = "ThirdPartyLibraries/SwiftJSONParser/build/Debug-iphoneos/SwiftJSONParser.framework"; sourceTree = "<group>"; };
+		4E6F0FA119D1DCF700EC776B /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = HopperBus/Resources/Fonts/Entypo.ttf; sourceTree = "<group>"; };
+		4E6F0FA319D1DEF300EC776B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "ThirdPartyLibraries/SwiftyJSON/build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		4E6F0FA519D1E01D00EC776B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Utility/SwiftyJSON.swift; sourceTree = "<group>"; };
+		4E6F0FA719D3409400EC776B /* RouteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteViewModel.swift; path = Models/RouteViewModel.swift; sourceTree = "<group>"; };
 		4E7AA46F19CB6FCF0048FB11 /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = SuttonBoningtonCampus.pdf; path = HopperBus/Resources/Maps/SuttonBoningtonCampus.pdf; sourceTree = "<group>"; };
@@ -55,8 +75,11 @@
 		4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTableViewCell.swift; path = Views/StopTableViewCell.swift; sourceTree = "<group>"; };
 		4ECFBE6119B8387C00523219 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBar.swift; path = Views/TabBar.swift; sourceTree = "<group>"; };
 		4ECFBE6219B8387C00523219 /* TabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarItem.swift; path = Views/TabBarItem.swift; sourceTree = "<group>"; };
-		4ECFBE6719B8388900523219 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
+		4ECFBE6719B8388900523219 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteViewController.swift; path = Controllers/RouteViewController.swift; sourceTree = "<group>"; };
 		4ECFBE6919B8389900523219 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Utility/Extensions.swift; sourceTree = "<group>"; };
+		4ED02D9519D1CA5500C1E562 /* SwiftJSONParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftJSONParser.framework; path = "ThirdPartyLibraries/SwiftJSONParser/build/Debug-iphoneos/SwiftJSONParser.framework"; sourceTree = "<group>"; };
+		4ED02D9719D1CA6800C1E562 /* SwiftJSONParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftJSONParser.framework; path = "ThirdPartyLibraries/SwiftJSONParser/build/Debug-iphoneos/SwiftJSONParser.framework"; sourceTree = "<group>"; };
+		4ED02D9919D1CA9C00C1E562 /* SwiftJSONParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftJSONParser.framework; path = "ThirdPartyLibraries/SwiftJSONParser/build/Debug-iphoneos/SwiftJSONParser.framework"; sourceTree = "<group>"; };
 		4EDD4CF119A7C08900892A7C /* HopperBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HopperBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDD4CF619A7C08900892A7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EDD4CFD19A7C08900892A7C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -89,6 +112,7 @@
 		4E7AA47319CB98F90048FB11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4EFFD78519D19E7A00127823 /* Routes */,
 				4E7AA47F19CB9EFA0048FB11 /* Fonts */,
 				4E7AA47419CB99070048FB11 /* Maps */,
 			);
@@ -109,6 +133,7 @@
 		4E7AA47F19CB9EFA0048FB11 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4E6F0FA119D1DCF700EC776B /* Entypo.ttf */,
 				4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */,
 				4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */,
 			);
@@ -127,7 +152,7 @@
 		4ECFBE5A19B837D500523219 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4ECFBE6719B8388900523219 /* HomeViewController.swift */,
+				4ECFBE6719B8388900523219 /* RouteViewController.swift */,
 				4E7AA48419CB9F360048FB11 /* MapViewController.swift */,
 			);
 			name = Controllers;
@@ -137,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
+				4E6F0FA519D1E01D00EC776B /* SwiftyJSON.swift */,
 				4EAE724B19B9DAFE0021C4DF /* HexColor.swift */,
 				4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */,
 				4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */,
@@ -170,6 +196,7 @@
 				4EDD4CF619A7C08900892A7C /* AppDelegate.swift */,
 				4ECFBE5A19B837D500523219 /* Controllers */,
 				4EDD4D1519A7C87F00892A7C /* Views */,
+				4EFFD79D19D1A7E600127823 /* Models */,
 				4ECFBE5C19B837E100523219 /* Utility */,
 				4E7AA47319CB98F90048FB11 /* Resources */,
 				4EDD4CF419A7C08900892A7C /* Supporting Files */,
@@ -214,9 +241,35 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		4EFFD78519D19E7A00127823 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				4E6ED68019D61C7100D903F6 /* Route902.json */,
+				4E6ED68119D61C7100D903F6 /* Route903.json */,
+				4E6ED68219D61C7100D903F6 /* Route904.json */,
+				4E3B44D319D44D05004D275F /* Route903StopTimes.json */,
+				4E6ED67C19D60FAB00D903F6 /* Route903Services.json */,
+			);
+			name = Routes;
+			sourceTree = "<group>";
+		};
+		4EFFD79D19D1A7E600127823 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4E6F0FA719D3409400EC776B /* RouteViewModel.swift */,
+				4E6ED68619D61CC900D903F6 /* Models.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		9782702C7AE046DD969C2921 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E6F0FA319D1DEF300EC776B /* SwiftyJSON.framework */,
+				4E6F0F9D19D1D07100EC776B /* SwiftJSONParser.framework */,
+				4ED02D9919D1CA9C00C1E562 /* SwiftJSONParser.framework */,
+				4ED02D9719D1CA6800C1E562 /* SwiftJSONParser.framework */,
+				4ED02D9519D1CA5500C1E562 /* SwiftJSONParser.framework */,
 				4E50244D19CC6714002F5A11 /* QuartzCore.framework */,
 				EBF69A0F5AB64083B3DB10FB /* libPods.a */,
 			);
@@ -306,10 +359,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E3B44D419D44D05004D275F /* Route903StopTimes.json in Resources */,
 				4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */,
+				4E6ED67E19D60FAB00D903F6 /* Route903Services.json in Resources */,
 				4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */,
 				4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */,
 				4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */,
+				4E6ED68419D61C7100D903F6 /* Route903.json in Resources */,
+				4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */,
+				4E6ED68319D61C7100D903F6 /* Route902.json in Resources */,
+				4E6ED68519D61C7100D903F6 /* Route904.json in Resources */,
 				4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */,
 				4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */,
 			);
@@ -362,15 +421,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */,
 				4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
+				4E6F0FA619D1E01D00EC776B /* SwiftyJSON.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
 				4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */,
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
+				4E6ED68719D61CC900D903F6 /* Models.swift in Sources */,
 				4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */,
-				4ECFBE6819B8388900523219 /* HomeViewController.swift in Sources */,
+				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
 				4E845FAA19CD39A100CB4D03 /* DismissMapViewController.swift in Sources */,
 				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,
 			);
@@ -483,6 +545,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ThirdPartyLibraries/SwiftJSONParser/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ThirdPartyLibraries/SwiftyJSON/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -490,6 +555,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/HopperBus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -504,12 +570,16 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ThirdPartyLibraries/SwiftJSONParser/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ThirdPartyLibraries/SwiftyJSON/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/HopperBus-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

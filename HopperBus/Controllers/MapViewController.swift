@@ -52,8 +52,8 @@ class MapViewController: UIViewController, POPAnimationDelegate {
 
     lazy var dismissButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(named: "dismissButton")
-        button.setImage(image, forState: .Normal)
+        button.setTitle("\u{274C}", forState: .Normal)
+        button.titleLabel?.font = UIFont(name: "Entypo", size: 60.0)
         button.alpha = 0.0
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.addTarget(self, action: "onDismissButtonTap", forControlEvents: .TouchUpInside)
@@ -115,8 +115,8 @@ class MapViewController: UIViewController, POPAnimationDelegate {
         optionsContainer.addSubview(currentMapIndicator)
 
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-25-[dismissButton]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton]-20-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissButton]", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton]-10-|", options: nil, metrics: nil, views: views))
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-7-[pdfView]-7-|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-60-[pdfView]-50-|", options: nil, metrics: nil, views: views))
