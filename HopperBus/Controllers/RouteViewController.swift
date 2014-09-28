@@ -30,11 +30,12 @@ class RouteViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return view
     }()
 
-    lazy var tableView: UIView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
+        tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0);
         tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
         tableView.registerClass(StopTableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
@@ -49,8 +50,10 @@ class RouteViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return tabBar
     }()
 
-    //lazy var routeViewModel: RouteViewModel = RouteViewModel(type: self.currentRouteType)
-    lazy var routeViewModel: RouteViewModel = RouteViewModel(type: HopperBusRoutes.HB904)
+    var routeViewModelContainer = RouteViewModelContainer()
+
+    //var currentRouteViewModel: RouteViewModel = self.routeViewModels[self.currentRouteType.toRaw() - 1]
+    //lazy var routeViewModel: RouteViewModel = RouteViewModel(type: HopperBusRoutes.HB903)
 
     // MARK: - View Lifecycle
 
@@ -99,12 +102,13 @@ extension RouteViewController: UITableViewDataSource, UITableViewDelegate {
     // Datasource
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
         return routeViewModel.numberOfStopsForCurrentRoute()
-        //return 1
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as StopTableViewCell
+        let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
 
         let name = routeViewModel.nameForStop(indexPath.row)
         let (time1, time2) = routeViewModel.timesForStop(indexPath.row)
@@ -126,10 +130,6 @@ extension RouteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 70
     }
-
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
-    }
 }
 
 // MARK: - TabBarDelegate Methods
@@ -141,6 +141,8 @@ extension RouteViewController: TabBarDelegate {
         let title = route.title
         routeHeaderView.titleLabel.text = title.uppercaseString
         currentRouteType = route
+        routeViewModelContainer.updateScheduleIndexForRoutes()
+        tableView.reloadData()
     }
 }
 

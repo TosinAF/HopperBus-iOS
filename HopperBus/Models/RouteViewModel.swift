@@ -36,7 +36,22 @@ enum HopperBusRoutes: Int {
 
 // MARK: - RouteViewModel Class
 
-class RouteViewModel: NSObject {
+class RouteViewModelContainer {
+
+    var routeViewModels = [RouteViewModel(type: .HB902), RouteViewModel(type: .HB903), RouteViewModel(type: .HB904)]
+
+    func routeViewModel(type: HopperBusRoutes) -> RouteViewModel {
+        return routeViewModels[type.toRaw() - 1]
+    }
+
+    func updateScheduleIndexForRoutes() {
+        for routeVM in routeViewModels {
+            routeVM.updateScheduleIndex()
+        }
+    }
+}
+
+class RouteViewModel {
 
     let POSIXLocale = NSLocale(localeIdentifier: "en_US_POSIX")
 
@@ -47,28 +62,18 @@ class RouteViewModel: NSObject {
     var currentScheduleIndex: Int = 1
 
     init(type: HopperBusRoutes) {
-
         self.currentRouteType = type
         self.currentRoute = RouteViewModel.getRoute(currentRouteType)
         self.stopTimings = RouteViewModel.getStopTimings(currentRouteType)
-        self.currentScheduleIndex = RouteViewModel.getStopTimesIndexForCurrentTime(currentRoute, startIndex: currentStopIndex)
+        self.currentScheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(currentRoute, startIndex: currentStopIndex)
+    }
 
-        let x = RouteViewModel.getRoute(.HB904)
-
-        for y in x.termTime {
-            for z in y.stops {
-                //println(z.name)
-                //println(z.time)
-            }
-        }
-
-        println(self.stopTimings["UPED-1"]!.description)
-        super.init()
+    func updateScheduleIndex() {
+         self.currentScheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(currentRoute, startIndex: currentStopIndex)
     }
 
     func numberOfStopsForCurrentRoute() -> Int {
-        //return currentRoute.stops.count
-        return 6
+        return currentRoute.termTime[currentScheduleIndex].stops.count
     }
 
 
@@ -81,21 +86,30 @@ class RouteViewModel: NSObject {
 
         let stop = currentRoute.termTime[currentScheduleIndex].stops[index]
 
+        if stop.time == "00:00" {
+            return ("Next Stop", "at \(getNextTimeForStop(stop))")
+        }
+
         let timeStr1 = getPreviousTimeForStop(stop)
         let timeStr2 = stop.time
 
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm"
 
-        let time1 = dateFormatter.dateFromString(timeStr1)
+        if timeStr1 == nil {
+            let time2 = dateFormatter.dateFromString(timeStr2)
+            dateFormatter.dateFormat = "h:mm a"
+            let formattedTime2 = dateFormatter.stringFromDate(time2!)
+            return ("No Pre. Stop", formattedTime2)
+        }
+
+        let time1 = dateFormatter.dateFromString(timeStr1!)
         let time2 = dateFormatter.dateFromString(timeStr2)
 
         dateFormatter.dateFormat = "h:mm a"
 
         let formattedTime1 = dateFormatter.stringFromDate(time1!)
         let formattedTime2 = dateFormatter.stringFromDate(time2!)
-
-        // check for 00:00
 
         return (formattedTime1, formattedTime2)
     }
@@ -105,22 +119,54 @@ class RouteViewModel: NSObject {
 
 private extension RouteViewModel {
 
-    func getPreviousTimeForStop(stop: Stop) -> String {
+    func getPreviousTimeForStop(stop: Stop) -> String? {
 
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
+
+        println(stop.id)
 
         for (index, time) in enumerate(self.stopTimings[stop.id]!.termTime) {
 
             let timeDate = dateFormatter.dateFromString(time)
             let timeStr = dateFormatter.stringFromDate(timeDate!)
             if timeStr == stop.time {
-                return self.stopTimings[stop.id]!.termTime[index - 1]
+                if index == 0 {
+                    return nil
+                } else {
+                    return self.stopTimings[stop.id]!.termTime[index - 1]
+                }
             }
         }
 
-        return "-"
+        return "00:00"
+    }
+
+    func getNextTimeForStop(stop: Stop) -> String {
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "HH:mm"
+
+        let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
+
+        for (index, time) in enumerate(self.stopTimings[stop.id]!.termTime) {
+
+            let possibleTime = dateFormatter.dateFromString(time)
+            let result = currentTime!.compare(possibleTime!)
+
+            switch (result) {
+            case .OrderedAscending, .OrderedSame:
+                dateFormatter.dateFormat = "HH:mm a"
+                return dateFormatter.stringFromDate(possibleTime!)
+            case .OrderedDescending:
+                continue
+            }
+
+        }
+
+        return "No Stop"
     }
 
     class func getRoute(type: HopperBusRoutes) -> Route {
@@ -151,9 +197,10 @@ private extension RouteViewModel {
         for schedule in route {
             var stops = [Stop]()
             for stop in schedule.arrayValue! {
-                let name = stop[0].stringValue!
-                let time = stop[1].stringValue!
-                let id = stop[2].stringValue!
+
+                let id = stop[0].stringValue!
+                let name = stop[1].stringValue!
+                let time = stop[2].stringValue!
                 let s = Stop(id: id, name: name, time: time)
                 stops.append(s)
             }
@@ -195,16 +242,20 @@ private extension RouteViewModel {
         return stopTimings
     }
 
-    class func getStopTimesIndexForCurrentTime(route: Route, startIndex: Int) -> Int {
+    class func getScheduleIndexForCurrentTime(route: Route, startIndex: Int) -> Int {
 
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
 
-        let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
-        //let currentTime = dateFormatter.dateFromString("17:00")
+        //let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
+        let currentTime = dateFormatter.dateFromString("18:15")
 
         for (index, schedule) in enumerate(route.termTime) {
+
+            let time = schedule.stops[startIndex].time
+
+            if time == "00:00" { continue }
 
             let possibleRouteTimeStart = dateFormatter.dateFromString(schedule.stops[startIndex].time)
             let result = currentTime!.compare(possibleRouteTimeStart!)

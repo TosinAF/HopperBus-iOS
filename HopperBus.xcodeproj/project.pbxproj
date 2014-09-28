@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E3B44D419D44D05004D275F /* Route903StopTimes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E3B44D319D44D05004D275F /* Route903StopTimes.json */; };
 		4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */; };
-		4E6ED67E19D60FAB00D903F6 /* Route903Services.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED67C19D60FAB00D903F6 /* Route903Services.json */; };
 		4E6ED68319D61C7100D903F6 /* Route902.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED68019D61C7100D903F6 /* Route902.json */; };
 		4E6ED68419D61C7100D903F6 /* Route903.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED68119D61C7100D903F6 /* Route903.json */; };
 		4E6ED68519D61C7100D903F6 /* Route904.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E6ED68219D61C7100D903F6 /* Route904.json */; };
@@ -48,10 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4E3B44D319D44D05004D275F /* Route903StopTimes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route903StopTimes.json; path = HopperBus/Resources/Routes/Route903StopTimes.json; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapViewController.swift; path = Utility/PresentMapViewController.swift; sourceTree = "<group>"; };
 		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4E6ED67C19D60FAB00D903F6 /* Route903Services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route903Services.json; path = HopperBus/Resources/Routes/Route903Services.json; sourceTree = "<group>"; };
 		4E6ED68019D61C7100D903F6 /* Route902.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route902.json; path = HopperBus/Resources/Routes/Route902.json; sourceTree = "<group>"; };
 		4E6ED68119D61C7100D903F6 /* Route903.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route903.json; path = HopperBus/Resources/Routes/Route903.json; sourceTree = "<group>"; };
 		4E6ED68219D61C7100D903F6 /* Route904.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Route904.json; path = HopperBus/Resources/Routes/Route904.json; sourceTree = "<group>"; };
@@ -247,8 +243,6 @@
 				4E6ED68019D61C7100D903F6 /* Route902.json */,
 				4E6ED68119D61C7100D903F6 /* Route903.json */,
 				4E6ED68219D61C7100D903F6 /* Route904.json */,
-				4E3B44D319D44D05004D275F /* Route903StopTimes.json */,
-				4E6ED67C19D60FAB00D903F6 /* Route903Services.json */,
 			);
 			name = Routes;
 			sourceTree = "<group>";
@@ -359,9 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E3B44D419D44D05004D275F /* Route903StopTimes.json in Resources */,
 				4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */,
-				4E6ED67E19D60FAB00D903F6 /* Route903Services.json in Resources */,
 				4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */,
 				4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */,
 				4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */,
