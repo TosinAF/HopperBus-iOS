@@ -34,7 +34,7 @@ enum HopperBusRoutes: Int {
     }
 }
 
-// MARK: - RouteViewModel Class
+// MARK: - RouteViewModelContainer Class
 
 class RouteViewModelContainer {
 
@@ -50,6 +50,8 @@ class RouteViewModelContainer {
         }
     }
 }
+
+// MARK: - RouteViewModel Class
 
 class RouteViewModel {
 
@@ -76,98 +78,21 @@ class RouteViewModel {
         return currentRoute.termTime[currentScheduleIndex].stops.count
     }
 
-
     func nameForStop(index: Int) -> String {
         let stop = currentRoute.termTime[currentScheduleIndex].stops[index]
         return stop.name
     }
 
-    func timesForStop(index: Int) -> (String, String) {
-
+    func timeForStop(index: Int) -> String {
         let stop = currentRoute.termTime[currentScheduleIndex].stops[index]
-
-        if stop.time == "00:00" {
-            return ("Next Stop", "at \(getNextTimeForStop(stop))")
-        }
-
-        let timeStr1 = getPreviousTimeForStop(stop)
-        let timeStr2 = stop.time
-
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-
-        if timeStr1 == nil {
-            let time2 = dateFormatter.dateFromString(timeStr2)
-            dateFormatter.dateFormat = "h:mm a"
-            let formattedTime2 = dateFormatter.stringFromDate(time2!)
-            return ("No Pre. Stop", formattedTime2)
-        }
-
-        let time1 = dateFormatter.dateFromString(timeStr1!)
-        let time2 = dateFormatter.dateFromString(timeStr2)
-
-        dateFormatter.dateFormat = "h:mm a"
-
-        let formattedTime1 = dateFormatter.stringFromDate(time1!)
-        let formattedTime2 = dateFormatter.stringFromDate(time2!)
-
-        return (formattedTime1, formattedTime2)
+        let formattedTime = formatTimeStringForDisplay(stop.time)
+        return formattedTime
     }
 }
 
 // MARK: - Private Methods
 
 private extension RouteViewModel {
-
-    func getPreviousTimeForStop(stop: Stop) -> String? {
-
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "HH:mm"
-
-        println(stop.id)
-
-        for (index, time) in enumerate(self.stopTimings[stop.id]!.termTime) {
-
-            let timeDate = dateFormatter.dateFromString(time)
-            let timeStr = dateFormatter.stringFromDate(timeDate!)
-            if timeStr == stop.time {
-                if index == 0 {
-                    return nil
-                } else {
-                    return self.stopTimings[stop.id]!.termTime[index - 1]
-                }
-            }
-        }
-
-        return "00:00"
-    }
-
-    func getNextTimeForStop(stop: Stop) -> String {
-
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "HH:mm"
-
-        let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
-
-        for (index, time) in enumerate(self.stopTimings[stop.id]!.termTime) {
-
-            let possibleTime = dateFormatter.dateFromString(time)
-            let result = currentTime!.compare(possibleTime!)
-
-            switch (result) {
-            case .OrderedAscending, .OrderedSame:
-                dateFormatter.dateFormat = "HH:mm a"
-                return dateFormatter.stringFromDate(possibleTime!)
-            case .OrderedDescending:
-                continue
-            }
-
-        }
-
-        return "No Stop"
-    }
 
     class func getRoute(type: HopperBusRoutes) -> Route {
 
@@ -248,8 +173,7 @@ private extension RouteViewModel {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
 
-        //let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
-        let currentTime = dateFormatter.dateFromString("18:15")
+        let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
 
         for (index, schedule) in enumerate(route.termTime) {
 
@@ -268,9 +192,8 @@ private extension RouteViewModel {
                     continue
             }
         }
-        
-        // Default Value: return the 1st & 2nd stop times
-        return 1
+
+        return 0
     }
 
     class func castToStringArray(jsonArr: [JSON]) -> [String] {
@@ -281,10 +204,18 @@ private extension RouteViewModel {
         return strArray
     }
 
+    func formatTimeStringForDisplay(timeStr: String) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+
+        let timeAsDate = dateFormatter.dateFromString(timeStr)
+        dateFormatter.dateFormat = "h:mm a"
+
+        return dateFormatter.stringFromDate(timeAsDate!)
+    }
 }
 
 private extension NSDate {
-
     class func currentTimeAsString() -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeStyle = .ShortStyle
