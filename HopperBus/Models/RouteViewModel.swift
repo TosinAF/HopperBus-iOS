@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
-// MARK: - HopperBus Routes Enum
+// MARK: - HopperBusRoutes Enum
 
 enum HopperBusRoutes: Int {
     case HB901 = 0, HB902, HB903, HB904
@@ -18,19 +18,17 @@ enum HopperBusRoutes: Int {
             "903 - Jubilee Campus",
             "904 - Royal Derby Hospital"
         ]
-
         return routeTitles[toRaw()]
     }
 
-    var filePath: String {
-        let fileTitles = [
-            "Route901",
-            "Route902",
-            "Route903",
-            "Route904"
+    var routeCode: String {
+        let routeCodes = [
+            "901",
+            "902",
+            "903",
+            "904"
         ]
-
-        return NSBundle.mainBundle().pathForResource(fileTitles[toRaw()], ofType: "json")!
+        return routeCodes[toRaw()]
     }
 }
 
@@ -38,14 +36,35 @@ enum HopperBusRoutes: Int {
 
 class RouteViewModelContainer {
 
-    var routeViewModels = [RouteViewModel(type: .HB902), RouteViewModel(type: .HB903), RouteViewModel(type: .HB904)]
+    let routeViewModels: [String: RouteViewModel]
+
+    init() {
+
+        let filePath = NSBundle.mainBundle().pathForResource("Routes", ofType: "json")!
+        let data = NSData.dataWithContentsOfFile(filePath, options: nil, error: nil)
+        let json = JSON(data: data)
+
+        let data902 = json["route902"].dictionaryValue!
+        let data903 = json["route903"].dictionaryValue!
+        let data904 = json["route904"].dictionaryValue!
+
+        let route902 = RouteViewModel(data: data902, type: .HB902)
+        let route903 = RouteViewModel(data: data903, type: .HB903)
+        let route904 = RouteViewModel(data: data904, type: .HB904)
+
+        routeViewModels = [
+            HopperBusRoutes.HB902.routeCode: route902,
+            HopperBusRoutes.HB903.routeCode: route903,
+            HopperBusRoutes.HB904.routeCode: route904
+        ]
+    }
 
     func routeViewModel(type: HopperBusRoutes) -> RouteViewModel {
-        return routeViewModels[type.toRaw() - 1]
+        return routeViewModels[type.routeCode]!
     }
 
     func updateScheduleIndexForRoutes() {
-        for routeVM in routeViewModels {
+        for (key,routeVM) in routeViewModels {
             routeVM.updateScheduleIndex()
         }
     }
@@ -55,38 +74,64 @@ class RouteViewModelContainer {
 
 class RouteViewModel {
 
-    let POSIXLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+    let route: Route
+    let routeType: HopperBusRoutes
+    let stopTimings: [String: Times]
 
-    var currentRouteType: HopperBusRoutes
-    var currentRoute: Route
-    var stopTimings: [String: Times]
-    var currentStopIndex: Int = 0
-    var currentScheduleIndex: Int = 1
+    var stopIndex: Int = 0
+    var scheduleIndex: Int = 0
 
-    init(type: HopperBusRoutes) {
-        self.currentRouteType = type
-        self.currentRoute = RouteViewModel.getRoute(currentRouteType)
-        self.stopTimings = RouteViewModel.getStopTimings(currentRouteType)
-        self.currentScheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(currentRoute, startIndex: currentStopIndex)
+    init(data: [String: JSON], type: HopperBusRoutes) {
+        self.route = RouteViewModel.getRoute(data)
+        self.routeType = type
+        self.stopTimings = RouteViewModel.getStopTimings(data)
+        self.scheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(inRoute: route, atStop: stopIndex)
     }
 
     func updateScheduleIndex() {
-         self.currentScheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(currentRoute, startIndex: currentStopIndex)
+         self.scheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(inRoute: route, atStop: stopIndex)
     }
 
     func numberOfStopsForCurrentRoute() -> Int {
-        return currentRoute.termTime[currentScheduleIndex].stops.count
+        return route.schedules[scheduleIndex].stops.count
     }
 
     func nameForStop(index: Int) -> String {
-        let stop = currentRoute.termTime[currentScheduleIndex].stops[index]
+        let stop = route.schedules[scheduleIndex].stops[index]
         return stop.name
     }
 
     func timeForStop(index: Int) -> String {
-        let stop = currentRoute.termTime[currentScheduleIndex].stops[index]
+        let stop = route.schedules[scheduleIndex].stops[index]
         let formattedTime = formatTimeStringForDisplay(stop.time)
         return formattedTime
+    }
+
+    func timeTillStop(index: Int) -> String {
+        let stop = route.schedules[scheduleIndex].stops[index]
+
+        let currentTimeStr = NSDate.currentTimeAsString()
+        let stopTimeStr = stop.time
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "HH:mm"
+
+        let currentTime = dateFormatter.dateFromString("08:11")!
+        let stopTime = dateFormatter.dateFromString(stopTimeStr)!
+
+        let diff = stopTime.timeIntervalSinceDate(currentTime)
+
+        switch abs(diff) {
+            case 0...60:
+                return "1m"
+            case 61..<3600:
+                let minutes = Int(floor(abs(diff) / 60))
+                return "\(minutes)m"
+            default:
+                let formattedTime = formatTimeStringForDisplay(stop.time)
+                return formattedTime
+        }
     }
 }
 
@@ -94,22 +139,19 @@ class RouteViewModel {
 
 private extension RouteViewModel {
 
-    class func getRoute(type: HopperBusRoutes) -> Route {
+    class func getRoute(data: [String: JSON]) -> Route {
 
-        let data = NSData.dataWithContentsOfFile(type.filePath, options: nil, error: nil)
-        let json = JSON(data: data)
-
-        let termTime = json["term_time_schedule"].arrayValue
+        let termTime = data["term_time_schedule"]!.arrayValue
         let termTimeSchedules = RouteViewModel.getSchedules(termTime!)
 
         var route = Route(termTime: termTimeSchedules)
 
-        if let saturdays = json["saturday_schedule"].arrayValue {
-            route.saturdays = RouteViewModel.getSchedules(saturdays)
+        if let saturdays = data["saturday_schedule"] {
+            route.saturdays = RouteViewModel.getSchedules(saturdays.arrayValue!)
         }
 
-        if let holidays = json["holiday_schdule"].arrayValue {
-            route.holidays = RouteViewModel.getSchedules(holidays)
+        if let holidays = data["holiday_schdule"] {
+            route.holidays = RouteViewModel.getSchedules(holidays.arrayValue!)
         }
 
         return route
@@ -135,14 +177,10 @@ private extension RouteViewModel {
         return schedules
     }
 
-    class func getStopTimings(type: HopperBusRoutes) -> [String: Times] {
-
-        let data = NSData.dataWithContentsOfFile(type.filePath, options: nil, error: nil)
-        let json = JSON(data: data)
-
-        var stopTimingsJSON = json["stop_times"].arrayValue
+    class func getStopTimings(data: [String: JSON]) -> [String: Times] {
 
         var stopTimings = [String: Times]()
+        let stopTimingsJSON = data["stop_times"]!.arrayValue
 
         for stop in stopTimingsJSON! {
 
@@ -167,7 +205,7 @@ private extension RouteViewModel {
         return stopTimings
     }
 
-    class func getScheduleIndexForCurrentTime(route: Route, startIndex: Int) -> Int {
+    class func getScheduleIndexForCurrentTime(inRoute route: Route, atStop stopIndex: Int) -> Int {
 
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
@@ -175,13 +213,11 @@ private extension RouteViewModel {
 
         let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
 
-        for (index, schedule) in enumerate(route.termTime) {
+        for (index, schedule) in enumerate(route.schedules) {
 
-            let time = schedule.stops[startIndex].time
+            let time = schedule.stops[stopIndex].time
 
-            if time == "00:00" { continue }
-
-            let possibleRouteTimeStart = dateFormatter.dateFromString(schedule.stops[startIndex].time)
+            let possibleRouteTimeStart = dateFormatter.dateFromString(schedule.stops[stopIndex].time)
             let result = currentTime!.compare(possibleRouteTimeStart!)
 
             switch (result) {

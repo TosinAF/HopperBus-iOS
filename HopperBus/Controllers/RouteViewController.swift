@@ -73,8 +73,6 @@ class RouteViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let mapButtonImage = UIImage(named: "mapButtonImage")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: mapButtonImage, style: .Done, target: self, action: "onMapButtonTap")
 
-        let x = RouteViewModel(type: .HB904)
-
         view.addSubview(tableView)
         view.addSubview(tabBar)
 
@@ -118,12 +116,14 @@ extension RouteViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as StopTableViewCell
-        let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
+        let rvm = routeViewModelContainer.routeViewModel(currentRouteType)
 
-        cell.titleLabel.text = routeViewModel.nameForStop(indexPath.row)
-        cell.timeLabel.text = routeViewModel.timeForStop(indexPath.row)
-        cell.isLastCell = indexPath.row == routeViewModel.numberOfStopsForCurrentRoute() - 1 ? true : false
-        cell.isSelected = indexPath.row == routeViewModel.currentStopIndex ? true : false
+        cell.titleLabel.text = rvm.nameForStop(indexPath.row)
+
+
+        cell.timeLabel.text = indexPath.row == rvm.stopIndex ? rvm.timeTillStop(indexPath.row) : rvm.timeForStop(indexPath.row)
+        cell.isLastCell = indexPath.row == rvm.numberOfStopsForCurrentRoute() - 1 ? true : false
+        cell.isSelected = indexPath.row == rvm.stopIndex ? true : false
 
         return cell
     }
@@ -139,7 +139,7 @@ extension RouteViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
-        if routeViewModel.currentRouteType == HopperBusRoutes.HB904 {
+        if routeViewModel.routeType == HopperBusRoutes.HB904 {
             return 65
         }
         return 55
@@ -147,32 +147,62 @@ extension RouteViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
-        if indexPath.row == routeViewModel.currentStopIndex { return }
+        if indexPath.row == routeViewModel.stopIndex { return }
 
-        let oldIndexPath = NSIndexPath(forRow: routeViewModel.currentStopIndex , inSection: 0)
-        let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as StopTableViewCell
+        let oldIndexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
+
+        var start: CGPoint
+
+        if let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as? StopTableViewCell {
+
+            start = oldCell.convertPoint(oldCell.circleView.center, toView: view)
+
+        } else {
+
+            var cell: StopTableViewCell
+
+            if indexPath.row > oldIndexPath.row {
+                // Animation Going Down
+                println("animation going down")
+                let indexPath = tableView.indexPathsForVisibleRows()![1] as NSIndexPath
+                cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell
+            } else {
+                // Animation Going Up On A Tuesday lol
+                println("animation going up")
+                let visibleCellCount = tableView.indexPathsForVisibleRows()!.count
+                let indexPath = tableView.indexPathsForVisibleRows()![visibleCellCount - 1] as NSIndexPath
+                cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell
+            }
+
+            start = cell.convertPoint(cell.circleView.center, toView: view)
+        }
+
         let newCell = tableView.cellForRowAtIndexPath(indexPath) as StopTableViewCell
+        let finish = newCell.convertPoint(newCell.circleView.center, toView: view)
 
-        let current = oldCell.convertPoint(oldCell.circleView.center, toView: view)
-        let final = newCell.convertPoint(newCell.circleView.center, toView: view)
+        routeViewModel.stopIndex = indexPath.row
 
-        animateSelection(fromPoint: current, toPoint: final)
-        oldCell.isSelected = false
+        animateSelection(from: start, to: finish)
 
-        routeViewModel.currentStopIndex = indexPath.row
+        if let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as? StopTableViewCell {
+            oldCell.isSelected = false
+            let timeStr = routeViewModel.timeForStop(indexPath.row)
+            oldCell.animateTimeLabelTextChange(timeStr)
+        }
+
         routeViewModelContainer.updateScheduleIndexForRoutes()
     }
 
     // MARK:- Animatons
 
-    func animateSelection(#fromPoint: CGPoint, toPoint: CGPoint) {
+    func animateSelection(from start:CGPoint, to finish: CGPoint) {
 
         let anim = POPSpringAnimation(propertyNamed: kPOPViewCenter)
         anim.delegate = self
         anim.springBounciness = 5
         anim.springSpeed = 2
-        anim.fromValue = NSValue(CGPoint: fromPoint)
-        anim.toValue = NSValue(CGPoint: toPoint)
+        anim.fromValue = NSValue(CGPoint: start)
+        anim.toValue = NSValue(CGPoint: finish)
 
         view.addSubview(animatedCircleView)
         animatedCircleView.pop_addAnimation(anim, forKey: "center")
@@ -187,9 +217,11 @@ extension RouteViewController: POPAnimationDelegate {
     func pop_animationDidStop(anim: POPAnimation!, finished: Bool) {
 
         let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
-        let indexPath = NSIndexPath(forRow: routeViewModel.currentStopIndex , inSection: 0)
+        let indexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as StopTableViewCell
+        let timeStr = routeViewModel.timeTillStop(indexPath.row)
         cell.isSelected = true
+        cell.animateTimeLabelTextChange(timeStr)
 
         animatedCircleView.removeFromSuperview()
         tableView.reloadData()

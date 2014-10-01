@@ -12,7 +12,7 @@ struct Route {
     let termTime:  [Schedule]
     var saturdays: [Schedule]?
     var holidays:  [Schedule]?
-    var currentSchedule : [Schedule] {
+    var schedules: [Schedule] {
 
         if saturdays == nil || holidays == nil {
             return termTime

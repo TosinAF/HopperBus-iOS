@@ -56,9 +56,11 @@ class StopTableViewCell: UITableViewCell {
             if selected {
                 circleView.backgroundColor = UIColor.selectedGreen()
                 circleView.layer.borderColor = UIColor.selectedGreen().CGColor
+                timeLabel.textColor = UIColor.selectedGreen()
             } else {
                 circleView.backgroundColor = UIColor.whiteColor()
                 circleView.layer.borderColor = UIColor.disabledGreen().CGColor
+                timeLabel.textColor = UIColor(red: 0.631, green: 0.651, blue: 0.678, alpha: 1)
             }
         }
     }
@@ -105,6 +107,17 @@ class StopTableViewCell: UITableViewCell {
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
         contentView.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: timeLabel, attribute: .CenterY, multiplier: 1, constant: 0))
         contentView.addConstraint(lineViewYConstraint)
+    }
+
+    func animateTimeLabelTextChange(text: String) {
+
+        let animation = CATransition();
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        animation.type = kCATransitionFade;
+        animation.duration = 0.15;
+        timeLabel.layer.addAnimation(animation, forKey: "kCATransitionFade")
+
+        timeLabel.text = text
     }
 }
 
