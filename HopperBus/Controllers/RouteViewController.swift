@@ -13,9 +13,10 @@ class RouteViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Properties
 
     let LastViewedRouteKey = "LastViewedRoute"
-
+    let routeViewModelContainer = RouteViewModelContainer()
+    
     var initialRouteType : HopperBusRoutes {
-        var route: HopperBusRoutes = HopperBusRoutes.HB901
+        var route: HopperBusRoutes = HopperBusRoutes.HB903
         if let lastViewedRoute = NSUserDefaults.standardUserDefaults().objectForKey(LastViewedRouteKey) as? Int {
             route = HopperBusRoutes.fromRaw(lastViewedRoute)!
         }
@@ -60,7 +61,7 @@ class RouteViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return circleView
     }()
 
-    let routeViewModelContainer = RouteViewModelContainer()
+
 
     var selectedTableViewCellIndex = 0
 
@@ -163,12 +164,10 @@ extension RouteViewController: UITableViewDataSource, UITableViewDelegate {
 
             if indexPath.row > oldIndexPath.row {
                 // Animation Going Down
-                println("animation going down")
                 let indexPath = tableView.indexPathsForVisibleRows()![1] as NSIndexPath
                 cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell
             } else {
                 // Animation Going Up On A Tuesday lol
-                println("animation going up")
                 let visibleCellCount = tableView.indexPathsForVisibleRows()!.count
                 let indexPath = tableView.indexPathsForVisibleRows()![visibleCellCount - 1] as NSIndexPath
                 cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell

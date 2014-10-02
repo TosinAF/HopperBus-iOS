@@ -95,8 +95,6 @@ class StopTableViewCell: UITableViewCell {
             "lineMargin": 14
         ]
 
-       // titleLabel.backgroundColor = UIColor.blackColor()
-
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[timeLabel(80)]-(lineMargin)-[lineView(2)]-(lineMargin)-[titleLabel]-|", options: nil, metrics: metrics, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(margin)-[titleLabel]-(margin)-|", options: nil, metrics: metrics, views: views))
 

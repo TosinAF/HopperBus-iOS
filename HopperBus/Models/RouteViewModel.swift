@@ -74,12 +74,16 @@ class RouteViewModelContainer {
 
 class RouteViewModel {
 
+    // MARK: - Properties
+
     let route: Route
     let routeType: HopperBusRoutes
     let stopTimings: [String: Times]
 
     var stopIndex: Int = 0
     var scheduleIndex: Int = 0
+
+    // MARK: - Public Methods
 
     init(data: [String: JSON], type: HopperBusRoutes) {
         self.route = RouteViewModel.getRoute(data)
@@ -117,7 +121,7 @@ class RouteViewModel {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
 
-        let currentTime = dateFormatter.dateFromString("08:11")!
+        let currentTime = dateFormatter.dateFromString(currentTimeStr)!
         let stopTime = dateFormatter.dateFromString(stopTimeStr)!
 
         let diff = stopTime.timeIntervalSinceDate(currentTime)

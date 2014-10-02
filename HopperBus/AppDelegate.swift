@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupStyle() {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         UINavigationBar.appearance().barTintColor = UIColor.HopperBusBrandColor()
-        UINavigationBar.appearance().translucent = true
+        if iOS8 { UINavigationBar.appearance().translucent = true }
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
             NSFontAttributeName: UIFont(name: "Montserrat", size: 18.0)]
