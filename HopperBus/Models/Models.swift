@@ -73,3 +73,16 @@ struct Times {
         self.termTime = termTime
     }
 }
+
+extension Array {
+    func flattenToString() -> String {
+        var finalString = ""
+        for (index, str) in enumerate(self) {
+            let s = str as String
+            finalString += "\(s) "
+        }
+        return finalString
+    }
+}
+
+

@@ -122,9 +122,7 @@ class MapViewController: UIViewController, POPAnimationDelegate {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-60-[pdfView]-50-|", options: nil, metrics: nil, views: views))
 
         optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[SBButton]-60-[UPButton]-60-[JBButton]|", options: .AlignAllCenterY, metrics: nil, views: views))
-
         optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[SBButton]|", options: .AlignAllCenterY, metrics: nil, views: views))
-
         optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[optionsContainer(220)]", options: nil, metrics: nil, views: views))
 
         view.addConstraint(NSLayoutConstraint(item: optionsContainer, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0))
@@ -132,13 +130,10 @@ class MapViewController: UIViewController, POPAnimationDelegate {
 
         currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[currentMapIndicator(5)]", options: nil, metrics: nil, views: views))
         currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator(5)]", options: nil, metrics: nil, views: views))
-
         currentMapIndicatorHConstraint = NSLayoutConstraint(item: currentMapIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: views["UPButton"], attribute: .CenterX, multiplier: 1.0, constant: self.currentMap.indicatorHConstraintConstantValue)
 
         optionsContainer.addConstraint(currentMapIndicatorHConstraint!)
-
         optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator]|", options: nil, metrics: nil, views: views))
-
     }
 
     func createPDFViewForMap(type: UniversityCampusMaps) -> JCTiledPDFScrollView {

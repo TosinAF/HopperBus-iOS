@@ -105,6 +105,11 @@ class RouteViewModel {
         return stop.name
     }
 
+    func idForStop(index: Int) -> String {
+        let stop = route.schedules[scheduleIndex].stops[index]
+        return stop.id
+    }
+
     func timeForStop(index: Int) -> String {
         let stop = route.schedules[scheduleIndex].stops[index]
         let formattedTime = formatTimeStringForDisplay(stop.time)
@@ -136,6 +141,10 @@ class RouteViewModel {
                 let formattedTime = formatTimeStringForDisplay(stop.time)
                 return formattedTime
         }
+    }
+
+    func stopTimingsForStop(id: String) -> Times {
+        return stopTimings[id]!
     }
 }
 
@@ -247,9 +256,10 @@ private extension RouteViewModel {
     func formatTimeStringForDisplay(timeStr: String) -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
 
         let timeAsDate = dateFormatter.dateFromString(timeStr)
-        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.dateFormat = "H:mm a"
 
         return dateFormatter.stringFromDate(timeAsDate!)
     }

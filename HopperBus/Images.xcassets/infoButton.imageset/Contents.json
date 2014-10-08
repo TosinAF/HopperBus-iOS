@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "mapIcon@1x.png"
+      "filename" : "infoButon@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "mapIcon@2x.png"
+      "filename" : "infoButon.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "map3x.png"
+      "filename" : "infoButon@3x.png"
     }
   ],
   "info" : {

@@ -65,8 +65,20 @@ class StopTableViewCell: UITableViewCell {
         }
     }
 
+    var height: CGFloat = 55 {
+        willSet(height) {
+            contentView.removeConstraint(heightConstraint)
+            heightConstraint.constant = height
+            contentView.addConstraint(heightConstraint)
+        }
+    }
+
     lazy var lineViewYConstraint: NSLayoutConstraint = {
         return NSLayoutConstraint(item: self.lineView, attribute: .Height, relatedBy: .Equal, toItem: self.contentView, attribute: .Height, multiplier: 1.0, constant: 0)
+    }()
+
+    lazy var heightConstraint: NSLayoutConstraint = {
+        return NSLayoutConstraint(item: self.contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 55)
     }()
 
     required init(coder aDecoder: NSCoder) {
@@ -86,7 +98,8 @@ class StopTableViewCell: UITableViewCell {
             "timeLabel": timeLabel,
             "titleLabel": titleLabel,
             "lineView": lineView,
-            "circleView": circleView
+            "circleView": circleView,
+            "contentView": contentView
         ]
 
         let metrics = [
@@ -105,6 +118,9 @@ class StopTableViewCell: UITableViewCell {
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
         contentView.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: timeLabel, attribute: .CenterY, multiplier: 1, constant: 0))
         contentView.addConstraint(lineViewYConstraint)
+        contentView.addConstraint(heightConstraint)
+
+        //contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[contentView(55)]", options: nil, metrics: metrics, views: views))
     }
 
     func animateTimeLabelTextChange(text: String) {
