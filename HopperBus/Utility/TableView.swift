@@ -28,7 +28,6 @@ class TableView: UITableView {
 
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         for t in touches {
-            
             let touch = t as UITouch
             let touchPoint = touch.locationInView(self)
             let indexPath = self.indexPathForRowAtPoint(touchPoint)

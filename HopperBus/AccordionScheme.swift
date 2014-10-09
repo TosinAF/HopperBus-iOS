@@ -13,7 +13,7 @@ class AccordionScheme: NSObject {
     typealias U = UITableViewCell
 
     typealias ConfigurationHandler = (cell: U, index: Int) -> Void
-    typealias SelectionHandler = (cell: U, selectedIndex: Int) -> Void
+    typealias SelectionHandler = (tableView: UITableView, cell: U, selectedIndex: Int) -> Void
     typealias DoubleTapHandler = (tableView: UITableView, cell: U, selectedIndex: Int) -> Void
 
     typealias AccordionConfigurationHandler = (cell: U, parentIndex: Int) -> Void
@@ -64,14 +64,17 @@ class AccordionScheme: NSObject {
         } else {
             let cIndex = expanded ? getRelativeIndex(index) : index
 
-            // Hide expanded cell smoothly
-            CATransaction.begin()
-            CATransaction.setCompletionBlock { () -> Void in
-                self.selectionHandler!(cell: cell as U, selectedIndex: cIndex)
-                tableView.reloadData()
+            if expanded {
+                // Hide expanded cell smoothly
+                CATransaction.begin()
+                CATransaction.setCompletionBlock { () -> Void in
+                    self.selectionHandler!(tableView: tableView, cell: cell as U, selectedIndex: cIndex)
+                }
+                collapseExpandedCell(tableView)
+                CATransaction.commit()
+            } else {
+                self.selectionHandler!(tableView: tableView, cell: cell as U, selectedIndex: cIndex)
             }
-            if expanded { collapseExpandedCell(tableView) }
-            CATransaction.commit()
         }
     }
 

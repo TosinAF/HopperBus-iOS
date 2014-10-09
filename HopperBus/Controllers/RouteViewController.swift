@@ -15,6 +15,9 @@ class RouteViewController: UIViewController {
     let LastViewedRouteKey = "LastViewedRoute"
     let routeViewModelContainer = RouteViewModelContainer()
 
+    var animTranslationStart: CGPoint!
+    var animTranslationFinish: CGPoint!
+
     var dataSource: TableDataSource!
 
     var initialRouteType: HopperBusRoutes {
@@ -62,8 +65,6 @@ class RouteViewController: UIViewController {
         return circleView
     }()
 
-    var selectedTableViewCellIndex = 0
-
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -94,6 +95,30 @@ class RouteViewController: UIViewController {
         tableView.estimatedRowHeight = 55.0;
         tableView.dataSource = dataSource
     }
+
+    // MARK: - Actions
+
+    func onMapButtonTap() {
+        let mapViewController = MapViewController()
+        mapViewController.modalPresentationStyle = .Custom
+        mapViewController.transitioningDelegate = self
+        presentViewController(mapViewController, animated: true, completion:nil)
+    }
+
+    func onInfoButtonTap() {
+        println("Info Buttton Tapped")
+    }
+
+    // MARK: - AppDelegate Methods
+
+    func saveCurrentRoute() {
+        NSUserDefaults.standardUserDefaults().setObject(currentRouteType.toRaw(), forKey: LastViewedRouteKey)
+    }
+}
+
+// MARK: - TableScheme
+
+extension RouteViewController {
 
     func createTableScheme() {
 
@@ -126,14 +151,25 @@ class RouteViewController: UIViewController {
             cell.height = self.currentRouteType == HopperBusRoutes.HB904 ? 65 : 55
         }
 
-        scheme.selectionHandler = { (c, selectedIndex) in
+        scheme.selectionHandler = { (tableView, cell, selectedIndex) in
             let routeViewModel = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
             if selectedIndex == routeViewModel.stopIndex { return }
 
-            let cell = c as StopTableViewCell
-            let timeStr = routeViewModel.timeTillStop(selectedIndex)
-            cell.isSelected = true
-            cell.animateTimeLabelTextChange(timeStr)
+            let animPoints = self.getAnimationTranslationPoints(tableView, selectedIndex: selectedIndex)
+            (self.animTranslationStart, self.animTranslationFinish) = animPoints
+
+            self.animateSelection()
+
+            let oldIndexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
+            if let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as? StopTableViewCell {
+                self.animatedCircleView.center = self.animTranslationStart
+                self.view.addSubview(self.animatedCircleView)
+                oldCell.isSelected = false
+                let timeStr = routeViewModel.timeForStop(oldIndexPath.row)
+                oldCell.animateTimeLabelTextChange(timeStr)
+            }
+
+
 
             routeViewModel.stopIndex = selectedIndex
             self.routeViewModelContainer.updateScheduleIndexForRoutes()
@@ -145,31 +181,46 @@ class RouteViewController: UIViewController {
             let times = rvm.stopTimingsForStop(rvm.idForStop(parentIndex))
             cell.times = times
         }
-
+        
         scheme.accordionSelectionHandler = { (c, selectedIndex) in
             return
         }
-
+        
         dataSource = TableDataSource(scheme: scheme)
     }
 
-    // MARK: - Actions
+    func getAnimationTranslationPoints(tableView: UITableView, selectedIndex: Int) -> (CGPoint!, CGPoint!) {
+        let routeViewModel = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
+        let oldIndexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
+        var start, finish: CGPoint
 
-    func onMapButtonTap() {
-        let mapViewController = MapViewController()
-        mapViewController.modalPresentationStyle = .Custom
-        mapViewController.transitioningDelegate = self
-        presentViewController(mapViewController, animated: true, completion:nil)
-    }
+        if let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as? StopTableViewCell {
 
-    func onInfoButtonTap() {
-        println("Info Buttton Tapped")
-    }
+            start = oldCell.convertPoint(oldCell.circleView.center, toView: view)
 
-    // MARK: - AppDelegate Methods
+        } else {
 
-    func saveCurrentRoute() {
-        NSUserDefaults.standardUserDefaults().setObject(currentRouteType.toRaw(), forKey: LastViewedRouteKey)
+            var cell: StopTableViewCell
+
+            if selectedIndex > routeViewModel.stopIndex {
+                // Animation Going Down
+                let indexPath = tableView.indexPathsForVisibleRows()![1] as NSIndexPath
+                cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell
+            } else {
+                // Animation Going Up On A Tuesday lol
+                let visibleCellCount = tableView.indexPathsForVisibleRows()!.count
+                let indexPath = tableView.indexPathsForVisibleRows()![visibleCellCount - 1] as NSIndexPath
+                cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell
+            }
+
+            start = cell.convertPoint(cell.circleView.center, toView: self.view)
+        }
+
+        let newIndexPath = NSIndexPath(forRow: selectedIndex, inSection: 0)
+        let newCell = tableView.cellForRowAtIndexPath(newIndexPath) as StopTableViewCell
+        finish = newCell.convertPoint(newCell.circleView.center, toView: self.view)
+
+        return (start, finish)
     }
 }
 
@@ -203,40 +254,67 @@ extension RouteViewController: UITableViewDelegate, TableViewDoubleTapDelegate {
     func tableView(tableView: TableView, didDoubleTapRowAtIndexPath indexPath: NSIndexPath) {
         dataSource.scheme.handleDoubleTap(tableView, withAbsoluteIndex: indexPath.row)
     }
-
-    // MARK:- Animatons
-
-    func animateSelection(from start:CGPoint, to finish: CGPoint) {
-
-        let anim = POPSpringAnimation(propertyNamed: kPOPViewCenter)
-        anim.delegate = self
-        anim.springBounciness = 5
-        anim.springSpeed = 2
-        anim.fromValue = NSValue(CGPoint: start)
-        anim.toValue = NSValue(CGPoint: finish)
-
-        view.addSubview(animatedCircleView)
-        animatedCircleView.pop_addAnimation(anim, forKey: "center")
-        view.userInteractionEnabled = false
-    }
 }
 
 // MARK: - POPAnimation Delegate
 
 extension RouteViewController: POPAnimationDelegate {
 
+    // MARK:- Animatons
+
+    func animateSelection() {
+
+        let anim = createScaleAnimation("scaleDown", from: 1.0, to: 0.5)
+        animatedCircleView.layer.pop_addAnimation(anim, forKey: "scaleDown")
+        view.userInteractionEnabled = false
+    }
+
     func pop_animationDidStop(anim: POPAnimation!, finished: Bool) {
 
-        let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
-        let indexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as StopTableViewCell
-        let timeStr = routeViewModel.timeTillStop(indexPath.row)
-        cell.isSelected = true
-        cell.animateTimeLabelTextChange(timeStr)
+        if anim.name == "scaleDown" {
 
-        animatedCircleView.removeFromSuperview()
-        tableView.reloadData()
-        view.userInteractionEnabled = true
+            let anim = createYTranslationAnimation("yTranslate", from: animTranslationStart, to: animTranslationFinish)
+            animatedCircleView.pop_addAnimation(anim, forKey: "center")
+
+        } else if anim.name == "yTranslate" {
+
+            let anim = createScaleAnimation("scaleUp", from: 0.5, to: 1.0)
+            animatedCircleView.layer.pop_addAnimation(anim, forKey: "scaleUp")
+
+        } else {
+
+            let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
+            let indexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as StopTableViewCell
+            let timeStr = routeViewModel.timeTillStop(indexPath.row)
+            cell.isSelected = true
+            cell.animateTimeLabelTextChange(timeStr)
+
+            animatedCircleView.removeFromSuperview()
+            tableView.reloadData()
+
+            view.userInteractionEnabled = true
+        }
+    }
+
+    func createScaleAnimation(name: String, from start: CGFloat, to finish: CGFloat) -> POPSpringAnimation {
+        let routeScaleXYAnim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+        routeScaleXYAnim.name = name
+        routeScaleXYAnim.delegate = self
+        routeScaleXYAnim.springBounciness = 5
+        routeScaleXYAnim.springSpeed = 18
+        routeScaleXYAnim.fromValue = NSValue(CGSize: CGSizeMake(start, start))
+        routeScaleXYAnim.toValue = NSValue(CGSize: CGSizeMake(finish, finish))
+        return routeScaleXYAnim
+    }
+
+    func createYTranslationAnimation(name: String, from start: CGPoint, to final: CGPoint) -> POPBasicAnimation {
+        let yTranslationAnimation = POPBasicAnimation(propertyNamed: kPOPViewCenter)
+        yTranslationAnimation.name = name
+        yTranslationAnimation.delegate = self
+        yTranslationAnimation.fromValue = NSValue(CGPoint: start)
+        yTranslationAnimation.toValue = NSValue(CGPoint: final)
+        return yTranslationAnimation
     }
 }
 
