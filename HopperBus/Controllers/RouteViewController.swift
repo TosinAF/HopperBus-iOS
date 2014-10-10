@@ -73,11 +73,8 @@ class RouteViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        println("i was celled woop")
         let top = self.topLayoutGuide.length;
-        let bottom = self.bottomLayoutGuide.length;
-        let newInsets = UIEdgeInsetsMake(top, 0, bottom, 0);
-        tableView.contentInset = newInsets;
+        tableView.contentInset = UIEdgeInsetsMake(top, 0, 64, 0);
     }
 }
 

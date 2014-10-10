@@ -22,10 +22,6 @@
 		4E845FAA19CD39A100CB4D03 /* DismissMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */; };
 		4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EA8A04719DA21EA00DDCBAF /* Routes.json */; };
 		4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE724B19B9DAFE0021C4DF /* HexColor.swift */; };
-		4EAE9D5B19DEB8E000409164 /* StopTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9D5A19DEB8E000409164 /* StopTimesView.swift */; };
-		4EAE9D5D19DEC31B00409164 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE9D5C19DEC31B00409164 /* StopDetailView.swift */; };
-		4EB102D519E165FE007B11EC /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB102D419E165FE007B11EC /* TableDataSource.swift */; };
-		4EB102D719E16788007B11EC /* AccordionScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB102D619E16788007B11EC /* AccordionScheme.swift */; };
 		4EB102D919E237D5007B11EC /* StopTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB102D819E237D5007B11EC /* StopTimesTableViewCell.swift */; };
 		4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECE2C3B19DD6F7100E47755 /* Constants.swift */; };
 		4ECE2C3E19DD75A800E47755 /* Captain-icon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECE2C3D19DD75A800E47755 /* Captain-icon.ttf */; };
@@ -39,6 +35,8 @@
 		4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4CF619A7C08900892A7C /* AppDelegate.swift */; };
 		4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4CFD19A7C08900892A7C /* Images.xcassets */; };
 		4EDD4D0A19A7C08900892A7C /* HopperBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */; };
+		4EEDBD2419E869D0003689D6 /* AccordionScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDBD2219E869D0003689D6 /* AccordionScheme.swift */; };
+		4EEDBD2519E869D0003689D6 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDBD2319E869D0003689D6 /* TableDataSource.swift */; };
 		7B4AA58A492C4E4180CF282D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF69A0F5AB64083B3DB10FB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,10 +69,6 @@
 		4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissMapViewController.swift; path = Utility/DismissMapViewController.swift; sourceTree = "<group>"; };
 		4EA8A04719DA21EA00DDCBAF /* Routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Routes.json; path = HopperBus/Resources/Routes/Routes.json; sourceTree = "<group>"; };
 		4EAE724B19B9DAFE0021C4DF /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexColor.swift; path = Utility/HexColor.swift; sourceTree = "<group>"; };
-		4EAE9D5A19DEB8E000409164 /* StopTimesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTimesView.swift; path = Views/StopTimesView.swift; sourceTree = "<group>"; };
-		4EAE9D5C19DEC31B00409164 /* StopDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopDetailView.swift; path = Views/StopDetailView.swift; sourceTree = "<group>"; };
-		4EB102D419E165FE007B11EC /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
-		4EB102D619E16788007B11EC /* AccordionScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionScheme.swift; sourceTree = "<group>"; };
 		4EB102D819E237D5007B11EC /* StopTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTimesTableViewCell.swift; path = Views/StopTimesTableViewCell.swift; sourceTree = "<group>"; };
 		4EB37D1819E0542B0000068C /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HopperBus-Bridging-Header.h"; path = "Supporting Files/HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		4ECE2C3B19DD6F7100E47755 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utility/Constants.swift; sourceTree = "<group>"; };
@@ -96,6 +90,8 @@
 		4EDD4D0319A7C08900892A7C /* HopperBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HopperBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDD4D0819A7C08900892A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopperBusTests.swift; sourceTree = "<group>"; };
+		4EEDBD2219E869D0003689D6 /* AccordionScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccordionScheme.swift; path = Models/AccordionScheme.swift; sourceTree = "<group>"; };
+		4EEDBD2319E869D0003689D6 /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableDataSource.swift; path = Models/TableDataSource.swift; sourceTree = "<group>"; };
 		B8B9279D1DDC447D82840542 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		EBF69A0F5AB64083B3DB10FB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -249,11 +245,9 @@
 			isa = PBXGroup;
 			children = (
 				4EAE724A19B92B6A0021C4DF /* TabBar */,
+				4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */,
 				4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */,
 				4EB102D819E237D5007B11EC /* StopTimesTableViewCell.swift */,
-				4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */,
-				4EAE9D5C19DEC31B00409164 /* StopDetailView.swift */,
-				4EAE9D5A19DEB8E000409164 /* StopTimesView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -269,8 +263,8 @@
 		4EFFD79D19D1A7E600127823 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4EB102D419E165FE007B11EC /* TableDataSource.swift */,
-				4EB102D619E16788007B11EC /* AccordionScheme.swift */,
+				4EEDBD2219E869D0003689D6 /* AccordionScheme.swift */,
+				4EEDBD2319E869D0003689D6 /* TableDataSource.swift */,
 				4E6F0FA719D3409400EC776B /* RouteViewModel.swift */,
 				4E6ED68619D61CC900D903F6 /* Models.swift */,
 			);
@@ -433,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EEDBD2419E869D0003689D6 /* AccordionScheme.swift in Sources */,
 				4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */,
 				4EB102D919E237D5007B11EC /* StopTimesTableViewCell.swift in Sources */,
 				4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */,
@@ -441,20 +436,17 @@
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
 				4E6F0FA619D1E01D00EC776B /* SwiftyJSON.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
+				4EEDBD2519E869D0003689D6 /* TableDataSource.swift in Sources */,
 				4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */,
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
 				4E6ED68719D61CC900D903F6 /* Models.swift in Sources */,
-				4EAE9D5B19DEB8E000409164 /* StopTimesView.swift in Sources */,
-				4EAE9D5D19DEC31B00409164 /* StopDetailView.swift in Sources */,
 				4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */,
 				4E29202419E6316700687C0D /* RootViewController.swift in Sources */,
 				4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */,
-				4EB102D519E165FE007B11EC /* TableDataSource.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,
 				4E845FAA19CD39A100CB4D03 /* DismissMapViewController.swift in Sources */,
 				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,
-				4EB102D719E16788007B11EC /* AccordionScheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

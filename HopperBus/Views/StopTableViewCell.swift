@@ -117,14 +117,12 @@ class StopTableViewCell: UITableViewCell {
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))
         contentView.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: timeLabel, attribute: .CenterY, multiplier: 1, constant: 0))
+
         contentView.addConstraint(lineViewYConstraint)
         contentView.addConstraint(heightConstraint)
-
-        //contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[contentView(55)]", options: nil, metrics: metrics, views: views))
     }
 
     func animateTimeLabelTextChange(text: String) {
-
         let animation = CATransition();
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         animation.type = kCATransitionFade;

@@ -76,7 +76,6 @@ class RootViewController: UIViewController {
 
         let vc = viewControllers[currentRouteType.toRaw()]
         addChildViewController(vc)
-        //vc.tableView.contentInset = UIEdgeInsetsMake(0, 0.0, 64.0, 0.0)
         containerView.addSubview(vc.view)
         vc.didMoveToParentViewController(self)
     }
@@ -114,8 +113,6 @@ extension RootViewController: TabBarDelegate {
         addChildViewController(toVC)
         fromVC.view.removeFromSuperview()
         fromVC.removeFromParentViewController()
-        //fromVC.tableView.contentInset = UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)
-        //toVC.tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0)
         self.containerView.addSubview(toVC.view)
 
         self.currentRouteType = HopperBusRoutes.fromRaw(index)!
