@@ -30,6 +30,8 @@ enum HopperBusRoutes: Int {
         ]
         return routeCodes[toRaw()]
     }
+
+    static let allCases: [HopperBusRoutes] = [.HB902, .HB902, .HB903, .HB904]
 }
 
 // MARK: - RouteViewModelContainer Class
@@ -80,7 +82,9 @@ class RouteViewModel {
     let routeType: HopperBusRoutes
     let stopTimings: [String: Times]
 
-    var stopIndex: Int = 0
+    var stopIndex: Int = 0 {
+        didSet { updateScheduleIndex() }
+    }
     var scheduleIndex: Int = 0
 
     // MARK: - Public Methods

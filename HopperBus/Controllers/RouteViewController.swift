@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RouteViewController.swift
 //  HopperBus
 //
 //  Created by Tosin Afolabi on 22/08/2014.
@@ -12,27 +12,17 @@ class RouteViewController: UIViewController {
 
     // MARK: - Properties
 
-    let LastViewedRouteKey = "LastViewedRoute"
-    let routeViewModelContainer = RouteViewModelContainer()
+    let routeType: HopperBusRoutes!
+    let routeViewModel: RouteViewModel!
 
     var animTranslationStart: CGPoint!
     var animTranslationFinish: CGPoint!
 
     var dataSource: TableDataSource!
 
-    var initialRouteType: HopperBusRoutes {
-        var route: HopperBusRoutes = HopperBusRoutes.HB903
-            if let lastViewedRoute = NSUserDefaults.standardUserDefaults().objectForKey(LastViewedRouteKey) as? Int {
-                route = HopperBusRoutes.fromRaw(lastViewedRoute)!
-            }
-            return route
-    }
-
-    lazy var currentRouteType: HopperBusRoutes = self.initialRouteType
-
     lazy var routeHeaderView: RouteHeaderView = {
         let view = RouteHeaderView()
-        view.titleLabel.text = self.currentRouteType.title.uppercaseString
+        view.titleLabel.text = self.routeType.title.uppercaseString
         return view
     }()
 
@@ -41,20 +31,10 @@ class RouteViewController: UIViewController {
         tableView.delegate = self
         tableView.doubleTapDelegate = self
         tableView.separatorStyle = .None
-        tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0);
-        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 64.0, 0.0);
         tableView.registerClass(StopTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.registerClass(StopTimesTableViewCell.self, forCellReuseIdentifier: "dropdown")
         return tableView
-    }()
-
-    lazy var tabBar: TabBar = {
-        let tabBarOptions: [String: AnyObject] = ["tabBarItemCount" : 4, "titles" : ["901","902","903","904"]]
-        let tabBar =  TabBar(options:tabBarOptions)
-        tabBar.delegate = self
-        tabBar.setSelectedIndex(self.currentRouteType.toRaw())
-        tabBar.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return tabBar
     }()
 
     lazy var animatedCircleView: UIView = {
@@ -65,54 +45,39 @@ class RouteViewController: UIViewController {
         return circleView
     }()
 
+    // MARK: - Initalizers
+
+    init(type: HopperBusRoutes, routeViewModel: RouteViewModel) {
+        self.routeType = type
+        self.routeViewModel = routeViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "HOPPER BUS"
-
-        let infoButtonImage = UIImage(named: "infoButton")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: infoButtonImage, style: .Done, target: nil, action:nil)
-
-        let mapButtonImage = UIImage(named: "mapButton")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: mapButtonImage, style: .Done, target: self, action: "onMapButtonTap")
-
         view.addSubview(tableView)
-        view.addSubview(tabBar)
 
-        let views = [
-            "tabBar": tabBar,
-            "tableView": tableView
-        ]
-
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView][tabBar]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
+        tableView.frame = view.frame
 
         createTableScheme()
 
         tableView.rowHeight = UITableViewAutomaticDimension;
-        tableView.estimatedRowHeight = 55.0;
+        tableView.estimatedRowHeight = self.routeType == HopperBusRoutes.HB904 ? 65 : 55
         tableView.dataSource = dataSource
     }
 
-    // MARK: - Actions
-
-    func onMapButtonTap() {
-        let mapViewController = MapViewController()
-        mapViewController.modalPresentationStyle = .Custom
-        mapViewController.transitioningDelegate = self
-        presentViewController(mapViewController, animated: true, completion:nil)
-    }
-
-    func onInfoButtonTap() {
-        println("Info Buttton Tapped")
-    }
-
-    // MARK: - AppDelegate Methods
-
-    func saveCurrentRoute() {
-        NSUserDefaults.standardUserDefaults().setObject(currentRouteType.toRaw(), forKey: LastViewedRouteKey)
+    override func viewDidLayoutSubviews() {
+        println("i was celled woop")
+        let top = self.topLayoutGuide.length;
+        let bottom = self.bottomLayoutGuide.length;
+        let newInsets = UIEdgeInsetsMake(top, 0, bottom, 0);
+        tableView.contentInset = newInsets;
     }
 }
 
@@ -128,13 +93,12 @@ extension RouteViewController {
         scheme.accordionReuseIdentifier = "dropdown"
 
         scheme.rowCountHandler = { () in
-            let routeViewModel = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
-            return routeViewModel.numberOfStopsForCurrentRoute()
+            return self.routeViewModel.numberOfStopsForCurrentRoute()
         }
 
         scheme.accordionHeightHandler = { (parentIndex) in
             let cell = StopTimesTableViewCell(frame: CGRectZero)
-            let rvm = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
+            let rvm = self.routeViewModel
             let times = rvm.stopTimingsForStop(rvm.idForStop(parentIndex))
             cell.times = times
             return cell.height
@@ -142,42 +106,38 @@ extension RouteViewController {
 
         scheme.configurationHandler = { (c, index) in
             let cell = c as StopTableViewCell
-            let rvm = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
+            let rvm = self.routeViewModel
 
             cell.titleLabel.text = rvm.nameForStop(index)
             cell.timeLabel.text = index == rvm.stopIndex ? rvm.timeTillStop(index) : rvm.timeForStop(index)
             cell.isLastCell = index == scheme.numberOfCells - 1 ? true : false
             cell.isSelected = index == rvm.stopIndex ? true : false
-            cell.height = self.currentRouteType == HopperBusRoutes.HB904 ? 65 : 55
+            cell.height = self.routeType == HopperBusRoutes.HB904 ? 65 : 55
         }
 
         scheme.selectionHandler = { (tableView, cell, selectedIndex) in
-            let routeViewModel = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
-            if selectedIndex == routeViewModel.stopIndex { return }
+            if selectedIndex == self.routeViewModel.stopIndex { return }
 
             let animPoints = self.getAnimationTranslationPoints(tableView, selectedIndex: selectedIndex)
             (self.animTranslationStart, self.animTranslationFinish) = animPoints
 
             self.animateSelection()
 
-            let oldIndexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
+            let oldIndexPath = NSIndexPath(forRow: self.routeViewModel.stopIndex , inSection: 0)
             if let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as? StopTableViewCell {
                 self.animatedCircleView.center = self.animTranslationStart
                 self.view.addSubview(self.animatedCircleView)
                 oldCell.isSelected = false
-                let timeStr = routeViewModel.timeForStop(oldIndexPath.row)
+                let timeStr = self.routeViewModel.timeForStop(oldIndexPath.row)
                 oldCell.animateTimeLabelTextChange(timeStr)
             }
 
-
-
-            routeViewModel.stopIndex = selectedIndex
-            self.routeViewModelContainer.updateScheduleIndexForRoutes()
+            self.routeViewModel.stopIndex = selectedIndex
         }
 
         scheme.accordionConfigurationHandler = { (c, parentIndex) in
             let cell = c as StopTimesTableViewCell
-            let rvm = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
+            let rvm = self.routeViewModel
             let times = rvm.stopTimingsForStop(rvm.idForStop(parentIndex))
             cell.times = times
         }
@@ -190,8 +150,7 @@ extension RouteViewController {
     }
 
     func getAnimationTranslationPoints(tableView: UITableView, selectedIndex: Int) -> (CGPoint!, CGPoint!) {
-        let routeViewModel = self.routeViewModelContainer.routeViewModel(self.currentRouteType)
-        let oldIndexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
+        let oldIndexPath = NSIndexPath(forRow: self.routeViewModel.stopIndex , inSection: 0)
         var start, finish: CGPoint
 
         if let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as? StopTableViewCell {
@@ -247,7 +206,7 @@ extension RouteViewController: UITableViewDelegate, TableViewDoubleTapDelegate {
             let parentIndex = dataSource.scheme.parentIndex
             return dataSource.scheme.accordionHeightHandler!(parentIndex: parentIndex)
         } else {
-            return self.currentRouteType == HopperBusRoutes.HB904 ? 65 : 55
+            return self.routeType == HopperBusRoutes.HB904 ? 65 : 55
         }
     }
 
@@ -283,7 +242,6 @@ extension RouteViewController: POPAnimationDelegate {
 
         } else {
 
-            let routeViewModel = routeViewModelContainer.routeViewModel(currentRouteType)
             let indexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
             let cell = tableView.cellForRowAtIndexPath(indexPath) as StopTableViewCell
             let timeStr = routeViewModel.timeTillStop(indexPath.row)
@@ -318,30 +276,4 @@ extension RouteViewController: POPAnimationDelegate {
     }
 }
 
-// MARK: - TabBarDelegate Methods
 
-extension RouteViewController: TabBarDelegate {
-
-    func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int) {
-        if index == 0 { return; }
-        let route = HopperBusRoutes.fromRaw(index)!
-        let title = route.title
-        routeHeaderView.titleLabel.text = title.uppercaseString
-        currentRouteType = route
-        routeViewModelContainer.updateScheduleIndexForRoutes()
-        tableView.reloadData()
-    }
-}
-
-// MARK: - Transitioning Delegate
-
-extension RouteViewController: UIViewControllerTransitioningDelegate {
-
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PresentMapViewController()
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissMapViewController()
-    }
-}

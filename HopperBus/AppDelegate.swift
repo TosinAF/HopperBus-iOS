@@ -11,8 +11,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    lazy var homeViewController:RouteViewController = {
-        let homeViewController = RouteViewController()
+    lazy var homeViewController: RootViewController = {
+        let homeViewController = RootViewController()
         return homeViewController
     }()
                             

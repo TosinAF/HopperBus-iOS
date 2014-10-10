@@ -11,16 +11,19 @@ import UIKit
 class StopTimesTableViewCell: UITableViewCell {
 
     var times: Times? {
-        willSet(timess) {
-            let t = timess!
-            timesTextView.text = t.termTime.flattenToString()
-            // Beware of magic number here - width of textview
-            let sizeThatFitsTextView = timesTextView.sizeThatFits(CGSizeMake(286, 300000))
-            textViewHeightConstraint.constant = ceil(sizeThatFitsTextView.height)
-            heightConstraint.constant = 40 + 20 + ceil(sizeThatFitsTextView.height)
-            contentView.addConstraint(textViewHeightConstraint)
-            contentView.addConstraint(heightConstraint)
-            height =  40 + 10 + ceil(sizeThatFitsTextView.height)
+        willSet(timesVar) {
+            let t = timesVar!
+            titleLabel.text = "TERM TIME"
+            textView.text = t.termTime.flattenToString()
+            calculateHeight()
+
+            if let s = t.saturdays {
+                buttonsArray[1].enabled = true
+            }
+
+            if let h = t.holidays {
+                buttonsArray[2].enabled = true
+            }
         }
     }
 
@@ -28,43 +31,18 @@ class StopTimesTableViewCell: UITableViewCell {
         let view = UIView()
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         return view
-        }()
+    }()
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Medium", size: 14)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
-        }()
+    }()
 
-    lazy var termTimeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("TT", forState: .Normal)
-        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        button.titleLabel!.font = UIFont(name: "Avenir-Medium", size: 14)
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return button
-        }()
+    var buttonsArray = [UIButton]()
 
-    lazy var saturdayButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("SAT", forState: .Normal)
-        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        button.titleLabel!.font = UIFont(name: "Avenir-Medium", size: 14)
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return button
-        }()
-
-    lazy var holidayButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("HOL", forState: .Normal)
-        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        button.titleLabel!.font = UIFont(name: "Avenir-Medium", size: 14)
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return button
-        }()
-
-    lazy var timesTextView: UITextView = {
+    lazy var textView: UITextView = {
         let textView = UITextView()
         textView.scrollEnabled = false
         textView.selectable = false
@@ -72,10 +50,10 @@ class StopTimesTableViewCell: UITableViewCell {
         textView.font = UIFont(name: "Avenir", size: 14)
         textView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return textView
-        }()
+    }()
 
     lazy var textViewHeightConstraint: NSLayoutConstraint = {
-        return NSLayoutConstraint(item: self.timesTextView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
+        return NSLayoutConstraint(item: self.textView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0)
     }()
 
     lazy var heightConstraint: NSLayoutConstraint = {
@@ -97,35 +75,54 @@ class StopTimesTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None
 
-        backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
-        headerView.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
-        timesTextView.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
+        contentView.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
+        textView.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
+
+        createButtons()
         layoutViews()
+    }
+
+    func createButtons() {
+
+        let buttonTitles = ["TT", "SAT", "HOL"]
+
+        for (i, title) in enumerate(buttonTitles) {
+            let button = UIButton()
+            button.tag = i
+            button.enabled = false
+            button.setTitle(title, forState: .Normal)
+            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            button.setTitleColor(UIColor.grayColor(), forState: .Disabled)
+            button.titleLabel!.font = UIFont(name: "Avenir-Medium", size: 14)
+            button.addTarget(self, action: "onButtonTap:", forControlEvents: .TouchUpInside)
+            button.setTranslatesAutoresizingMaskIntoConstraints(false)
+            headerView.addSubview(button)
+            buttonsArray.append(button)
+        }
+
+        buttonsArray[0].enabled = true
     }
 
     func layoutViews() {
 
         headerView.addSubview(titleLabel)
-        headerView.addSubview(termTimeButton)
-        headerView.addSubview(saturdayButton)
-        headerView.addSubview(holidayButton)
 
         contentView.addSubview(headerView)
-        contentView.addSubview(timesTextView)
+        contentView.addSubview(textView)
 
         let views = [
-            "termTimeButton": termTimeButton,
-            "saturdayButton": saturdayButton,
-            "holidayButton": holidayButton,
+            "termTimeButton": buttonsArray[0],
+            "saturdayButton": buttonsArray[1],
+            "holidayButton": buttonsArray[2],
             "titleLabel": titleLabel,
             "headerView": headerView,
-            "textView": timesTextView,
+            "textView": textView,
         ]
 
         headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-23-[titleLabel]", options: nil, metrics: nil, views: views))
         headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[termTimeButton]", options: nil, metrics: nil, views: views))
         headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[termTimeButton]-10-[saturdayButton]-10-[holidayButton]-28-|", options: .AlignAllCenterY, metrics: nil, views: views))
-        headerView.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: termTimeButton, attribute: .CenterY, multiplier: 1.0, constant: 0))
+        headerView.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterY, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterY, multiplier: 1.0, constant: 0))
 
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: nil, metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(30)]-8-[textView]", options: nil, metrics: nil, views: views))
@@ -136,12 +133,47 @@ class StopTimesTableViewCell: UITableViewCell {
         ]
 
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[textView]-(rightMargin)-|", options: nil, metrics: textViewMargins, views: views))
-
-        titleLabel.text = "TERM TIME"
     }
 
     func getCellHeight() {
 
+    }
+
+    // MARK: - Actions
+
+    func onButtonTap(sender: AnyObject) {
+        let button = sender as UIButton
+        var timesStr = ""
+        var title = ""
+
+        switch button.tag {
+            case 0:
+                timesStr = times!.termTime.flattenToString()
+                title = "TERM TIME"
+            case 1:
+                timesStr = times!.saturdays!.flattenToString()
+                title = "SATURDAYS"
+            case 2:
+                timesStr = times!.holidays!.flattenToString()
+                title = "HOLIDAYS"
+            default:
+                timesStr = times!.termTime.flattenToString()
+                title = "TERM TIME"
+        }
+
+        textView.text = timesStr
+        titleLabel.text = title
+        calculateHeight()
+    }
+
+    func calculateHeight() {
+        // Beware of magic number here - width of textview
+        let sizeThatFitsTextView = textView.sizeThatFits(CGSizeMake(286, 300000))
+        textViewHeightConstraint.constant = ceil(sizeThatFitsTextView.height)
+        heightConstraint.constant = 60 + ceil(sizeThatFitsTextView.height)
+        contentView.addConstraint(textViewHeightConstraint)
+        contentView.addConstraint(heightConstraint)
+        height =  60 + ceil(sizeThatFitsTextView.height)
     }
 }
 
@@ -150,5 +182,4 @@ extension StopTimesTableViewCell: NSLayoutManagerDelegate {
     func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
         return 8
     }
-
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E29202419E6316700687C0D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* RootViewController.swift */; };
 		4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */; };
 		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
 		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E29202319E6316700687C0D /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = Controllers/RootViewController.swift; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapViewController.swift; path = Utility/PresentMapViewController.swift; sourceTree = "<group>"; };
 		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4E6ED68619D61CC900D903F6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Models/Models.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		4ECFBE5A19B837D500523219 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4E29202319E6316700687C0D /* RootViewController.swift */,
 				4ECFBE6719B8388900523219 /* RouteViewController.swift */,
 				4E7AA48419CB9F360048FB11 /* MapViewController.swift */,
 			);
@@ -444,6 +447,7 @@
 				4EAE9D5B19DEB8E000409164 /* StopTimesView.swift in Sources */,
 				4EAE9D5D19DEC31B00409164 /* StopDetailView.swift in Sources */,
 				4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */,
+				4E29202419E6316700687C0D /* RootViewController.swift in Sources */,
 				4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */,
 				4EB102D519E165FE007B11EC /* TableDataSource.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
