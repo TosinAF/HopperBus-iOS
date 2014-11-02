@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E29202419E6316700687C0D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* RootViewController.swift */; };
+		4E29202419E6316700687C0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* HomeViewController.swift */; };
 		4E50244C19CBA28C002F5A11 /* PresentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */; };
 		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
 		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
@@ -20,8 +20,8 @@
 		4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */; };
 		4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AA48419CB9F360048FB11 /* MapViewController.swift */; };
 		4E845FAA19CD39A100CB4D03 /* DismissMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */; };
+		4E90D8651A060B5000E0B6E8 /* RealTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */; };
 		4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EA8A04719DA21EA00DDCBAF /* Routes.json */; };
-		4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE724B19B9DAFE0021C4DF /* HexColor.swift */; };
 		4EB102D919E237D5007B11EC /* StopTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB102D819E237D5007B11EC /* StopTimesTableViewCell.swift */; };
 		4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECE2C3B19DD6F7100E47755 /* Constants.swift */; };
 		4ECE2C3E19DD75A800E47755 /* Captain-icon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECE2C3D19DD75A800E47755 /* Captain-icon.ttf */; };
@@ -51,7 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4E29202319E6316700687C0D /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = Controllers/RootViewController.swift; sourceTree = "<group>"; };
+		4E29202319E6316700687C0D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapViewController.swift; path = Utility/PresentMapViewController.swift; sourceTree = "<group>"; };
 		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4E6ED68619D61CC900D903F6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Models/Models.swift; sourceTree = "<group>"; };
@@ -67,8 +67,8 @@
 		4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		4E7AA48419CB9F360048FB11 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
 		4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissMapViewController.swift; path = Utility/DismissMapViewController.swift; sourceTree = "<group>"; };
+		4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeViewController.swift; path = Controllers/RealTimeViewController.swift; sourceTree = "<group>"; };
 		4EA8A04719DA21EA00DDCBAF /* Routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Routes.json; path = HopperBus/Resources/Routes/Routes.json; sourceTree = "<group>"; };
-		4EAE724B19B9DAFE0021C4DF /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexColor.swift; path = Utility/HexColor.swift; sourceTree = "<group>"; };
 		4EB102D819E237D5007B11EC /* StopTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTimesTableViewCell.swift; path = Views/StopTimesTableViewCell.swift; sourceTree = "<group>"; };
 		4EB37D1819E0542B0000068C /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HopperBus-Bridging-Header.h"; path = "Supporting Files/HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		4ECE2C3B19DD6F7100E47755 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utility/Constants.swift; sourceTree = "<group>"; };
@@ -159,8 +159,9 @@
 		4ECFBE5A19B837D500523219 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4E29202319E6316700687C0D /* RootViewController.swift */,
+				4E29202319E6316700687C0D /* HomeViewController.swift */,
 				4ECFBE6719B8388900523219 /* RouteViewController.swift */,
+				4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */,
 				4E7AA48419CB9F360048FB11 /* MapViewController.swift */,
 			);
 			name = Controllers;
@@ -173,7 +174,6 @@
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
 				4ECE2C3B19DD6F7100E47755 /* Constants.swift */,
 				4E6F0FA519D1E01D00EC776B /* SwiftyJSON.swift */,
-				4EAE724B19B9DAFE0021C4DF /* HexColor.swift */,
 				4E50244B19CBA28C002F5A11 /* PresentMapViewController.swift */,
 				4E845FA919CD39A100CB4D03 /* DismissMapViewController.swift */,
 			);
@@ -436,13 +436,13 @@
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
 				4E6F0FA619D1E01D00EC776B /* SwiftyJSON.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
+				4E90D8651A060B5000E0B6E8 /* RealTimeViewController.swift in Sources */,
 				4EEDBD2519E869D0003689D6 /* TableDataSource.swift in Sources */,
 				4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */,
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
 				4E6ED68719D61CC900D903F6 /* Models.swift in Sources */,
 				4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */,
-				4E29202419E6316700687C0D /* RootViewController.swift in Sources */,
-				4EAE724C19B9DAFE0021C4DF /* HexColor.swift in Sources */,
+				4E29202419E6316700687C0D /* HomeViewController.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,
 				4E845FAA19CD39A100CB4D03 /* DismissMapViewController.swift in Sources */,
@@ -551,7 +551,7 @@
 			baseConfigurationReference = B8B9279D1DDC447D82840542 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -574,7 +574,7 @@
 			baseConfigurationReference = B8B9279D1DDC447D82840542 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

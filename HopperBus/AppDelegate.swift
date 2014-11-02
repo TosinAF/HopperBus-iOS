@@ -11,8 +11,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    lazy var homeViewController: RootViewController = {
-        let homeViewController = RootViewController()
+    lazy var homeViewController: HomeViewController = {
+        let homeViewController = HomeViewController()
         return homeViewController
     }()
                             
@@ -35,8 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.HopperBusBrandColor()
         if iOS8 { UINavigationBar.appearance().translucent = true }
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: "Montserrat", size: 18.0)]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Montserrat", size: 18.0)!]
+    }
+
+    func applicationDidBecomeActive(application: UIApplication) {
+        homeViewController.routeViewModelContainer.updateScheduleIndexForRoutes()
     }
 
     func applicationWillResignActive(application: UIApplication!) {

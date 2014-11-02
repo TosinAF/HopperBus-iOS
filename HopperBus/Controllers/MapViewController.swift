@@ -19,7 +19,7 @@ enum UniversityCampusMaps: Int {
             "JubileeCampus"
         ]
 
-        return NSBundle.mainBundle().URLForResource(pdfTitles[toRaw()], withExtension: "pdf")
+        return NSBundle.mainBundle().URLForResource(pdfTitles[rawValue], withExtension: "pdf")
     }
 
     var contentCenter: CGPoint {
@@ -30,13 +30,13 @@ enum UniversityCampusMaps: Int {
             CGPointMake(270,30)
         ]
 
-        return centerPoints[toRaw()]
+        return centerPoints[rawValue]
     }
 
     var indicatorHConstraintConstantValue: CGFloat {
 
         let constraintValues: [CGFloat] = [-97, -1, 89]
-        return constraintValues[toRaw()]
+        return constraintValues[rawValue]
     }
 }
 
@@ -154,7 +154,7 @@ class MapViewController: UIViewController, POPAnimationDelegate {
 
     func onOptionButtonSelected(sender: AnyObject) {
         let button = sender as UIButton
-        let map = UniversityCampusMaps.fromRaw(button.tag)
+        let map = UniversityCampusMaps(rawValue: button.tag)
 
         let currentMapIndicatorAnim = POPSpringAnimation(propertyNamed: kPOPLayoutConstraintConstant)
         currentMapIndicatorAnim.springBounciness = 1

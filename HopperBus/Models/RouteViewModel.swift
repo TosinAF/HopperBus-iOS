@@ -9,29 +9,31 @@
 // MARK: - HopperBusRoutes Enum
 
 enum HopperBusRoutes: Int {
-    case HB901 = 0, HB902, HB903, HB904
+    case HB901 = 0, HB902, HBRealTime, HB903, HB904
 
     var title: String {
         let routeTitles = [
             "901 - Sutton Bonington",
             "902 - King's Meadow",
+            "REAL TIME",
             "903 - Jubilee Campus",
             "904 - Royal Derby Hospital"
         ]
-        return routeTitles[toRaw()]
+        return routeTitles[rawValue]
     }
 
     var routeCode: String {
         let routeCodes = [
             "901",
             "902",
+            "RT",
             "903",
             "904"
         ]
-        return routeCodes[toRaw()]
+        return routeCodes[rawValue]
     }
 
-    static let allCases: [HopperBusRoutes] = [.HB902, .HB902, .HB903, .HB904]
+    static let allCases: [HopperBusRoutes] = [.HB902, .HB902, .HBRealTime, .HB903, .HB904]
 }
 
 // MARK: - RouteViewModelContainer Class
@@ -43,7 +45,7 @@ class RouteViewModelContainer {
     init() {
 
         let filePath = NSBundle.mainBundle().pathForResource("Routes", ofType: "json")!
-        let data = NSData.dataWithContentsOfFile(filePath, options: nil, error: nil)
+        let data = NSData(contentsOfFile: filePath, options: nil, error: nil)!
         let json = JSON(data: data)
 
         let data902 = json["route902"].dictionaryValue!

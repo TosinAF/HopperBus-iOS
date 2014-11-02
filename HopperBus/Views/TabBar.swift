@@ -33,6 +33,9 @@ class TabBar: UIView {
         return vflString
     }
 
+    let imageTitle: String?
+    let imageTabBarIndex = 2
+
     // MARK: - Initializers
 
     required init(coder aDecoder: NSCoder) {
@@ -41,15 +44,31 @@ class TabBar: UIView {
 
     init(options: [String: AnyObject]) {
         super.init(frame: CGRectZero)
+        backgroundColor = UIColor.whiteColor()
 
-        var views: [String: TabBarItem] = [String: TabBarItem]()
+        var views = [String: TabBarItem]()
 
-        let buttonTitles: [String] = options["titles"]! as [String]
+        let buttonTitles = options["titles"]! as [String]
         let count = options["tabBarItemCount"]! as Int
 
+        let tabWidth = Int(UIScreen.mainScreen().bounds.size.width) / count
+
+        if let title: AnyObject = options["image"] {
+            imageTitle = title as? String
+        }
+
         for i in 0..<count {
-            let tabItem = TabBarItem(title: buttonTitles[i])
+
+            var tabItem: TabBarItem
+
+            if i == imageTabBarIndex && imageTitle != nil {
+                tabItem = TabBarItem(image: UIImage(named: imageTitle!)!)
+            } else {
+                tabItem = TabBarItem(title: buttonTitles[i])
+            }
+
             tabItem.tag = i
+            tabItem.width = CGFloat(tabWidth)
             tabItem.setTranslatesAutoresizingMaskIntoConstraints(false)
             tabItem.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
             views["tabBarItem\(i+1)"] = tabItem
@@ -90,6 +109,6 @@ class TabBar: UIView {
     // MARK: - Autolayout Overrides
 
     override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(320, 49);
+        return CGSizeMake(UIViewNoIntrinsicMetric, 49);
     }
 }

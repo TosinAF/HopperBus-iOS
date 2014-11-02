@@ -23,14 +23,10 @@ class DismissMapViewController: NSObject, UIViewControllerAnimatedTransitioning 
         // Create POP Animations
 
         let routeScaleXYAnim = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
-        //routeScaleXYAnim.springBounciness = 0
-        //routeScaleXYAnim.springSpeed = 1
         routeScaleXYAnim.fromValue = fromVC!.view.layer.presentationLayer().valueForKeyPath(kPOPLayerScaleXY)
         routeScaleXYAnim.toValue = NSValue(CGSize: CGSizeMake(1, 1))
 
         let routeTranslateYAnim = POPBasicAnimation(propertyNamed: kPOPLayerTranslationY)
-        //routeTranslateYAnim.springBounciness = 1
-        //routeTranslateYAnim.springSpeed = 5
         routeTranslateYAnim.fromValue = toVC!.view.layer.presentationLayer().valueForKeyPath(kPOPLayerTranslationY)
         routeTranslateYAnim.toValue = 0
 
@@ -56,14 +52,11 @@ class DismissMapViewController: NSObject, UIViewControllerAnimatedTransitioning 
             }) { (finished) -> Void in
 
                 toVC!.view.userInteractionEnabled = true
+                transitionContext.completeTransition(true)
 
                 // iOS 8 Bug ->
                 // http://joystate.wordpress.com/2014/09/02/ios8-and-custom-uiviewcontrollers-transitions/
-                var canceled = transitionContext.transitionWasCancelled()
-                transitionContext.completeTransition(!canceled)
-                if !canceled {
-                    UIApplication.sharedApplication().keyWindow.addSubview(toVC!.view)
-                }
+                UIApplication.sharedApplication().keyWindow!.addSubview(toVC!.view)
         }
 
         toVC!.view.layer.pop_addAnimation(routeTranslateYAnim, forKey: "transform.translation.y")

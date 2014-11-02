@@ -48,6 +48,7 @@ class StopTimesTableViewCell: UITableViewCell {
         textView.scrollEnabled = false
         textView.selectable = false
         textView.layoutManager.delegate = self
+        textView.textAlignment = .Center
         textView.font = UIFont(name: "Avenir", size: 14)
         textView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return textView
@@ -148,7 +149,7 @@ class StopTimesTableViewCell: UITableViewCell {
         headerView.addConstraint(currentTimeIndicatorHConstraint!)
 
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: nil, metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(35)]-8-[textView]", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(35)]-10-[textView]", options: nil, metrics: nil, views: views))
 
         let textViewMargins = [
             "leftMargin": 18,
@@ -195,6 +196,9 @@ class StopTimesTableViewCell: UITableViewCell {
     func calculateHeight() {
         // Beware of magic number here - width of textview
         let sizeThatFitsTextView = textView.sizeThatFits(CGSizeMake(286, 300000))
+        if sizeThatFitsTextView.height > 50 {
+            textView.textAlignment = .Left
+        }
         textViewHeightConstraint.constant = ceil(sizeThatFitsTextView.height)
         heightConstraint.constant = 60 + ceil(sizeThatFitsTextView.height)
         height =  60 + ceil(sizeThatFitsTextView.height)

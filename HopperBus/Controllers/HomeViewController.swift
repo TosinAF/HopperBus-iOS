@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     // MARK: - Properties
 
@@ -18,21 +18,26 @@ class RootViewController: UIViewController {
     var initialRouteType: HopperBusRoutes {
         var route: HopperBusRoutes = HopperBusRoutes.HB903
             if let lastViewedRoute = NSUserDefaults.standardUserDefaults().objectForKey(LastViewedRouteKey) as? Int {
-                route = HopperBusRoutes.fromRaw(lastViewedRoute)!
+                route = HopperBusRoutes(rawValue: lastViewedRoute)!
             }
             return route
     }
 
     lazy var currentRouteType: HopperBusRoutes = self.initialRouteType
 
-    lazy var viewControllers: [RouteViewController] = {
-        var vcs = [RouteViewController]()
+    lazy var viewControllers: [UIViewController] = {
+        var vcs = [UIViewController]()
         for type in HopperBusRoutes.allCases {
-            let routeViewModel = self.routeViewModelContainer.routeViewModel(type)
-            let rvc = RouteViewController(type: type, routeViewModel: routeViewModel)
-            vcs.append(rvc)
+            if type == .HBRealTime {
+                let rtvc = RealTimeViewController()
+                vcs.append(rtvc)
+            } else {
+                let routeViewModel = self.routeViewModelContainer.routeViewModel(type)
+                let rvc = RouteViewController(type: type, routeViewModel: routeViewModel)
+                vcs.append(rvc)
+            }
         }
-        return  vcs
+        return vcs
     }()
 
     lazy var containerView: UIView = {
@@ -42,10 +47,14 @@ class RootViewController: UIViewController {
     }()
 
     lazy var tabBar: TabBar = {
-        let tabBarOptions: [String: AnyObject] = ["tabBarItemCount" : 4, "titles" : ["901","902","903","904"]]
+        let tabBarOptions: [String: AnyObject] = [
+            "tabBarItemCount" : 5,
+            "image" : "realTime",
+            "titles" : ["901","902","REAL TIME","903","904"]
+        ]
         let tabBar =  TabBar(options:tabBarOptions)
         tabBar.delegate = self
-        tabBar.setSelectedIndex(self.initialRouteType.toRaw())
+        tabBar.setSelectedIndex(self.initialRouteType.rawValue)
         tabBar.setTranslatesAutoresizingMaskIntoConstraints(false)
         return tabBar
     }()
@@ -74,7 +83,7 @@ class RootViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[containerView]|", options: nil, metrics: nil, views: views))
 
-        let vc = viewControllers[currentRouteType.toRaw()]
+        let vc = viewControllers[currentRouteType.rawValue]
         addChildViewController(vc)
         containerView.addSubview(vc.view)
         vc.didMoveToParentViewController(self)
@@ -96,17 +105,17 @@ class RootViewController: UIViewController {
     // MARK: - AppDelegate Methods
 
     func saveCurrentRoute() {
-        NSUserDefaults.standardUserDefaults().setObject(currentRouteType.toRaw(), forKey: LastViewedRouteKey)
+        NSUserDefaults.standardUserDefaults().setObject(currentRouteType.rawValue, forKey: LastViewedRouteKey)
     }
 }
 
 // MARK: - TabBar Delegate
 
-extension RootViewController: TabBarDelegate {
+extension HomeViewController: TabBarDelegate {
     func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int) {
-        if currentRouteType.toRaw() == index { return }
+        if currentRouteType.rawValue == index { return }
 
-        let fromVC = viewControllers[currentRouteType.toRaw()]
+        let fromVC = viewControllers[currentRouteType.rawValue]
         let toVC = viewControllers[index]
 
         fromVC.willMoveToParentViewController(nil)
@@ -115,13 +124,13 @@ extension RootViewController: TabBarDelegate {
         fromVC.removeFromParentViewController()
         self.containerView.addSubview(toVC.view)
 
-        self.currentRouteType = HopperBusRoutes.fromRaw(index)!
+        self.currentRouteType = HopperBusRoutes(rawValue: index)!
     }
 }
 
 // MARK: - Transitioning Delegate
 
-extension RootViewController: UIViewControllerTransitioningDelegate {
+extension HomeViewController: UIViewControllerTransitioningDelegate {
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PresentMapViewController()
