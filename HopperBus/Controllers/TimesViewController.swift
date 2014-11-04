@@ -45,6 +45,22 @@ class TimesViewController: UIViewController {
         return view
     }()
 
+    lazy var dismissButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 30
+        button.backgroundColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.400)
+        button.setTitle("\u{274C}", forState: .Normal)
+        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+
+        let screenWidth: CGFloat = self.view.frame.size.width
+        let fontSize: CGFloat = screenWidth == 320.0 ? CGFloat(70.0) : CGFloat(80.0)
+        button.titleLabel?.font = UIFont(name: "Entypo", size: fontSize)
+
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.addTarget(self, action: "onDismissButtonTap", forControlEvents: .TouchUpInside)
+        return button
+    }()
+
     lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
@@ -100,10 +116,58 @@ class TimesViewController: UIViewController {
         contentView.addSubview(headerView)
         contentView.addSubview(timesCategoryLabel)
         contentView.addSubview(textView)
+        contentView.addSubview(dismissButton)
         view.addSubview(dismissTapArea)
         view.addSubview(contentView)
 
         addConstraints()
+    }
+
+    func addConstraints() {
+
+        let views = [
+            "indicator": currentTimeIndicator,
+            "termTimeButton": buttonsArray[0],
+            "saturdayButton": buttonsArray[1],
+            "holidayButton": buttonsArray[2],
+            "stopLabel": stopLabel,
+            "category": timesCategoryLabel,
+            "textView": textView,
+            "headerView": headerView,
+            "dismissArea": dismissTapArea,
+            "dismissButton": dismissButton,
+            "contentView": contentView
+        ]
+
+        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[indicator(5)]", options: nil, metrics: nil, views: views))
+        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[indicator(5)]", options: nil, metrics: nil, views: views))
+        currentTimeIndicatorHConstraint = NSLayoutConstraint(item: currentTimeIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterX, multiplier: 1.0, constant: -1)
+
+        headerView.addConstraint(currentTimeIndicatorHConstraint!)
+
+        let screenWidth: CGFloat = view.frame.size.width
+        let stopLabelMaxWidth = screenWidth == 320.0 ? 150 : 200
+        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-23-[stopLabel(<=\(stopLabelMaxWidth))]", options: nil, metrics: nil, views: views))
+        
+        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[termTimeButton]", options: nil, metrics: nil, views: views))
+        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[termTimeButton]-10-[saturdayButton]-10-[holidayButton]-28-|", options: .AlignAllCenterY, metrics: nil, views: views))
+        headerView.addConstraint(NSLayoutConstraint(item: stopLabel, attribute: .CenterY, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterY, multiplier: 1.0, constant: 0))
+        headerView.addConstraint(NSLayoutConstraint(item: currentTimeIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterY, multiplier: 1.0, constant: 13))
+
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(35)]-25-[category]-10-[textView]", options: nil, metrics: nil, views: views))
+        contentView.addConstraint(NSLayoutConstraint(item: timesCategoryLabel, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-12-[textView]-16-|", options: nil, metrics: nil, views: views))
+
+        dismissButton.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton(60)]", options: nil, metrics: nil, views: views))
+        dismissButton.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[dismissButton(60)]", options: nil, metrics: nil, views: views))
+        contentView.addConstraint(NSLayoutConstraint(item: dismissButton, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[dismissButton]-55-|", options: nil, metrics: nil, views: views))
+
+
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[contentView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[dismissArea]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissArea(130)][contentView]|", options: nil, metrics: nil, views: views))
     }
 
     func onDismissButtonTap() {
@@ -129,46 +193,6 @@ class TimesViewController: UIViewController {
         }
 
         buttonsArray[0].enabled = true
-    }
-
-    func addConstraints() {
-
-        let views = [
-            "indicator": currentTimeIndicator,
-            "termTimeButton": buttonsArray[0],
-            "saturdayButton": buttonsArray[1],
-            "holidayButton": buttonsArray[2],
-            "stopLabel": stopLabel,
-            "category": timesCategoryLabel,
-            "textView": textView,
-            "headerView": headerView,
-            "dismissArea": dismissTapArea,
-            "contentView": contentView
-        ]
-
-        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[indicator(5)]", options: nil, metrics: nil, views: views))
-        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[indicator(5)]", options: nil, metrics: nil, views: views))
-        currentTimeIndicatorHConstraint = NSLayoutConstraint(item: currentTimeIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterX, multiplier: 1.0, constant: -1)
-
-        headerView.addConstraint(currentTimeIndicatorHConstraint!)
-
-        let screenWidth: CGFloat = view.frame.size.width
-        let stopLabelMaxWidth = screenWidth == 320.0 ? 150 : 200
-        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-23-[stopLabel(<=\(stopLabelMaxWidth))]", options: nil, metrics: nil, views: views))
-        
-        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[termTimeButton]", options: nil, metrics: nil, views: views))
-        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[termTimeButton]-10-[saturdayButton]-10-[holidayButton]-28-|", options: .AlignAllCenterY, metrics: nil, views: views))
-        headerView.addConstraint(NSLayoutConstraint(item: stopLabel, attribute: .CenterY, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterY, multiplier: 1.0, constant: 0))
-        headerView.addConstraint(NSLayoutConstraint(item: currentTimeIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterY, multiplier: 1.0, constant: 13))
-
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: nil, metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(35)]-15-[category]-10-[textView]", options: nil, metrics: nil, views: views))
-        contentView.addConstraint(NSLayoutConstraint(item: timesCategoryLabel, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-12-[textView]-16-|", options: nil, metrics: nil, views: views))
-
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[contentView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[dismissArea]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissArea(130)][contentView]|", options: nil, metrics: nil, views: views))
     }
 
     // MARK: - Actions
