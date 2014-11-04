@@ -65,6 +65,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = "HOPPER BUS"
 
+        self.automaticallyAdjustsScrollViewInsets = false;
+
         let infoButtonImage = UIImage(named: "infoButton")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: infoButtonImage, style: .Done, target: self, action:"onInfoButtonTap")
 
@@ -133,10 +135,10 @@ extension HomeViewController: TabBarDelegate {
 extension HomeViewController: UIViewControllerTransitioningDelegate {
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PresentMapViewController()
+        return PresentMapTransistionManager()
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissMapViewController()
+        return DismissMapTransistionManager()
     }
 }

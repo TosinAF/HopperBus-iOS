@@ -48,7 +48,7 @@ class TabBar: UIView {
 
         var views = [String: TabBarItem]()
 
-        let buttonTitles = options["titles"]! as [String]
+        let buttonTitles: [String] = options["titles"]! as [String]
         let count = options["tabBarItemCount"]! as Int
 
         let tabWidth = Int(UIScreen.mainScreen().bounds.size.width) / count

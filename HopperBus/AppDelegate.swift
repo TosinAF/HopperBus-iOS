@@ -39,14 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        homeViewController.routeViewModelContainer.updateScheduleIndexForRoutes()
+        //homeViewController.routeViewModelContainer.updateScheduleIndexForRoutes()
     }
 
     func applicationWillResignActive(application: UIApplication!) {
-        homeViewController.saveCurrentRoute()
+        //homeViewController.saveCurrentRoute()
     }
 
     func applicationWillTerminate(application: UIApplication!) {
-        homeViewController.saveCurrentRoute()
+        //homeViewController.saveCurrentRoute()
     }
 }

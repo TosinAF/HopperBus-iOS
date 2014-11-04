@@ -8,7 +8,10 @@
 
 import UIKit
 
-class DismissMapViewController: NSObject, UIViewControllerAnimatedTransitioning {
+class DismissMapTransistionManager: NSObject, UIViewControllerAnimatedTransitioning {
+
+    // Intresting stuff about custom view controller transistion
+    // http://stackoverflow.com/questions/24338700/from-view-controller-disappears-using-uiviewcontrollercontexttransitioning
 
     let animationDuration = 0.3
 
@@ -45,7 +48,6 @@ class DismissMapViewController: NSObject, UIViewControllerAnimatedTransitioning 
         })
 
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
-
 
             toVC!.view.alpha = 1.0
 
