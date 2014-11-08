@@ -1,0 +1,81 @@
+{
+	"901" : {
+
+		"Anchor Inn" : "260014419",
+		"Arts Centre" : "3390UN34",
+		"Broadmarsh Bus Station bay 1" : "3390BB01",
+		"Clifton Nottingham Trent Uni (To Sutton Bonington)" : "3390CL83",
+		"Clifton Nottingham Trent Uni (To University Park or Nottingham)" : "3390CL93",
+		"Cut Through Lane, Library Road" : "3390UN32",
+		"Derby Hall" : "3390UN49",
+		"East Midlands Parkway Station" : "3300RU0832",
+		"EM Conference Centre" : "3390UN48",
+		"Eviton House" : "3300RU0095",
+		"Hillside" : "3390LE12",
+		"Kegworth Market Place" : "260014408",
+		"History" : "3390UN47",
+		"Lenton and Wortley Hall" : "3390UN50",
+		"George Green Library" : "3390UN31",
+		"Showcase Cinema (To Sutton Bonington)" : "3390LI01",
+		"Showcase Cinema (To University Park or Nottingham)" : "3390LI04",
+		"Sutton Bonington Campus" : "3300RU0670",
+		"Triumph Road" : "3390LE02",
+		"Univ Campus Portland Hill" : "3390UN36",
+		"University Park East Drive" : "3390UN41",
+		"Victoria Bus Station bay 9" : "3390VB09"
+	},
+
+	"902" : {
+
+		"Arts Centre" : "3390UN34",
+		"Cut Through Lane, Library Road" : "3390UN32",
+		"Derby Hall" : "3390UN49",
+		"EM Conference Centre" : "3390UN48",
+		"Jubilee Campus The Exchange" : "3390RA63",
+		"King's Meadow Campus" : "3390LI44",
+		"History" : "3390UN47",
+		"Lenton and Wortley Hall" : "3390UN50",
+		"Newark Hall" : "3390RA64",
+		"QMC Forecourt" : "3390QM12",
+		"George Green Library" : "3390UN31",
+		"Triumph Road" : "3390RA56",
+		"Univ Campus Portland Hill" : "3390UN36",
+		"University Park East Drive " : "3390UN41"
+	},
+
+	"903" : {
+
+		"Arts Centre" : "3390UN34",
+		"Cut Through Lane, Library Road" : "3390UN32",
+		"Derby Hall" : "3390UN49",
+		"EM Conference Centre" : "3390UN48",
+		"Faraday Road" : "3390RA06",
+		"Jubilee Campus The Exchange" : "3390RA63",
+		"History" : "3390UN47",
+		"Lenton and Wortley Hall" : "3390UN50",
+		"Newark Hall" : "3390RA64",
+		"George Green Library" : "3390UN31",
+		"St Peter's Court" : "3390RA58",
+		"Triumph Road" : "3390RA56",
+		"Univ Campus Portland Hill" : "3390UN36",
+		"University Park East Drive " : "3390UN40"
+	},
+
+	"904" : {
+
+		"Children's Hospital" : "109000009001",
+		"Derby Hall" : "3390UN49",
+		"Education Block" : "1090DDCH0582",
+		"EM Conference Centre" : "3390UN48",
+		"Kings Treatment Centre" : "109000009000",
+		"History" : "3390UN47",
+		"Lenton and Wortley Hall" : "3390UN50",
+		"Maternity Hospital" : "109000009002",
+		"Royal Hospital Entrance" : "109000009013",
+		"George Green Library" : "3390UN31",
+		"University Park East Drive " : "3390UN42",
+		"West Entrance" : "3390UN33"
+	},
+
+    "routeCodes" : ["901", "902", "903", "904"]
+}

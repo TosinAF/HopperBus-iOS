@@ -74,15 +74,13 @@ struct Times {
     }
 }
 
-extension Array {
-    func flattenToString() -> String {
-        var finalString = ""
-        for (index, str) in enumerate(self) {
-            let s = str as String
-            finalString += "\(s) "
-        }
-        return finalString
-    }
+struct APIRoute {
+    let stops: [APIStop]
+}
+
+struct APIStop {
+    let name: String
+    let code: String
 }
 
 

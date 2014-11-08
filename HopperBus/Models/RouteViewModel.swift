@@ -48,9 +48,9 @@ class RouteViewModelContainer {
         let data = NSData(contentsOfFile: filePath, options: nil, error: nil)!
         let json = JSON(data: data)
 
-        let data902 = json["route902"].dictionaryValue!
-        let data903 = json["route903"].dictionaryValue!
-        let data904 = json["route904"].dictionaryValue!
+        let data902 = json["route902"].dictionaryValue
+        let data903 = json["route903"].dictionaryValue
+        let data904 = json["route904"].dictionaryValue
 
         let route902 = RouteViewModel(data: data902, type: .HB902)
         let route903 = RouteViewModel(data: data903, type: .HB903)
@@ -161,16 +161,16 @@ private extension RouteViewModel {
     class func getRoute(data: [String: JSON]) -> Route {
 
         let termTime = data["term_time_schedule"]!.arrayValue
-        let termTimeSchedules = RouteViewModel.getSchedules(termTime!)
+        let termTimeSchedules = RouteViewModel.getSchedules(termTime)
 
         var route = Route(termTime: termTimeSchedules)
 
         if let saturdays = data["saturday_schedule"] {
-            route.saturdays = RouteViewModel.getSchedules(saturdays.arrayValue!)
+            route.saturdays = RouteViewModel.getSchedules(saturdays.arrayValue)
         }
 
         if let holidays = data["holiday_schdule"] {
-            route.holidays = RouteViewModel.getSchedules(holidays.arrayValue!)
+            route.holidays = RouteViewModel.getSchedules(holidays.arrayValue)
         }
 
         return route
@@ -182,11 +182,11 @@ private extension RouteViewModel {
 
         for schedule in route {
             var stops = [Stop]()
-            for stop in schedule.arrayValue! {
+            for stop in schedule.arrayValue {
 
-                let id = stop[0].stringValue!
-                let name = stop[1].stringValue!
-                let time = stop[2].stringValue!
+                let id = stop[0].stringValue
+                let name = stop[1].stringValue
+                let time = stop[2].stringValue
                 let s = Stop(id: id, name: name, time: time)
                 stops.append(s)
             }
@@ -201,20 +201,20 @@ private extension RouteViewModel {
         var stopTimings = [String: Times]()
         let stopTimingsJSON = data["stop_times"]!.arrayValue
 
-        for stop in stopTimingsJSON! {
+        for stop in stopTimingsJSON {
 
-            let stopID = stop["id"].stringValue!
-            let stopName = stop["name"].stringValue!
+            let stopID = stop["id"].stringValue
+            let stopName = stop["name"].stringValue
             let termTimeStopTimes = stop["term_time"].arrayValue
-            let termTime = RouteViewModel.castToStringArray(termTimeStopTimes!)
+            let termTime = RouteViewModel.castToStringArray(termTimeStopTimes)
 
             var timings = Times(stopID: stopID, name: stopName, termTime: termTime)
 
-            if let saturdayTimes = stop["saturdays"].arrayValue {
+            if let saturdayTimes = stop["saturdays"].array {
                 timings.saturdays = RouteViewModel.castToStringArray(saturdayTimes)
             }
 
-            if let holidayTimes = stop["holidays"].arrayValue {
+            if let holidayTimes = stop["holidays"].array {
                 timings.holidays = RouteViewModel.castToStringArray(holidayTimes)
             }
 
@@ -254,7 +254,7 @@ private extension RouteViewModel {
     class func castToStringArray(jsonArr: [JSON]) -> [String] {
         var strArray = [String]()
         for element in jsonArr {
-            strArray.append(element.stringValue!)
+            strArray.append(element.stringValue)
         }
         return strArray
     }

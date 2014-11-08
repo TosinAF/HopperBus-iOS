@@ -107,6 +107,7 @@ class HomeViewController: UIViewController {
     // MARK: - AppDelegate Methods
 
     func saveCurrentRoute() {
+        if currentRouteType.rawValue == 2 { return }
         NSUserDefaults.standardUserDefaults().setObject(currentRouteType.rawValue, forKey: LastViewedRouteKey)
     }
 }
