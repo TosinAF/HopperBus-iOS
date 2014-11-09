@@ -51,8 +51,12 @@ class RealTimeViewModel {
             let stopsData = subJson.dictionaryValue
             for (key: String, subJson: JSON) in stopsData {
                 let name = key
-                let code = subJson.stringValue
-                let apiStop = APIStop(name: name, code: code)
+                let attr = subJson.arrayValue
+                let code = attr[0].stringValue
+                let lat = attr[1].stringValue
+                let long = attr[2].stringValue
+                let coord = CLLocationCoordinate2D(latitude: lat.doubleValue(), longitude: long.doubleValue())
+                let apiStop = APIStop(name: name, code: code, coord: coord)
                 stops.append(apiStop)
             }
 

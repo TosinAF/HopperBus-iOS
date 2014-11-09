@@ -81,6 +81,7 @@ struct APIRoute {
 struct APIStop {
     let name: String
     let code: String
+    let coord: CLLocationCoordinate2D
 }
 
 
