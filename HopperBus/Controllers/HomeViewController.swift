@@ -118,6 +118,12 @@ extension HomeViewController: TabBarDelegate {
     func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int) {
         if currentRouteType.rawValue == index { return }
 
+        if index == HopperBusRoutes.HBRealTime.rawValue {
+            self.title = "LIVE BUS DEPARTURES"
+        } else {
+            self.title = "HOOPER BUS"
+        }
+
         let fromVC = viewControllers[currentRouteType.rawValue]
         let toVC = viewControllers[index]
 

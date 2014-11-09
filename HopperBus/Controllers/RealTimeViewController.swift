@@ -25,8 +25,11 @@ class RealTimeViewController: UIViewController {
     }()
 
     lazy var mapView: MKMapView = {
+        let mapBoxOverlay = MBXRasterTileOverlay(mapID: "tosinaf.k5b76j66")
         let mapView = MKMapView()
+        mapView.delegate = self
         mapView.showsUserLocation = true
+        mapView.addOverlay(mapBoxOverlay)
         mapView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return mapView
     }()
@@ -37,19 +40,18 @@ class RealTimeViewController: UIViewController {
         textField.textAlignment = .Center
         textField.textColor = UIColor.whiteColor()
         textField.backgroundColor = UIColor(red:0.000, green:0.694, blue:0.416, alpha: 1)
+        textField.tintColor = UIColor.clearColor()
         textField.inputView = self.textFieldInputView
         textField.font = UIFont(name: "Avenir-Light", size: 17.0)
         textField.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return textField
-    }()
 
-    lazy var pickerView: UIPickerView = {
-        let pickerView = UIPickerView(frame: CGRectMake(0, 44, self.view.frame.size.width, 180))
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        pickerView.showsSelectionIndicator = true
-        pickerView.backgroundColor = UIColor.HopperBusBrandColor()
-        return pickerView
+        // UITextField Padding
+        let paddingView = UIView(frame: CGRectMake(0, 0, 20, 50))
+        textField.leftView = paddingView;
+        textField.leftViewMode = .Always;
+        textField.rightView = paddingView;
+        textField.rightViewMode = .Always;
+        return textField
     }()
 
     lazy var pickerViewToolbar: UIToolbar = {
@@ -60,17 +62,39 @@ class RealTimeViewController: UIViewController {
         return toolbar
     }()
 
+    lazy var pickerView: UIPickerView = {
+        //let pickerView = UIPickerView(frame: CGRectMake(0, 44, self.view.frame.size.width, 180))
+        let pickerView = UIPickerView(frame: CGRectMake(0, 44, self.view.frame.size.width, 220))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.showsSelectionIndicator = true
+        pickerView.backgroundColor = UIColor(red:0.145, green:0.380, blue:0.482, alpha: 1)
+        return pickerView
+    }()
+
     lazy var textFieldInputView: UIView = {
-        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 224))
+        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 264))
         view.addSubview(self.pickerViewToolbar)
         view.addSubview(self.pickerView)
+        view.backgroundColor = UIColor(red:0.145, green:0.380, blue:0.482, alpha: 1)
         return view
+    }()
+
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .None
+        tableView.registerClass(RealTimeTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return tableView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mapView)
         view.addSubview(textField)
+        view.addSubview(tableView)
         view.backgroundColor = UIColor.whiteColor()
 
         textField.becomeFirstResponder()
@@ -82,15 +106,14 @@ class RealTimeViewController: UIViewController {
 
             let views = [
                 "mapView": mapView,
-                "textField" : textField,
+                "textField": textField,
+                "tableView": tableView
             ]
 
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[mapView]|", options: nil, metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textField]|", options: .AlignAllCenterY, metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][textField(67)]", options: nil, metrics: nil, views: views))
-
-            view.addConstraint(NSLayoutConstraint(item: mapView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.5, constant: 0.0))
-            view.addConstraint(NSLayoutConstraint(item: textField, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0.0))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textField]|", options: nil, metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView(350)][textField(55)][tableView]|", options: nil, metrics: nil, views: views))
         }
 
         super.updateViewConstraints()
@@ -99,6 +122,45 @@ class RealTimeViewController: UIViewController {
     func doneButtonClicked() {
         textField.text = viewModel.textForSelectedRouteAndStop()
         textField.resignFirstResponder()
+    }
+}
+
+extension RealTimeViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 65
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as RealTimeTableViewCell
+        return cell
+    }
+}
+
+
+extension RealTimeViewController: MKMapViewDelegate {
+
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        return MKTileOverlayRenderer(overlay: overlay)
+    }
+
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: false)
     }
 }
 

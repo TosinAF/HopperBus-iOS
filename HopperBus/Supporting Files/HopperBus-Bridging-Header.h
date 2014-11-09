@@ -3,4 +3,5 @@
 //
 
 #import <pop/POP.h>
+#import <MBXMapKit/MBXMapKit.h>
 #import <JCTiledScrollView/JCTiledPDFScrollView.h>
