@@ -24,6 +24,8 @@ extension HopperBusRoutes {
 
 class RealTimeViewModel {
 
+    // https://api.nctx.co.uk/api/v1/departures/3390RA63/realtime - api routes
+
     var selectedRouteType = HopperBusRoutes.HB901
     var selectedStopIndex = 0
     let routes = [HopperBusRoutes: APIRoute]()

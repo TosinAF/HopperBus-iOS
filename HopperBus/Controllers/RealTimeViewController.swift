@@ -12,7 +12,7 @@ import CoreLocation
 
 class RealTimeViewController: UIViewController {
 
-    var didSetupContraints = false
+    var didCenterOnuserLocation = false
 
     let viewModel = RealTimeViewModel()
 
@@ -63,8 +63,7 @@ class RealTimeViewController: UIViewController {
     }()
 
     lazy var pickerView: UIPickerView = {
-        //let pickerView = UIPickerView(frame: CGRectMake(0, 44, self.view.frame.size.width, 180))
-        let pickerView = UIPickerView(frame: CGRectMake(0, 44, self.view.frame.size.width, 220))
+        let pickerView = UIPickerView(frame: CGRectMake(0, 44, self.view.frame.size.width,  0.4 * self.view.frame.size.height - 44))
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.showsSelectionIndicator = true
@@ -73,7 +72,7 @@ class RealTimeViewController: UIViewController {
     }()
 
     lazy var textFieldInputView: UIView = {
-        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 264))
+        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 0.4 * self.view.frame.size.height))
         view.addSubview(self.pickerViewToolbar)
         view.addSubview(self.pickerView)
         view.backgroundColor = UIColor(red:0.145, green:0.380, blue:0.482, alpha: 1)
@@ -90,33 +89,37 @@ class RealTimeViewController: UIViewController {
         return tableView
     }()
 
+    lazy var liveBusTimesView: LiveBusTimesView = {
+        let liveBusTimesView = LiveBusTimesView()
+        liveBusTimesView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return liveBusTimesView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mapView)
         view.addSubview(textField)
-        view.addSubview(tableView)
+        view.addSubview(liveBusTimesView)
         view.backgroundColor = UIColor.whiteColor()
 
+        let views = [
+            "mapView": mapView,
+            "textField": textField,
+            "liveView": liveBusTimesView
+        ]
+
+        let height = self.view.frame.size.height
+
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[mapView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textField]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[liveView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][textField][liveView]", options: nil, metrics: nil, views: views))
+
+        view.addConstraint(NSLayoutConstraint(item: mapView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5 * height))
+        view.addConstraint(NSLayoutConstraint(item: textField, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.1 * height))
+        view.addConstraint(NSLayoutConstraint(item: liveBusTimesView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.35 * height))
+
         textField.becomeFirstResponder()
-    }
-
-    override func updateViewConstraints() {
-
-        if (!didSetupContraints) {
-
-            let views = [
-                "mapView": mapView,
-                "textField": textField,
-                "tableView": tableView
-            ]
-
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[mapView]|", options: nil, metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textField]|", options: nil, metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView(350)][textField(55)][tableView]|", options: nil, metrics: nil, views: views))
-        }
-
-        super.updateViewConstraints()
     }
 
     func doneButtonClicked() {
@@ -157,10 +160,15 @@ extension RealTimeViewController: MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-        let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: false)
+
+        if !didCenterOnuserLocation {
+            let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            let region = MKCoordinateRegion(center: location, span: span)
+            mapView.setRegion(region, animated: false)
+            didCenterOnuserLocation = !didCenterOnuserLocation
+        }
+
     }
 }
 
@@ -187,10 +195,10 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         if view == nil {
             let height = UIFont.systemFontOfSize(UIFont.systemFontSize()).lineHeight * 2 * UIScreen.mainScreen().scale
             label = UILabel(frame: CGRectMake(0, 0, 0, height))
-            label.textAlignment = NSTextAlignment.Center
+            label.textAlignment = .Center
             label.numberOfLines = 2
-            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            label.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+            label.lineBreakMode = .ByTruncatingTail
+            label.autoresizingMask = .FlexibleWidth
             label.font = UIFont(name: "Avenir-Book", size: 17.0)
         } else {
             label = view as UILabel

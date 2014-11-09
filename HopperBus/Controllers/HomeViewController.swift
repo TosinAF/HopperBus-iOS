@@ -87,6 +87,7 @@ class HomeViewController: UIViewController {
 
         let vc = viewControllers[currentRouteType.rawValue]
         addChildViewController(vc)
+        vc.view.frame = containerView.bounds
         containerView.addSubview(vc.view)
         vc.didMoveToParentViewController(self)
     }
@@ -107,7 +108,6 @@ class HomeViewController: UIViewController {
     // MARK: - AppDelegate Methods
 
     func saveCurrentRoute() {
-        if currentRouteType.rawValue == 2 { return }
         NSUserDefaults.standardUserDefaults().setObject(currentRouteType.rawValue, forKey: LastViewedRouteKey)
     }
 }

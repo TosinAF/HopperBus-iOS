@@ -98,7 +98,6 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource, Table
         cell.isLastCell = index == rvm.numberOfStopsForCurrentRoute() - 1 ? true : false
         cell.isSelected = index == rvm.stopIndex ? true : false
         cell.height = self.routeType == HopperBusRoutes.HB904 ? 65 : 55
-        // get cell height to autolayout stuff
 
         return cell
     }
