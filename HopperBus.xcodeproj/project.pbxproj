@@ -41,6 +41,10 @@
 		4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4CFD19A7C08900892A7C /* Images.xcassets */; };
 		4EDD4D0A19A7C08900892A7C /* HopperBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */; };
 		4EE17F3C1A0F352A00728297 /* LiveBusTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F3B1A0F352A00728297 /* LiveBusTimesView.swift */; };
+		4EE17F401A1065C500728297 /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F3F1A1065C500728297 /* RouteTimesViewController.swift */; };
+		4EE17F421A1069CB00728297 /* StopTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */; };
+		4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF52861A20C1A300A66DEB /* RouteTimesViewModel.swift */; };
+		4EFF52891A20C30900A66DEB /* RouteViewModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF52881A20C30900A66DEB /* RouteViewModelContainer.swift */; };
 		7B4AA58A492C4E4180CF282D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF69A0F5AB64083B3DB10FB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +105,10 @@
 		4EDD4D0819A7C08900892A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopperBusTests.swift; sourceTree = "<group>"; };
 		4EE17F3B1A0F352A00728297 /* LiveBusTimesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveBusTimesView.swift; path = Views/LiveBusTimesView.swift; sourceTree = "<group>"; };
+		4EE17F3F1A1065C500728297 /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteTimesViewController.swift; path = Controllers/RouteTimesViewController.swift; sourceTree = "<group>"; };
+		4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTimesTableViewCell.swift; path = Views/StopTimesTableViewCell.swift; sourceTree = "<group>"; };
+		4EFF52861A20C1A300A66DEB /* RouteTimesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteTimesViewModel.swift; path = Models/RouteTimesViewModel.swift; sourceTree = "<group>"; };
+		4EFF52881A20C30900A66DEB /* RouteViewModelContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteViewModelContainer.swift; path = Models/RouteViewModelContainer.swift; sourceTree = "<group>"; };
 		EBF69A0F5AB64083B3DB10FB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA14403E8B1B450553F9FF1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +178,7 @@
 			children = (
 				4E29202319E6316700687C0D /* HomeViewController.swift */,
 				4ECFBE6719B8388900523219 /* RouteViewController.swift */,
+				4EE17F3F1A1065C500728297 /* RouteTimesViewController.swift */,
 				4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */,
 				4E7AA48419CB9F360048FB11 /* MapViewController.swift */,
 				4E678E201A068A4C007950BC /* TimesViewController.swift */,
@@ -256,6 +265,7 @@
 				4EAE724A19B92B6A0021C4DF /* TabBar */,
 				4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */,
 				4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */,
+				4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */,
 				4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */,
 				4EE17F3B1A0F352A00728297 /* LiveBusTimesView.swift */,
 			);
@@ -285,7 +295,9 @@
 		4EFFD79D19D1A7E600127823 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4EFF52881A20C30900A66DEB /* RouteViewModelContainer.swift */,
 				4E6F0FA719D3409400EC776B /* RouteViewModel.swift */,
+				4EFF52861A20C1A300A66DEB /* RouteTimesViewModel.swift */,
 				4ED3688A1A0DDF7900EEDB34 /* ReaITimeViewModel.swift */,
 				4E6ED68619D61CC900D903F6 /* Models.swift */,
 			);
@@ -459,11 +471,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */,
+				4EFF52891A20C30900A66DEB /* RouteViewModelContainer.swift in Sources */,
 				4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */,
 				4E50244C19CBA28C002F5A11 /* PresentMapTransistionManager.swift in Sources */,
+				4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
 				4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */,
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
+				4EE17F421A1069CB00728297 /* StopTimesTableViewCell.swift in Sources */,
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
 				4E678E251A0736E6007950BC /* DismissTimesTransistionManager.swift in Sources */,
 				4ED3688B1A0DDF7900EEDB34 /* ReaITimeViewModel.swift in Sources */,
@@ -475,6 +490,7 @@
 				4E6ED68719D61CC900D903F6 /* Models.swift in Sources */,
 				4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */,
 				4EE17F3C1A0F352A00728297 /* LiveBusTimesView.swift in Sources */,
+				4EE17F401A1065C500728297 /* RouteTimesViewController.swift in Sources */,
 				4E29202419E6316700687C0D /* HomeViewController.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,

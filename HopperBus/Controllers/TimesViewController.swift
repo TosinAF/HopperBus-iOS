@@ -48,7 +48,7 @@ class TimesViewController: UIViewController {
     lazy var dismissButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 30
-        button.backgroundColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.400)
+        button.backgroundColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.4200)
         button.setTitle("\u{274C}", forState: .Normal)
         button.setTitleColor(UIColor.blackColor(), forState: .Normal)
 

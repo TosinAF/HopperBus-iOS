@@ -6,77 +6,70 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
-// MARK: - HopperBusRoutes Enum
 
-enum HopperBusRoutes: Int {
-    case HB901 = 0, HB902, HBRealTime, HB903, HB904
+// MARK: - ViewModel Class
 
-    var title: String {
-        let routeTitles = [
-            "901 - Sutton Bonington",
-            "902 - King's Meadow",
-            "REAL TIME",
-            "903 - Jubilee Campus",
-            "904 - Royal Derby Hospital"
-        ]
-        return routeTitles[rawValue]
+class ViewModel {
+
+    func updateScheduleIndex() {
+
     }
 
-    var routeCode: String {
-        let routeCodes = [
-            "901",
-            "902",
-            "RT",
-            "903",
-            "904"
-        ]
-        return routeCodes[rawValue]
+    func formatTimeStringForDisplay(timeStr: String) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+
+        let timeAsDate = dateFormatter.dateFromString(timeStr)
+        dateFormatter.dateFormat = "H:mm a"
+
+        return dateFormatter.stringFromDate(timeAsDate!)
     }
 
-    static let allCases: [HopperBusRoutes] = [.HB902, .HB902, .HBRealTime, .HB903, .HB904]
-}
-
-// MARK: - RouteViewModelContainer Class
-
-class RouteViewModelContainer {
-
-    let routeViewModels: [String: RouteViewModel]
-
-    init() {
-
-        let filePath = NSBundle.mainBundle().pathForResource("Routes", ofType: "json")!
-        let data = NSData(contentsOfFile: filePath, options: nil, error: nil)!
-        let json = JSON(data: data)
-
-        let data902 = json["route902"].dictionaryValue
-        let data903 = json["route903"].dictionaryValue
-        let data904 = json["route904"].dictionaryValue
-
-        let route902 = RouteViewModel(data: data902, type: .HB902)
-        let route903 = RouteViewModel(data: data903, type: .HB903)
-        let route904 = RouteViewModel(data: data904, type: .HB904)
-
-        routeViewModels = [
-            HopperBusRoutes.HB902.routeCode: route902,
-            HopperBusRoutes.HB903.routeCode: route903,
-            HopperBusRoutes.HB904.routeCode: route904
-        ]
-    }
-
-    func routeViewModel(type: HopperBusRoutes) -> RouteViewModel {
-        return routeViewModels[type.routeCode]!
-    }
-
-    func updateScheduleIndexForRoutes() {
-        for (key,routeVM) in routeViewModels {
-            routeVM.updateScheduleIndex()
+    class func castToStringArray(jsonArr: [JSON]) -> [String] {
+        var strArray = [String]()
+        for element in jsonArr {
+            strArray.append(element.stringValue)
         }
+        return strArray
+    }
+
+    class func getStopTimings(data: [String: JSON]) -> [String: Times] {
+
+        var stopTimings = [String: Times]()
+        let stopTimingsJSON = data["stop_times"]!.arrayValue
+
+        for stop in stopTimingsJSON {
+
+            let stopID = stop["id"].stringValue
+            let stopName = stop["name"].stringValue
+            let termTimeStopTimes = stop["term_time"].arrayValue
+            let termTime = RouteViewModel.castToStringArray(termTimeStopTimes)
+
+            var timings = Times(stopID: stopID, name: stopName, termTime: termTime)
+
+            if let saturdayTimes = stop["saturdays"].array {
+                timings.saturdays = RouteViewModel.castToStringArray(saturdayTimes)
+            }
+
+            if let weekendTimes = stop["weekends"].array {
+                timings.weekends = RouteViewModel.castToStringArray(weekendTimes)
+            }
+
+            if let holidayTimes = stop["holidays"].array {
+                timings.holidays = RouteViewModel.castToStringArray(holidayTimes)
+            }
+
+            stopTimings[stopID] = timings
+        }
+        
+        return stopTimings
     }
 }
 
 // MARK: - RouteViewModel Class
 
-class RouteViewModel {
+class RouteViewModel: ViewModel {
 
     // MARK: - Properties
 
@@ -98,7 +91,7 @@ class RouteViewModel {
         self.scheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(inRoute: route, atStop: stopIndex)
     }
 
-    func updateScheduleIndex() {
+    override func updateScheduleIndex() {
          self.scheduleIndex = RouteViewModel.getScheduleIndexForCurrentTime(inRoute: route, atStop: stopIndex)
     }
 
@@ -196,34 +189,6 @@ private extension RouteViewModel {
         return schedules
     }
 
-    class func getStopTimings(data: [String: JSON]) -> [String: Times] {
-
-        var stopTimings = [String: Times]()
-        let stopTimingsJSON = data["stop_times"]!.arrayValue
-
-        for stop in stopTimingsJSON {
-
-            let stopID = stop["id"].stringValue
-            let stopName = stop["name"].stringValue
-            let termTimeStopTimes = stop["term_time"].arrayValue
-            let termTime = RouteViewModel.castToStringArray(termTimeStopTimes)
-
-            var timings = Times(stopID: stopID, name: stopName, termTime: termTime)
-
-            if let saturdayTimes = stop["saturdays"].array {
-                timings.saturdays = RouteViewModel.castToStringArray(saturdayTimes)
-            }
-
-            if let holidayTimes = stop["holidays"].array {
-                timings.holidays = RouteViewModel.castToStringArray(holidayTimes)
-            }
-
-            stopTimings[stopID] = timings
-        }
-
-        return stopTimings
-    }
-
     class func getScheduleIndexForCurrentTime(inRoute route: Route, atStop stopIndex: Int) -> Int {
 
         let dateFormatter = NSDateFormatter()
@@ -249,34 +214,5 @@ private extension RouteViewModel {
         }
 
         return 0
-    }
-
-    class func castToStringArray(jsonArr: [JSON]) -> [String] {
-        var strArray = [String]()
-        for element in jsonArr {
-            strArray.append(element.stringValue)
-        }
-        return strArray
-    }
-
-    func formatTimeStringForDisplay(timeStr: String) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-
-        let timeAsDate = dateFormatter.dateFromString(timeStr)
-        dateFormatter.dateFormat = "H:mm a"
-
-        return dateFormatter.stringFromDate(timeAsDate!)
-    }
-}
-
-private extension NSDate {
-    class func currentTimeAsString() -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = .ShortStyle
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.stringFromDate(NSDate())
     }
 }

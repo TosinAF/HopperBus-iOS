@@ -49,6 +49,7 @@ struct Times {
     let stopName: String
     var termTime: [String]
     var saturdays: [String]?
+    var weekends: [String]?
     var holidays: [String]?
 
     var currentTimes : [String] {
@@ -56,6 +57,7 @@ struct Times {
             return termTime
         }
 
+        // add logic for weekends, what if its saturday & holiday
         if let sat = saturdays {
             if NSDate.isSaturday() { return sat }
         }

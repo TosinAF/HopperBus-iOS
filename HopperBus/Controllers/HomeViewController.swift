@@ -28,11 +28,15 @@ class HomeViewController: UIViewController {
     lazy var viewControllers: [UIViewController] = {
         var vcs = [UIViewController]()
         for type in HopperBusRoutes.allCases {
-            if type == .HBRealTime {
+            if type == .HB901 {
+                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as RouteTimesViewModel
+                let rtvc = RouteTimesViewController(type: type, routeViewModel: routeViewModel)
+                vcs.append(rtvc)
+            } else if type == .HBRealTime {
                 let rtvc = RealTimeViewController()
                 vcs.append(rtvc)
             } else {
-                let routeViewModel = self.routeViewModelContainer.routeViewModel(type)
+                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as RouteViewModel
                 let rvc = RouteViewController(type: type, routeViewModel: routeViewModel)
                 vcs.append(rvc)
             }

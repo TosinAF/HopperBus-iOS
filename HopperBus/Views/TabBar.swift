@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 @objc protocol TabBarDelegate {
     func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int)
 }
