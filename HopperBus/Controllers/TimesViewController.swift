@@ -20,12 +20,18 @@ class TimesViewController: UIViewController {
             timesCategoryLabel.text = "TERM TIME"
             textView.text = t.termTime.flattenToString()
 
+            if let h = t.holidays {
+                buttonsArray[2].enabled = true
+            }
+
+            // the both below are mutually exclusive, its to accomodate route 901
             if let s = t.saturdays {
                 buttonsArray[1].enabled = true
             }
 
-            if let h = t.holidays {
-                buttonsArray[2].enabled = true
+            if let w = t.weekends {
+                buttonsArray[1].enabled = true
+                buttonsArray[1].setTitle("WKD", forState: .Normal)
             }
         }
     }
@@ -210,8 +216,13 @@ class TimesViewController: UIViewController {
             timesCategoryLabel.text = "TERM TIME"
             currentTimeIndicatorAnim.toValue = -1
         case 1:
-            textView.text = times!.saturdays!.flattenToString()
-            timesCategoryLabel.text = "SATURDAYS"
+            if let s = times!.saturdays {
+                textView.text = s.flattenToString()
+                timesCategoryLabel.text = "SATURDAYS"
+            } else {
+                textView.text = times!.weekends!.flattenToString()
+                timesCategoryLabel.text = "WEEKENDS"
+            }
             currentTimeIndicatorAnim.toValue = 40
         case 2:
             textView.text = times!.holidays!.flattenToString()

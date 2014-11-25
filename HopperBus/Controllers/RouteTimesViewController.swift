@@ -21,10 +21,11 @@ class RouteTimesViewController: UIViewController {
         return view
     }()
 
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
+    lazy var tableView: TableView = {
+        let tableView = TableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.doubleTapDelegate = self
         tableView.separatorInset = UIEdgeInsetsZero
         if iOS8 { tableView.layoutMargins = UIEdgeInsetsZero }
         tableView.separatorStyle = .None
@@ -57,7 +58,7 @@ class RouteTimesViewController: UIViewController {
 
 // MARK: - TableViewDataSource & Delegate Methods
 
-extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource {
+extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource, TableViewDoubleTapDelegate {
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return routeHeaderView
@@ -82,8 +83,25 @@ extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: TableView, didDoubleTapRowAtIndexPath indexPath: NSIndexPath) {
+        let times = routeViewModel.stopTimingsForStop(atIndex: indexPath.row)
+        let timesViewController = TimesViewController()
+        timesViewController.times = times
+        timesViewController.modalPresentationStyle = .Custom
+        timesViewController.transitioningDelegate = self
+        presentViewController(timesViewController, animated: true, completion:nil)
+    }
+}
 
+// MARK: - Transitioning Delegate
 
+extension RouteTimesViewController: UIViewControllerTransitioningDelegate {
+
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentTimesTransistionManager()
+    }
+
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissTimesTransistionManager()
     }
 }

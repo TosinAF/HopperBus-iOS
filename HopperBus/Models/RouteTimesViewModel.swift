@@ -39,6 +39,11 @@ class RouteTimesViewModel: ViewModel {
         return stopName
     }
 
+    func stopTimingsForStop(atIndex index: Int) -> Times {
+        let stopID = currentStops[index]
+        return stopTimings[stopID]!
+    }
+
     func nextThreeStopTimes(atIndex index: Int) -> [String] {
         let stopID = currentStops[index]
 

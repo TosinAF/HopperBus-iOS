@@ -12,10 +12,10 @@ import CoreLocation
 
 class RealTimeViewController: UIViewController {
 
-    let viewModel: RealTimeViewModel!
+    // MARK: - Properties
 
+    let viewModel: RealTimeViewModel!
     var didCenterOnuserLocation = false
-    var isPickerViewDisplayed = true
 
     lazy var locationManager: CLLocationManager = {
         let locManager = CLLocationManager()
@@ -102,6 +102,8 @@ class RealTimeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
@@ -145,6 +147,8 @@ class RealTimeViewController: UIViewController {
         view.addConstraint(NSLayoutConstraint(item: liveBusTimesView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.35 * height))
     }
 
+    // MARK: - Actions
+
     func toggleButtonClicked() {
         if (textField.isFirstResponder()) {
             textField.text = viewModel.textForSelectedRouteAndStop()
@@ -157,6 +161,8 @@ class RealTimeViewController: UIViewController {
 
     }
 }
+
+// MARK: - UIPickerView Delegate & Datasource
 
 extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -218,12 +224,16 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
+// MARK: - UITextField Delegate
+
 extension RealTimeViewController: UITextFieldDelegate {
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return false
     }
 }
+
+// MARK: - CLLocationManager Delegate
 
 extension RealTimeViewController: CLLocationManagerDelegate {
 
@@ -240,6 +250,8 @@ extension RealTimeViewController: CLLocationManagerDelegate {
     }
 }
 
+// MARK: - MKMapView Delegate
+
 extension RealTimeViewController: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
@@ -255,6 +267,5 @@ extension RealTimeViewController: MKMapViewDelegate {
             mapView.setRegion(region, animated: false)
             didCenterOnuserLocation = !didCenterOnuserLocation
         }
-        
     }
 }

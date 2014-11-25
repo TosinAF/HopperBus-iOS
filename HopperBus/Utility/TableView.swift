@@ -37,7 +37,7 @@ class TableView: UITableView {
                     isDoubleTap = false
                     delay(0.25) {
                         if !self.isDoubleTap {
-                            self.delegate?.tableView!(self, didSelectRowAtIndexPath: ip)
+                            self.delegate?.tableView?(self, didSelectRowAtIndexPath: ip)
                             self.isDoubleTap = false
                         }
                     }
