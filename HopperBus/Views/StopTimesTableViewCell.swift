@@ -10,14 +10,8 @@ import UIKit
 
 class StopTimesTableViewCell: UITableViewCell {
 
-    override var layoutMargins: UIEdgeInsets {
-        get { return UIEdgeInsetsZero }
-        set(newVal) {}
-    }
-
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "didnt change"
         label.font = UIFont(name: "Avenir", size: 14)
         label.textAlignment = .Center
         label.setTranslatesAutoresizingMaskIntoConstraints(false)

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E1ECE4A1A0B945100F839D9 /* APICodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E1ECE491A0B945100F839D9 /* APICodes.json */; };
 		4E29202419E6316700687C0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* HomeViewController.swift */; };
 		4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */; };
 		4E50244C19CBA28C002F5A11 /* PresentMapTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapTransistionManager.swift */; };
@@ -60,7 +59,6 @@
 
 /* Begin PBXFileReference section */
 		07BC5729BEAEFB941B8578E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		4E1ECE491A0B945100F839D9 /* APICodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = APICodes.json; path = HopperBus/Resources/Routes/APICodes.json; sourceTree = "<group>"; };
 		4E29202319E6316700687C0D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeTableViewCell.swift; path = Views/RealTimeTableViewCell.swift; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapTransistionManager.swift; path = Utility/PresentMapTransistionManager.swift; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				4EA8A04719DA21EA00DDCBAF /* Routes.json */,
-				4E1ECE491A0B945100F839D9 /* APICodes.json */,
 			);
 			name = Routes;
 			sourceTree = "<group>";
@@ -417,7 +414,6 @@
 				4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */,
 				4ECE2C3E19DD75A800E47755 /* Captain-icon.ttf in Resources */,
 				4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */,
-				4E1ECE4A1A0B945100F839D9 /* APICodes.json in Resources */,
 				4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */,
 				4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */,
 			);

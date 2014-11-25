@@ -52,17 +52,20 @@ class RouteViewModelContainer {
         let data902 = json["route902"].dictionaryValue
         let data903 = json["route903"].dictionaryValue
         let data904 = json["route904"].dictionaryValue
+        let dataRealTime = json["api_codes"].dictionaryValue
 
         let route901 = RouteTimesViewModel(data: data901, type: .HB901)
         let route902 = RouteViewModel(data: data902, type: .HB902)
         let route903 = RouteViewModel(data: data903, type: .HB903)
         let route904 = RouteViewModel(data: data904, type: .HB904)
+        let realTime = RealTimeViewModel(data: dataRealTime, type: .HBRealTime)
 
         routeViewModels = [
             HopperBusRoutes.HB901.routeCode: route901,
             HopperBusRoutes.HB902.routeCode: route902,
             HopperBusRoutes.HB903.routeCode: route903,
-            HopperBusRoutes.HB904.routeCode: route904
+            HopperBusRoutes.HB904.routeCode: route904,
+            HopperBusRoutes.HBRealTime.routeCode: realTime
         ]
     }
 

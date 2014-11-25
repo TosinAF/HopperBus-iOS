@@ -22,7 +22,7 @@ extension HopperBusRoutes {
     }
 }
 
-class RealTimeViewModel {
+class RealTimeViewModel: ViewModel {
 
     // https://api.nctx.co.uk/api/v1/departures/3390RA63/realtime - api routes
 
@@ -31,20 +31,17 @@ class RealTimeViewModel {
     let routes = [HopperBusRoutes: APIRoute]()
     let routeCodes = [String]()
 
-    init() {
-
-        let filePath = NSBundle.mainBundle().pathForResource("APICodes", ofType: "json")!
-        let data = NSData(contentsOfFile: filePath, options: nil, error: nil)!
-        let json = JSON(data: data)
+    init(data: [String: JSON], type: HopperBusRoutes) {
+        let json = data
 
         var routeCodes = [String]()
-        for code in json["routeCodes"].arrayValue {
+        for code in data["routeCodes"]!.arrayValue {
             routeCodes.append(code.stringValue)
         }
         self.routeCodes = routeCodes
 
         var routes = [HopperBusRoutes: APIRoute]()
-        for (key: String, subJson: JSON) in json {
+        for (key: String, subJson: JSON) in data {
             if key == "routeCodes" { continue }
 
             var stops = [APIStop]()

@@ -1,4 +1,79 @@
 {
+	"api_codes": {
+
+		"901" : {
+
+			"Arts Centre" : ["3390UN34", "52.939039", "-1.188811"],
+			"Broadmarsh Bus Station bay 1" : ["3390BB01", "52.949291", "-1.147752"],
+			"Clifton Nottingham Trent Uni (To Sutton Bonington)" : ["3390CL83", "52.909947", "-1.183425"],
+			"Clifton Nottingham Trent Uni (To University Park or Nottingham)" : ["3390CL93", "52.910756", "-1.182529"],
+			"Cut Through Lane, Library Road" : ["3390UN32", "52.938925", "-1.19512"],
+			"Derby Hall" : ["3390UN49", "52.942145", "-1.20241"],
+			"East Midlands Parkway Station" : ["3300RU0832", "52.86251", "-1.263596"],
+			"EM Conference Centre" : ["3390UN48", "52.938437", "-1.204786"],
+			"Eviton House" : ["3300RU0095", "52.83461", "-1.25518"],
+			"Hillside" : ["3390LE12", "52.947192", "-1.183683"],
+			"Kegworth Market Place" : ["260014408", "52.835318", "-1.277941"],
+			"History" : ["3390UN47", "52.936348", "-1.204081"],
+			"Lenton and Wortley Hall" : ["3390UN50", "52.942363", "-1.199223"],
+			"George Green Library" : ["3390UN31", "52.94111", "-1.192329"],
+			"Showcase Cinema (To Sutton Bonington)" : ["3390LI01", "52.935095", "-1.172546"],
+			"Showcase Cinema (To University Park or Nottingham)" : ["3390LI04", "52.934124", "-1.172403"],
+			"Sutton Bonington Campus" : ["3300RU0670", "52.831687", "-1.252339"],
+			"Triumph Road" : ["3390LE02", "52.947853", "-1.182619"],
+			"Univ Campus Portland Hill" : ["3390UN36", "52.939461", "-1.193981"],
+			"University Park East Drive" : ["3390UN41", "52.939461", "-1.193981"],
+			"Victoria Bus Station bay 9" : ["3390VB09", "52.959352", "-1.148803"]
+		},
+
+		"902" : {
+
+			"Arts Centre" : ["3390UN34", "52.939039", "-1.188811"],
+			"Cut Through Lane, Library Road" : ["3390UN32", "52.938925", "-1.19512"],
+			"Derby Hall" : ["3390UN49", "52.942145", "-1.20241"],
+			"EM Conference Centre" : ["3390UN48", "52.938437", "-1.204786"],
+			"Jubilee Campus The Exchange" : ["3390RA63", "52.95402", "-1.187556"],
+			"King's Meadow Campus" : ["3390LI44", "52.938377", "-1.173143"],
+			"History" : ["3390UN47", "52.936348", "-1.204081"],
+			"Lenton and Wortley Hall" : ["3390UN50", "52.942363", "-1.199223"],
+			"Newark Hall" : ["3390RA64", "52.953088", "-1.185995"],
+			"George Green Library" : ["3390UN31", "52.94111", "-1.192329"],
+			"Univ Campus Portland Hill" : ["3390UN36", "52.939461", "-1.193981"],
+			"University Park East Drive " : ["3390UN41", "52.939461", "-1.193981"]
+		},
+
+		"903" : {
+
+			"Arts Centre" : ["3390UN34", "52.939039", "-1.188811"],
+			"Cut Through Lane, Library Road" : ["3390UN32", "52.938925", "-1.19512"],
+			"Derby Hall" : ["3390UN49", "52.942145", "-1.20241"],
+			"EM Conference Centre" : ["3390UN48", "52.938437", "-1.204786"],
+			"Faraday Road" : ["3390RA06", "52.955453", "-1.183411"],
+			"Jubilee Campus The Exchange" : ["3390RA63", "52.95402", "-1.187556"],
+			"History" : ["3390UN47", "52.936348", "-1.204081"],
+			"Lenton and Wortley Hall" : ["3390UN50", "52.942363", "-1.199223"],
+			"Newark Hall" : ["3390RA64", "52.953088", "-1.185995"],
+			"George Green Library" : ["3390UN31", "52.94111", "-1.192329"],
+			"St Peter's Court" : ["3390RA58", "52.958986", "-1.181132"],
+			"Univ Campus Portland Hill" : ["3390UN36", "52.939461", "-1.193981"],
+			"University Park East Drive " : ["3390UN40", "52.939461", "-1.193981"]
+		},
+
+		"904" : {
+
+			"Children's Hospital" : ["109000009001", "52.909646", "-1.511911"],
+			"Derby Hall" : ["3390UN49", "52.942145", "-1.20241"],
+			"EM Conference Centre" : ["3390UN48", "52.938437", "-1.204786"],
+			"History" : ["3390UN47", "52.936348", "-1.204081"],
+			"Lenton and Wortley Hall" : ["3390UN50", "52.942363", "-1.199223"],
+			"George Green Library" : ["3390UN31", "52.94111", "-1.192329"],
+			"University Park East Drive " : ["3390UN42", "52.939128", "-1.191536"],
+			"West Entrance" : ["3390UN33", "52.934925", "-1.202474"]
+		},
+
+    	"routeCodes" : ["901", "902", "903", "904"]
+	},
+
 	"route901" : {
 
 		"weekday_stops" : [ 

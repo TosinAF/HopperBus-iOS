@@ -12,9 +12,10 @@ import CoreLocation
 
 class RealTimeViewController: UIViewController {
 
-    var didCenterOnuserLocation = false
+    let viewModel: RealTimeViewModel!
 
-    let viewModel = RealTimeViewModel()
+    var didCenterOnuserLocation = false
+    var isPickerViewDisplayed = true
 
     lazy var locationManager: CLLocationManager = {
         let locManager = CLLocationManager()
@@ -39,31 +40,37 @@ class RealTimeViewController: UIViewController {
         textField.placeholder = "Pick a Route & Stop"
         textField.textAlignment = .Center
         textField.textColor = UIColor.whiteColor()
-        textField.backgroundColor = UIColor(red:0.000, green:0.694, blue:0.416, alpha: 1)
+        textField.backgroundColor = UIColor.clearColor()
         textField.tintColor = UIColor.clearColor()
-        textField.inputView = self.textFieldInputView
+        textField.inputView = self.pickerViewContainer
         textField.font = UIFont(name: "Avenir-Light", size: 17.0)
+        textField.delegate = self
         textField.setTranslatesAutoresizingMaskIntoConstraints(false)
-
-        // UITextField Padding
-        let paddingView = UIView(frame: CGRectMake(0, 0, 20, 50))
-        textField.leftView = paddingView;
-        textField.leftViewMode = .Always;
-        textField.rightView = paddingView;
-        textField.rightViewMode = .Always;
         return textField
     }()
 
-    lazy var pickerViewToolbar: UIToolbar = {
-        let flex = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .Bordered, target: self, action: "doneButtonClicked")
-        let toolbar = UIToolbar(frame: CGRectMake(0, 0, self.view.frame.size.width, 44))
-        toolbar.items = [flex, doneButton]
-        return toolbar
+    lazy var textFieldContainer: UIView = {
+        let view = UIView()
+        view.addSubview(self.textField)
+        view.addSubview(self.textFieldToggleButton)
+        view.backgroundColor = UIColor(red:0.000, green:0.694, blue:0.416, alpha: 1)
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return view
+    }()
+
+    lazy var textFieldToggleButton: UIButton = {
+        let button = UIButton();
+        let normalButtonImage = UIImage(named: "upButton")
+        let selectedButtonImage = UIImage(named: "downButton")
+        button.setImage(normalButtonImage, forState: .Normal)
+        button.setImage(selectedButtonImage, forState: .Selected)
+        button.addTarget(self, action: "toggleButtonClicked", forControlEvents: .TouchUpInside)
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return button
     }()
 
     lazy var pickerView: UIPickerView = {
-        let pickerView = UIPickerView(frame: CGRectMake(0, 44, self.view.frame.size.width,  0.4 * self.view.frame.size.height - 44))
+        let pickerView = UIPickerView(frame: CGRectMake(0, 0, self.view.frame.size.width,  0.4 * self.view.frame.size.height))
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.showsSelectionIndicator = true
@@ -71,22 +78,11 @@ class RealTimeViewController: UIViewController {
         return pickerView
     }()
 
-    lazy var textFieldInputView: UIView = {
-        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 0.4 * self.view.frame.size.height))
-        view.addSubview(self.pickerViewToolbar)
+    lazy var pickerViewContainer: UIView = {
+        let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width,  0.4 * self.view.frame.size.height))
         view.addSubview(self.pickerView)
         view.backgroundColor = UIColor(red:0.145, green:0.380, blue:0.482, alpha: 1)
         return view
-    }()
-
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .None
-        tableView.registerClass(RealTimeTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return tableView
     }()
 
     lazy var liveBusTimesView: LiveBusTimesView = {
@@ -95,78 +91,68 @@ class RealTimeViewController: UIViewController {
         return liveBusTimesView
     }()
 
+    // MARK: - Initalizers
+
+    init(type: HopperBusRoutes, viewModel: RealTimeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(mapView)
-        view.addSubview(textField)
-        view.addSubview(liveBusTimesView)
         view.backgroundColor = UIColor.whiteColor()
+        view.addSubview(mapView)
+        view.addSubview(textFieldContainer)
+        view.addSubview(liveBusTimesView)
+
+        layoutSubviews()
+
+        textField.becomeFirstResponder()
+        textFieldToggleButton.selected = true
+    }
+
+    func layoutSubviews() {
 
         let views = [
             "mapView": mapView,
             "textField": textField,
-            "liveView": liveBusTimesView
+            "liveView": liveBusTimesView,
+            "textFieldContainer": textFieldContainer,
+            "toggleButton": textFieldToggleButton
         ]
+
+
+        textFieldContainer.addConstraint(NSLayoutConstraint(item: textField, attribute: .CenterX, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        textFieldContainer.addConstraint(NSLayoutConstraint(item: textField, attribute: .CenterY, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        textFieldContainer.addConstraint(NSLayoutConstraint(item: textFieldToggleButton, attribute: .CenterY, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[textField(<=240)]", options: nil, metrics: nil, views: views))
+        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[toggleButton(32)]-10-|", options: nil, metrics: nil, views: views))
+        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[toggleButton(32)]", options: nil, metrics: nil, views: views))
+
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[mapView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textFieldContainer]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[liveView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][textFieldContainer][liveView]", options: nil, metrics: nil, views: views))
 
         let height = self.view.frame.size.height
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[mapView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textField]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[liveView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][textField][liveView]", options: nil, metrics: nil, views: views))
-
         view.addConstraint(NSLayoutConstraint(item: mapView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5 * height))
-        view.addConstraint(NSLayoutConstraint(item: textField, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.1 * height))
+        view.addConstraint(NSLayoutConstraint(item: textFieldContainer, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.1 * height))
         view.addConstraint(NSLayoutConstraint(item: liveBusTimesView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.35 * height))
-
-        textField.becomeFirstResponder()
     }
 
-    func doneButtonClicked() {
-        textField.text = viewModel.textForSelectedRouteAndStop()
-        textField.resignFirstResponder()
-    }
-}
-
-extension RealTimeViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
-    }
-
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 65
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as RealTimeTableViewCell
-        return cell
-    }
-}
-
-
-extension RealTimeViewController: MKMapViewDelegate {
-
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        return MKTileOverlayRenderer(overlay: overlay)
-    }
-
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-
-        if !didCenterOnuserLocation {
-            let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-            let region = MKCoordinateRegion(center: location, span: span)
-            mapView.setRegion(region, animated: false)
-            didCenterOnuserLocation = !didCenterOnuserLocation
+    func toggleButtonClicked() {
+        if (textField.isFirstResponder()) {
+            textField.text = viewModel.textForSelectedRouteAndStop()
+            textField.resignFirstResponder()
+            textFieldToggleButton.selected = false
+        } else {
+            textField.becomeFirstResponder()
+            textFieldToggleButton.selected = true
         }
 
     }
@@ -199,12 +185,11 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             label.numberOfLines = 2
             label.lineBreakMode = .ByTruncatingTail
             label.autoresizingMask = .FlexibleWidth
+            label.textColor = UIColor.whiteColor()
             label.font = UIFont(name: "Avenir-Book", size: 17.0)
         } else {
             label = view as UILabel
         }
-
-        label.textColor = UIColor.whiteColor()
 
         if component == 0 {
             label.text = viewModel.getRoute(atIndex: row)
@@ -220,13 +205,23 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             viewModel.updateSelectedRoute(index: row)
             pickerView.reloadComponent(1)
             pickerView.selectRow(0, inComponent: 1, animated: false)
+            viewModel.selectedStopIndex = 0
         } else {
             viewModel.selectedStopIndex = row
         }
+
+        textField.text = viewModel.textForSelectedRouteAndStop()
     }
 
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return UIFont.systemFontOfSize(UIFont.systemFontSize()).lineHeight * 2 * UIScreen.mainScreen().scale
+    }
+}
+
+extension RealTimeViewController: UITextFieldDelegate {
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }
 
@@ -242,5 +237,24 @@ extension RealTimeViewController: CLLocationManagerDelegate {
         if status == .AuthorizedWhenInUse {
             locationManager.startUpdatingLocation()
         }
+    }
+}
+
+extension RealTimeViewController: MKMapViewDelegate {
+
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        return MKTileOverlayRenderer(overlay: overlay)
+    }
+
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+
+        if !didCenterOnuserLocation {
+            let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            let region = MKCoordinateRegion(center: location, span: span)
+            mapView.setRegion(region, animated: false)
+            didCenterOnuserLocation = !didCenterOnuserLocation
+        }
+        
     }
 }

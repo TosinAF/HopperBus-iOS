@@ -33,7 +33,8 @@ class HomeViewController: UIViewController {
                 let rtvc = RouteTimesViewController(type: type, routeViewModel: routeViewModel)
                 vcs.append(rtvc)
             } else if type == .HBRealTime {
-                let rtvc = RealTimeViewController()
+                let viewModel = self.routeViewModelContainer.routeViewModel(type) as RealTimeViewModel
+                let rtvc = RealTimeViewController(type: type, viewModel: viewModel)
                 vcs.append(rtvc)
             } else {
                 let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as RouteViewModel

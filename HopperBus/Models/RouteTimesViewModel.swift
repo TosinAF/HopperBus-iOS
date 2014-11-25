@@ -46,8 +46,7 @@ class RouteTimesViewModel: ViewModel {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
 
-        //let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
-        let currentTime = dateFormatter.dateFromString("23:59")
+        let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
         let times = stopTimings[stopID]!.currentTimes
 
         // if less than 3 times, return what's available

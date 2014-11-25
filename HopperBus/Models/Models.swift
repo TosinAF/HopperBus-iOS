@@ -57,13 +57,16 @@ struct Times {
             return termTime
         }
 
-        // add logic for weekends, what if its saturday & holiday
-        if let sat = saturdays {
-            if NSDate.isSaturday() { return sat }
-        }
-
         if let hol = holidays {
             if NSDate.isHoliday() { return hol }
+        }
+
+        if let wkd = weekends {
+            if NSDate.isWeekend() { return wkd }
+        }
+
+        if let sat = saturdays {
+            if NSDate.isSaturday() { return sat }
         }
 
         return termTime
