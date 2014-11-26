@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LiveBusTimesView: UIView {
+class UpcomingBusTimesView: UIView {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -20,42 +20,40 @@ class LiveBusTimesView: UIView {
         return label
     }()
 
-    override init() {
+    init(services: [RealTimeService]) {
         super.init(frame: CGRectZero)
-
-        let view1 = LiveBusTimeView()
-        view1.timeTillLabel.text = "5"
-        view1.setTranslatesAutoresizingMaskIntoConstraints(false)
-        let view2 = LiveBusTimeView()
-        view2.timeTillLabel.text = "7"
-        view2.setTranslatesAutoresizingMaskIntoConstraints(false)
-        let view3 = LiveBusTimeView()
-        view3.timeTillLabel.text = "12"
-        view3.setTranslatesAutoresizingMaskIntoConstraints(false)
-
         addSubview(titleLabel)
-        addSubview(view1)
-        addSubview(view2)
-        addSubview(view3)
 
-        let views = [
-            "titleLabel": titleLabel,
-            "view1": view1,
-            "view2": view2,
-            "view3": view3
+        var views: [String: UIView] = [
+            "titleLabel": titleLabel
         ]
 
+        for (i, service) in enumerate(services) {
+            let view = ServiceView()
+            view.timeTillLabel.text = service.minutesTill
+            view.setTranslatesAutoresizingMaskIntoConstraints(false)
+            views["view\(i + 1)"] = view
+            addSubview(view)
+        }
+
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[titleLabel]|", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view1][view2(==view1)][view3(==view1)]|", options: nil, metrics: nil, views: views))
-
-        var topMargin = 30
-        if iPhone5 { topMargin = 25 }
-        if iPhone4S { topMargin = 15 }
-
+        var topMargin = 30; if iPhone5 { topMargin = 25 }; if iPhone4S { topMargin = 15 }
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(topMargin)-[titleLabel]", options: nil, metrics: nil, views: views))
+
+        if services.count == 1 {
+            //addConstraint(NSLayoutConstraint(item: views["view1"]!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view1]|", options: nil, metrics: nil, views: views))
+        } else if services.count == 2 {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view1][view2(==view1)]|", options: nil, metrics: nil, views: views))
+        } else if services.count == 3 {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view1][view2(==view1)][view3(==view1)]|", options: nil, metrics: nil, views: views))
+        }
+
+        for i in 0..<services.count {
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view\(i+1)]|", options: nil, metrics: nil, views: views))
+        }
+
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view1]|", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view2]|", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view3]|", options: nil, metrics: nil, views: views))
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -63,7 +61,7 @@ class LiveBusTimesView: UIView {
     }
 }
 
-class LiveBusTimeView: UIView {
+class ServiceView: UIView {
 
     lazy var timeTillLabel: UILabel = {
         let label = UILabel()
@@ -87,10 +85,21 @@ class LiveBusTimeView: UIView {
         return label
     }()
 
+    lazy var routeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "901"
+        label.textColor = UIColor.blackColor()
+        label.font = UIFont(name: "Avenir-Book", size: 14)
+        label.textAlignment = .Center
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return label
+    }()
+
     override init() {
         super.init(frame: CGRectZero)
         addSubview(timeTillLabel)
         addSubview(minsLabel)
+        addSubview(routeLabel)
 
         self.setNeedsUpdateConstraints()
     }
@@ -102,16 +111,18 @@ class LiveBusTimeView: UIView {
     override func updateConstraints() {
         let views = [
             "timeTillLabel": timeTillLabel,
-            "minsLabel": minsLabel
+            "minsLabel": minsLabel,
+            "routeLabel": routeLabel
         ]
 
-        timeTillLabel.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[timeTillLabel(60)]", options: .AlignAllCenterY, metrics: nil, views: views))
-        timeTillLabel.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[timeTillLabel(60)]", options: .AlignAllCenterY, metrics: nil, views: views))
+        timeTillLabel.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[timeTillLabel(60)]", options: nil, metrics: nil, views: views))
+        timeTillLabel.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[timeTillLabel(60)]", options: nil, metrics: nil, views: views))
 
         addConstraint(NSLayoutConstraint(item: timeTillLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: timeTillLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: -5.0))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[timeTillLabel]-5-[minsLabel]", options: nil, metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[timeTillLabel]-5-[minsLabel]-5-[routeLabel]", options: nil, metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[minsLabel]|", options: nil, metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[routeLabel]|", options: nil, metrics: nil, views: views))
 
         super.updateConstraints()
     }

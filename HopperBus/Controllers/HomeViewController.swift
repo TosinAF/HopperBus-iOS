@@ -70,7 +70,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = "HOPPER BUS"
 
-        self.automaticallyAdjustsScrollViewInsets = false;
+        self.automaticallyAdjustsScrollViewInsets = false
 
         let infoButtonImage = UIImage(named: "infoButton")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: infoButtonImage, style: .Done, target: self, action:"onInfoButtonTap")

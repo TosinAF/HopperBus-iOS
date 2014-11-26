@@ -61,6 +61,8 @@ class RouteViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(tableView)
 
+        self.automaticallyAdjustsScrollViewInsets = false;
+
         tableView.frame = view.frame
 
         tableView.rowHeight = UITableViewAutomaticDimension;

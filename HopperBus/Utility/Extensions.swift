@@ -96,6 +96,10 @@ extension String {
         
         return res
     }
+
+    subscript (i: Int) -> String {
+        return String(Array(self)[i])
+    }
 }
 
 extension NSDate {

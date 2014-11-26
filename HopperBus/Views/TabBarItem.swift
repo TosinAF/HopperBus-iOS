@@ -8,9 +8,7 @@
 
 import UIKit
 
-private var myContext = 0
-
-class TabBarItem: UIButton {
+class TabBarItem: ZFRippleButton {
 
     // MARK: - Properties
 
@@ -85,6 +83,10 @@ class TabBarItem: UIButton {
         topBorder.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topBorder(borderHeight)]", options: nil, metrics: metrics, views:views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[topBorder]", options: nil, metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[topBorder]|", options: nil, metrics: nil, views: views))
+
+        shadowRippleEnable = true
+        rippleColor = UIColor.backgroundColorForSelectedState()
+        rippleBackgroundColor = UIColor.backgroundColorForNormalState()
     }
 
     required init(coder aDecoder: NSCoder) {

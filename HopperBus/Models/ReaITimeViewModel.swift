@@ -22,14 +22,20 @@ extension HopperBusRoutes {
     }
 }
 
+protocol RealTimeViewModelDelegate: class {
+    func viewModel(viewModel: RealTimeViewModel, didGetRealTimeServices realTimeServices: [RealTimeService], withSuccess: Bool)
+}
+
+
 class RealTimeViewModel: ViewModel {
 
-    // https://api.nctx.co.uk/api/v1/departures/3390RA63/realtime - api routes
+    let routes = [HopperBusRoutes: APIRoute]()
+    let routeCodes = [String]()
 
     var selectedRouteType = HopperBusRoutes.HB901
     var selectedStopIndex = 0
-    let routes = [HopperBusRoutes: APIRoute]()
-    let routeCodes = [String]()
+    weak var delegate: RealTimeViewModelDelegate?
+
 
     init(data: [String: JSON], type: HopperBusRoutes) {
         let json = data
@@ -91,5 +97,40 @@ class RealTimeViewModel: ViewModel {
         let routeCode = selectedRouteType.routeCode
         let stopName = getStopForCurrentRoute(atIndex: selectedStopIndex)
         return "\(routeCode) - \(stopName)"
+    }
+
+    func getRealTimeServicesAtCurrentStop() {
+        let apiRoute = routes[selectedRouteType]!
+        let apiStopCode = apiRoute.stops[selectedStopIndex].code
+        let url = "https://api.nctx.co.uk/api/v1/departures/\(apiStopCode)/realtime"
+
+        Manager.sharedInstance.request(.GET, url)
+            .responseSwiftyJSON { (request, response, json, error) in
+                println(json)
+
+                var realTimeServices = [RealTimeService]()
+                for service in json.arrayValue {
+                    let busService = service["busService"].stringValue
+                    if busService[0] != "9" {
+                        continue
+                    }
+
+                    let timeTill = service["minutes"].stringValue
+                    let arr = split(timeTill, { $0 == "."}, maxSplit: Int.max, allowEmptySlices: false)
+                    let minutesTill = arr.first!
+
+                    let realTimeService = RealTimeService(busService: busService, minutesTill: minutesTill)
+                    realTimeServices.append(realTimeService)
+                }
+
+                realTimeServices.sort({ $0.minutesTill < $1.minutesTill })
+
+                if realTimeServices.count > 3 {
+                    realTimeServices = [realTimeServices[0], realTimeServices[1], realTimeServices[2]]
+                }
+
+                self.delegate?.viewModel(self, didGetRealTimeServices: realTimeServices, withSuccess: true)
+        }
+
     }
 }

@@ -89,4 +89,7 @@ struct APIStop {
     let coord: CLLocationCoordinate2D
 }
 
-
+struct RealTimeService {
+    let busService: String
+    let minutesTill: String
+}

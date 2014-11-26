@@ -85,10 +85,10 @@ class RealTimeViewController: UIViewController {
         return view
     }()
 
-    lazy var liveBusTimesView: LiveBusTimesView = {
-        let liveBusTimesView = LiveBusTimesView()
-        liveBusTimesView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return liveBusTimesView
+    lazy var upcomingBusTimesContainerView: UIView = {
+        let view = UIView()
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return view
     }()
 
     // MARK: - Initalizers
@@ -96,6 +96,7 @@ class RealTimeViewController: UIViewController {
     init(type: HopperBusRoutes, viewModel: RealTimeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -109,7 +110,7 @@ class RealTimeViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(mapView)
         view.addSubview(textFieldContainer)
-        view.addSubview(liveBusTimesView)
+        view.addSubview(upcomingBusTimesContainerView)
 
         layoutSubviews()
 
@@ -122,7 +123,7 @@ class RealTimeViewController: UIViewController {
         let views = [
             "mapView": mapView,
             "textField": textField,
-            "liveView": liveBusTimesView,
+            "liveView": upcomingBusTimesContainerView,
             "textFieldContainer": textFieldContainer,
             "toggleButton": textFieldToggleButton
         ]
@@ -144,7 +145,7 @@ class RealTimeViewController: UIViewController {
 
         view.addConstraint(NSLayoutConstraint(item: mapView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5 * height))
         view.addConstraint(NSLayoutConstraint(item: textFieldContainer, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.1 * height))
-        view.addConstraint(NSLayoutConstraint(item: liveBusTimesView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.35 * height))
+        view.addConstraint(NSLayoutConstraint(item: upcomingBusTimesContainerView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.35 * height))
     }
 
     // MARK: - Actions
@@ -154,6 +155,7 @@ class RealTimeViewController: UIViewController {
             textField.text = viewModel.textForSelectedRouteAndStop()
             textField.resignFirstResponder()
             textFieldToggleButton.selected = false
+            viewModel.getRealTimeServicesAtCurrentStop()
         } else {
             textField.becomeFirstResponder()
             textFieldToggleButton.selected = true
@@ -224,12 +226,40 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
+// Mark: - RealTimeViewModel Delegate 
+
+extension RealTimeViewController: RealTimeViewModelDelegate {
+
+    func viewModel(viewModel: RealTimeViewModel, didGetRealTimeServices realTimeServices: [RealTimeService], withSuccess: Bool) {
+        for view in upcomingBusTimesContainerView.subviews {
+            view.removeFromSuperview()
+        }
+
+        if realTimeServices.count == 0 { return }
+
+        let upcomingBusTimesView = UpcomingBusTimesView(services: realTimeServices)
+        upcomingBusTimesView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        upcomingBusTimesContainerView.addSubview(upcomingBusTimesView)
+
+        let views = [
+            "view": upcomingBusTimesView
+        ]
+
+        upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: nil, metrics: nil, views: views))
+        upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: views))
+    }
+}
+
 // MARK: - UITextField Delegate
 
 extension RealTimeViewController: UITextFieldDelegate {
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return false
+    }
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textFieldToggleButton.selected = true
     }
 }
 

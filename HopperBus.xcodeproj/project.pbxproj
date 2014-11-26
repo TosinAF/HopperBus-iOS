@@ -10,12 +10,15 @@
 		4E29202419E6316700687C0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* HomeViewController.swift */; };
 		4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */; };
 		4E50244C19CBA28C002F5A11 /* PresentMapTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapTransistionManager.swift */; };
+		4E5C1CF21A24E6CB001CE24C /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C1CF11A24E6CB001CE24C /* ZFRippleButton.swift */; };
+		4E5C1CF81A24F113001CE24C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C1CF51A24F113001CE24C /* Alamofire.swift */; };
+		4E5C1CF91A24F113001CE24C /* AlamofireSwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C1CF61A24F113001CE24C /* AlamofireSwiftyJSON.swift */; };
+		4E5C1CFA1A24F113001CE24C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C1CF71A24F113001CE24C /* SwiftyJSON.swift */; };
 		4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E678E201A068A4C007950BC /* TimesViewController.swift */; };
 		4E678E231A0697C9007950BC /* PresentTimesTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E678E221A0697C9007950BC /* PresentTimesTransistionManager.swift */; };
 		4E678E251A0736E6007950BC /* DismissTimesTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E678E241A0736E6007950BC /* DismissTimesTransistionManager.swift */; };
 		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
 		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
-		4E6F0FA619D1E01D00EC776B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA519D1E01D00EC776B /* SwiftyJSON.swift */; };
 		4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA719D3409400EC776B /* RouteViewModel.swift */; };
 		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
 		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
@@ -39,7 +42,7 @@
 		4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4CF619A7C08900892A7C /* AppDelegate.swift */; };
 		4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD4CFD19A7C08900892A7C /* Images.xcassets */; };
 		4EDD4D0A19A7C08900892A7C /* HopperBusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */; };
-		4EE17F3C1A0F352A00728297 /* LiveBusTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F3B1A0F352A00728297 /* LiveBusTimesView.swift */; };
+		4EE17F3C1A0F352A00728297 /* UpcomingBusTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F3B1A0F352A00728297 /* UpcomingBusTimesView.swift */; };
 		4EE17F401A1065C500728297 /* RouteTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F3F1A1065C500728297 /* RouteTimesViewController.swift */; };
 		4EE17F421A1069CB00728297 /* StopTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */; };
 		4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF52861A20C1A300A66DEB /* RouteTimesViewModel.swift */; };
@@ -63,6 +66,10 @@
 		4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeTableViewCell.swift; path = Views/RealTimeTableViewCell.swift; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapTransistionManager.swift; path = Utility/PresentMapTransistionManager.swift; sourceTree = "<group>"; };
 		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4E5C1CF11A24E6CB001CE24C /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZFRippleButton.swift; path = Utility/ZFRippleButton.swift; sourceTree = "<group>"; };
+		4E5C1CF51A24F113001CE24C /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Utility/Alamofire.swift; sourceTree = "<group>"; };
+		4E5C1CF61A24F113001CE24C /* AlamofireSwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireSwiftyJSON.swift; path = Utility/AlamofireSwiftyJSON.swift; sourceTree = "<group>"; };
+		4E5C1CF71A24F113001CE24C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Utility/SwiftyJSON.swift; sourceTree = "<group>"; };
 		4E678E201A068A4C007950BC /* TimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimesViewController.swift; path = Controllers/TimesViewController.swift; sourceTree = "<group>"; };
 		4E678E221A0697C9007950BC /* PresentTimesTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentTimesTransistionManager.swift; path = Utility/PresentTimesTransistionManager.swift; sourceTree = "<group>"; };
 		4E678E241A0736E6007950BC /* DismissTimesTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissTimesTransistionManager.swift; path = Utility/DismissTimesTransistionManager.swift; sourceTree = "<group>"; };
@@ -70,7 +77,6 @@
 		4E6F0F9D19D1D07100EC776B /* SwiftJSONParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftJSONParser.framework; path = "ThirdPartyLibraries/SwiftJSONParser/build/Debug-iphoneos/SwiftJSONParser.framework"; sourceTree = "<group>"; };
 		4E6F0FA119D1DCF700EC776B /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = HopperBus/Resources/Fonts/Entypo.ttf; sourceTree = "<group>"; };
 		4E6F0FA319D1DEF300EC776B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "ThirdPartyLibraries/SwiftyJSON/build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		4E6F0FA519D1E01D00EC776B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Utility/SwiftyJSON.swift; sourceTree = "<group>"; };
 		4E6F0FA719D3409400EC776B /* RouteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteViewModel.swift; path = Models/RouteViewModel.swift; sourceTree = "<group>"; };
 		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = SuttonBoningtonCampus.pdf; path = HopperBus/Resources/Maps/SuttonBoningtonCampus.pdf; sourceTree = "<group>"; };
@@ -102,7 +108,7 @@
 		4EDD4D0319A7C08900892A7C /* HopperBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HopperBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDD4D0819A7C08900892A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EDD4D0919A7C08900892A7C /* HopperBusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopperBusTests.swift; sourceTree = "<group>"; };
-		4EE17F3B1A0F352A00728297 /* LiveBusTimesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveBusTimesView.swift; path = Views/LiveBusTimesView.swift; sourceTree = "<group>"; };
+		4EE17F3B1A0F352A00728297 /* UpcomingBusTimesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpcomingBusTimesView.swift; path = Views/UpcomingBusTimesView.swift; sourceTree = "<group>"; };
 		4EE17F3F1A1065C500728297 /* RouteTimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteTimesViewController.swift; path = Controllers/RouteTimesViewController.swift; sourceTree = "<group>"; };
 		4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTimesTableViewCell.swift; path = Views/StopTimesTableViewCell.swift; sourceTree = "<group>"; };
 		4EFF52861A20C1A300A66DEB /* RouteTimesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteTimesViewModel.swift; path = Models/RouteTimesViewModel.swift; sourceTree = "<group>"; };
@@ -190,7 +196,10 @@
 				4ECE2C4319DD98C000E47755 /* TableView.swift */,
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
 				4ECE2C3B19DD6F7100E47755 /* Constants.swift */,
-				4E6F0FA519D1E01D00EC776B /* SwiftyJSON.swift */,
+				4E5C1CF51A24F113001CE24C /* Alamofire.swift */,
+				4E5C1CF71A24F113001CE24C /* SwiftyJSON.swift */,
+				4E5C1CF61A24F113001CE24C /* AlamofireSwiftyJSON.swift */,
+				4E5C1CF11A24E6CB001CE24C /* ZFRippleButton.swift */,
 				4EFADA221A075149001E1FB1 /* TransistionManagers */,
 			);
 			name = Utility;
@@ -265,7 +274,7 @@
 				4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */,
 				4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */,
 				4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */,
-				4EE17F3B1A0F352A00728297 /* LiveBusTimesView.swift */,
+				4EE17F3B1A0F352A00728297 /* UpcomingBusTimesView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -469,23 +478,26 @@
 				4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */,
 				4EFF52891A20C30900A66DEB /* RouteViewModelContainer.swift in Sources */,
 				4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */,
+				4E5C1CFA1A24F113001CE24C /* SwiftyJSON.swift in Sources */,
 				4E50244C19CBA28C002F5A11 /* PresentMapTransistionManager.swift in Sources */,
 				4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
+				4E5C1CF81A24F113001CE24C /* Alamofire.swift in Sources */,
 				4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */,
+				4E5C1CF91A24F113001CE24C /* AlamofireSwiftyJSON.swift in Sources */,
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
 				4EE17F421A1069CB00728297 /* StopTimesTableViewCell.swift in Sources */,
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
 				4E678E251A0736E6007950BC /* DismissTimesTransistionManager.swift in Sources */,
 				4ED3688B1A0DDF7900EEDB34 /* ReaITimeViewModel.swift in Sources */,
-				4E6F0FA619D1E01D00EC776B /* SwiftyJSON.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
 				4E90D8651A060B5000E0B6E8 /* RealTimeViewController.swift in Sources */,
 				4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */,
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
 				4E6ED68719D61CC900D903F6 /* Models.swift in Sources */,
+				4E5C1CF21A24E6CB001CE24C /* ZFRippleButton.swift in Sources */,
 				4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */,
-				4EE17F3C1A0F352A00728297 /* LiveBusTimesView.swift in Sources */,
+				4EE17F3C1A0F352A00728297 /* UpcomingBusTimesView.swift in Sources */,
 				4EE17F401A1065C500728297 /* RouteTimesViewController.swift in Sources */,
 				4E29202419E6316700687C0D /* HomeViewController.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
