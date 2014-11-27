@@ -91,6 +91,11 @@ class RealTimeViewController: UIViewController {
         return view
     }()
 
+    lazy var activityIndicator: MaterialActivityIndicatorView = {
+        let activityIndicator = MaterialActivityIndicatorView(style: .Default)
+        return activityIndicator
+    }()
+
     // MARK: - Initalizers
 
     init(type: HopperBusRoutes, viewModel: RealTimeViewModel) {
@@ -151,12 +156,28 @@ class RealTimeViewController: UIViewController {
     // MARK: - Actions
 
     func toggleButtonClicked() {
+
         if (textField.isFirstResponder()) {
+
             textField.text = viewModel.textForSelectedRouteAndStop()
             textField.resignFirstResponder()
             textFieldToggleButton.selected = false
+            upcomingBusTimesContainerView.backgroundColor = UIColor.clearColor()
+
+            // Network Request
+
             viewModel.getRealTimeServicesAtCurrentStop()
+
+            for view in upcomingBusTimesContainerView.subviews {
+                view.removeFromSuperview()
+            }
+
+            activityIndicator.center = upcomingBusTimesContainerView.center
+            self.view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+
         } else {
+
             textField.becomeFirstResponder()
             textFieldToggleButton.selected = true
         }
@@ -231,21 +252,37 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 extension RealTimeViewController: RealTimeViewModelDelegate {
 
     func viewModel(viewModel: RealTimeViewModel, didGetRealTimeServices realTimeServices: [RealTimeService], withSuccess: Bool) {
-        for view in upcomingBusTimesContainerView.subviews {
-            view.removeFromSuperview()
-        }
+        activityIndicator.stopAnimating()
+        //activityIndicator.removeFromSuperview()
 
-        if realTimeServices.count == 0 { return }
+        if realTimeServices.count == 0 {
+            let label = UILabel()
+            label.text = "No upcoming departures at this stop."
+            label.numberOfLines = 2
+            label.font = UIFont(name: "Avenir-Book", size: 25.0)
+            label.textAlignment = .Center
+            label.textColor = UIColor.lightGrayColor()
+            label.setTranslatesAutoresizingMaskIntoConstraints(false)
+            delay(0.5) {
+                self.addViewToUpcomingBusTimesView(label, withPadding: 10)
+                self.activityIndicator.removeFromSuperview()
+            }
+            return
+        }
 
         let upcomingBusTimesView = UpcomingBusTimesView(services: realTimeServices)
         upcomingBusTimesView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        upcomingBusTimesContainerView.addSubview(upcomingBusTimesView)
+        delay(0.5) {
+            self.addViewToUpcomingBusTimesView(upcomingBusTimesView, withPadding: 0)
+            self.activityIndicator.removeFromSuperview()
+        }
+    }
 
-        let views = [
-            "view": upcomingBusTimesView
-        ]
-
-        upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: nil, metrics: nil, views: views))
+    func addViewToUpcomingBusTimesView(view: UIView, withPadding padding: Int) {
+        upcomingBusTimesContainerView.addSubview(view)
+        let views = ["view": view]
+        let metrics = ["padding": padding]
+        upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(padding)-[view]-(padding)-|", options: nil, metrics: metrics, views: views))
         upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: views))
     }
 }
