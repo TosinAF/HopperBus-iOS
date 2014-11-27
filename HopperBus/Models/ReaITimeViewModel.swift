@@ -93,10 +93,14 @@ class RealTimeViewModel: ViewModel {
         selectedRouteType = routeType
     }
 
-    func textForSelectedRouteAndStop() -> String {
-        let routeCode = selectedRouteType.routeCode
+    func currentStopName() -> String {
         let stopName = getStopForCurrentRoute(atIndex: selectedStopIndex)
-        return "\(routeCode) - \(stopName)"
+        return stopName
+    }
+
+    func locationCoordinatesForCurrentStop() -> CLLocationCoordinate2D {
+        let apiRoute = routes[selectedRouteType]!
+        return apiRoute.stops[selectedStopIndex].coord
     }
 
     func getRealTimeServicesAtCurrentStop() {
@@ -106,7 +110,6 @@ class RealTimeViewModel: ViewModel {
 
         Manager.sharedInstance.request(.GET, url)
             .responseSwiftyJSON { (request, response, json, error) in
-                println(json)
 
                 var realTimeServices = [RealTimeService]()
                 for service in json.arrayValue {
@@ -123,7 +126,7 @@ class RealTimeViewModel: ViewModel {
                     realTimeServices.append(realTimeService)
                 }
 
-                realTimeServices.sort({ $0.minutesTill < $1.minutesTill })
+                realTimeServices.sort({ $0.minutesTill.toInt()! < $1.minutesTill.toInt()! })
 
                 if realTimeServices.count > 3 {
                     realTimeServices = [realTimeServices[0], realTimeServices[1], realTimeServices[2]]

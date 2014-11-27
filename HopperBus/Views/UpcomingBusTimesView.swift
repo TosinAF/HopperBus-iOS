@@ -22,7 +22,6 @@ class UpcomingBusTimesView: UIView {
 
     init(services: [RealTimeService]) {
         super.init(frame: CGRectZero)
-        addSubview(titleLabel)
 
         var views: [String: UIView] = [
             "titleLabel": titleLabel
@@ -31,29 +30,34 @@ class UpcomingBusTimesView: UIView {
         for (i, service) in enumerate(services) {
             let view = ServiceView()
             view.timeTillLabel.text = service.minutesTill
+            view.routeLabel.text = service.busService
+            if service.minutesTill.toInt() == 1 { view.minsLabel.text = "minute"}
             view.setTranslatesAutoresizingMaskIntoConstraints(false)
             views["view\(i + 1)"] = view
             addSubview(view)
         }
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[titleLabel]|", options: nil, metrics: nil, views: views))
-        var topMargin = 30; if iPhone5 { topMargin = 25 }; if iPhone4S { topMargin = 15 }
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(topMargin)-[titleLabel]", options: nil, metrics: nil, views: views))
-
-        if services.count == 1 {
-            //addConstraint(NSLayoutConstraint(item: views["view1"]!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view1]|", options: nil, metrics: nil, views: views))
-        } else if services.count == 2 {
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view1][view2(==view1)]|", options: nil, metrics: nil, views: views))
-        } else if services.count == 3 {
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view1][view2(==view1)][view3(==view1)]|", options: nil, metrics: nil, views: views))
+        if !iPhone4S && !iPhone5 {
+            //let topMargin = iPhone5 ? 15 : 30
+            addSubview(titleLabel)
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-30-[titleLabel]", options: nil, metrics: nil, views: views))
+            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[titleLabel]|", options: nil, metrics: nil, views: views))
         }
+
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view1]|", options: nil, metrics: nil, views: views))
+
+        var hConstraint = "|[view1]"
+        if services.count > 1 {
+            for i in 2...services.count {
+                hConstraint += "[view\(i)(==view1)]"
+            }
+        }
+        hConstraint += "|"
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(hConstraint, options: nil, metrics: nil, views: views))
 
         for i in 0..<services.count {
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view\(i+1)]|", options: nil, metrics: nil, views: views))
         }
-
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view1]|", options: nil, metrics: nil, views: views))
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -77,9 +81,9 @@ class ServiceView: UIView {
 
     lazy var minsLabel: UILabel = {
         let label = UILabel()
-        label.text = "mins"
+        label.text = "minutes"
         label.textColor = UIColor.blackColor()
-        label.font = UIFont(name: "Avenir-Book", size: 18)
+        label.font = UIFont(name: "Avenir-Book", size: 15)
         label.textAlignment = .Center
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
@@ -109,6 +113,9 @@ class ServiceView: UIView {
     }
 
     override func updateConstraints() {
+
+        var centerOffset: CGFloat = iPhone4S || iPhone5 ? -35.0 : -15.0
+
         let views = [
             "timeTillLabel": timeTillLabel,
             "minsLabel": minsLabel,
@@ -119,7 +126,7 @@ class ServiceView: UIView {
         timeTillLabel.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[timeTillLabel(60)]", options: nil, metrics: nil, views: views))
 
         addConstraint(NSLayoutConstraint(item: timeTillLabel, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        addConstraint(NSLayoutConstraint(item: timeTillLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: -5.0))
+        addConstraint(NSLayoutConstraint(item: timeTillLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: centerOffset))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[timeTillLabel]-5-[minsLabel]-5-[routeLabel]", options: nil, metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[minsLabel]|", options: nil, metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[routeLabel]|", options: nil, metrics: nil, views: views))

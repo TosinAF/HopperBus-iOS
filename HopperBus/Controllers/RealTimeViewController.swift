@@ -16,12 +16,12 @@ class RealTimeViewController: UIViewController {
 
     let viewModel: RealTimeViewModel!
     var didCenterOnuserLocation = false
+    var currentStopAnnotation: MBXPointAnnotation?
 
     lazy var locationManager: CLLocationManager = {
         let locManager = CLLocationManager()
-        locManager.delegate = self
         locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locManager.requestWhenInUseAuthorization()
+        if iOS8 { locManager.requestWhenInUseAuthorization() }
         return locManager
     }()
 
@@ -118,6 +118,7 @@ class RealTimeViewController: UIViewController {
         view.addSubview(upcomingBusTimesContainerView)
 
         layoutSubviews()
+        locationManager.startUpdatingLocation()
 
         textField.becomeFirstResponder()
         textFieldToggleButton.selected = true
@@ -132,7 +133,6 @@ class RealTimeViewController: UIViewController {
             "textFieldContainer": textFieldContainer,
             "toggleButton": textFieldToggleButton
         ]
-
 
         textFieldContainer.addConstraint(NSLayoutConstraint(item: textField, attribute: .CenterX, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         textFieldContainer.addConstraint(NSLayoutConstraint(item: textField, attribute: .CenterY, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
@@ -159,10 +159,9 @@ class RealTimeViewController: UIViewController {
 
         if (textField.isFirstResponder()) {
 
-            textField.text = viewModel.textForSelectedRouteAndStop()
+            textField.text = viewModel.currentStopName()
             textField.resignFirstResponder()
             textFieldToggleButton.selected = false
-            upcomingBusTimesContainerView.backgroundColor = UIColor.clearColor()
 
             // Network Request
 
@@ -176,11 +175,36 @@ class RealTimeViewController: UIViewController {
             self.view.addSubview(activityIndicator)
             activityIndicator.startAnimating()
 
+            showCurrentStopOnMap()
+
         } else {
 
             textField.becomeFirstResponder()
             textFieldToggleButton.selected = true
         }
+
+    }
+
+    func showCurrentStopOnMap() {
+
+        if let pin = currentStopAnnotation {
+            mapView.removeAnnotation(pin)
+        }
+
+        let stopCoord = viewModel.locationCoordinatesForCurrentStop()
+        let stopPin = MBXPointAnnotation()
+        stopPin.coordinate = stopCoord
+        stopPin.title = viewModel.currentStopName()
+        stopPin.image = UIImage(named: "busImage")
+        currentStopAnnotation = stopPin
+        mapView.addAnnotation(currentStopAnnotation)
+
+        // Needed to get the right zoom level
+        let userPin = MKPointAnnotation()
+        userPin.coordinate = mapView.userLocation.coordinate
+
+        mapView.showAnnotations([stopPin, userPin], animated: true)
+        mapView.removeAnnotation(userPin)
 
     }
 }
@@ -239,7 +263,7 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             viewModel.selectedStopIndex = row
         }
 
-        textField.text = viewModel.textForSelectedRouteAndStop()
+        textField.text = viewModel.currentStopName()
     }
 
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -253,18 +277,20 @@ extension RealTimeViewController: RealTimeViewModelDelegate {
 
     func viewModel(viewModel: RealTimeViewModel, didGetRealTimeServices realTimeServices: [RealTimeService], withSuccess: Bool) {
         activityIndicator.stopAnimating()
-        //activityIndicator.removeFromSuperview()
 
         if realTimeServices.count == 0 {
             let label = UILabel()
             label.text = "No upcoming departures at this stop."
             label.numberOfLines = 2
-            label.font = UIFont(name: "Avenir-Book", size: 25.0)
+            label.font = UIFont(name: "Avenir-Book", size: 22.0)
             label.textAlignment = .Center
             label.textColor = UIColor.lightGrayColor()
             label.setTranslatesAutoresizingMaskIntoConstraints(false)
             delay(0.5) {
-                self.addViewToUpcomingBusTimesView(label, withPadding: 10)
+                let views = ["view": label]
+                self.upcomingBusTimesContainerView.addSubview(label)
+                self.upcomingBusTimesContainerView.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterY, relatedBy: .Equal, toItem: self.upcomingBusTimesContainerView, attribute: .CenterY, multiplier: 1.0, constant: -10.0))
+                self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[view]-20-|", options: nil, metrics: nil, views: views))
                 self.activityIndicator.removeFromSuperview()
             }
             return
@@ -273,17 +299,12 @@ extension RealTimeViewController: RealTimeViewModelDelegate {
         let upcomingBusTimesView = UpcomingBusTimesView(services: realTimeServices)
         upcomingBusTimesView.setTranslatesAutoresizingMaskIntoConstraints(false)
         delay(0.5) {
-            self.addViewToUpcomingBusTimesView(upcomingBusTimesView, withPadding: 0)
+            self.upcomingBusTimesContainerView.addSubview(upcomingBusTimesView)
+            let views = ["view": upcomingBusTimesView]
+            self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: nil, metrics: nil, views: views))
+            self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: views))
             self.activityIndicator.removeFromSuperview()
         }
-    }
-
-    func addViewToUpcomingBusTimesView(view: UIView, withPadding padding: Int) {
-        upcomingBusTimesContainerView.addSubview(view)
-        let views = ["view": view]
-        let metrics = ["padding": padding]
-        upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(padding)-[view]-(padding)-|", options: nil, metrics: metrics, views: views))
-        upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: views))
     }
 }
 
@@ -300,29 +321,29 @@ extension RealTimeViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - CLLocationManager Delegate
-
-extension RealTimeViewController: CLLocationManagerDelegate {
-
-    func locationManager(location:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
-        var locValue:CLLocationCoordinate2D = locationManager.location.coordinate
-        println("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
-
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        // manage if permission is denied, possibly hide map?
-        if status == .AuthorizedWhenInUse {
-            locationManager.startUpdatingLocation()
-        }
-    }
-}
-
 // MARK: - MKMapView Delegate
 
 extension RealTimeViewController: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         return MKTileOverlayRenderer(overlay: overlay)
+    }
+
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+
+        let mbxAnnotation = annotation as? MBXPointAnnotation
+        if mbxAnnotation != nil {
+            let MBXSimpleStyleReuseIdentifier = "MBXSimpleStyleReuseIdentifier"
+            var view = mapView.dequeueReusableAnnotationViewWithIdentifier(MBXSimpleStyleReuseIdentifier)
+            if view == nil {
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: MBXSimpleStyleReuseIdentifier)
+            }
+            view.image = mbxAnnotation!.image
+            view.canShowCallout = true
+            return view
+        }
+
+        return nil
     }
 
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
