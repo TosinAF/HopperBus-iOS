@@ -120,6 +120,7 @@ class HomeViewController: UIViewController {
 // MARK: - TabBar Delegate
 
 extension HomeViewController: TabBarDelegate {
+
     func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int) {
         if currentRouteType.rawValue == index { return }
 

@@ -18,6 +18,8 @@ class RouteViewController: UIViewController {
     var animTranslationStart: CGPoint!
     var animTranslationFinish: CGPoint!
 
+    var timer: NSTimer?
+
     lazy var routeHeaderView: RouteHeaderView = {
         let view = RouteHeaderView()
         view.titleLabel.text = self.routeType.title.uppercaseString
@@ -43,6 +45,14 @@ class RouteViewController: UIViewController {
         return circleView
     }()
 
+    lazy var routeUnavailableView: RouteUnavailableView = {
+        let view = RouteUnavailableView(type: self.routeType)
+        var frame = self.view.frame
+        frame.origin.y += 64
+        view.frame = frame
+        return view
+    }()
+
     // MARK: - Initalizers
 
     init(type: HopperBusRoutes, routeViewModel: RouteViewModel) {
@@ -57,16 +67,61 @@ class RouteViewController: UIViewController {
 
     // MARK: - View Lifecycle
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        updateTableView()
+        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "updateTableView", userInfo: nil, repeats: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-
         self.automaticallyAdjustsScrollViewInsets = false;
 
         tableView.frame = view.frame
-
         tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.estimatedRowHeight = self.routeType == HopperBusRoutes.HB904 ? 65 : 55
+
+        if !isRouteInService() {
+            tableView.alpha = 0.0
+            view.addSubview(routeUnavailableView)
+        }
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        if let t = timer {
+            t.invalidate()
+        }
+    }
+
+    // MARK: - Manage Stale Data
+
+    func updateTableView() {
+        routeViewModel.updateScheduleIndex()
+        tableView.reloadData()
+    }
+
+    func isRouteInService() -> Bool {
+
+        if NSDate.isOutOfService() {
+            routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service."
+            return false
+        }
+
+        if routeType == .HB902 || routeType == .HB904 {
+            if NSDate.isWeekend() {
+                return false
+            }
+        }
+
+        if routeType == .HB903 {
+            if (NSDate.isWeekend() && NSDate.isHoliday()) ||  NSDate.isSunday() {
+                return false
+            }
+        }
+
+        return true
     }
 }
 

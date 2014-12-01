@@ -14,6 +14,7 @@ class RouteTimesViewController: UIViewController {
 
     let routeType: HopperBusRoutes!
     let routeViewModel: RouteTimesViewModel!
+    var timer: NSTimer?
 
     lazy var routeHeaderView: RouteHeaderView = {
         let view = RouteHeaderView()
@@ -34,6 +35,14 @@ class RouteTimesViewController: UIViewController {
         return tableView
     }()
 
+    lazy var routeUnavailableView: RouteUnavailableView = {
+        let view = RouteUnavailableView(type: self.routeType)
+        var frame = self.view.frame
+        frame.origin.y += 64
+        view.frame = frame
+        return view
+    }()
+
     // MARK: - Initalizers
 
     init(type: HopperBusRoutes, routeViewModel: RouteTimesViewModel) {
@@ -48,11 +57,37 @@ class RouteTimesViewController: UIViewController {
 
     // MARK: - View Lifecycle
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        timer = NSTimer.scheduledTimerWithTimeInterval(300, target: tableView, selector: "reloadData", userInfo: nil, repeats: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-
         tableView.frame = view.frame
+
+        if !isRouteInService() {
+            tableView.alpha = 0.0
+            view.addSubview(routeUnavailableView)
+        }
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        if let t = timer {
+            t.invalidate()
+        }
+    }
+
+    func isRouteInService() -> Bool {
+
+        if NSDate.isOutOfService() {
+            routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service."
+            return false
+        }
+
+        return true
     }
 }
 

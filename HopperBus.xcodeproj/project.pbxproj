@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4E29202419E6316700687C0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* HomeViewController.swift */; };
 		4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */; };
+		4E3769851A276CC40079A20F /* MaterialActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */; };
+		4E3769871A27E2F60079A20F /* RouteUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3769861A27E2F60079A20F /* RouteUnavailableView.swift */; };
 		4E50244C19CBA28C002F5A11 /* PresentMapTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E50244B19CBA28C002F5A11 /* PresentMapTransistionManager.swift */; };
 		4E5C1CF21A24E6CB001CE24C /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C1CF11A24E6CB001CE24C /* ZFRippleButton.swift */; };
 		4E5C1CF81A24F113001CE24C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C1CF51A24F113001CE24C /* Alamofire.swift */; };
@@ -26,7 +28,6 @@
 		4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */; };
 		4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */; };
 		4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AA48419CB9F360048FB11 /* MapViewController.swift */; };
-		4E8248D41A258FC9008E5D53 /* MaterialActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8248D31A258FC9008E5D53 /* MaterialActivityIndicatorView.swift */; };
 		4E845FAA19CD39A100CB4D03 /* DismissMapTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E845FA919CD39A100CB4D03 /* DismissMapTransistionManager.swift */; };
 		4E90D8651A060B5000E0B6E8 /* RealTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */; };
 		4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EA8A04719DA21EA00DDCBAF /* Routes.json */; };
@@ -65,6 +66,8 @@
 		07BC5729BEAEFB941B8578E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4E29202319E6316700687C0D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeTableViewCell.swift; path = Views/RealTimeTableViewCell.swift; sourceTree = "<group>"; };
+		4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialActivityIndicatorView.swift; path = Views/MaterialActivityIndicatorView.swift; sourceTree = "<group>"; };
+		4E3769861A27E2F60079A20F /* RouteUnavailableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteUnavailableView.swift; path = Views/RouteUnavailableView.swift; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapTransistionManager.swift; path = Utility/PresentMapTransistionManager.swift; sourceTree = "<group>"; };
 		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4E5C1CF11A24E6CB001CE24C /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZFRippleButton.swift; path = Utility/ZFRippleButton.swift; sourceTree = "<group>"; };
@@ -85,7 +88,6 @@
 		4E7AA48019CB9F080048FB11 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		4E7AA48419CB9F360048FB11 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
-		4E8248D31A258FC9008E5D53 /* MaterialActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialActivityIndicatorView.swift; path = Utility/MaterialActivityIndicatorView.swift; sourceTree = "<group>"; };
 		4E845FA919CD39A100CB4D03 /* DismissMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissMapTransistionManager.swift; path = Utility/DismissMapTransistionManager.swift; sourceTree = "<group>"; };
 		4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeViewController.swift; path = Controllers/RealTimeViewController.swift; sourceTree = "<group>"; };
 		4EA8A04719DA21EA00DDCBAF /* Routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Routes.json; path = HopperBus/Resources/Routes/Routes.json; sourceTree = "<group>"; };
@@ -285,7 +287,8 @@
 				4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */,
 				4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */,
 				4EE17F3B1A0F352A00728297 /* UpcomingBusTimesView.swift */,
-				4E8248D31A258FC9008E5D53 /* MaterialActivityIndicatorView.swift */,
+				4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */,
+				4E3769861A27E2F60079A20F /* RouteUnavailableView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */,
 				4EFF52891A20C30900A66DEB /* RouteViewModelContainer.swift in Sources */,
 				4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */,
+				4E3769871A27E2F60079A20F /* RouteUnavailableView.swift in Sources */,
 				4E5C1CFA1A24F113001CE24C /* SwiftyJSON.swift in Sources */,
 				4E50244C19CBA28C002F5A11 /* PresentMapTransistionManager.swift in Sources */,
 				4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */,
@@ -515,7 +519,7 @@
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,
 				4E678E231A0697C9007950BC /* PresentTimesTransistionManager.swift in Sources */,
 				4E845FAA19CD39A100CB4D03 /* DismissMapTransistionManager.swift in Sources */,
-				4E8248D41A258FC9008E5D53 /* MaterialActivityIndicatorView.swift in Sources */,
+				4E3769851A276CC40079A20F /* MaterialActivityIndicatorView.swift in Sources */,
 				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
