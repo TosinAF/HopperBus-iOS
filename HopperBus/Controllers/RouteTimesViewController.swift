@@ -75,9 +75,7 @@ class RouteTimesViewController: UIViewController {
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        if let t = timer {
-            t.invalidate()
-        }
+        timer?.invalidate()
     }
 
     func isRouteInService() -> Bool {

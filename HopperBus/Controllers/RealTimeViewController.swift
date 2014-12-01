@@ -17,6 +17,7 @@ class RealTimeViewController: UIViewController {
     let viewModel: RealTimeViewModel!
     var didCenterOnuserLocation = false
     var currentStopAnnotation: MBXPointAnnotation?
+    var timer: NSTimer?
 
     lazy var locationManager: CLLocationManager = {
         let locManager = CLLocationManager()
@@ -110,9 +111,13 @@ class RealTimeViewController: UIViewController {
 
     // MARK: - View Lifecycle
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: viewModel, selector: "getRealTimeServicesAtCurrentStop", userInfo: nil, repeats: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
         view.addSubview(mapView)
         view.addSubview(textFieldContainer)
         view.addSubview(upcomingBusTimesContainerView)
@@ -122,6 +127,11 @@ class RealTimeViewController: UIViewController {
 
         textField.becomeFirstResponder()
         textFieldToggleButton.selected = true
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        timer?.invalidate()
     }
 
     func layoutSubviews() {
@@ -167,6 +177,10 @@ class RealTimeViewController: UIViewController {
 
             viewModel.getRealTimeServicesAtCurrentStop()
 
+            if timer == nil {
+                timer = NSTimer.scheduledTimerWithTimeInterval(60, target: viewModel, selector: "getRealTimeServicesAtCurrentStop", userInfo: nil, repeats: true)
+            }
+
             for view in upcomingBusTimesContainerView.subviews {
                 view.removeFromSuperview()
             }
@@ -178,6 +192,11 @@ class RealTimeViewController: UIViewController {
             showCurrentStopOnMap()
 
         } else {
+
+            if let t = timer {
+                t.invalidate()
+                timer = nil
+            }
 
             textField.becomeFirstResponder()
             textFieldToggleButton.selected = true

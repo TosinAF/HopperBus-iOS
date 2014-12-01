@@ -90,9 +90,7 @@ class RouteViewController: UIViewController {
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        if let t = timer {
-            t.invalidate()
-        }
+        timer?.invalidate()
     }
 
     // MARK: - Manage Stale Data

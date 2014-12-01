@@ -3,5 +3,6 @@
 //
 
 #import <pop/POP.h>
+#import <Parse/Parse.h>
 #import <MBXMapKit/MBXMapKit.h>
 #import <JCTiledScrollView/JCTiledPDFScrollView.h>

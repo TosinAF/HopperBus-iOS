@@ -103,7 +103,7 @@ class RealTimeViewModel: ViewModel {
         return apiRoute.stops[selectedStopIndex].coord
     }
 
-    func getRealTimeServicesAtCurrentStop() {
+    @objc func getRealTimeServicesAtCurrentStop() {
         let apiRoute = routes[selectedRouteType]!
         let apiStopCode = apiRoute.stops[selectedStopIndex].code
         let url = "https://api.nctx.co.uk/api/v1/departures/\(apiStopCode)/realtime"

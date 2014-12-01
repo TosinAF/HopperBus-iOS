@@ -24,9 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
+
         setupStyle()
         UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .Fade)
         window.makeKeyAndVisible()
+
+        // Register for remote notifications
+        let userNotificationTypes: UIUserNotificationType = .Alert | .Badge | .Sound
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+
+        Parse.setApplicationId("PLKK3ArZhBTROcCinEB5J6qeMwUkTrZL9P7U9XRf", clientKey: "94CjREf1puBASWRROTeNCJuzR6nmtyiK4tfGm9qN")
+
         return true
     }
 
@@ -48,5 +58,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication!) {
         homeViewController.saveCurrentRoute()
+    }
+
+    // MARK: - Push Notifications
+
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackgroundWithBlock(nil)
+    }
+
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
     }
 }
