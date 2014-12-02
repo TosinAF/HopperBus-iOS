@@ -113,7 +113,9 @@ class RealTimeViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: viewModel, selector: "getRealTimeServicesAtCurrentStop", userInfo: nil, repeats: true)
+        if (!textField.isFirstResponder()) {
+            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: viewModel, selector: "getRealTimeServicesAtCurrentStop", userInfo: nil, repeats: true)
+        }
     }
 
     override func viewDidLoad() {
@@ -175,21 +177,11 @@ class RealTimeViewController: UIViewController {
 
             // Network Request
 
-            viewModel.getRealTimeServicesAtCurrentStop()
+            requestRealtimeServices()
 
             if timer == nil {
-                timer = NSTimer.scheduledTimerWithTimeInterval(60, target: viewModel, selector: "getRealTimeServicesAtCurrentStop", userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "requestRealtimeServices", userInfo: nil, repeats: true)
             }
-
-            for view in upcomingBusTimesContainerView.subviews {
-                view.removeFromSuperview()
-            }
-
-            activityIndicator.center = upcomingBusTimesContainerView.center
-            self.view.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-
-            showCurrentStopOnMap()
 
         } else {
 
@@ -201,7 +193,20 @@ class RealTimeViewController: UIViewController {
             textField.becomeFirstResponder()
             textFieldToggleButton.selected = true
         }
+    }
 
+    func requestRealtimeServices() {
+        viewModel.getRealTimeServicesAtCurrentStop()
+
+        for view in upcomingBusTimesContainerView.subviews {
+            view.removeFromSuperview()
+        }
+
+        activityIndicator.center = upcomingBusTimesContainerView.center
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+
+        showCurrentStopOnMap()
     }
 
     func showCurrentStopOnMap() {

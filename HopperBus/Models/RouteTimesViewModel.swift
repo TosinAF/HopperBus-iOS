@@ -64,9 +64,11 @@ class RouteTimesViewModel: ViewModel {
             return resultTimes
         }
 
+
         for var i = 0; i < times.count; i++ {
 
             var possibleRouteTimeStart = dateFormatter.dateFromString(times[i])!
+            println(dateFormatter.dateFromString(times[i])!)
 
             // Check if time is past midnight & add an extra day
             let possibleTime = times[i]
@@ -77,6 +79,7 @@ class RouteTimesViewModel: ViewModel {
                 possibleRouteTimeStart = possibleRouteTimeStart.dateByAddingTimeInterval(oneDay)
             }
 
+            println(currentTime)
             let result = currentTime!.compare(possibleRouteTimeStart)
 
             switch (result) {

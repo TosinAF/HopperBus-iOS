@@ -116,6 +116,7 @@ class MaterialActivityIndicatorView: UIView {
     }
 
     func stopAnimating() {
+        if !isAnimating { return }
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             // Nice fade and ride
             self.contentView.transform = CGAffineTransformMakeScale(1.2, 1.2);
@@ -123,7 +124,7 @@ class MaterialActivityIndicatorView: UIView {
         }) { (finished) -> Void in
             self.isAnimating = false
             self.currentAnimation = 0
-            self.timer.invalidate()
+            self.timer?.invalidate()
             self.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
             self.contentView.alpha = 1.0;
             self.shapeLayer.hidden = self.hidesWhenStopped;

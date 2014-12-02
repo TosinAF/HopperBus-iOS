@@ -30,10 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
 
         // Register for remote notifications
-        let userNotificationTypes: UIUserNotificationType = .Alert | .Badge | .Sound
-        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+
+        if iOS8 {
+            let userNotificationTypes: UIUserNotificationType = .Alert | .Badge | .Sound
+            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        } else {
+            let remoteNotificationTypes: UIRemoteNotificationType = .Alert | .Badge | .Sound
+            application.registerForRemoteNotificationTypes(remoteNotificationTypes)
+        }
 
         Parse.setApplicationId("PLKK3ArZhBTROcCinEB5J6qeMwUkTrZL9P7U9XRf", clientKey: "94CjREf1puBASWRROTeNCJuzR6nmtyiK4tfGm9qN")
 

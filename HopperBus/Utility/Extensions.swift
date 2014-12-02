@@ -37,7 +37,8 @@ extension Array {
         var finalString = ""
         for (index, str) in enumerate(self) {
             let s = str as String
-            finalString += "\(s) "
+            let ss = s.stringByReplacingOccurrencesOfString(":", withString: ".", options: .LiteralSearch, range: nil)
+            finalString += "\(ss) "
         }
         return finalString
     }
@@ -189,7 +190,12 @@ extension NSDate {
 
     class func getDay() -> Int {
         let date = NSDate()
-        return NSCalendar.currentCalendar().component(.WeekdayCalendarUnit, fromDate: date)
+        if iOS8 {
+            return NSCalendar.currentCalendar().component(.WeekdayCalendarUnit, fromDate: date)
+        } else {
+            let nsDateComponents = NSCalendar.currentCalendar().components(.WeekdayCalendarUnit, fromDate: date)
+            return nsDateComponents.weekday
+        }
     }
 
     class func isSameDay(firstDate: NSDate, asSecondDate secondDate: NSDate) -> Bool {
