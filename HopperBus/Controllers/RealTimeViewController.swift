@@ -120,7 +120,7 @@ class RealTimeViewController: GAITrackedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        screenName = "RealTimeViewController"
+        screenName = "RealTime"
         view.addSubview(mapView)
         view.addSubview(textFieldContainer)
         view.addSubview(upcomingBusTimesContainerView)

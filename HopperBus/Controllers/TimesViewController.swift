@@ -115,7 +115,7 @@ class TimesViewController: GAITrackedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        screenName = "MapViewController"
+        screenName = "Times"
         view.backgroundColor = UIColor.clearColor()
 
         headerView.addSubview(stopLabel)

@@ -635,7 +635,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e49acf0b-3d6c-49e3-9f6f-bdfe1bfab6df";
 				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/Supporting Files/HopperBus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -661,7 +661,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e49acf0b-3d6c-49e3-9f6f-bdfe1bfab6df";
 				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/Supporting Files/HopperBus-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

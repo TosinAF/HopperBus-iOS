@@ -80,7 +80,7 @@ class MapViewController: GAITrackedViewController, POPAnimationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        screenName = "MapViewController"
+        screenName = "Map"
         view.backgroundColor = UIColor.clearColor()
 
         view.addSubview(dismissButton)

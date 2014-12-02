@@ -75,7 +75,7 @@ class RouteViewController: GAITrackedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        screenName = "Route\(self.routeType.routeCode) ViewController"
+        screenName = "Route\(self.routeType.routeCode)"
         view.addSubview(tableView)
         self.automaticallyAdjustsScrollViewInsets = false;
 

@@ -64,7 +64,7 @@ class RouteTimesViewController: GAITrackedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        screenName = "Route901 ViewController"
+        screenName = "Route901"
         view.addSubview(tableView)
         tableView.frame = view.frame
 
