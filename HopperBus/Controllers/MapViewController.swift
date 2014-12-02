@@ -40,7 +40,7 @@ enum UniversityCampusMaps: Int {
     }
 }
 
-class MapViewController: UIViewController, POPAnimationDelegate {
+class MapViewController: GAITrackedViewController, POPAnimationDelegate {
 
     // MARK: - Properies
 
@@ -80,6 +80,7 @@ class MapViewController: UIViewController, POPAnimationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenName = "MapViewController"
         view.backgroundColor = UIColor.clearColor()
 
         view.addSubview(dismissButton)
@@ -113,7 +114,6 @@ class MapViewController: UIViewController, POPAnimationDelegate {
         }
 
         optionsContainer.addSubview(currentMapIndicator)
-
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissButton]", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton]-10-|", options: nil, metrics: nil, views: views))
@@ -188,8 +188,11 @@ class MapViewController: UIViewController, POPAnimationDelegate {
             currentMap = map!
         }
     }
+}
 
-    // MARK: - POPAnimation Delegate
+// MARK: - POPAnimation Delegate
+
+extension MapViewController: POPAnimationDelegate {
 
     func pop_animationDidStop(anim: POPAnimation!, finished: Bool) {
         // POP Animation used in the transistion controller

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1D257F1A2D791C00D210B7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1D257D1A2D791C00D210B7 /* Bolts.framework */; };
+		4E1D25801A2D791C00D210B7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1D257E1A2D791C00D210B7 /* Parse.framework */; };
 		4E29202419E6316700687C0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* HomeViewController.swift */; };
 		4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */; };
 		4E3769851A276CC40079A20F /* MaterialActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */; };
@@ -29,8 +31,6 @@
 		4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */; };
 		4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AA48419CB9F360048FB11 /* MapViewController.swift */; };
 		4E845FAA19CD39A100CB4D03 /* DismissMapTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E845FA919CD39A100CB4D03 /* DismissMapTransistionManager.swift */; };
-		4E8DC4551A2C48DA0056AFF8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8DC4531A2C48DA0056AFF8 /* Bolts.framework */; };
-		4E8DC4561A2C48DA0056AFF8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8DC4541A2C48DA0056AFF8 /* Parse.framework */; };
 		4E90D8651A060B5000E0B6E8 /* RealTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */; };
 		4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EA8A04719DA21EA00DDCBAF /* Routes.json */; };
 		4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECE2C3B19DD6F7100E47755 /* Constants.swift */; };
@@ -66,12 +66,13 @@
 
 /* Begin PBXFileReference section */
 		07BC5729BEAEFB941B8578E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4E1D257D1A2D791C00D210B7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
+		4E1D257E1A2D791C00D210B7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Frameworks/Parse.framework; sourceTree = "<group>"; };
 		4E29202319E6316700687C0D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeTableViewCell.swift; path = Views/RealTimeTableViewCell.swift; sourceTree = "<group>"; };
 		4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialActivityIndicatorView.swift; path = Views/MaterialActivityIndicatorView.swift; sourceTree = "<group>"; };
 		4E3769861A27E2F60079A20F /* RouteUnavailableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteUnavailableView.swift; path = Views/RouteUnavailableView.swift; sourceTree = "<group>"; };
 		4E50244B19CBA28C002F5A11 /* PresentMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapTransistionManager.swift; path = Utility/PresentMapTransistionManager.swift; sourceTree = "<group>"; };
-		4E50244D19CC6714002F5A11 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4E5C1CF11A24E6CB001CE24C /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZFRippleButton.swift; path = Utility/ZFRippleButton.swift; sourceTree = "<group>"; };
 		4E5C1CF51A24F113001CE24C /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Utility/Alamofire.swift; sourceTree = "<group>"; };
 		4E5C1CF61A24F113001CE24C /* AlamofireSwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireSwiftyJSON.swift; path = Utility/AlamofireSwiftyJSON.swift; sourceTree = "<group>"; };
@@ -89,8 +90,6 @@
 		4E7AA48119CB9F080048FB11 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "HopperBus/Resources/Fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		4E7AA48419CB9F360048FB11 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
 		4E845FA919CD39A100CB4D03 /* DismissMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissMapTransistionManager.swift; path = Utility/DismissMapTransistionManager.swift; sourceTree = "<group>"; };
-		4E8DC4531A2C48DA0056AFF8 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		4E8DC4541A2C48DA0056AFF8 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeViewController.swift; path = Controllers/RealTimeViewController.swift; sourceTree = "<group>"; };
 		4EA8A04719DA21EA00DDCBAF /* Routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Routes.json; path = HopperBus/Resources/Routes/Routes.json; sourceTree = "<group>"; };
 		4EB37D1819E0542B0000068C /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HopperBus-Bridging-Header.h"; path = "Supporting Files/HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -126,8 +125,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B4AA58A492C4E4180CF282D /* libPods.a in Frameworks */,
-				4E8DC4561A2C48DA0056AFF8 /* Parse.framework in Frameworks */,
-				4E8DC4551A2C48DA0056AFF8 /* Bolts.framework in Frameworks */,
+				4E1D25801A2D791C00D210B7 /* Parse.framework in Frameworks */,
+				4E1D257F1A2D791C00D210B7 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,9 +336,8 @@
 		9782702C7AE046DD969C2921 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4E8DC4531A2C48DA0056AFF8 /* Bolts.framework */,
-				4E8DC4541A2C48DA0056AFF8 /* Parse.framework */,
-				4E50244D19CC6714002F5A11 /* QuartzCore.framework */,
+				4E1D257D1A2D791C00D210B7 /* Bolts.framework */,
+				4E1D257E1A2D791C00D210B7 /* Parse.framework */,
 				EBF69A0F5AB64083B3DB10FB /* libPods.a */,
 			);
 			name = Frameworks;
@@ -631,6 +629,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -656,6 +655,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

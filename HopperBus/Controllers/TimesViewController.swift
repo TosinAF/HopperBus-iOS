@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimesViewController: UIViewController {
+class TimesViewController: GAITrackedViewController {
 
     var times: Times? {
         willSet(timesVar) {
@@ -115,6 +115,7 @@ class TimesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenName = "MapViewController"
         view.backgroundColor = UIColor.clearColor()
 
         headerView.addSubview(stopLabel)

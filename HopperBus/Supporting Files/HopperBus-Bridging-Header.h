@@ -4,5 +4,7 @@
 
 #import <pop/POP.h>
 #import <Parse/Parse.h>
+#import "GAI.h"
+#import "GAITrackedViewController.h"
 #import <MBXMapKit/MBXMapKit.h>
 #import <JCTiledScrollView/JCTiledPDFScrollView.h>

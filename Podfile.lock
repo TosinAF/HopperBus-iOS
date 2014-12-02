@@ -1,0 +1,25 @@
+PODS:
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
+  - JCTiledScrollView (0.0.1)
+  - MBXMapKit (0.5.0)
+  - pop (1.0.6)
+
+DEPENDENCIES:
+  - GoogleAnalytics-iOS-SDK
+  - JCTiledScrollView (from `https://github.com/jessedc/JCTiledScrollView.git`)
+  - MBXMapKit
+  - pop
+
+EXTERNAL SOURCES:
+  JCTiledScrollView:
+    :git: https://github.com/jessedc/JCTiledScrollView.git
+
+SPEC CHECKSUMS:
+  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
+  JCTiledScrollView: f401ebccd47b5e1427ee5cb365018fac90a0e7d5
+  MBXMapKit: bf5bf7e44dba1b9084505e711d738e4f1ccd9927
+  pop: e518794da38942c05255eb64b36d894e70cb4f00
+
+COCOAPODS: 0.34.4

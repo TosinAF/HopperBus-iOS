@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RouteTimesViewController: UIViewController {
+class RouteTimesViewController: GAITrackedViewController {
 
     // MARK: - Properties
 
@@ -64,6 +64,7 @@ class RouteTimesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenName = "Route901 ViewController"
         view.addSubview(tableView)
         tableView.frame = view.frame
 

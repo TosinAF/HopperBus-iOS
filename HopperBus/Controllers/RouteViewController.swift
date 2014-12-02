@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RouteViewController: UIViewController {
+class RouteViewController: GAITrackedViewController {
 
     // MARK: - Properties
 
@@ -75,6 +75,7 @@ class RouteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenName = "Route\(self.routeType.routeCode) ViewController"
         view.addSubview(tableView)
         self.automaticallyAdjustsScrollViewInsets = false;
 

@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class RealTimeViewController: UIViewController {
+class RealTimeViewController: GAITrackedViewController {
 
     // MARK: - Properties
 
@@ -120,6 +120,7 @@ class RealTimeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenName = "RealTimeViewController"
         view.addSubview(mapView)
         view.addSubview(textFieldContainer)
         view.addSubview(upcomingBusTimesContainerView)

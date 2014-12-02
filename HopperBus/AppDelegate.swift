@@ -43,6 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Parse.setApplicationId("PLKK3ArZhBTROcCinEB5J6qeMwUkTrZL9P7U9XRf", clientKey: "94CjREf1puBASWRROTeNCJuzR6nmtyiK4tfGm9qN")
 
+        // Google Analytics
+
+        GAI.sharedInstance().trackUncaughtExceptions = true
+        GAI.sharedInstance().dispatchInterval = 20
+        GAI.sharedInstance().logger.logLevel = .Info
+        GAI.sharedInstance().trackerWithTrackingId("UA-46757742-8")
+
         return true
     }
 
