@@ -83,8 +83,9 @@ class RouteViewController: GAITrackedViewController {
         tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.estimatedRowHeight = self.routeType == HopperBusRoutes.HB904 ? 65 : 55
 
-        if !isRouteInService() {
+        if !routeViewModel.isRouteInService() {
             tableView.alpha = 0.0
+            if NSDate.isOutOfService() { routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service." }
             view.addSubview(routeUnavailableView)
         }
     }
@@ -99,28 +100,6 @@ class RouteViewController: GAITrackedViewController {
     func updateTableView() {
         routeViewModel.updateScheduleIndex()
         tableView.reloadData()
-    }
-
-    func isRouteInService() -> Bool {
-
-        if NSDate.isOutOfService() {
-            routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service."
-            return false
-        }
-
-        if routeType == .HB902 || routeType == .HB904 {
-            if NSDate.isWeekend() {
-                return false
-            }
-        }
-
-        if routeType == .HB903 {
-            if (NSDate.isWeekend() && NSDate.isHoliday()) ||  NSDate.isSunday() {
-                return false
-            }
-        }
-
-        return true
     }
 }
 

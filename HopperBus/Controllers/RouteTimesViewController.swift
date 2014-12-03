@@ -68,8 +68,9 @@ class RouteTimesViewController: GAITrackedViewController {
         view.addSubview(tableView)
         tableView.frame = view.frame
 
-        if !isRouteInService() {
+        if !routeViewModel.isRouteInService() {
             tableView.alpha = 0.0
+            if NSDate.isOutOfService() { routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service." }
             view.addSubview(routeUnavailableView)
         }
     }
@@ -77,16 +78,6 @@ class RouteTimesViewController: GAITrackedViewController {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         timer?.invalidate()
-    }
-
-    func isRouteInService() -> Bool {
-
-        if NSDate.isOutOfService() {
-            routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service."
-            return false
-        }
-
-        return true
     }
 }
 

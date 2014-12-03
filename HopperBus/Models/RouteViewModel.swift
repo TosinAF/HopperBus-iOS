@@ -145,6 +145,27 @@ class RouteViewModel: ViewModel {
     func stopTimingsForStop(id: String) -> Times {
         return stopTimings[id]!
     }
+
+    func isRouteInService() -> Bool {
+
+        if NSDate.isOutOfService() {
+            return false
+        }
+
+        if routeType == .HB902 || routeType == .HB904 {
+            if NSDate.isWeekend() {
+                return false
+            }
+        }
+
+        if routeType == .HB903 {
+            if (NSDate.isWeekend() && NSDate.isHoliday()) ||  NSDate.isSunday() {
+                return false
+            }
+        }
+
+        return true
+    }
 }
 
 // MARK: - Private Methods

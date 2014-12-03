@@ -29,6 +29,15 @@ class RouteTimesViewModel: ViewModel {
 
     // MARK: Public Methods
 
+    func isRouteInService() -> Bool {
+
+        if NSDate.isOutOfService() {
+            return false
+        }
+
+        return true
+    }
+
     func numberOfStops() -> Int {
         return currentStops.count
     }
