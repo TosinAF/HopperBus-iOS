@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - University Campus Maps Enum
+
 enum UniversityCampusMaps: Int {
     case SuttonBonnigton = 0, UniversityPark, JubileeCampus
 
@@ -39,6 +41,8 @@ enum UniversityCampusMaps: Int {
         return constraintValues[rawValue]
     }
 }
+
+// MARK: - Map View Controller
 
 class MapViewController: GAITrackedViewController, POPAnimationDelegate {
 

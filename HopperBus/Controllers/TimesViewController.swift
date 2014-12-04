@@ -8,7 +8,11 @@
 
 import UIKit
 
+// MARK: - TimesViewController
+
 class TimesViewController: GAITrackedViewController {
+
+    // MARK: - Properties
 
     var times: Times? {
         willSet(timesVar) {
@@ -24,7 +28,7 @@ class TimesViewController: GAITrackedViewController {
                 buttonsArray[2].enabled = true
             }
 
-            // the both below are mutually exclusive, its to accomodate route 901
+            // the below are mutually exclusive, its to accomodate route 901
             if let s = t.saturdays {
                 buttonsArray[1].enabled = true
             }
@@ -113,6 +117,8 @@ class TimesViewController: GAITrackedViewController {
 
     var currentTimeIndicatorHConstraint: NSLayoutConstraint?
 
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         screenName = "Times"
@@ -177,32 +183,11 @@ class TimesViewController: GAITrackedViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissArea(130)][contentView]|", options: nil, metrics: nil, views: views))
     }
 
+    // MARK: - Actions
+
     func onDismissButtonTap() {
         dismissViewControllerAnimated(true, completion: nil);
     }
-
-    func createButtons() {
-
-        let buttonTitles = ["TT", "SAT", "HOL"]
-
-        for (i, title) in enumerate(buttonTitles) {
-            let button = UIButton()
-            button.tag = i
-            button.enabled = false
-            button.setTitle(title, forState: .Normal)
-            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            button.setTitleColor(UIColor.grayColor(), forState: .Disabled)
-            button.titleLabel!.font = UIFont(name: "Avenir-Medium", size: 14)
-            button.addTarget(self, action: "onButtonTap:", forControlEvents: .TouchUpInside)
-            button.setTranslatesAutoresizingMaskIntoConstraints(false)
-            headerView.addSubview(button)
-            buttonsArray.append(button)
-        }
-
-        buttonsArray[0].enabled = true
-    }
-
-    // MARK: - Actions
 
     func onButtonTap(sender: AnyObject) {
         let button = sender as UIButton
@@ -238,7 +223,32 @@ class TimesViewController: GAITrackedViewController {
         currentTimeIndicatorHConstraint!.pop_addAnimation(currentTimeIndicatorAnim, forKey: "constantAnimation")
     }
 
+    // MARK: - Utility Functions
+
+    func createButtons() {
+
+        let buttonTitles = ["TT", "SAT", "HOL"]
+
+        for (i, title) in enumerate(buttonTitles) {
+            let button = UIButton()
+            button.tag = i
+            button.enabled = false
+            button.setTitle(title, forState: .Normal)
+            button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            button.setTitleColor(UIColor.grayColor(), forState: .Disabled)
+            button.titleLabel!.font = UIFont(name: "Avenir-Medium", size: 14)
+            button.addTarget(self, action: "onButtonTap:", forControlEvents: .TouchUpInside)
+            button.setTranslatesAutoresizingMaskIntoConstraints(false)
+            headerView.addSubview(button)
+            buttonsArray.append(button)
+        }
+
+        buttonsArray[0].enabled = true
+    }
+
 }
+
+// MARK: - NSLayoutManagerDelegate
 
 extension TimesViewController: NSLayoutManagerDelegate {
     
