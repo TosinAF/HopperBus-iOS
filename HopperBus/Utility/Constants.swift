@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
+let kHasHomeViewBeenDisplayedYetKey = "hasHomwViewBeenDisplayedYet"
+
 private let Device = UIDevice.currentDevice()
 private let iosVersion = NSString(string: Device.systemVersion).doubleValue
 

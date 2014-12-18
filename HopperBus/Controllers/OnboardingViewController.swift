@@ -99,8 +99,10 @@ class OnboardingViewController: UIViewController {
     // MARK: - Actions
     
     func continueButtonClicked() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: kHasHomeViewBeenDisplayedYetKey)
         let homeVC = ( UIApplication.sharedApplication().delegate as AppDelegate ).homeViewController
         navigationController?.pushViewController(homeVC, animated: true)
+
     }
 
     // MARK: - Utility Functions

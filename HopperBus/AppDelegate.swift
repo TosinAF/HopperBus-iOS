@@ -17,9 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
                             
     lazy var window: UIWindow = {
+
         let win = UIWindow(frame: UIScreen.mainScreen().bounds)
         win.backgroundColor = UIColor.whiteColor()
-        win.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+
+        if NSUserDefaults.standardUserDefaults().boolForKey(kHasHomeViewBeenDisplayedYetKey) {
+            win.rootViewController = UINavigationController(rootViewController: self.homeViewController)
+        } else {
+            win.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+        }
+
         return win
     }()
 
