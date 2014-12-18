@@ -42,13 +42,29 @@ enum OnboardingContentType {
     var image: UIImage {
         switch self {
         case .Route:
-            return UIImage(named: "RouteScreenshot")!
+            if iPhone6And6Plus {
+                return UIImage(named: "RouteScreenshot")!
+            } else {
+                return UIImage(named: "RouteScreenshot_i5")!
+            }
         case .RouteTimes:
-            return UIImage(named: "RouteTimesScreenshot")!
+            if iPhone6And6Plus {
+                return UIImage(named: "RouteTimesScreenshot")!
+            } else {
+                return UIImage(named: "RouteTimesScreenshot_i5")!
+            }
         case .RealTime:
-            return UIImage(named: "RealTimeScreenshot")!
+            if iPhone6And6Plus {
+                return UIImage(named: "RealTimeScreenshot")!
+            } else {
+                return UIImage(named: "RealTimeScreenshot_i5")!
+            }
         case .Map:
-            return UIImage(named: "MapScreenshot")!
+            if iPhone6And6Plus {
+                return UIImage(named: "MapScreenshot")!
+            } else {
+                return UIImage(named: "MapScreenshot_i5")!
+            }
         }
     }
 
@@ -66,7 +82,8 @@ class OnboardingContentViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = self.type.title
-        label.font = UIFont(name: "Montserrat-Regular", size: 28.0)
+        let fontSize: CGFloat = iPhone6And6Plus ? 28 : 24
+        label.font = UIFont(name: "Montserrat-Regular", size: fontSize)
         label.textColor = UIColor(red:0.392, green:0.871, blue:0.733, alpha: 1)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
@@ -75,7 +92,8 @@ class OnboardingContentViewController: UIViewController {
     lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.text = self.type.info
-        label.font = UIFont(name: "Avenir-Book", size: 17.0)
+        let fontSize: CGFloat = iPhone6And6Plus ? 17 : 14
+        label.font = UIFont(name: "Avenir-Book", size: fontSize)
         label.textColor = UIColor.whiteColor()
 
         label.numberOfLines = 2
@@ -122,8 +140,23 @@ class OnboardingContentViewController: UIViewController {
             "image": imageView
         ]
 
+        var vDistance = iPhone6P ? 112 : 92
+        vDistance = iPhone5 ? 75 : vDistance
+        vDistance = iPhone4S ? 61 : vDistance
+
+        let metrics = [
+            "vDistance" : vDistance
+        ]
+
+        //let imageView
+
         view.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-30-[info]-30-|", options: .AlignAllCenterX, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[title]-8-[info]-92-[image]", options: .AlignAllCenterX, metrics: nil, views: views))
+        if !iPhone4S {
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[title]-8-[info]-(vDistance)-[image]", options: .AlignAllCenterX, metrics: metrics, views: views))
+        } else {
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[title]-2-[info]-(vDistance)-[image]", options: .AlignAllCenterX, metrics: metrics, views: views))
+        }
+
     }
 }
