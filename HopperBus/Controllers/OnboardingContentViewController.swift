@@ -148,8 +148,6 @@ class OnboardingContentViewController: UIViewController {
             "vDistance" : vDistance
         ]
 
-        //let imageView
-
         view.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-30-[info]-30-|", options: .AlignAllCenterX, metrics: nil, views: views))
         if !iPhone4S {
