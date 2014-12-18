@@ -1649,7 +1649,7 @@
 	      ["JCTE-2", "Jubilee Campus, The Exchange", "23:12"]
 	    ]
 	  ],
-	  "saturday_services": [
+	  "saturday_schedule": [
 	    [
 	      ["JCTE-1", "Jubilee Campus, The Exchange", "09:15"],
 	      ["GGL-1", "George Green Library", "09:20"],
@@ -1911,7 +1911,7 @@
 	      ["JCTE-2", "Jubilee Campus, The Exchange", "19:08"]
 	    ]
 	  ],
-	  "holiday_services": [
+	  "holiday_schedule": [
 	    [
 	      ["GGL-1", "George Green Library", "07:50"],
 	      ["PH", "Portland Hill", "07:51"],

@@ -183,7 +183,7 @@ private extension RouteViewModel {
             route.saturdays = RouteViewModel.getSchedules(saturdays.arrayValue)
         }
 
-        if let holidays = data["holiday_schdule"] {
+        if let holidays = data["holiday_schedule"] {
             route.holidays = RouteViewModel.getSchedules(holidays.arrayValue)
         }
 

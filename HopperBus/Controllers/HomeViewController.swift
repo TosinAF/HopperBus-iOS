@@ -66,6 +66,12 @@ class HomeViewController: UIViewController {
 
     // MARK: - View Lifecycle
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .None)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "HOPPER BUS"
