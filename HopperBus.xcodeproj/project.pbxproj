@@ -28,10 +28,18 @@
 		4E527CD51A75EB8E00F20645 /* PresentInfoTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CCF1A75EB8E00F20645 /* PresentInfoTransitionManager.swift */; };
 		4E527CD61A75EB8E00F20645 /* PresentMapTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */; };
 		4E527CD71A75EB8E00F20645 /* PresentTimesTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */; };
+		4E527CD91A75ECAF00F20645 /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */; };
 		4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E678E201A068A4C007950BC /* TimesViewController.swift */; };
 		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
 		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
 		4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA719D3409400EC776B /* RouteViewModel.swift */; };
+		4E765EB61A75F9C900D68262 /* aboutUs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EB51A75F9C900D68262 /* aboutUs.txt */; };
+		4E765EB81A76024800D68262 /* SyntaxHighlightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E765EB71A76024800D68262 /* SyntaxHighlightTextStorage.swift */; };
+		4E765EBA1A76C31800D68262 /* wifi.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EB91A76C31800D68262 /* wifi.txt */; };
+		4E765EBC1A76C35F00D68262 /* realTime.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EBB1A76C35F00D68262 /* realTime.txt */; };
+		4E765EBE1A76C37900D68262 /* bikesOnBuses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EBD1A76C37900D68262 /* bikesOnBuses.txt */; };
+		4E765EC01A76C3E300D68262 /* accessibility.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EBF1A76C3E300D68262 /* accessibility.txt */; };
+		4E765EC21A76CE7300D68262 /* cctv.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EC11A76CE7300D68262 /* cctv.txt */; };
 		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
 		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
 		4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */; };
@@ -92,10 +100,18 @@
 		4E527CCF1A75EB8E00F20645 /* PresentInfoTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentInfoTransitionManager.swift; sourceTree = "<group>"; };
 		4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMapTransitionManager.swift; sourceTree = "<group>"; };
 		4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentTimesTransitionManager.swift; sourceTree = "<group>"; };
+		4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoDetailViewController.swift; path = Controllers/InfoDetailViewController.swift; sourceTree = "<group>"; };
 		4E678E201A068A4C007950BC /* TimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimesViewController.swift; path = Controllers/TimesViewController.swift; sourceTree = "<group>"; };
 		4E6ED68619D61CC900D903F6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Models/Models.swift; sourceTree = "<group>"; };
 		4E6F0FA119D1DCF700EC776B /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = HopperBus/Resources/Fonts/Entypo.ttf; sourceTree = "<group>"; };
 		4E6F0FA719D3409400EC776B /* RouteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteViewModel.swift; path = Models/RouteViewModel.swift; sourceTree = "<group>"; };
+		4E765EB51A75F9C900D68262 /* aboutUs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = aboutUs.txt; path = "HopperBus/Resources/untitled folder/aboutUs.txt"; sourceTree = "<group>"; };
+		4E765EB71A76024800D68262 /* SyntaxHighlightTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyntaxHighlightTextStorage.swift; path = Utility/SyntaxHighlightTextStorage.swift; sourceTree = "<group>"; };
+		4E765EB91A76C31800D68262 /* wifi.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wifi.txt; path = "HopperBus/Resources/untitled folder/wifi.txt"; sourceTree = "<group>"; };
+		4E765EBB1A76C35F00D68262 /* realTime.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = realTime.txt; path = "HopperBus/Resources/untitled folder/realTime.txt"; sourceTree = "<group>"; };
+		4E765EBD1A76C37900D68262 /* bikesOnBuses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bikesOnBuses.txt; path = "HopperBus/Resources/untitled folder/bikesOnBuses.txt"; sourceTree = "<group>"; };
+		4E765EBF1A76C3E300D68262 /* accessibility.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = accessibility.txt; path = "HopperBus/Resources/untitled folder/accessibility.txt"; sourceTree = "<group>"; };
+		4E765EC11A76CE7300D68262 /* cctv.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cctv.txt; path = "HopperBus/Resources/untitled folder/cctv.txt"; sourceTree = "<group>"; };
 		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = SuttonBoningtonCampus.pdf; path = HopperBus/Resources/Maps/SuttonBoningtonCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = UniversityParkCampus.pdf; path = HopperBus/Resources/Maps/UniversityParkCampus.pdf; sourceTree = "<group>"; };
@@ -164,20 +180,43 @@
 		4E527CCB1A75EB8E00F20645 /* TransitionManagers */ = {
 			isa = PBXGroup;
 			children = (
-				4E527CCC1A75EB8E00F20645 /* DismissInfoTransitionManager.swift */,
+				4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */,
 				4E527CCD1A75EB8E00F20645 /* DismissMapTransitionManager.swift */,
+				4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */,
 				4E527CCE1A75EB8E00F20645 /* DismissTimesTransitionManager.swift */,
 				4E527CCF1A75EB8E00F20645 /* PresentInfoTransitionManager.swift */,
-				4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */,
-				4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */,
+				4E527CCC1A75EB8E00F20645 /* DismissInfoTransitionManager.swift */,
 			);
 			name = TransitionManagers;
 			path = Utility/TransitionManagers;
 			sourceTree = "<group>";
 		};
+		4E765EB31A75F18B00D68262 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4E42B29A1A75D260006CF5A2 /* InfoViewController.swift */,
+				4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		4E765EB41A75F99200D68262 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4E765EB51A75F9C900D68262 /* aboutUs.txt */,
+				4E765EB91A76C31800D68262 /* wifi.txt */,
+				4E765EBB1A76C35F00D68262 /* realTime.txt */,
+				4E765EBD1A76C37900D68262 /* bikesOnBuses.txt */,
+				4E765EBF1A76C3E300D68262 /* accessibility.txt */,
+				4E765EC11A76CE7300D68262 /* cctv.txt */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
 		4E7AA47319CB98F90048FB11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E765EB41A75F99200D68262 /* Info */,
 				4EFFD78519D19E7A00127823 /* Routes */,
 				4E7AA47F19CB9EFA0048FB11 /* Fonts */,
 				4E7AA47419CB99070048FB11 /* Maps */,
@@ -242,8 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				4E385A321A42B04D00351821 /* Onboarding */,
+				4E765EB31A75F18B00D68262 /* Info */,
 				4E29202319E6316700687C0D /* HomeViewController.swift */,
-				4E42B29A1A75D260006CF5A2 /* InfoViewController.swift */,
 				4ECFBE6719B8388900523219 /* RouteViewController.swift */,
 				4EE17F3F1A1065C500728297 /* RouteTimesViewController.swift */,
 				4E90D8641A060B5000E0B6E8 /* RealTimeViewController.swift */,
@@ -259,6 +298,7 @@
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
 				4ECE2C3B19DD6F7100E47755 /* Constants.swift */,
 				4ECE2C4319DD98C000E47755 /* TableView.swift */,
+				4E765EB71A76024800D68262 /* SyntaxHighlightTextStorage.swift */,
 				4E8248D51A258FD5008E5D53 /* ThirdPartyLibraries */,
 				4E527CCB1A75EB8E00F20645 /* TransitionManagers */,
 			);
@@ -463,13 +503,19 @@
 			files = (
 				4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */,
 				4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */,
+				4E765EBE1A76C37900D68262 /* bikesOnBuses.txt in Resources */,
 				4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */,
+				4E765EC21A76CE7300D68262 /* cctv.txt in Resources */,
+				4E765EBA1A76C31800D68262 /* wifi.txt in Resources */,
 				4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */,
 				4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */,
 				4ECE2C3E19DD75A800E47755 /* Captain-icon.ttf in Resources */,
+				4E765EB61A75F9C900D68262 /* aboutUs.txt in Resources */,
 				4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */,
+				4E765EBC1A76C35F00D68262 /* realTime.txt in Resources */,
 				4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */,
 				4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */,
+				4E765EC01A76C3E300D68262 /* accessibility.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E765EB81A76024800D68262 /* SyntaxHighlightTextStorage.swift in Sources */,
 				4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */,
 				4E527CD21A75EB8E00F20645 /* DismissInfoTransitionManager.swift in Sources */,
 				4EFF52891A20C30900A66DEB /* RouteViewModelContainer.swift in Sources */,
@@ -543,6 +590,7 @@
 				4E527CD31A75EB8E00F20645 /* DismissMapTransitionManager.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
 				4E90D8651A060B5000E0B6E8 /* RealTimeViewController.swift in Sources */,
+				4E527CD91A75ECAF00F20645 /* InfoDetailViewController.swift in Sources */,
 				4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */,
 				4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */,
 				4E6ED68719D61CC900D903F6 /* Models.swift in Sources */,

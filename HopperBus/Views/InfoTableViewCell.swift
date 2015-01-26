@@ -14,7 +14,6 @@ class InfoTableViewCell: UITableViewCell {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hello"
         label.font = UIFont(name: "Avenir", size: 16)
         label.textAlignment = .Center
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -25,7 +24,6 @@ class InfoTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .None
 
         contentView.addSubview(titleLabel)
         setNeedsUpdateConstraints()

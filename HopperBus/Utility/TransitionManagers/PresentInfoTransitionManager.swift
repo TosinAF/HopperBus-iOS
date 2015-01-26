@@ -39,13 +39,22 @@ class PresentInfoTransitionManager: NSObject, UIViewControllerAnimatedTransition
         routeTranslateYAnim.springBounciness = 1
         routeTranslateYAnim.springSpeed = 5
         routeTranslateYAnim.fromValue = fromVC!.view.layer.presentationLayer().valueForKeyPath(kPOPLayerTranslationY)
-        routeTranslateYAnim.toValue = -130
+        routeTranslateYAnim.toValue = -110
 
         toVC!.view.layer.pop_addAnimation(routeTranslateYAnim, forKey: "transform.translation.y")
+
+        // Round Top Corners
+
+        let cornerRadii = CGSizeMake(7.0, 7.0)
+        let maskPath = UIBezierPath(roundedRect: toVC!.view.bounds, byRoundingCorners: .TopLeft | .TopRight, cornerRadii: cornerRadii)
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = containerView.bounds
+        maskLayer.path = maskPath.CGPath
 
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
             fromVC!.view.alpha = 0.5
             toVC!.view.alpha = 1.0
+            toVC!.view.layer.mask = maskLayer
             }) { (finished) -> Void in
                 transitionContext.completeTransition(true)
         }

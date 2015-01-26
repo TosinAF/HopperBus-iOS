@@ -1,0 +1,18 @@
+Real-time is a satellite system that tracks buses as they are driving along their route and then predicts the time it will arrive at each stop.
+
+This is calculated based on the location of the bus as it passes stops on the route. These act as trigger points to predict arrivals at subsequent stops on the route.
+
+This information is then sent to the electronic displays at Hopper Bus stops and our website.
+
+All Hopper Buses are also fitted with audio announcements and electronic displays inside the bus. These show you the destination of your bus and they announce the name of the next stop to help you know exactly where to get off.
+
+-  Frequently Asked Question -
+
+-  Scheduled vs Real-time  -
+
+Sometimes, a display may be showing a scheduled time. This can happen when the signal on the bus is not transmitting or being received. When a bus is shown as a scheduled time, the bus will only appear on the display until that time. It will then change to the next bus, even if the bus hasn’t passed the stop because the system does not know when the bus will arrive. Where a bus is being tracked, the time will count down, in minutes, until the bus arrives.
+
+-  Prediction Going Up or Not Changing?  -
+
+In most cases, the arrival time of the bus will count down each minute until the bus arrives at the stop. Sometimes, the time may go up or appear to be ‘stuck’ on the same arrival time. This happens because the bus has been held up on route as it makes its way to your stop. Once the bus passes a stop, the system recalculates the arrival time for stops still to be served.
+

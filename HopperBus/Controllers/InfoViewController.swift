@@ -8,6 +8,35 @@
 
 import UIKit
 
+enum InfoSection: Int {
+    case About = 0, WiFi, RealTime, BikesOnBuses, Accessibility, CCTV, AboutTheDevelopers
+
+    static let count = 7
+
+    var title: String {
+        let titles = [
+            "About",
+            "WiFi",
+            "Real Time",
+            "Bikes on Buses",
+            "Accessibility",
+            "CCTV",
+            "About The Developers"]
+        return titles[rawValue]
+    }
+
+    var filename: String {
+        let filenames = [
+            "aboutUs",
+            "wifi",
+            "realTime",
+            "bikesOnBuses",
+            "accessibility",
+            "cctv"]
+        return filenames[rawValue]
+    }
+}
+
 class InfoViewController: GAITrackedViewController {
 
     // MARK: - Properties
@@ -46,7 +75,7 @@ class InfoViewController: GAITrackedViewController {
 extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return options.count
+        return InfoSection.count
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -63,8 +92,18 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as InfoTableViewCell
-        cell.titleLabel.text = options[indexPath.row]
+        let section = InfoSection(rawValue: indexPath.row)!
+        cell.titleLabel.text = section.title
         return cell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let sectionType = InfoSection(rawValue: indexPath.row)!
+        let vc = InfoDetailViewController(type: sectionType)
+        vc.modalPresentationStyle = .Custom
+        vc.transitioningDelegate = self
+        presentViewController(vc, animated: true, completion:nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 

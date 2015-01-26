@@ -101,6 +101,10 @@ extension String {
     subscript (i: Int) -> String {
         return String(Array(self)[i])
     }
+
+    func replace(target: String, withString: String) -> String {
+        return self.stringByReplacingOccurrencesOfString(target, withString: withString, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    }
 }
 
 extension NSDate {
