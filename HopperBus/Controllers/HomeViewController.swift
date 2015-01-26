@@ -170,10 +170,10 @@ extension HomeViewController: TabBarDelegate {
 extension HomeViewController: UIViewControllerTransitioningDelegate {
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PresentMapTransistionManager()
+        return PresentMapTransitionManager()
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissMapTransistionManager()
+        return DismissMapTransitionManager()
     }
 }

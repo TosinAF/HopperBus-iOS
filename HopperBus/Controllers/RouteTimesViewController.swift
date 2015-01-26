@@ -123,10 +123,10 @@ extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource, 
 extension RouteTimesViewController: UIViewControllerTransitioningDelegate {
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PresentTimesTransistionManager()
+        return PresentTimesTransitionManager()
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissTimesTransistionManager()
+        return DismissTimesTransitionManager()
     }
 }

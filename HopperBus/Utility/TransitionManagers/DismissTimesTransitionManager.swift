@@ -8,9 +8,8 @@
 
 import UIKit
 
-class DismissTimesTransistionManager: NSObject, UIViewControllerAnimatedTransitioning {
+class DismissTimesTransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
 
-    // rename class to DismissTimesTransistion Manager
     let animationDuration = 0.3
 
     // MARK: - UIViewControllerAnimatedTransitioning Methods

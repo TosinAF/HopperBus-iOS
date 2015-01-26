@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DismissMapTransistionManager: NSObject, UIViewControllerAnimatedTransitioning {
+class DismissMapTransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
 
     // Intresting stuff about custom view controller transistion
     // http://stackoverflow.com/questions/24338700/from-view-controller-disappears-using-uiviewcontrollercontexttransitioning

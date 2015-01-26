@@ -20,12 +20,14 @@
 		4E42B2811A75D194006CF5A2 /* AlamofireSwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B26E1A75D194006CF5A2 /* AlamofireSwiftyJSON.swift */; };
 		4E42B2821A75D194006CF5A2 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B26F1A75D194006CF5A2 /* SwiftyJSON.swift */; };
 		4E42B2911A75D194006CF5A2 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B27F1A75D194006CF5A2 /* ZFRippleButton.swift */; };
-		4E42B2961A75D1A4006CF5A2 /* DismissMapTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B2921A75D1A4006CF5A2 /* DismissMapTransistionManager.swift */; };
-		4E42B2971A75D1A4006CF5A2 /* DismissTimesTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B2931A75D1A4006CF5A2 /* DismissTimesTransistionManager.swift */; };
-		4E42B2981A75D1A4006CF5A2 /* PresentMapTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B2941A75D1A4006CF5A2 /* PresentMapTransistionManager.swift */; };
-		4E42B2991A75D1A4006CF5A2 /* PresentTimesTransistionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B2951A75D1A4006CF5A2 /* PresentTimesTransistionManager.swift */; };
 		4E42B29B1A75D260006CF5A2 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B29A1A75D260006CF5A2 /* InfoViewController.swift */; };
 		4E42B29D1A75DF1C006CF5A2 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B29C1A75DF1C006CF5A2 /* InfoTableViewCell.swift */; };
+		4E527CD21A75EB8E00F20645 /* DismissInfoTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CCC1A75EB8E00F20645 /* DismissInfoTransitionManager.swift */; };
+		4E527CD31A75EB8E00F20645 /* DismissMapTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CCD1A75EB8E00F20645 /* DismissMapTransitionManager.swift */; };
+		4E527CD41A75EB8E00F20645 /* DismissTimesTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CCE1A75EB8E00F20645 /* DismissTimesTransitionManager.swift */; };
+		4E527CD51A75EB8E00F20645 /* PresentInfoTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CCF1A75EB8E00F20645 /* PresentInfoTransitionManager.swift */; };
+		4E527CD61A75EB8E00F20645 /* PresentMapTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */; };
+		4E527CD71A75EB8E00F20645 /* PresentTimesTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */; };
 		4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E678E201A068A4C007950BC /* TimesViewController.swift */; };
 		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
 		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
@@ -82,12 +84,14 @@
 		4E42B26E1A75D194006CF5A2 /* AlamofireSwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireSwiftyJSON.swift; path = "Utility/Third Party Libraries/AlamofireSwiftyJSON.swift"; sourceTree = "<group>"; };
 		4E42B26F1A75D194006CF5A2 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "Utility/Third Party Libraries/SwiftyJSON.swift"; sourceTree = "<group>"; };
 		4E42B27F1A75D194006CF5A2 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZFRippleButton.swift; path = "Utility/Third Party Libraries/ZFRippleButton.swift"; sourceTree = "<group>"; };
-		4E42B2921A75D1A4006CF5A2 /* DismissMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissMapTransistionManager.swift; path = Utility/TransistionManagers/DismissMapTransistionManager.swift; sourceTree = "<group>"; };
-		4E42B2931A75D1A4006CF5A2 /* DismissTimesTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissTimesTransistionManager.swift; path = Utility/TransistionManagers/DismissTimesTransistionManager.swift; sourceTree = "<group>"; };
-		4E42B2941A75D1A4006CF5A2 /* PresentMapTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentMapTransistionManager.swift; path = Utility/TransistionManagers/PresentMapTransistionManager.swift; sourceTree = "<group>"; };
-		4E42B2951A75D1A4006CF5A2 /* PresentTimesTransistionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentTimesTransistionManager.swift; path = Utility/TransistionManagers/PresentTimesTransistionManager.swift; sourceTree = "<group>"; };
 		4E42B29A1A75D260006CF5A2 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = Controllers/InfoViewController.swift; sourceTree = "<group>"; };
 		4E42B29C1A75DF1C006CF5A2 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoTableViewCell.swift; path = Views/InfoTableViewCell.swift; sourceTree = "<group>"; };
+		4E527CCC1A75EB8E00F20645 /* DismissInfoTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissInfoTransitionManager.swift; sourceTree = "<group>"; };
+		4E527CCD1A75EB8E00F20645 /* DismissMapTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissMapTransitionManager.swift; sourceTree = "<group>"; };
+		4E527CCE1A75EB8E00F20645 /* DismissTimesTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissTimesTransitionManager.swift; sourceTree = "<group>"; };
+		4E527CCF1A75EB8E00F20645 /* PresentInfoTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentInfoTransitionManager.swift; sourceTree = "<group>"; };
+		4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMapTransitionManager.swift; sourceTree = "<group>"; };
+		4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentTimesTransitionManager.swift; sourceTree = "<group>"; };
 		4E678E201A068A4C007950BC /* TimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimesViewController.swift; path = Controllers/TimesViewController.swift; sourceTree = "<group>"; };
 		4E6ED68619D61CC900D903F6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Models/Models.swift; sourceTree = "<group>"; };
 		4E6F0FA119D1DCF700EC776B /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = HopperBus/Resources/Fonts/Entypo.ttf; sourceTree = "<group>"; };
@@ -155,6 +159,20 @@
 				4E385A341A42B05F00351821 /* OnboardingViewController.swift */,
 			);
 			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		4E527CCB1A75EB8E00F20645 /* TransitionManagers */ = {
+			isa = PBXGroup;
+			children = (
+				4E527CCC1A75EB8E00F20645 /* DismissInfoTransitionManager.swift */,
+				4E527CCD1A75EB8E00F20645 /* DismissMapTransitionManager.swift */,
+				4E527CCE1A75EB8E00F20645 /* DismissTimesTransitionManager.swift */,
+				4E527CCF1A75EB8E00F20645 /* PresentInfoTransitionManager.swift */,
+				4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */,
+				4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */,
+			);
+			name = TransitionManagers;
+			path = Utility/TransitionManagers;
 			sourceTree = "<group>";
 		};
 		4E7AA47319CB98F90048FB11 /* Resources */ = {
@@ -242,7 +260,7 @@
 				4ECE2C3B19DD6F7100E47755 /* Constants.swift */,
 				4ECE2C4319DD98C000E47755 /* TableView.swift */,
 				4E8248D51A258FD5008E5D53 /* ThirdPartyLibraries */,
-				4EFADA221A075149001E1FB1 /* TransistionManagers */,
+				4E527CCB1A75EB8E00F20645 /* TransitionManagers */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -323,17 +341,6 @@
 				4E3769861A27E2F60079A20F /* RouteUnavailableView.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		4EFADA221A075149001E1FB1 /* TransistionManagers */ = {
-			isa = PBXGroup;
-			children = (
-				4E42B2921A75D1A4006CF5A2 /* DismissMapTransistionManager.swift */,
-				4E42B2931A75D1A4006CF5A2 /* DismissTimesTransistionManager.swift */,
-				4E42B2941A75D1A4006CF5A2 /* PresentMapTransistionManager.swift */,
-				4E42B2951A75D1A4006CF5A2 /* PresentTimesTransistionManager.swift */,
-			);
-			name = TransistionManagers;
 			sourceTree = "<group>";
 		};
 		4EFFD78519D19E7A00127823 /* Routes */ = {
@@ -514,21 +521,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E6F0FA819D3409400EC776B /* RouteViewModel.swift in Sources */,
+				4E527CD21A75EB8E00F20645 /* DismissInfoTransitionManager.swift in Sources */,
 				4EFF52891A20C30900A66DEB /* RouteViewModelContainer.swift in Sources */,
 				4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */,
+				4E527CD41A75EB8E00F20645 /* DismissTimesTransitionManager.swift in Sources */,
 				4E42B2821A75D194006CF5A2 /* SwiftyJSON.swift in Sources */,
+				4E527CD61A75EB8E00F20645 /* PresentMapTransitionManager.swift in Sources */,
 				4E3769871A27E2F60079A20F /* RouteUnavailableView.swift in Sources */,
 				4E42B2811A75D194006CF5A2 /* AlamofireSwiftyJSON.swift in Sources */,
-				4E42B2991A75D1A4006CF5A2 /* PresentTimesTransistionManager.swift in Sources */,
+				4E527CD51A75EB8E00F20645 /* PresentInfoTransitionManager.swift in Sources */,
 				4E385A361A42B05F00351821 /* OnboardingViewController.swift in Sources */,
 				4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
+				4E527CD71A75EB8E00F20645 /* PresentTimesTransitionManager.swift in Sources */,
 				4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */,
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
 				4E42B29B1A75D260006CF5A2 /* InfoViewController.swift in Sources */,
 				4EE17F421A1069CB00728297 /* StopTimesTableViewCell.swift in Sources */,
 				4ECFBE6619B8387C00523219 /* TabBarItem.swift in Sources */,
 				4ED3688B1A0DDF7900EEDB34 /* ReaITimeViewModel.swift in Sources */,
+				4E527CD31A75EB8E00F20645 /* DismissMapTransitionManager.swift in Sources */,
 				4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */,
 				4E90D8651A060B5000E0B6E8 /* RealTimeViewController.swift in Sources */,
 				4E7AA48519CB9F360048FB11 /* MapViewController.swift in Sources */,
@@ -537,16 +549,13 @@
 				4E42B29D1A75DF1C006CF5A2 /* InfoTableViewCell.swift in Sources */,
 				4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */,
 				4EE17F3C1A0F352A00728297 /* UpcomingBusTimesView.swift in Sources */,
-				4E42B2961A75D1A4006CF5A2 /* DismissMapTransistionManager.swift in Sources */,
 				4EE17F401A1065C500728297 /* RouteTimesViewController.swift in Sources */,
 				4E29202419E6316700687C0D /* HomeViewController.swift in Sources */,
 				4E42B2801A75D194006CF5A2 /* AlamoFire.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
-				4E42B2971A75D1A4006CF5A2 /* DismissTimesTransistionManager.swift in Sources */,
 				4E42B2911A75D194006CF5A2 /* ZFRippleButton.swift in Sources */,
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,
 				4E385A351A42B05F00351821 /* OnboardingContentViewController.swift in Sources */,
-				4E42B2981A75D1A4006CF5A2 /* PresentMapTransistionManager.swift in Sources */,
 				4E3769851A276CC40079A20F /* MaterialActivityIndicatorView.swift in Sources */,
 				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,
 			);

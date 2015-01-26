@@ -10,6 +10,8 @@ import UIKit
 
 class InfoViewController: GAITrackedViewController {
 
+    // MARK: - Properties
+
     let options = ["About", "Wi-FI", "Real Time", "Bikes on Buses", "Accessibility", "CCTV", "About The Developers"]
 
     lazy var routeHeaderView: RouteHeaderView = {
@@ -27,6 +29,8 @@ class InfoViewController: GAITrackedViewController {
         tableView.registerClass(InfoTableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +65,19 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as InfoTableViewCell
         cell.titleLabel.text = options[indexPath.row]
         return cell
+    }
+}
+
+// MARK: - Transitioning Delegate
+
+extension InfoViewController: UIViewControllerTransitioningDelegate {
+
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentInfoTransitionManager()
+    }
+
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissInfoTransitionManager()
     }
 }
 

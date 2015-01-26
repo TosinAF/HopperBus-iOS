@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PresentMapTransistionManager: NSObject, UIViewControllerAnimatedTransitioning {
+class PresentMapTransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
 
     let animationDuration = 0.5
 
