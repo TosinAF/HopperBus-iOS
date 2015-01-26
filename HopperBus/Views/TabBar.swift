@@ -86,9 +86,9 @@ class TabBar: UIView {
     func onTap(sender: AnyObject) {
         var clickedTabBarItem = sender as TabBarItem
 
-        if selectedIndex == clickedTabBarItem.tag {
+        /*if selectedIndex == clickedTabBarItem.tag {
             return;
-        }
+        }*/
 
         setSelectedIndex(clickedTabBarItem.tag)
         self.delegate?.tabBar(self, didSelectItem: clickedTabBarItem, atIndex: clickedTabBarItem.tag)

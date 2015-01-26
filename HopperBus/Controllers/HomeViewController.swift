@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
     let LastViewedRouteKey = "LastViewedRoute"
     let routeViewModelContainer = RouteViewModelContainer()
 
+    var inInfoSection = false
+
     var initialRouteType: HopperBusRoutes {
         var route: HopperBusRoutes = HopperBusRoutes.HB903
             if let lastViewedRoute = NSUserDefaults.standardUserDefaults().objectForKey(LastViewedRouteKey) as? Int {
@@ -113,13 +115,30 @@ class HomeViewController: UIViewController {
     }
 
     func onInfoButtonTap() {
-        println("Info Buttton Tapped")
+
+        if inInfoSection { return }
+
+        let fromVC = viewControllers[currentRouteType.rawValue]
+        let infoViewController = InfoViewController()
+
+        transition(fromVC, toVC: infoViewController)
+        inInfoSection = true
     }
 
     // MARK: - AppDelegate Methods
 
     func saveCurrentRoute() {
         NSUserDefaults.standardUserDefaults().setObject(currentRouteType.rawValue, forKey: LastViewedRouteKey)
+    }
+
+    // MARK: - Utility Methods
+
+    func transition(fromVC: UIViewController, toVC: UIViewController) {
+        fromVC.willMoveToParentViewController(nil)
+        addChildViewController(toVC)
+        fromVC.view.removeFromSuperview()
+        fromVC.removeFromParentViewController()
+        self.containerView.addSubview(toVC.view)
     }
 }
 
@@ -128,7 +147,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: TabBarDelegate {
 
     func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int) {
-        if currentRouteType.rawValue == index { return }
+       if currentRouteType.rawValue == index && inInfoSection == false { return }
 
         if index == HopperBusRoutes.HBRealTime.rawValue {
             self.title = "LIVE BUS DEPARTURES"
@@ -139,13 +158,10 @@ extension HomeViewController: TabBarDelegate {
         let fromVC = viewControllers[currentRouteType.rawValue]
         let toVC = viewControllers[index]
 
-        fromVC.willMoveToParentViewController(nil)
-        addChildViewController(toVC)
-        fromVC.view.removeFromSuperview()
-        fromVC.removeFromParentViewController()
-        self.containerView.addSubview(toVC.view)
+        transition(fromVC, toVC: toVC)
 
         self.currentRouteType = HopperBusRoutes(rawValue: index)!
+        inInfoSection = false
     }
 }
 
