@@ -5,31 +5,26 @@ PODS:
   - JCTiledScrollView (0.0.1)
   - MBXMapKit (0.5.0)
   - pop (1.0.6)
-  - TableSchemer (1.1)
 
 DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK
   - JCTiledScrollView (from `https://github.com/jessedc/JCTiledScrollView.git`)
   - MBXMapKit
   - pop
-  - TableSchemer (from `https://github.com/TosinAF/TableSchemer`)
 
 EXTERNAL SOURCES:
   JCTiledScrollView:
     :git: https://github.com/jessedc/JCTiledScrollView.git
-  TableSchemer:
-    :git: https://github.com/TosinAF/TableSchemer
 
 CHECKOUT OPTIONS:
-  TableSchemer:
-    :commit: 7ab4cdaacff8522f3d55344bb81f705fc3131a05
-    :git: https://github.com/TosinAF/TableSchemer
+  JCTiledScrollView:
+    :commit: 9dbf107473bfcb868ca1b9015f203b8bf4870690
+    :git: https://github.com/jessedc/JCTiledScrollView.git
 
 SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  JCTiledScrollView: f401ebccd47b5e1427ee5cb365018fac90a0e7d5
+  JCTiledScrollView: 21fd487f938eecab38631f2045d9d51574a30668
   MBXMapKit: bf5bf7e44dba1b9084505e711d738e4f1ccd9927
   pop: e518794da38942c05255eb64b36d894e70cb4f00
-  TableSchemer: a4a1015f15a7ea0db1cb2f7892afa369d83fd3dd
 
 COCOAPODS: 0.36.0.beta.1
