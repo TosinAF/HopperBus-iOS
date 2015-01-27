@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     let routeViewModelContainer = RouteViewModelContainer()
 
     var inInfoSection = false
+    let infoViewController = InfoViewController()
 
     var initialRouteType: HopperBusRoutes {
         var route: HopperBusRoutes = HopperBusRoutes.HB903
@@ -119,7 +120,6 @@ class HomeViewController: UIViewController {
         if inInfoSection { return }
 
         let fromVC = viewControllers[currentRouteType.rawValue]
-        let infoViewController = InfoViewController()
 
         transition(fromVC, toVC: infoViewController)
         inInfoSection = true
@@ -155,7 +155,7 @@ extension HomeViewController: TabBarDelegate {
             self.title = "HOOPER BUS"
         }
 
-        let fromVC = viewControllers[currentRouteType.rawValue]
+        let fromVC = inInfoSection ? infoViewController : viewControllers[currentRouteType.rawValue]
         let toVC = viewControllers[index]
 
         transition(fromVC, toVC: toVC)

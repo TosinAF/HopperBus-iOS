@@ -42,25 +42,25 @@ enum OnboardingContentType {
     var image: UIImage {
         switch self {
         case .Route:
-            if iPhone6And6Plus {
+            if iPhone6Or6Plus {
                 return UIImage(named: "RouteScreenshot")!
             } else {
                 return UIImage(named: "RouteScreenshot_i5")!
             }
         case .RouteTimes:
-            if iPhone6And6Plus {
+            if iPhone6Or6Plus {
                 return UIImage(named: "RouteTimesScreenshot")!
             } else {
                 return UIImage(named: "RouteTimesScreenshot_i5")!
             }
         case .RealTime:
-            if iPhone6And6Plus {
+            if iPhone6Or6Plus {
                 return UIImage(named: "RealTimeScreenshot")!
             } else {
                 return UIImage(named: "RealTimeScreenshot_i5")!
             }
         case .Map:
-            if iPhone6And6Plus {
+            if iPhone6Or6Plus {
                 return UIImage(named: "MapScreenshot")!
             } else {
                 return UIImage(named: "MapScreenshot_i5")!
@@ -82,7 +82,7 @@ class OnboardingContentViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = self.type.title
-        let fontSize: CGFloat = iPhone6And6Plus ? 28 : 24
+        let fontSize: CGFloat = iPhone6Or6Plus ? 28 : 24
         label.font = UIFont(name: "Montserrat-Regular", size: fontSize)
         label.textColor = UIColor(red:0.392, green:0.871, blue:0.733, alpha: 1)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -92,7 +92,7 @@ class OnboardingContentViewController: UIViewController {
     lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.text = self.type.info
-        let fontSize: CGFloat = iPhone6And6Plus ? 17 : 14
+        let fontSize: CGFloat = iPhone6Or6Plus ? 17 : 14
         label.font = UIFont(name: "Avenir-Book", size: fontSize)
         label.textColor = UIColor.whiteColor()
 

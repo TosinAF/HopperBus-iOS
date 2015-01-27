@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         GAI.sharedInstance().trackUncaughtExceptions = true
         GAI.sharedInstance().dispatchInterval = 20
-        GAI.sharedInstance().logger.logLevel = .Info
+        GAI.sharedInstance().logger.logLevel = .None
         GAI.sharedInstance().trackerWithTrackingId("UA-46757742-8")
 
         return true

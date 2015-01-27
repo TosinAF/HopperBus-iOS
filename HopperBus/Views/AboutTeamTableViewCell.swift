@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutTableViewCell: UITableViewCell {
+class AboutTeamTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
@@ -29,7 +29,8 @@ class AboutTableViewCell: UITableViewCell {
 
     lazy var roleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir-MediumOblique", size: 14)
+        let fontSize: CGFloat = iPhone6Or6Plus ? 14.0 : 12.0
+        label.font = UIFont(name: "Avenir-MediumOblique", size: fontSize)
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
     }()

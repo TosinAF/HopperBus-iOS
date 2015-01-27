@@ -2,48 +2,19 @@
 //  AboutViewController.swift
 //  HopperBus
 //
-//  Created by Tosin Afolabi on 26/01/2015.
+//  Created by Tosin Afolabi on 27/01/2015.
 //  Copyright (c) 2015 Tosin Afolabi. All rights reserved.
 //
 
 import UIKit
 
-enum DISE: Int {
-    case Tosin = 0, Ipalibo, Steve, Dipo, Eman
+enum AboutSection {
+    case Team, DISE, Apps
+}
 
-    static let count = 5
-
-    var name: String {
-        let names = [
-            "Tosin Afolabi",
-            "Ipalibo Whyte",
-            "Stephen Sowole",
-            "Dipo Areoye",
-            "Emmanuel Matthews"
-        ]
-        return names[rawValue]
-    }
-
-    var role: String {
-        let roles = [
-            "iOS & Web Developer, UX Designer",
-            "iOS & Web Developer, Designer",
-            "iOS & Game Developer",
-            "Android Developer & Content Guru",
-            "Android Developer & Marketing Guy"
-        ]
-        return roles[rawValue]
-    }
-
-    var imageName: String {
-        let imageNames = [
-            "tosinAfolabi.jpeg",
-            "ipaliboWhyte.jpeg",
-            "stephenSowole.jpg",
-            "dipoAreoye.jpg",
-            "emanMatthews.jpg"
-        ]
-        return imageNames[rawValue]
+class BaseAboutViewController: UIViewController {
+    var type: AboutSection {
+        return .Team
     }
 }
 
@@ -54,7 +25,8 @@ class AboutViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "About The Developers - DISE"
-        label.font = UIFont(name: "Montserrat", size: 18)
+        let fontSize: CGFloat = iPhone6Or6Plus ? 18.0 : 16.0
+        label.font = UIFont(name: "Montserrat", size: fontSize)
         label.textColor = UIColor.HopperBusBrandColor()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         return label
@@ -70,21 +42,13 @@ class AboutViewController: UIViewController {
         return button
     }()
 
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .None
-        tableView.registerClass(AboutTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return tableView
-    }()
-
-    lazy var diseLogo: UIImageView = {
-        let image = UIImage(named: "DISELogo")!
-        let imageView = UIImageView(image: image)
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return imageView
+    lazy var pageViewController: UIPageViewController = {
+        let pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        pageViewController.delegate = self
+        pageViewController.dataSource = self
+        let vc: UIViewController = AboutTeamViewController()
+        pageViewController.setViewControllers([vc], direction:  UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        return pageViewController
     }()
 
     override func viewDidLoad() {
@@ -93,8 +57,11 @@ class AboutViewController: UIViewController {
 
         view.addSubview(titleLabel)
         view.addSubview(dismissButton)
-        view.addSubview(tableView)
-        view.addSubview(diseLogo)
+
+        pageViewController.didMoveToParentViewController(self)
+        addChildViewController(pageViewController)
+        pageViewController.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.addSubview(pageViewController.view)
 
         layoutViews()
     }
@@ -104,16 +71,13 @@ class AboutViewController: UIViewController {
         let views = [
             "titleLabel": titleLabel,
             "dismissButton": dismissButton,
-            "tableView": tableView,
-            "diseLogo": diseLogo
+            "containerView": pageViewController.view
         ]
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-15-[titleLabel]-20-[dismissButton(30)]-10-|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[dismissButton(30)]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[diseLogo(100)]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[titleLabel]-20-[tableView]-[diseLogo(33)]-40-|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
-        view.addConstraint(NSLayoutConstraint(item: diseLogo, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[titleLabel]-20-[containerView]-20-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[containerView]|", options: nil, metrics: nil, views: views))
     }
 
     // MARK: - Actions
@@ -123,25 +87,36 @@ class AboutViewController: UIViewController {
     }
 }
 
-// MARK: - TableViewDataSource & Delegate Methods
+// MARK: - UIPageViewController DataSource & Delegate
 
-extension AboutViewController: UITableViewDelegate, UITableViewDataSource {
+extension AboutViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DISE.count
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+
+        let vc = viewController as BaseAboutViewController
+
+        switch vc.type {
+        case .Team:
+            return nil
+        case .DISE:
+            return AboutTeamViewController()
+        case .Apps:
+            return AboutDiseViewController()
+        }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as AboutTableViewCell
-        let dev = DISE(rawValue: indexPath.row)!
-        cell.name = dev.name
-        cell.role = dev.role
-        cell.imageName = dev.imageName
-        return cell
-    }
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = viewController as BaseAboutViewController
 
+        switch vc.type {
+        case .Team:
+            return AboutDiseViewController()
+        case .DISE:
+            return AboutAppsViewController()
+        case .Apps:
+            return nil
+        }
     }
 }
 

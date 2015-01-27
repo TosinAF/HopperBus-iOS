@@ -1,0 +1,56 @@
+//
+//  AboutDiseViewController.swift
+//  HopperBus
+//
+//  Created by Tosin Afolabi on 27/01/2015.
+//  Copyright (c) 2015 Tosin Afolabi. All rights reserved.
+//
+
+import UIKit
+
+class AboutDiseViewController: BaseAboutViewController {
+
+    override var type: AboutSection {
+        return .DISE
+    }
+
+    lazy var diseLogo: UIImageView = {
+        let image = UIImage(named: "DISELogo")!
+        let imageView = UIImageView(image: image)
+        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return imageView
+    }()
+
+    lazy var statementTextView: UITextView = {
+        let textView = UITextView()
+        textView.text = "DISE is the umbrella name for all the apps we've built as a collective group. We love creating stuff that makes a positive difference in people's lives. This Hopper Bus app is the legacy we want to leave at the University of Nottingham as we prepare to graduate in June. We hope you like it. Built for Students by Students =]"
+        textView.textAlignment = .Justified
+        textView.font = UIFont(name: "Avenir-Medium", size: 16.0)
+        textView.textColor = UIColor.HopperBusBrandColor()
+        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return textView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(diseLogo)
+        view.addSubview(statementTextView)
+
+        layoutViews()
+    }
+
+    func layoutViews() {
+
+        let views = [
+            "logo": diseLogo,
+            "statement": statementTextView
+        ]
+
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[logo]-30-[statement(180)]", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[statement]-20-|", options: nil, metrics: nil, views: views))
+        view.addConstraint(NSLayoutConstraint(item: diseLogo, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        view.addConstraint(NSLayoutConstraint(item: statementTextView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        view.addConstraint(NSLayoutConstraint(item: statementTextView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+    }
+}
