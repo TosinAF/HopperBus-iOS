@@ -80,7 +80,6 @@ class InfoDetailViewController: UIViewController {
         ]
 
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-15-[titleLabel]-20-[dismissButton(30)]-10-|", options: nil, metrics: nil, views: views))
-        //view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton(30)]-10-|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[dismissButton(30)]", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[titleLabel]-20-[textView]|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-10-[textView]-10-|", options: nil, metrics: nil, views: views))
@@ -95,12 +94,6 @@ class InfoDetailViewController: UIViewController {
     // MARK: - Utility Methods
 
     func createTextView() -> UITextView {
-
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacing = 4
-        paragraphStyle.paragraphSpacingBefore = 3
-        paragraphStyle.firstLineHeadIndent = 0.0
-        paragraphStyle.headIndent = 0.0
 
         let attrs = [
             NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 14)!

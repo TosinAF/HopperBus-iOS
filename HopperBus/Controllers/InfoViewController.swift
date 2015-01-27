@@ -9,30 +9,33 @@
 import UIKit
 
 enum InfoSection: Int {
-    case About = 0, WiFi, RealTime, BikesOnBuses, Accessibility, CCTV, AboutTheDevelopers
+    case About = 0, AboutTheDevelopers, WiFi, RealTime, BikesOnBuses, Accessibility, CCTV
 
     static let count = 7
 
     var title: String {
         let titles = [
-            "About",
+            "About Hopper Bus",
+            "About The Developers",
             "WiFi",
             "Real Time",
             "Bikes on Buses",
             "Accessibility",
-            "CCTV",
-            "About The Developers"]
+            "CCTV"
+        ]
         return titles[rawValue]
     }
 
     var filename: String {
         let filenames = [
             "aboutUs",
+            "aboutTheDeveloper",
             "wifi",
             "realTime",
             "bikesOnBuses",
             "accessibility",
-            "cctv"]
+            "cctv"
+        ]
         return filenames[rawValue]
     }
 }
@@ -54,7 +57,7 @@ class InfoViewController: GAITrackedViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
-        tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 64.0, 0.0);
+        tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 64.0, 0.0)
         tableView.registerClass(InfoTableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
@@ -99,7 +102,7 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let sectionType = InfoSection(rawValue: indexPath.row)!
-        let vc = InfoDetailViewController(type: sectionType)
+        let vc = sectionType == .AboutTheDevelopers ? AboutViewController() : InfoDetailViewController(type: sectionType)
         vc.modalPresentationStyle = .Custom
         vc.transitioningDelegate = self
         presentViewController(vc, animated: true, completion:nil)

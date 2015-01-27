@@ -40,6 +40,13 @@
 		4E765EBE1A76C37900D68262 /* bikesOnBuses.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EBD1A76C37900D68262 /* bikesOnBuses.txt */; };
 		4E765EC01A76C3E300D68262 /* accessibility.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EBF1A76C3E300D68262 /* accessibility.txt */; };
 		4E765EC21A76CE7300D68262 /* cctv.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EC11A76CE7300D68262 /* cctv.txt */; };
+		4E765EC41A76FF4700D68262 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E765EC31A76FF4700D68262 /* AboutViewController.swift */; };
+		4E765EC61A77C2B500D68262 /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E765EC51A77C2B500D68262 /* AboutTableViewCell.swift */; };
+		4E765EC91A77C5B300D68262 /* tosinAfolabi.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4E765EC81A77C5B300D68262 /* tosinAfolabi.jpeg */; };
+		4E765ECF1A77CD4300D68262 /* emanMatthews.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E765ECB1A77CD4300D68262 /* emanMatthews.jpg */; };
+		4E765ED01A77CD4300D68262 /* ipaliboWhyte.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4E765ECC1A77CD4300D68262 /* ipaliboWhyte.jpeg */; };
+		4E765ED11A77CD4300D68262 /* stephenSowole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E765ECD1A77CD4300D68262 /* stephenSowole.jpg */; };
+		4E765ED31A77DD4B00D68262 /* dipoAreoye.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E765ED21A77DD4B00D68262 /* dipoAreoye.jpg */; };
 		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
 		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
 		4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */; };
@@ -112,6 +119,13 @@
 		4E765EBD1A76C37900D68262 /* bikesOnBuses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bikesOnBuses.txt; path = "HopperBus/Resources/untitled folder/bikesOnBuses.txt"; sourceTree = "<group>"; };
 		4E765EBF1A76C3E300D68262 /* accessibility.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = accessibility.txt; path = "HopperBus/Resources/untitled folder/accessibility.txt"; sourceTree = "<group>"; };
 		4E765EC11A76CE7300D68262 /* cctv.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cctv.txt; path = "HopperBus/Resources/untitled folder/cctv.txt"; sourceTree = "<group>"; };
+		4E765EC31A76FF4700D68262 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = Controllers/AboutViewController.swift; sourceTree = "<group>"; };
+		4E765EC51A77C2B500D68262 /* AboutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutTableViewCell.swift; path = Views/AboutTableViewCell.swift; sourceTree = "<group>"; };
+		4E765EC81A77C5B300D68262 /* tosinAfolabi.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tosinAfolabi.jpeg; sourceTree = "<group>"; };
+		4E765ECB1A77CD4300D68262 /* emanMatthews.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = emanMatthews.jpg; sourceTree = "<group>"; };
+		4E765ECC1A77CD4300D68262 /* ipaliboWhyte.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipaliboWhyte.jpeg; sourceTree = "<group>"; };
+		4E765ECD1A77CD4300D68262 /* stephenSowole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stephenSowole.jpg; sourceTree = "<group>"; };
+		4E765ED21A77DD4B00D68262 /* dipoAreoye.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dipoAreoye.jpg; sourceTree = "<group>"; };
 		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = SuttonBoningtonCampus.pdf; path = HopperBus/Resources/Maps/SuttonBoningtonCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = UniversityParkCampus.pdf; path = HopperBus/Resources/Maps/UniversityParkCampus.pdf; sourceTree = "<group>"; };
@@ -196,6 +210,7 @@
 			children = (
 				4E42B29A1A75D260006CF5A2 /* InfoViewController.swift */,
 				4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */,
+				4E765EC31A76FF4700D68262 /* AboutViewController.swift */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -213,9 +228,22 @@
 			name = Info;
 			sourceTree = "<group>";
 		};
+		4E765EC71A77C59F00D68262 /* Avatars */ = {
+			isa = PBXGroup;
+			children = (
+				4E765EC81A77C5B300D68262 /* tosinAfolabi.jpeg */,
+				4E765ED21A77DD4B00D68262 /* dipoAreoye.jpg */,
+				4E765ECB1A77CD4300D68262 /* emanMatthews.jpg */,
+				4E765ECC1A77CD4300D68262 /* ipaliboWhyte.jpeg */,
+				4E765ECD1A77CD4300D68262 /* stephenSowole.jpg */,
+			);
+			name = Avatars;
+			sourceTree = "<group>";
+		};
 		4E7AA47319CB98F90048FB11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E765EC71A77C59F00D68262 /* Avatars */,
 				4E765EB41A75F99200D68262 /* Info */,
 				4EFFD78519D19E7A00127823 /* Routes */,
 				4E7AA47F19CB9EFA0048FB11 /* Fonts */,
@@ -375,6 +403,7 @@
 				4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */,
 				4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */,
 				4E42B29C1A75DF1C006CF5A2 /* InfoTableViewCell.swift */,
+				4E765EC51A77C2B500D68262 /* AboutTableViewCell.swift */,
 				4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */,
 				4EE17F3B1A0F352A00728297 /* UpcomingBusTimesView.swift */,
 				4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */,
@@ -501,19 +530,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E765EC91A77C5B300D68262 /* tosinAfolabi.jpeg in Resources */,
+				4E765ECF1A77CD4300D68262 /* emanMatthews.jpg in Resources */,
 				4E7AA48319CB9F080048FB11 /* Montserrat-Regular.ttf in Resources */,
 				4E7AA48219CB9F080048FB11 /* Montserrat-Bold.ttf in Resources */,
 				4E765EBE1A76C37900D68262 /* bikesOnBuses.txt in Resources */,
 				4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */,
 				4E765EC21A76CE7300D68262 /* cctv.txt in Resources */,
+				4E765ED01A77CD4300D68262 /* ipaliboWhyte.jpeg in Resources */,
 				4E765EBA1A76C31800D68262 /* wifi.txt in Resources */,
 				4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */,
+				4E765ED31A77DD4B00D68262 /* dipoAreoye.jpg in Resources */,
 				4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */,
 				4ECE2C3E19DD75A800E47755 /* Captain-icon.ttf in Resources */,
 				4E765EB61A75F9C900D68262 /* aboutUs.txt in Resources */,
 				4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */,
 				4E765EBC1A76C35F00D68262 /* realTime.txt in Resources */,
 				4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */,
+				4E765ED11A77CD4300D68262 /* stephenSowole.jpg in Resources */,
 				4EDD4CFE19A7C08900892A7C /* Images.xcassets in Resources */,
 				4E765EC01A76C3E300D68262 /* accessibility.txt in Resources */,
 			);
@@ -581,6 +615,7 @@
 				4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */,
 				4EDD4CF719A7C08900892A7C /* AppDelegate.swift in Sources */,
 				4E527CD71A75EB8E00F20645 /* PresentTimesTransitionManager.swift in Sources */,
+				4E765EC61A77C2B500D68262 /* AboutTableViewCell.swift in Sources */,
 				4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */,
 				4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */,
 				4E42B29B1A75D260006CF5A2 /* InfoViewController.swift in Sources */,
@@ -600,6 +635,7 @@
 				4EE17F401A1065C500728297 /* RouteTimesViewController.swift in Sources */,
 				4E29202419E6316700687C0D /* HomeViewController.swift in Sources */,
 				4E42B2801A75D194006CF5A2 /* AlamoFire.swift in Sources */,
+				4E765EC41A76FF4700D68262 /* AboutViewController.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
 				4E42B2911A75D194006CF5A2 /* ZFRippleButton.swift in Sources */,
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,
