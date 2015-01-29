@@ -55,6 +55,7 @@ class PresentInfoTransitionManager: NSObject, UIViewControllerAnimatedTransition
             fromVC!.view.alpha = 0.5
             toVC!.view.alpha = 1.0
             toVC!.view.layer.mask = maskLayer
+
             }) { (finished) -> Void in
                 transitionContext.completeTransition(true)
         }

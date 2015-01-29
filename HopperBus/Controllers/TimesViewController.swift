@@ -253,6 +253,6 @@ class TimesViewController: GAITrackedViewController {
 extension TimesViewController: NSLayoutManagerDelegate {
     
     func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
-        return 8
+        return 10
     }
 }

@@ -27,13 +27,22 @@ class AboutAppsTableViewCell: UITableViewCell {
         return label
     }()
 
-    lazy var descTextView: UITextView = {
-        let textView = UITextView()
+    lazy var descLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
         let fontSize: CGFloat = iPhone6Or6Plus ? 14.0 : 12.0
-        textView.textContainerInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
-        textView.font = UIFont(name: "Avenir-Medium", size: fontSize)
-        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        return textView
+        label.font = UIFont(name: "Avenir-MediumOblique", size: fontSize)
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return label
+    }()
+
+    lazy var learnMoreButton: UIButton = {
+        let button = UIButton.buttonWithType(.Custom) as UIButton
+        button.setTitle("Learn More", forState: .Normal)
+        button.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 14)
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return button
     }()
 
     var iconName: String = "" {
@@ -50,7 +59,7 @@ class AboutAppsTableViewCell: UITableViewCell {
 
     var desc: String = "" {
         willSet(desc) {
-            descTextView.text = desc
+            descLabel.text = desc
         }
     }
 
@@ -61,7 +70,8 @@ class AboutAppsTableViewCell: UITableViewCell {
 
         contentView.addSubview(iconImageView)
         contentView.addSubview(nameLabel)
-        contentView.addSubview(descTextView)
+        contentView.addSubview(descLabel)
+        contentView.addSubview(learnMoreButton)
 
         setNeedsUpdateConstraints()
     }
@@ -77,14 +87,26 @@ class AboutAppsTableViewCell: UITableViewCell {
         let views = [
             "icon": iconImageView,
             "name": nameLabel,
-            "desc": descTextView
+            "desc": descLabel,
+            "learnMore": learnMoreButton
         ]
+        /*
+        for (key, view) in views {
+            contentView.addConstraint(NSLayoutConstraint(item: view, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        }
 
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[icon(60)]-8-[desc]-|", options: nil, metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[icon]-10-[name]", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[icon(60)]-10-[name]-8-[desc]-8-[learnMore]", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[desc]-20-|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[icon(60)]", options: nil, metrics: nil, views: views))
+        //contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[name]-2-[desc]-20-|", options: nil, metrics: nil, views: views))
+        */
+
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[icon(60)]-13-[desc]-20-|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[icon]-13-[name]", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[icon]-13-[learnMore]", options: nil, metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[icon(60)]", options: nil, metrics: nil, views: views))
         contentView.addConstraint(NSLayoutConstraint(item: iconImageView, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[name]-2-[desc]-20-|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[name]-2-[desc]-2-[learnMore]-|", options: nil, metrics: nil, views: views))
         
         super.updateConstraints()
     }

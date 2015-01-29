@@ -9,14 +9,15 @@
 import UIKit
 
 enum APPS: Int {
-    case Bricks = 0, TheNews, SUWelcomeApp, NEFS
+    case Bricks = 0, TheNews, Mumble, SUWelcomeApp, NEFS
 
-    static let count = 4
+    static let count = 5
 
     var name: String {
         let names = [
             "Bricks",
             "TheNews",
+            "Mumble",
             "UoNSU Welcome App",
             "NEFS"
         ]
@@ -26,7 +27,8 @@ enum APPS: Int {
     var desc: String {
         let descriptions = [
             "The objective is simple. Each level you must destroy all bricks but do it in style for those ludicrous high scores! ",
-            "The News App is a hub for Designer News, Hacker News & Product Hunt.",
+            "A beautiful app that gives you easy access to all the best content on startups, hacking and design.",
+            "Mumble is a social media platform with a difference. It allows people to discover what is happening around them.",
             "An app designed to maximise the experience delivered to you during your first week!",
             "This is an app guaranteed to improve the experience that the NEFS provides its members."
         ]
@@ -37,10 +39,22 @@ enum APPS: Int {
         let iconNames = [
             "BricksIcon",
             "TheNewsIcon",
+            "MumbleIcon",
             "UoNSUWelcomeAppIcon",
             "NEFSIcon"
         ]
         return iconNames[rawValue]
+    }
+
+    var identifier: String {
+        let identifiers = [
+            "839576486",
+            "884790249",
+            "939454323",
+            "915167615",
+            "914515284"
+        ]
+        return identifiers[rawValue]
     }
 }
 
@@ -67,9 +81,12 @@ class AboutAppsViewController: BaseAboutViewController {
         return imageView
     }()
 
+    override func viewDidAppear(animated: Bool) {
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
 
         view.addSubview(tableView)
         view.addSubview(diseLogo)
@@ -100,7 +117,7 @@ extension AboutAppsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 120
+        return 150
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -113,6 +130,39 @@ extension AboutAppsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        let app = APPS(rawValue: indexPath.row)!
+        let identifier = app.identifier
+
+        let parameters = [
+           SKStoreProductParameterITunesItemIdentifier : identifier
+        ]
+
+        let storeProductVC = SKStoreProductViewController()
+        storeProductVC.delegate = self
+        storeProductVC.loadProductWithParameters(parameters, completionBlock: { (result, error) -> Void in
+
+            if (error != nil) { return }
+
+            UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
+            UINavigationBar.appearance().tintColor = UIColor.blackColor()
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(), NSFontAttributeName: UIFont(name: "Montserrat", size: 18.0)!]
+
+            self.presentViewController(storeProductVC, animated: true, completion: { () -> Void in
+
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                UINavigationBar.appearance().barTintColor = UIColor.HopperBusBrandColor()
+                UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+                UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Montserrat", size: 18.0)!]
+
+            })
+        })
     }
+}
+
+extension AboutAppsViewController: SKStoreProductViewControllerDelegate {
+
+    func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
 }

@@ -14,7 +14,10 @@ class RealTimeViewController: GAITrackedViewController {
 
     // MARK: - Properties
 
-    let viewModel: RealTimeViewModel!
+    let viewModel: RealTimeViewModel
+    let reachability = Reachability.reachabilityForInternetConnection()
+
+    var networkConnectionExists = true
     var didCenterOnuserLocation = false
     var currentStopAnnotation: MBXPointAnnotation?
     var timer: NSTimer?
@@ -103,6 +106,16 @@ class RealTimeViewController: GAITrackedViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.viewModel.delegate = self
+
+        reachability.whenReachable = { reachability in
+            self.networkConnectionExists = true
+        }
+
+        reachability.whenUnreachable = { reachability in
+            self.networkConnectionExists = false
+        }
+
+        reachability.startNotifier()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -303,9 +316,12 @@ extension RealTimeViewController: RealTimeViewModelDelegate {
     func viewModel(viewModel: RealTimeViewModel, didGetRealTimeServices realTimeServices: [RealTimeService], withSuccess: Bool) {
         activityIndicator.stopAnimating()
 
+        var errorText = "No upcoming departures at this stop."
+        if !networkConnectionExists { errorText = "No Internet Connection Available." }
+
         if realTimeServices.count == 0 {
             let label = UILabel()
-            label.text = "No upcoming departures at this stop."
+            label.text = errorText
             label.numberOfLines = 2
             label.font = UIFont(name: "Avenir-Book", size: 22.0)
             label.textAlignment = .Center
