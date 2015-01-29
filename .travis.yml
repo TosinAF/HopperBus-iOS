@@ -1,3 +1,4 @@
 language: objective-c
 xcode_workspace: HopperBus.xcworkspace # path to your xcodeproj folder
 xcode_scheme: HopperBus
+xcode_sdk: iphonesimulator
