@@ -1,0 +1,5 @@
+#include "Pods-MBXMapKit.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/MBXMapKit" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Public/JCTiledScrollView" "${PODS_ROOT}/Headers/Public/MBXMapKit" "${PODS_ROOT}/Headers/Public/pop"
+OTHER_LDFLAGS = ${PODS_MBXMAPKIT_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}
