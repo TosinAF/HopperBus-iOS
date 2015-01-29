@@ -1,3 +1,3 @@
 language: swift
-xcode_project: HopperBus.xcodeproj # path to your xcodeproj folder
+xcode_workspace: HopperBus.xcworkspace # path to your xcodeproj folder
 xcode_scheme: HopperBus.xcscheme
