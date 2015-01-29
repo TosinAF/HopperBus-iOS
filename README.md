@@ -1,5 +1,6 @@
 HopperBus-iOS
 =============
+[![Build Status](https://travis-ci.org/TosinAF/HopperBus-iOS.svg?branch=master)](https://travis-ci.org/TosinAF/HopperBus-iOS)
 
 iOS Timetable App for the University of Nottingham Hopper Bus
 
