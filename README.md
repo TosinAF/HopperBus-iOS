@@ -10,4 +10,4 @@ iOS Timetable App for the University of Nottingham Hopper Bus.
 <img src="https://raw.githubusercontent.com/TosinAF/HopperBus-iOS/master/Screenshots/MapView.png" height="20%" width="20%" />
 
 Feel free to fork this & create a bus app for your uni. <br>
-You can reach me on [@tosinaf](http://twitter.com/tosinaf) or [Facebook](http://facebook.com/tosinafolabii)
+You can reach me on [@tosinaf](http://twitter.com/tosinaf) or [Facebook](http://facebook.com/tosiinaf)
