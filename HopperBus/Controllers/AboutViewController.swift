@@ -13,7 +13,7 @@ enum AboutSection: Int {
     static let count = 3
 }
 
-class BaseAboutViewController: UIViewController {
+class BaseAboutViewController: GAITrackedViewController {
     var type: AboutSection {
         return .Team
     }
