@@ -74,6 +74,7 @@ class AboutTeamViewController: BaseAboutViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenName = "AboutTeam"
         view.backgroundColor = UIColor.whiteColor()
 
         view.addSubview(tableView)

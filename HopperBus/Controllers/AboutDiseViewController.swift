@@ -35,7 +35,7 @@ class AboutDiseViewController: BaseAboutViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        screenName = "AboutDise"
         view.addSubview(diseLogo)
         view.addSubview(statementTextView)
 

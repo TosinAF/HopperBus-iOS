@@ -87,7 +87,7 @@ class AboutAppsViewController: BaseAboutViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        screenName = "AboutApps"
         view.addSubview(tableView)
         view.addSubview(diseLogo)
 

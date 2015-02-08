@@ -19,7 +19,7 @@ class BaseAboutViewController: GAITrackedViewController {
     }
 }
 
-class AboutViewController: UIViewController {
+class AboutViewController: GAITrackedViewController {
 
     // MARK: - Properties
 
@@ -67,6 +67,7 @@ class AboutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenName = "About"
         view.backgroundColor = UIColor.whiteColor()
 
         view.addSubview(titleLabel)
