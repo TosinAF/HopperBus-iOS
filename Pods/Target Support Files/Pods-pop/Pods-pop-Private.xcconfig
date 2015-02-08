@@ -2,6 +2,6 @@
 CLANG_CXX_LANGUAGE_STANDARD = ${PODS_POP_CLANG_CXX_LANGUAGE_STANDARD}
 CLANG_CXX_LIBRARY = ${PODS_POP_CLANG_CXX_LIBRARY}
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/pop" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Public/JCTiledScrollView" "${PODS_ROOT}/Headers/Public/MBXMapKit" "${PODS_ROOT}/Headers/Public/pop"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/pop" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Public/JCTiledScrollView" "${PODS_ROOT}/Headers/Public/MBXMapKit" "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK" "${PODS_ROOT}/Headers/Public/pop"
 OTHER_LDFLAGS = ${PODS_POP_OTHER_LDFLAGS} -ObjC
 PODS_ROOT = ${SRCROOT}

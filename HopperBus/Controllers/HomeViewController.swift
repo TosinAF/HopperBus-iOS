@@ -152,7 +152,7 @@ extension HomeViewController: TabBarDelegate {
         if index == HopperBusRoutes.HBRealTime.rawValue {
             self.title = "LIVE BUS DEPARTURES"
         } else {
-            self.title = "HOOPER BUS"
+            self.title = "HOPPER BUS"
         }
 
         let fromVC = inInfoSection ? infoViewController : viewControllers[currentRouteType.rawValue]

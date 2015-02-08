@@ -5,12 +5,14 @@ PODS:
   - JCTiledScrollView (0.0.1)
   - MBXMapKit (0.5.0)
   - pop (1.0.6)
+  - Reveal-iOS-SDK (1.5.0)
 
 DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK
   - JCTiledScrollView (from `https://github.com/jessedc/JCTiledScrollView.git`)
   - MBXMapKit
   - pop
+  - Reveal-iOS-SDK
 
 EXTERNAL SOURCES:
   JCTiledScrollView:
@@ -26,5 +28,6 @@ SPEC CHECKSUMS:
   JCTiledScrollView: 21fd487f938eecab38631f2045d9d51574a30668
   MBXMapKit: bf5bf7e44dba1b9084505e711d738e4f1ccd9927
   pop: e518794da38942c05255eb64b36d894e70cb4f00
+  Reveal-iOS-SDK: b6d94eb78d84ebd2e3182063577975561cd6dbd9
 
-COCOAPODS: 0.36.0.beta.1
+COCOAPODS: 0.36.0.beta.2
