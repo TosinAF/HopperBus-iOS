@@ -1,33 +1,61 @@
 PODS:
+  - Alamofire (2.0.0)
+  - Bolts/Tasks (1.2.2)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - JCTiledScrollView (0.0.1)
   - MBXMapKit (0.5.0)
+  - Parse (1.8.3):
+    - Bolts/Tasks (>= 1.2.2)
   - pop (1.0.6)
+  - ReachabilitySwift (2.0-beta5)
   - Reveal-iOS-SDK (1.5.0)
+  - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 2.0)
   - GoogleAnalytics-iOS-SDK
   - JCTiledScrollView (from `https://github.com/jessedc/JCTiledScrollView.git`)
   - MBXMapKit
+  - Parse
   - pop
+  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`, branch
+    `develop`)
   - Reveal-iOS-SDK
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
 
 EXTERNAL SOURCES:
   JCTiledScrollView:
     :git: https://github.com/jessedc/JCTiledScrollView.git
+  ReachabilitySwift:
+    :branch: develop
+    :git: https://github.com/ashleymills/Reachability.swift
+  SwiftyJSON:
+    :branch: xcode7
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   JCTiledScrollView:
     :commit: 9dbf107473bfcb868ca1b9015f203b8bf4870690
     :git: https://github.com/jessedc/JCTiledScrollView.git
+  ReachabilitySwift:
+    :commit: f31b459d96d49f0733883f7008b52da86165d0d2
+    :git: https://github.com/ashleymills/Reachability.swift
+  SwiftyJSON:
+    :commit: d4df13c66146a8e9c8d96c852746a08363003d36
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
+  Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
+  Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
+  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   JCTiledScrollView: 21fd487f938eecab38631f2045d9d51574a30668
-  MBXMapKit: bf5bf7e44dba1b9084505e711d738e4f1ccd9927
-  pop: e518794da38942c05255eb64b36d894e70cb4f00
-  Reveal-iOS-SDK: b6d94eb78d84ebd2e3182063577975561cd6dbd9
+  MBXMapKit: df97f1b69454bb377b660bdc16b0965ff6c5ca96
+  Parse: 4b251ac63b76d12b334a32579cc3b174446f0c39
+  pop: 1d978024a33fcf46426b42e60fb32e685d1f1d2e
+  ReachabilitySwift: 6d3b18b025c6bca8f870782e8a98ebfe9c6cebfc
+  Reveal-iOS-SDK: d398bde91a702cf4f36e908bfcea709f96a06a17
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
-COCOAPODS: 0.36.0.beta.2
+COCOAPODS: 0.38.2

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
+import SwiftyJSON
+
 class RouteTimesViewModel: ViewModel {
 
     // MARK: - Properties
@@ -80,7 +82,7 @@ class RouteTimesViewModel: ViewModel {
 
             // Check if time is past midnight & add an extra day
             let possibleTime = times[i]
-            let rangeOfHour = Range(start: possibleTime.startIndex, end: advance(possibleTime.startIndex, 2))
+            let rangeOfHour = Range(start: possibleTime.startIndex, end: possibleTime.startIndex.advancedBy(2))
             let hourStr = possibleTime.substringWithRange(rangeOfHour)
             if hourStr == "00" {
                 let oneDay: Double = 60 * 60 * 24
@@ -94,7 +96,7 @@ class RouteTimesViewModel: ViewModel {
 
                 // Return Last 3 Results if index is after the last 3
                 var startIndex = i >= times.count - 3 ? times.count - 3 : i
-                var stopIndex = startIndex + 3
+                let stopIndex = startIndex + 3
 
                 var resultTimes = [String]()
                 for startIndex; startIndex < stopIndex; startIndex++ {

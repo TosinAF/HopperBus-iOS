@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return homeViewController
     }()
                             
-    lazy var window: UIWindow = {
+    lazy var window: UIWindow? = {
 
         let win = UIWindow(frame: UIScreen.mainScreen().bounds)
         win.backgroundColor = UIColor.whiteColor()
@@ -30,23 +31,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return win
     }()
 
-    func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         setupStyle()
         UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .Fade)
-        window.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
 
         // Register for remote notifications
-
-        if iOS8 {
-            let userNotificationTypes: UIUserNotificationType = .Alert | .Badge | .Sound
-            let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            let remoteNotificationTypes: UIRemoteNotificationType = .Alert | .Badge | .Sound
-            application.registerForRemoteNotificationTypes(remoteNotificationTypes)
-        }
+        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
 
         Parse.setApplicationId("PLKK3ArZhBTROcCinEB5J6qeMwUkTrZL9P7U9XRf", clientKey: "94CjREf1puBASWRROTeNCJuzR6nmtyiK4tfGm9qN")
 
@@ -63,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupStyle() {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         UINavigationBar.appearance().barTintColor = UIColor.HopperBusBrandColor()
-        if iOS8 { UINavigationBar.appearance().translucent = true }
+        UINavigationBar.appearance().translucent = true
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Montserrat", size: 18.0)!]
     }
@@ -72,11 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         homeViewController.routeViewModelContainer.updateScheduleIndexForRoutes()
     }
 
-    func applicationWillResignActive(application: UIApplication!) {
+    func applicationWillResignActive(application: UIApplication) {
         homeViewController.saveCurrentRoute()
     }
 
-    func applicationWillTerminate(application: UIApplication!) {
+    func applicationWillTerminate(application: UIApplication) {
         homeViewController.saveCurrentRoute()
     }
 

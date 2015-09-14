@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
+import pop
 import UIKit
 
 class DismissMapTransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
@@ -17,23 +18,20 @@ class DismissMapTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-        let containerView = transitionContext.containerView()
+        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
 
-        toVC!.view.layer.cornerRadius = 0
-
+        toVC.view.layer.cornerRadius = 0
+        
         // Create POP Animations
 
         let routeScaleXYAnim = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
-        routeScaleXYAnim.fromValue = fromVC!.view.layer.presentationLayer().valueForKeyPath(kPOPLayerScaleXY)
         routeScaleXYAnim.toValue = NSValue(CGSize: CGSizeMake(1, 1))
 
         let routeTranslateYAnim = POPBasicAnimation(propertyNamed: kPOPLayerTranslationY)
-        routeTranslateYAnim.fromValue = toVC!.view.layer.presentationLayer().valueForKeyPath(kPOPLayerTranslationY)
         routeTranslateYAnim.toValue = 0
 
-        var mapFrame = fromVC!.view.frame
+        var mapFrame = fromVC.view.frame
         mapFrame.origin.y += 60
 
         let mapFrameAnim = POPSpringAnimation(propertyNamed: kPOPViewFrame)
@@ -44,29 +42,29 @@ class DismissMapTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
         // Begin Animations
 
         UIView.animateWithDuration(0.2, animations: { () -> Void in
-            fromVC!.view.alpha = 0.0
+            fromVC.view.alpha = 0.0
         })
 
         UIView.animateWithDuration(animationDuration, animations: { () -> Void in
 
-            toVC!.view.alpha = 1.0
+            toVC.view.alpha = 1.0
 
             }) { (finished) -> Void in
 
-                toVC!.view.userInteractionEnabled = true
+                toVC.view.userInteractionEnabled = true
                 transitionContext.completeTransition(true)
 
                 // iOS 8 Bug ->
                 // http://joystate.wordpress.com/2014/09/02/ios8-and-custom-uiviewcontrollers-transitions/
-                UIApplication.sharedApplication().keyWindow!.addSubview(toVC!.view)
+                UIApplication.sharedApplication().keyWindow!.addSubview(toVC.view)
         }
 
-        toVC!.view.layer.pop_addAnimation(routeTranslateYAnim, forKey: "transform.translation.y")
-        toVC!.view.layer.pop_addAnimation(routeScaleXYAnim, forKey: "transform.scale")
-        fromVC!.view.pop_addAnimation(mapFrameAnim, forKey: "frame");
+        toVC.view.layer.pop_addAnimation(routeTranslateYAnim, forKey: "transform.translation.y")
+        toVC.view.layer.pop_addAnimation(routeScaleXYAnim, forKey: "transform.scale")
+        fromVC.view.pop_addAnimation(mapFrameAnim, forKey: "frame");
     }
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return animationDuration
     }
 }

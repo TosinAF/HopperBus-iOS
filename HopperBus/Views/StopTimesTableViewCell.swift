@@ -14,13 +14,13 @@ class StopTimesTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "Avenir", size: 14)
         label.textAlignment = .Center
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     lazy var containerView: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -29,7 +29,7 @@ class StopTimesTableViewCell: UITableViewCell {
             if newTimes.count == 1 {
                 timeLabels[1].text = newTimes[0]
             } else {
-                for (index,time) in enumerate(newTimes) {
+                for (index,time) in newTimes.enumerate() {
                     timeLabels[index].text = time
                 }
             }
@@ -54,7 +54,7 @@ class StopTimesTableViewCell: UITableViewCell {
             let label = UILabel()
             label.font = UIFont(name: "Avenir-Light", size: 14)
             label.textColor = UIColor(red: 0.631, green: 0.651, blue: 0.678, alpha: 1)
-            label.setTranslatesAutoresizingMaskIntoConstraints(false)
+            label.translatesAutoresizingMaskIntoConstraints = false
             label.tag = i + 1
             timeLabels.append(label)
             containerView.addSubview(label)
@@ -82,9 +82,9 @@ class StopTimesTableViewCell: UITableViewCell {
             views["label\(label.tag)"] = label
         }
 
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[titleLabel]|", options: nil, metrics: nil, views: views))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[titleLabel]|", options: [], metrics: nil, views: views))
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-70-[label1]-30-[label2(==label1)]-30-[label3(==label1)]-70-|", options: .AlignAllCenterY, metrics: nil, views: views))
-        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[titleLabel]-20-[label1]-10-|", options: nil, metrics: nil, views: views))
+        containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[titleLabel]-20-[label1]-10-|", options: [], metrics: nil, views: views))
 
         contentView.addConstraint(NSLayoutConstraint(item: containerView, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         contentView.addConstraint(NSLayoutConstraint(item: containerView, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))

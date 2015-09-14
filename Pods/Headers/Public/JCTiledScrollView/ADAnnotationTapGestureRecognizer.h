@@ -1,1 +1,0 @@
-../../../JCTiledScrollView/Headers/ADAnnotationTapGestureRecognizer.h

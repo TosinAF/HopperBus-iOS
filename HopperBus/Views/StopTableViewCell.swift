@@ -12,7 +12,7 @@ import QuartzCore
 class StopTableViewCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Avenir", size: 14)
         label.numberOfLines = 2
         return label
@@ -20,7 +20,7 @@ class StopTableViewCell: UITableViewCell {
 
     lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Avenir-Light", size: 14)
         label.textColor = UIColor(red: 0.631, green: 0.651, blue: 0.678, alpha: 1)
         label.textAlignment = .Right
@@ -29,14 +29,14 @@ class StopTableViewCell: UITableViewCell {
 
     lazy var lineView: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1)
         return view
     }()
 
     lazy var circleView: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.whiteColor()
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 7
@@ -51,9 +51,9 @@ class StopTableViewCell: UITableViewCell {
         }
     }
 
-    var isSelected: Bool = false {
-        willSet(selected) {
-            if selected {
+    var isCurrent: Bool = false {
+        willSet(current) {
+            if current {
                 circleView.backgroundColor = UIColor.selectedGreen()
                 circleView.layer.borderColor = UIColor.selectedGreen().CGColor
                 timeLabel.textColor = UIColor.selectedGreen()
@@ -81,7 +81,7 @@ class StopTableViewCell: UITableViewCell {
         return NSLayoutConstraint(item: self.contentView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 55)
     }()
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -108,10 +108,10 @@ class StopTableViewCell: UITableViewCell {
             "lineMargin": 14
         ]
 
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[timeLabel(80)]-(lineMargin)-[lineView(2)]-(lineMargin)-[titleLabel]-|", options: nil, metrics: metrics, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(margin)-[titleLabel]-(margin)-|", options: nil, metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(leftMargin)-[timeLabel(80)]-(lineMargin)-[lineView(2)]-(lineMargin)-[titleLabel]-|", options: [], metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(margin)-[titleLabel]-(margin)-|", options: [], metrics: metrics, views: views))
 
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[lineView]", options: nil, metrics: metrics, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[lineView]", options: [], metrics: metrics, views: views))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .CenterX, relatedBy: .Equal, toItem: lineView, attribute: .CenterX, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .CenterY, relatedBy: .Equal, toItem: titleLabel, attribute: .CenterY, multiplier: 1, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: circleView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 14))

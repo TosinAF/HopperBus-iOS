@@ -85,7 +85,7 @@ class OnboardingContentViewController: UIViewController {
         let fontSize: CGFloat = iPhone6Or6Plus ? 28 : 24
         label.font = UIFont(name: "Montserrat-Regular", size: fontSize)
         label.textColor = UIColor(red:0.392, green:0.871, blue:0.733, alpha: 1)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -97,14 +97,14 @@ class OnboardingContentViewController: UIViewController {
         label.textColor = UIColor.whiteColor()
 
         label.numberOfLines = 2
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .Center
         return label
     }()
 
     lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: self.type.image)
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 

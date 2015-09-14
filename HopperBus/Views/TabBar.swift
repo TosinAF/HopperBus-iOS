@@ -15,8 +15,18 @@ import UIKit
 class TabBar: UIView {
 
     // MARK: - Properties
-
-    var selectedIndex = 0
+    
+    var selectedIndex = 0 {
+        
+        willSet(newIndex) {
+            tabBarItems[newIndex].selected = true
+        }
+        
+        didSet(oldIndex) {
+            tabBarItems[oldIndex].selected = false
+        }
+    }
+    
     var tabBarItems: [TabBarItem] = []
     var numberOfTabBarItems: Int {
         return tabBarItems.count
@@ -32,14 +42,10 @@ class TabBar: UIView {
         return vflString
     }
 
-    let imageTitle: String?
+    var imageTitle: String?
     let imageTabBarIndex = 2
 
     // MARK: - Initializers
-
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
 
     init(options: [String: AnyObject]) {
         super.init(frame: CGRectZero)
@@ -47,8 +53,8 @@ class TabBar: UIView {
 
         var views = [String: TabBarItem]()
 
-        let buttonTitles: [String] = options["titles"]! as [String]
-        let count = options["tabBarItemCount"]! as Int
+        let buttonTitles: [String] = options["titles"]! as! [String]
+        let count = options["tabBarItemCount"]! as! Int
 
         let tabWidth = Int(UIScreen.mainScreen().bounds.size.width) / count
 
@@ -68,36 +74,28 @@ class TabBar: UIView {
 
             tabItem.tag = i
             tabItem.width = CGFloat(tabWidth)
-            tabItem.setTranslatesAutoresizingMaskIntoConstraints(false)
+            tabItem.translatesAutoresizingMaskIntoConstraints = false
             tabItem.addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
             views["tabBarItem\(i+1)"] = tabItem
             tabBarItems.append(tabItem)
             addSubview(tabItem)
         }
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[tabBarItem1]|", options: nil, metrics: nil, views:views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[tabBarItem1]|", options: [], metrics: nil, views:views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(visualFormatForHorizontalConstrints, options: .AlignAllCenterY, metrics: nil, views:views))
 
         tabBarItems[selectedIndex].selected = true
     }
 
-    // MARK: - Actions
-
-    func onTap(sender: AnyObject) {
-        var clickedTabBarItem = sender as TabBarItem
-        setSelectedIndex(clickedTabBarItem.tag)
-        self.delegate?.tabBar(self, didSelectItem: clickedTabBarItem, atIndex: clickedTabBarItem.tag)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - State Methods
+    // MARK: - Actions
 
-    func setSelectedIndex(index:Int) {
-        let previousTabBarItem = tabBarItems[selectedIndex]
-        let newTabBarItem = tabBarItems[index]
-
-        selectedIndex = index
-        previousTabBarItem.selected = false
-        newTabBarItem.selected = true
+    func onTap(tabBarItem: TabBarItem) {
+        selectedIndex = tabBarItem.tag
+        self.delegate?.tabBar(self, didSelectItem: tabBarItem, atIndex: tabBarItem.tag)
     }
 
     // MARK: - Autolayout Overrides

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
+import pop
 import UIKit
 
 // MARK: - Onboarding View Controller
@@ -32,7 +33,7 @@ class OnboardingViewController: UIViewController {
         pageControl.numberOfPages = OnboardingContentType.allTypes.count
         pageControl.pageIndicatorTintColor = UIColor(red:0.157, green:0.392, blue:0.494, alpha: 1)
         pageControl.currentPageIndicatorTintColor = UIColor(red:0.392, green:0.871, blue:0.733, alpha: 1)
-        pageControl.setTranslatesAutoresizingMaskIntoConstraints(false)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
 
@@ -41,14 +42,14 @@ class OnboardingViewController: UIViewController {
         button.setTitle("GO!", forState: .Normal)
         button.setTitleColor(UIColor(red:0.157, green:0.392, blue:0.494, alpha: 1), forState: .Normal)
         button.titleLabel!.font = UIFont(name: "Montserrat-Regular", size: 18.0)
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: "continueButtonClicked", forControlEvents: .TouchUpInside)
         return button
     }()
 
     // MARK: - Initializers
 
-    override init() {
+    init() {
 
         var contentVCS = [OnboardingContentType: OnboardingContentViewController]()
 
@@ -110,7 +111,7 @@ class OnboardingViewController: UIViewController {
 
         let bottomView = UIView()
         bottomView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
-        bottomView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(bottomView)
         view.addSubview(pageControl)
@@ -123,13 +124,13 @@ class OnboardingViewController: UIViewController {
 
         ]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[bottomView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[bottomView(50)]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[bottomView]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[bottomView(50)]|", options: [], metrics: nil, views: views))
 
         view.addConstraint(NSLayoutConstraint(item: pageControl, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: pageControl, attribute: .CenterY, relatedBy: .Equal, toItem: bottomView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[button]-8-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[button]-8-|", options: [], metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: continueButton, attribute: .CenterY, relatedBy: .Equal, toItem: bottomView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
     }
 }
@@ -140,7 +141,7 @@ class OnboardingViewController: UIViewController {
 extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        let vc = viewController as OnboardingContentViewController
+        let vc = viewController as! OnboardingContentViewController
 
         switch vc.type {
 
@@ -157,7 +158,7 @@ extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewCont
     }
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        let vc = viewController as OnboardingContentViewController
+        let vc = viewController as! OnboardingContentViewController
 
         switch vc.type {
 
@@ -173,12 +174,12 @@ extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewCont
         }
     }
 
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed { pageControl.currentPage = currentIndex }
     }
 
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
-        let previousVC = pendingViewControllers.first as OnboardingContentViewController
+    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+        let previousVC = pendingViewControllers.first as! OnboardingContentViewController
 
         switch previousVC.type {
 
@@ -211,7 +212,7 @@ extension OnboardingViewController: UIScrollViewDelegate {
 
         var alphaAnim: POPBasicAnimation? = pageViewController.view.pop_animationForKey("alpha") as? POPBasicAnimation
 
-        if let a = alphaAnim {
+        if let _ = alphaAnim {
             alphaAnim!.toValue = alphaVal
         } else {
             alphaAnim = POPBasicAnimation(propertyNamed: kPOPViewAlpha)

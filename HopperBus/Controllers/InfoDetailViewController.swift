@@ -17,8 +17,12 @@ class InfoDetailViewController: UIViewController {
 
     lazy var infoText: String = {
         let path = NSBundle.mainBundle().pathForResource(self.type.filename, ofType: "txt")!
-        let s = String(contentsOfFile:path, encoding: NSUTF8StringEncoding, error: nil)!
-        return s.replace("*", withString: "\u{2022}")
+        do {
+            let s = try NSString(contentsOfFile:path, encoding: NSUTF8StringEncoding) as String
+            return s.replace("*", withString: "\u{2022}")
+        } catch {
+            fatalError("Info File Could Not Be Read.")
+        }
     }()
 
     lazy var titleLabel: UILabel = {
@@ -26,7 +30,7 @@ class InfoDetailViewController: UIViewController {
         label.text = "HOPPER BUS - \(self.type.title)"
         label.font = UIFont(name: "Montserrat", size: 18)
         label.textColor = UIColor.HopperBusBrandColor()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -35,7 +39,7 @@ class InfoDetailViewController: UIViewController {
         button.setTitle("\u{274C}", forState: .Normal)
         button.setTitleColor(UIColor.HopperBusBrandColor(), forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Entypo", size: 50.0)
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: "onDismissButtonTap", forControlEvents: .TouchUpInside)
         return button
     }()
@@ -79,10 +83,10 @@ class InfoDetailViewController: UIViewController {
             "textView": textView
         ]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-15-[titleLabel]-20-[dismissButton(30)]-10-|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[dismissButton(30)]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[titleLabel]-20-[textView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-10-[textView]-10-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-15-[titleLabel]-20-[dismissButton(30)]-10-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[dismissButton(30)]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[titleLabel]-20-[textView]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-10-[textView]-10-|", options: [], metrics: nil, views: views))
     }
 
     // MARK: - Actions
@@ -115,7 +119,7 @@ class InfoDetailViewController: UIViewController {
         textView = UITextView(frame: CGRectZero, textContainer: container)
         textView.textAlignment = .Justified
         textView.textContainerInset = UIEdgeInsetsMake(0, 0, 30, 0)
-        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textView.translatesAutoresizingMaskIntoConstraints = false
 
         textView.layoutManager.delegate = self
 

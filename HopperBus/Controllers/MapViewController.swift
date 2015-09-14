@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import pop
+import JCTiledScrollView
 
 // MARK: - University Campus Maps Enum
 
@@ -44,7 +46,7 @@ enum UniversityCampusMaps: Int {
 
 // MARK: - Map View Controller
 
-class MapViewController: GAITrackedViewController, POPAnimationDelegate {
+class MapViewController: GAITrackedViewController {
 
     // MARK: - Properies
 
@@ -59,14 +61,14 @@ class MapViewController: GAITrackedViewController, POPAnimationDelegate {
         button.setTitle("\u{274C}", forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Entypo", size: 60.0)
         button.alpha = 0.0
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: "onDismissButtonTap", forControlEvents: .TouchUpInside)
         return button
     }()
 
     lazy var optionsContainer: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -74,7 +76,7 @@ class MapViewController: GAITrackedViewController, POPAnimationDelegate {
         let view = UIView()
         view.layer.cornerRadius = 2.5
         view.backgroundColor = UIColor.whiteColor()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -111,7 +113,7 @@ class MapViewController: GAITrackedViewController, POPAnimationDelegate {
             button.titleLabel?.textAlignment = .Center
             button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 18.0)
             button.tag = i
-            button.setTranslatesAutoresizingMaskIntoConstraints(false)
+            button.translatesAutoresizingMaskIntoConstraints = false
             button.addTarget(self, action: "onOptionButtonSelected:", forControlEvents: .TouchUpInside)
             views["\(optionTitles[i])Button"] = button
             optionsContainer.addSubview(button)
@@ -119,32 +121,32 @@ class MapViewController: GAITrackedViewController, POPAnimationDelegate {
 
         optionsContainer.addSubview(currentMapIndicator)
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissButton]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton]-10-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissButton]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton]-10-|", options: [], metrics: nil, views: views))
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-7-[pdfView]-7-|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-60-[pdfView]-50-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-7-[pdfView]-7-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-60-[pdfView]-50-|", options: [], metrics: nil, views: views))
 
         optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[SBButton]-60-[UPButton]-60-[JBButton]|", options: .AlignAllCenterY, metrics: nil, views: views))
         optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[SBButton]|", options: .AlignAllCenterY, metrics: nil, views: views))
-        optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[optionsContainer(220)]", options: nil, metrics: nil, views: views))
+        optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[optionsContainer(220)]", options: [], metrics: nil, views: views))
 
         view.addConstraint(NSLayoutConstraint(item: optionsContainer, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[optionsContainer(30)]-10-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[optionsContainer(30)]-10-|", options: [], metrics: nil, views: views))
 
-        currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[currentMapIndicator(5)]", options: nil, metrics: nil, views: views))
-        currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator(5)]", options: nil, metrics: nil, views: views))
+        currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[currentMapIndicator(5)]", options: [], metrics: nil, views: views))
+        currentMapIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator(5)]", options: [], metrics: nil, views: views))
         currentMapIndicatorHConstraint = NSLayoutConstraint(item: currentMapIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: views["UPButton"], attribute: .CenterX, multiplier: 1.0, constant: self.currentMap.indicatorHConstraintConstantValue)
 
         optionsContainer.addConstraint(currentMapIndicatorHConstraint!)
-        optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator]|", options: nil, metrics: nil, views: views))
+        optionsContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[currentMapIndicator]|", options: [], metrics: nil, views: views))
     }
 
     func createPDFViewForMap(type: UniversityCampusMaps) -> JCTiledPDFScrollView {
         let pdfView = JCTiledPDFScrollView(frame: CGRectZero, URL: type.resourceURL)
         pdfView.backgroundColor = UIColor.whiteColor()
         pdfView.setContentCenter(type.contentCenter, animated: true)
-        pdfView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        pdfView.translatesAutoresizingMaskIntoConstraints = false
         pdfView.layer.cornerRadius = 8.0
         pdfView.layer.masksToBounds = true;
         return pdfView
@@ -156,8 +158,7 @@ class MapViewController: GAITrackedViewController, POPAnimationDelegate {
         dismissViewControllerAnimated(true, completion: nil);
     }
 
-    func onOptionButtonSelected(sender: AnyObject) {
-        let button = sender as UIButton
+    func onOptionButtonSelected(button: UIButton) {
         let map = UniversityCampusMaps(rawValue: button.tag)
 
         let currentMapIndicatorAnim = POPSpringAnimation(propertyNamed: kPOPLayoutConstraintConstant)
@@ -175,12 +176,12 @@ class MapViewController: GAITrackedViewController, POPAnimationDelegate {
                 self.pdfView = self.createPDFViewForMap(map!)
                 self.view.addSubview(self.pdfView)
 
-                var views = [
+                let views = [
                     "pdfView": self.pdfView
                 ]
 
-                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-7-[pdfView]-7-|", options: nil, metrics: nil, views: views))
-                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-60-[pdfView]-50-|", options: nil, metrics: nil, views: views))
+                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-7-[pdfView]-7-|", options: [], metrics: nil, views: views))
+                self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-60-[pdfView]-50-|", options: [], metrics: nil, views: views))
 
                 self.currentMapIndicatorHConstraint!.pop_addAnimation(currentMapIndicatorAnim, forKey: "constantAnimation")
 

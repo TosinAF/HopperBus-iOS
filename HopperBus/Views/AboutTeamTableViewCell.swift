@@ -16,14 +16,14 @@ class AboutTeamTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 30.0
         imageView.clipsToBounds = true
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Medium", size: 16)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -31,7 +31,7 @@ class AboutTeamTableViewCell: UITableViewCell {
         let label = UILabel()
         let fontSize: CGFloat = iPhone6Or6Plus ? 14.0 : 12.0
         label.font = UIFont(name: "Avenir-MediumOblique", size: fontSize)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -79,12 +79,12 @@ class AboutTeamTableViewCell: UITableViewCell {
             "role": roleLabel
         ]
 
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[avatar(60)]", options: nil, metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[avatar]-15-[name]", options: nil, metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[avatar]-15-[role]", options: nil, metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[avatar(60)]", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[avatar(60)]", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[avatar]-15-[name]", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[avatar]-15-[role]", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[avatar(60)]", options: [], metrics: nil, views: views))
         contentView.addConstraint(NSLayoutConstraint(item: avatar, attribute: .CenterY, relatedBy: .Equal, toItem: contentView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[name]-5-[role]-20-|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[name]-5-[role]-20-|", options: [], metrics: nil, views: views))
 
         super.updateConstraints()
     }

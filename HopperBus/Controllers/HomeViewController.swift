@@ -32,15 +32,15 @@ class HomeViewController: UIViewController {
         var vcs = [UIViewController]()
         for type in HopperBusRoutes.allCases {
             if type == .HB901 {
-                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as RouteTimesViewModel
+                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as! RouteTimesViewModel
                 let rtvc = RouteTimesViewController(type: type, routeViewModel: routeViewModel)
                 vcs.append(rtvc)
             } else if type == .HBRealTime {
-                let viewModel = self.routeViewModelContainer.routeViewModel(type) as RealTimeViewModel
+                let viewModel = self.routeViewModelContainer.routeViewModel(type) as! RealTimeViewModel
                 let rtvc = RealTimeViewController(type: type, viewModel: viewModel)
                 vcs.append(rtvc)
             } else {
-                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as RouteViewModel
+                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as! RouteViewModel
                 let rvc = RouteViewController(type: type, routeViewModel: routeViewModel)
                 vcs.append(rvc)
             }
@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
 
     lazy var containerView: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -62,8 +62,8 @@ class HomeViewController: UIViewController {
         ]
         let tabBar =  TabBar(options:tabBarOptions)
         tabBar.delegate = self
-        tabBar.setSelectedIndex(self.initialRouteType.rawValue)
-        tabBar.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tabBar.selectedIndex = self.initialRouteType.rawValue
+        tabBar.translatesAutoresizingMaskIntoConstraints = false
         return tabBar
     }()
 
@@ -95,9 +95,9 @@ class HomeViewController: UIViewController {
             "containerView": containerView
         ]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[containerView][tabBar]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[containerView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[containerView][tabBar]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[containerView]|", options: [], metrics: nil, views: views))
 
         let vc = viewControllers[currentRouteType.rawValue]
         addChildViewController(vc)

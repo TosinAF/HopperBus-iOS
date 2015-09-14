@@ -16,7 +16,7 @@ class InfoTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "Avenir", size: 16)
         label.textAlignment = .Center
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 

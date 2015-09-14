@@ -8,14 +8,16 @@
 
 import UIKit
 import MapKit
+import MBXMapKit
 import CoreLocation
+import ReachabilitySwift
 
 class RealTimeViewController: GAITrackedViewController {
 
     // MARK: - Properties
 
     let viewModel: RealTimeViewModel
-    let reachability = Reachability.reachabilityForInternetConnection()
+    let reachability = Reachability.reachabilityForInternetConnection()!
 
     var networkConnectionExists = true
     var didCenterOnuserLocation = false
@@ -25,7 +27,7 @@ class RealTimeViewController: GAITrackedViewController {
     lazy var locationManager: CLLocationManager = {
         let locManager = CLLocationManager()
         locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        if iOS8 { locManager.requestWhenInUseAuthorization() }
+        locManager.requestWhenInUseAuthorization()
         return locManager
     }()
 
@@ -35,7 +37,7 @@ class RealTimeViewController: GAITrackedViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.addOverlay(mapBoxOverlay)
-        mapView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         return mapView
     }()
 
@@ -49,7 +51,7 @@ class RealTimeViewController: GAITrackedViewController {
         textField.inputView = self.pickerViewContainer
         textField.font = UIFont(name: "Avenir-Light", size: 17.0)
         textField.delegate = self
-        textField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
@@ -58,7 +60,7 @@ class RealTimeViewController: GAITrackedViewController {
         view.addSubview(self.textField)
         view.addSubview(self.textFieldToggleButton)
         view.backgroundColor = UIColor(red:0.000, green:0.694, blue:0.416, alpha: 1)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -69,7 +71,7 @@ class RealTimeViewController: GAITrackedViewController {
         button.setImage(normalButtonImage, forState: .Normal)
         button.setImage(selectedButtonImage, forState: .Selected)
         button.addTarget(self, action: "toggleButtonClicked", forControlEvents: .TouchUpInside)
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -91,7 +93,7 @@ class RealTimeViewController: GAITrackedViewController {
 
     lazy var upcomingBusTimesContainerView: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -163,14 +165,14 @@ class RealTimeViewController: GAITrackedViewController {
         textFieldContainer.addConstraint(NSLayoutConstraint(item: textField, attribute: .CenterX, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         textFieldContainer.addConstraint(NSLayoutConstraint(item: textField, attribute: .CenterY, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
         textFieldContainer.addConstraint(NSLayoutConstraint(item: textFieldToggleButton, attribute: .CenterY, relatedBy: .Equal, toItem: textFieldContainer, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
-        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[textField(<=240)]", options: nil, metrics: nil, views: views))
-        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[toggleButton(32)]-10-|", options: nil, metrics: nil, views: views))
-        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[toggleButton(32)]", options: nil, metrics: nil, views: views))
+        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[textField(<=240)]", options: [], metrics: nil, views: views))
+        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[toggleButton(32)]-10-|", options: [], metrics: nil, views: views))
+        textFieldContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[toggleButton(32)]", options: [], metrics: nil, views: views))
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[mapView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textFieldContainer]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[liveView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][textFieldContainer][liveView]", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[mapView]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[textFieldContainer]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[liveView]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView][textFieldContainer][liveView]", options: [], metrics: nil, views: views))
 
         let height = self.view.frame.size.height
 
@@ -235,7 +237,7 @@ class RealTimeViewController: GAITrackedViewController {
         stopPin.title = viewModel.currentStopName()
         stopPin.image = UIImage(named: "busImage")
         currentStopAnnotation = stopPin
-        mapView.addAnnotation(currentStopAnnotation)
+        mapView.addAnnotation(currentStopAnnotation!)
 
         // Needed to get the right zoom level
         let userPin = MKPointAnnotation()
@@ -267,7 +269,7 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return component == 0 ? 50.0 : 220.0
     }
 
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
         var label : UILabel
         if view == nil {
             let height = UIFont.systemFontOfSize(UIFont.systemFontSize()).lineHeight * 2 * UIScreen.mainScreen().scale
@@ -279,7 +281,7 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             label.textColor = UIColor.whiteColor()
             label.font = UIFont(name: "Avenir-Book", size: 17.0)
         } else {
-            label = view as UILabel
+            label = view as! UILabel
         }
 
         if component == 0 {
@@ -326,24 +328,24 @@ extension RealTimeViewController: RealTimeViewModelDelegate {
             label.font = UIFont(name: "Avenir-Book", size: 22.0)
             label.textAlignment = .Center
             label.textColor = UIColor.lightGrayColor()
-            label.setTranslatesAutoresizingMaskIntoConstraints(false)
+            label.translatesAutoresizingMaskIntoConstraints = false
             delay(0.5) {
                 let views = ["view": label]
                 self.upcomingBusTimesContainerView.addSubview(label)
                 self.upcomingBusTimesContainerView.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterY, relatedBy: .Equal, toItem: self.upcomingBusTimesContainerView, attribute: .CenterY, multiplier: 1.0, constant: -10.0))
-                self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[view]-20-|", options: nil, metrics: nil, views: views))
+                self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[view]-20-|", options: [], metrics: nil, views: views))
                 self.activityIndicator.removeFromSuperview()
             }
             return
         }
 
         let upcomingBusTimesView = UpcomingBusTimesView(services: realTimeServices)
-        upcomingBusTimesView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        upcomingBusTimesView.translatesAutoresizingMaskIntoConstraints = false
         delay(0.5) {
             self.upcomingBusTimesContainerView.addSubview(upcomingBusTimesView)
             let views = ["view": upcomingBusTimesView]
-            self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: nil, metrics: nil, views: views))
-            self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: views))
+            self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: [], metrics: nil, views: views))
+            self.upcomingBusTimesContainerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: views))
             self.activityIndicator.removeFromSuperview()
         }
     }
@@ -366,11 +368,11 @@ extension RealTimeViewController: UITextFieldDelegate {
 
 extension RealTimeViewController: MKMapViewDelegate {
 
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         return MKTileOverlayRenderer(overlay: overlay)
     }
 
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
 
         let mbxAnnotation = annotation as? MBXPointAnnotation
         if mbxAnnotation != nil {
@@ -379,15 +381,15 @@ extension RealTimeViewController: MKMapViewDelegate {
             if view == nil {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: MBXSimpleStyleReuseIdentifier)
             }
-            view.image = mbxAnnotation!.image
-            view.canShowCallout = true
+            view?.image = mbxAnnotation!.image
+            view?.canShowCallout = true
             return view
         }
 
         return nil
     }
 
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
 
         if !didCenterOnuserLocation {
             let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)

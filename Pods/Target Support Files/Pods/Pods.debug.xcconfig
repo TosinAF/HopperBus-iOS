@@ -2,9 +2,11 @@ CLANG_CXX_LANGUAGE_STANDARD = c++11
 CLANG_CXX_LIBRARY = libc++
 FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Reveal-iOS-SDK/Reveal-Framework-1.5.0"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Public/JCTiledScrollView" "${PODS_ROOT}/Headers/Public/MBXMapKit" "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK" "${PODS_ROOT}/Headers/Public/pop" $(SDKROOT)/usr/include/libz
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/JCTiledScrollView" -isystem "${PODS_ROOT}/Headers/Public/MBXMapKit" -isystem "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/pop"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"GoogleAnalyticsServices" -l"Pods-GoogleAnalytics-iOS-SDK" -l"Pods-JCTiledScrollView" -l"Pods-MBXMapKit" -l"Pods-pop" -l"c++" -l"sqlite3" -l"z" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "Foundation" -framework "QuartzCore" -framework "Reveal" -framework "SystemConfiguration" -framework "UIKit"
-OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+HEADER_SEARCH_PATHS = $(SDKROOT)/usr/include/libz "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK" "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK/Reveal"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK" "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/JCTiledScrollView.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MBXMapKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Parse.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ReachabilitySwift.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SwiftyJSON.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/pop.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GoogleAnalytics-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK/Reveal"
+OTHER_LDFLAGS = $(inherited) -l"GoogleAnalyticsServices" -l"sqlite3" -l"z" -framework "Alamofire" -framework "Bolts" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "Foundation" -framework "JCTiledScrollView" -framework "MBXMapKit" -framework "Parse" -framework "QuartzCore" -framework "ReachabilitySwift" -framework "Reveal" -framework "SwiftyJSON" -framework "SystemConfiguration" -framework "UIKit" -framework "pop"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
 PODS_ROOT = ${SRCROOT}/Pods

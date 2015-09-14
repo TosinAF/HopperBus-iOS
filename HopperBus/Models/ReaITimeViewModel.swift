@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 extension HopperBusRoutes {
 
@@ -29,8 +31,8 @@ protocol RealTimeViewModelDelegate: class {
 
 class RealTimeViewModel: ViewModel {
 
-    let routes = [HopperBusRoutes: APIRoute]()
-    let routeCodes = [String]()
+    let routes: [HopperBusRoutes: APIRoute]
+    let routeCodes: [String]
 
     var selectedRouteType = HopperBusRoutes.HB901
     var selectedStopIndex = 0
@@ -38,7 +40,6 @@ class RealTimeViewModel: ViewModel {
 
 
     init(data: [String: JSON], type: HopperBusRoutes) {
-        let json = data
 
         var routeCodes = [String]()
         for code in data["routeCodes"]!.arrayValue {
@@ -47,12 +48,12 @@ class RealTimeViewModel: ViewModel {
         self.routeCodes = routeCodes
 
         var routes = [HopperBusRoutes: APIRoute]()
-        for (key: String, subJson: JSON) in data {
+        for (key, subJson): (String, JSON) in data {
             if key == "routeCodes" { continue }
 
             var stops = [APIStop]()
             let stopsData = subJson.dictionaryValue
-            for (key: String, subJson: JSON) in stopsData {
+            for (key, subJson): (String, JSON) in stopsData {
                 let name = key
                 let attr = subJson.arrayValue
                 let code = attr[0].stringValue
@@ -87,7 +88,7 @@ class RealTimeViewModel: ViewModel {
         return routes[selectedRouteType]!.stops.count
     }
 
-    func updateSelectedRoute(#index: Int) {
+    func updateSelectedRoute(index index: Int) {
         let routeCode = getRoute(atIndex: index)
         let routeType = HopperBusRoutes.routeCodeToEnum(routeCode)
         selectedRouteType = routeType
@@ -107,33 +108,32 @@ class RealTimeViewModel: ViewModel {
         let apiRoute = routes[selectedRouteType]!
         let apiStopCode = apiRoute.stops[selectedStopIndex].code
         let url = "https://api.nctx.co.uk/api/v1/departures/\(apiStopCode)/realtime"
-
-        Manager.sharedInstance.request(.GET, url)
-            .responseSwiftyJSON { (request, response, json, error) in
-
-                var realTimeServices = [RealTimeService]()
-                for service in json.arrayValue {
-                    let busService = service["busService"].stringValue
-                    if busService[0] != "9" {
-                        continue
-                    }
-
-                    let timeTill = service["minutes"].stringValue
-                    let arr = split(timeTill, { $0 == "."}, maxSplit: Int.max, allowEmptySlices: false)
-                    let minutesTill = arr.first!
-
-                    let realTimeService = RealTimeService(busService: busService, minutesTill: minutesTill)
-                    realTimeServices.append(realTimeService)
+        print(url)
+        Alamofire.request(.GET, url).responseSwiftyJSON { (request, response, json, error) -> Void in
+            
+            var realTimeServices = [RealTimeService]()
+            for service in json.arrayValue {
+                let busService = service["busService"].stringValue
+                if busService[0] != "9" {
+                    continue
                 }
-
-                realTimeServices.sort({ $0.minutesTill.toInt()! < $1.minutesTill.toInt()! })
-
-                if realTimeServices.count > 3 {
-                    realTimeServices = [realTimeServices[0], realTimeServices[1], realTimeServices[2]]
-                }
-
-                self.delegate?.viewModel(self, didGetRealTimeServices: realTimeServices, withSuccess: true)
+                
+                let timeTill = service["minutes"].stringValue
+                print(timeTill)
+                let arr = timeTill.characters.split {$0 == "."}.map { String($0) }
+                let minutesTill = arr.first!
+                
+                let realTimeService = RealTimeService(busService: busService, minutesTill: minutesTill)
+                realTimeServices.append(realTimeService)
+            }
+            
+            realTimeServices.sortInPlace({ Int($0.minutesTill) < Int($1.minutesTill) })
+            
+            if realTimeServices.count > 3 {
+                realTimeServices = [realTimeServices[0], realTimeServices[1], realTimeServices[2]]
+            }
+            
+            self.delegate?.viewModel(self, didGetRealTimeServices: realTimeServices, withSuccess: true)
         }
-
     }
 }

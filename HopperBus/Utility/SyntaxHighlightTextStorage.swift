@@ -10,37 +10,38 @@ import UIKit
 
 class SyntaxHighlightTextStorage: NSTextStorage {
     let backingStore = NSMutableAttributedString()
-    var replacements: [String : [NSObject : AnyObject]]!
+    var replacements: [String : [String : AnyObject]]!
 
     override init() {
         super.init()
         createHighlightPatterns()
     }
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override var string: String {
         return backingStore.string
     }
-
-    override func attributesAtIndex(index: Int, effectiveRange range: NSRangePointer) -> [NSObject : AnyObject] {
-        return backingStore.attributesAtIndex(index, effectiveRange: range)
+    
+    override func attributesAtIndex(location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
+        return backingStore.attributesAtIndex(location, effectiveRange: range)
     }
 
+
     override func replaceCharactersInRange(range: NSRange, withString str: String) {
-        println("replaceCharactersInRange:\(range) withString:\(str)")
+        print("replaceCharactersInRange:\(range) withString:\(str)")
 
         beginEditing()
         backingStore.replaceCharactersInRange(range, withString:str)
-        edited(.EditedCharacters | .EditedAttributes, range: range, changeInLength: (str as NSString).length - range.length)
+        edited([NSTextStorageEditActions.EditedCharacters, NSTextStorageEditActions.EditedAttributes], range: range, changeInLength: (str as NSString).length - range.length)
         endEditing()
     }
-
-    override func setAttributes(attrs: [NSObject : AnyObject]!, range: NSRange) {
-        println("setAttributes:\(attrs) range:\(range)")
-
+    
+    override func setAttributes(attrs: [String : AnyObject]?, range: NSRange) {
+        print("setAttributes:\(attrs) range:\(range)")
+        
         beginEditing()
         backingStore.setAttributes(attrs, range: range)
         edited(.EditedAttributes, range: range, changeInLength: 0)
@@ -52,18 +53,24 @@ class SyntaxHighlightTextStorage: NSTextStorage {
 
         // iterate over each replacement
         for (pattern, attributes) in replacements {
-            let regex = NSRegularExpression(pattern: pattern, options: nil, error: nil)!
-            regex.enumerateMatchesInString(backingStore.string, options: nil, range: searchRange) {
-                match, flags, stop in
-                // apply the style
-                let matchRange = match.rangeAtIndex(1)
-                self.addAttributes(attributes, range: matchRange)
-
-                // reset the style to the original
-                let maxRange = matchRange.location + matchRange.length
-                if maxRange + 1 < self.length {
-                    self.addAttributes(normalAttrs, range: NSMakeRange(maxRange, 1))
+            
+            do {
+                let regex = try NSRegularExpression(pattern: pattern, options: [])
+                regex.enumerateMatchesInString(backingStore.string, options: [], range: searchRange) {
+                    match, flags, stop in
+                    // apply the style
+                    let matchRange = match!.rangeAtIndex(1)
+                    self.addAttributes(attributes, range: matchRange)
+                    
+                    // reset the style to the original
+                    let maxRange = matchRange.location + matchRange.length
+                    if maxRange + 1 < self.length {
+                        self.addAttributes(normalAttrs, range: NSMakeRange(maxRange, 1))
+                    }
                 }
+                
+            } catch let error as NSError {
+                print(error.localizedDescription)
             }
         }
     }

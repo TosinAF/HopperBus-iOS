@@ -17,7 +17,7 @@ class AboutDiseViewController: BaseAboutViewController {
     lazy var diseLogo: UIImageView = {
         let image = UIImage(named: "DISELogo")!
         let imageView = UIImageView(image: image)
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -29,7 +29,7 @@ class AboutDiseViewController: BaseAboutViewController {
         textView.scrollEnabled = false
         textView.font = UIFont(name: "Avenir-Medium", size: 16.0)
         textView.textColor = UIColor.HopperBusBrandColor()
-        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
 
@@ -49,8 +49,8 @@ class AboutDiseViewController: BaseAboutViewController {
             "statement": statementTextView
         ]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[logo]-30-[statement]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[statement]-20-|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[logo]-30-[statement]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[statement]-20-|", options: [], metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: diseLogo, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: statementTextView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: statementTextView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 0.0))

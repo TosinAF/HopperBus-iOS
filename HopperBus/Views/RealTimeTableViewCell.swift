@@ -18,18 +18,18 @@ class RealTimeTableViewCell: UITableViewCell {
         label.backgroundColor = UIColor(red:0.145, green:0.380, blue:0.482, alpha: 1)
         label.layer.cornerRadius = 25
         label.clipsToBounds = true
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Light", size: 20)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 

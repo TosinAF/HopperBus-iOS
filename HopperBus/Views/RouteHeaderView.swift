@@ -12,7 +12,7 @@ class RouteHeaderView: UIView {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .Center
         label.font = UIFont(name: "Avenir", size: 16)
         label.textColor = UIColor(red: 0.514, green: 0.525, blue: 0.541, alpha: 1)
@@ -21,12 +21,12 @@ class RouteHeaderView: UIView {
 
     lazy var lineView: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1)
         return view
     }()
 
-    convenience override init() {
+    convenience init() {
         self.init(frame: CGRectZero)
     }
 
@@ -46,12 +46,12 @@ class RouteHeaderView: UIView {
             "verticalMargin": 8
         ]
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[titleLabel]-|", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(verticalMargin)-[titleLabel]-(verticalMargin)-[lineView(1)]|", options: nil, metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[lineView]|", options: nil, metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[titleLabel]-|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(verticalMargin)-[titleLabel]-(verticalMargin)-[lineView(1)]|", options: [], metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[lineView]|", options: [], metrics: metrics, views: views))
     }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

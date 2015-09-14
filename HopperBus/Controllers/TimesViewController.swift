@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
+import pop
 import UIKit
 
 // MARK: - TimesViewController
@@ -24,16 +25,16 @@ class TimesViewController: GAITrackedViewController {
             timesCategoryLabel.text = "TERM TIME"
             textView.text = t.termTime.flattenToString()
 
-            if let h = t.holidays {
+            if let _ = t.holidays {
                 buttonsArray[2].enabled = true
             }
 
             // the below are mutually exclusive, its to accomodate route 901
-            if let s = t.saturdays {
+            if let _ = t.saturdays {
                 buttonsArray[1].enabled = true
             }
 
-            if let w = t.weekends {
+            if let _ = t.weekends {
                 buttonsArray[1].enabled = true
                 buttonsArray[1].setTitle("WKD", forState: .Normal)
             }
@@ -42,7 +43,7 @@ class TimesViewController: GAITrackedViewController {
 
     lazy var headerView: UIView = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -51,7 +52,7 @@ class TimesViewController: GAITrackedViewController {
         view.backgroundColor = UIColor.clearColor()
         let tap = UITapGestureRecognizer(target: self, action: "onDismissButtonTap")
         view.addGestureRecognizer(tap)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -66,7 +67,7 @@ class TimesViewController: GAITrackedViewController {
         let fontSize: CGFloat = screenWidth == 320.0 ? CGFloat(70.0) : CGFloat(80.0)
         button.titleLabel?.font = UIFont(name: "Entypo", size: fontSize)
 
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: "onDismissButtonTap", forControlEvents: .TouchUpInside)
         return button
     }()
@@ -74,7 +75,7 @@ class TimesViewController: GAITrackedViewController {
     lazy var contentView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -82,14 +83,14 @@ class TimesViewController: GAITrackedViewController {
         let label = UILabel()
         label.text = "Library Road"
         label.font = UIFont(name: "Avenir-Medium", size: 14)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     lazy var timesCategoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Medium", size: 14)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -103,7 +104,7 @@ class TimesViewController: GAITrackedViewController {
         textView.textAlignment = .Center
         textView.font = UIFont(name: "Avenir", size: 14)
         textView.backgroundColor = UIColor(red: 0.906, green: 0.914, blue: 0.918, alpha: 1.0)
-        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
 
@@ -111,7 +112,7 @@ class TimesViewController: GAITrackedViewController {
         let view = UIView()
         view.layer.cornerRadius = 2.5
         view.backgroundColor = UIColor.blackColor()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -152,35 +153,35 @@ class TimesViewController: GAITrackedViewController {
             "contentView": contentView
         ]
 
-        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[indicator(5)]", options: nil, metrics: nil, views: views))
-        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[indicator(5)]", options: nil, metrics: nil, views: views))
+        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[indicator(5)]", options: [], metrics: nil, views: views))
+        currentTimeIndicator.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[indicator(5)]", options: [], metrics: nil, views: views))
         currentTimeIndicatorHConstraint = NSLayoutConstraint(item: currentTimeIndicator, attribute: .CenterX, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterX, multiplier: 1.0, constant: -1)
 
         headerView.addConstraint(currentTimeIndicatorHConstraint!)
 
         let screenWidth: CGFloat = view.frame.size.width
         let stopLabelMaxWidth = screenWidth == 320.0 ? 150 : 200
-        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-23-[stopLabel(<=\(stopLabelMaxWidth))]", options: nil, metrics: nil, views: views))
+        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-23-[stopLabel(<=\(stopLabelMaxWidth))]", options: [], metrics: nil, views: views))
         
-        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[termTimeButton]", options: nil, metrics: nil, views: views))
+        headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-8-[termTimeButton]", options: [], metrics: nil, views: views))
         headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[termTimeButton]-10-[saturdayButton]-10-[holidayButton]-28-|", options: .AlignAllCenterY, metrics: nil, views: views))
         headerView.addConstraint(NSLayoutConstraint(item: stopLabel, attribute: .CenterY, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterY, multiplier: 1.0, constant: 0))
         headerView.addConstraint(NSLayoutConstraint(item: currentTimeIndicator, attribute: .CenterY, relatedBy: .Equal, toItem: buttonsArray[0], attribute: .CenterY, multiplier: 1.0, constant: 13))
 
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: nil, metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(35)]-25-[category]-10-[textView]", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(35)]-25-[category]-10-[textView]", options: [], metrics: nil, views: views))
         contentView.addConstraint(NSLayoutConstraint(item: timesCategoryLabel, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-12-[textView]-16-|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-12-[textView]-16-|", options: [], metrics: nil, views: views))
 
-        dismissButton.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton(60)]", options: nil, metrics: nil, views: views))
-        dismissButton.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[dismissButton(60)]", options: nil, metrics: nil, views: views))
+        dismissButton.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[dismissButton(60)]", options: [], metrics: nil, views: views))
+        dismissButton.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[dismissButton(60)]", options: [], metrics: nil, views: views))
         contentView.addConstraint(NSLayoutConstraint(item: dismissButton, attribute: .CenterX, relatedBy: .Equal, toItem: contentView, attribute: .CenterX, multiplier: 1.0, constant: 0))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[dismissButton]-55-|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[dismissButton]-55-|", options: [], metrics: nil, views: views))
 
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[contentView]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[dismissArea]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissArea(130)][contentView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[contentView]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[dismissArea]|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[dismissArea(130)][contentView]|", options: [], metrics: nil, views: views))
     }
 
     // MARK: - Actions
@@ -190,7 +191,7 @@ class TimesViewController: GAITrackedViewController {
     }
 
     func onButtonTap(sender: AnyObject) {
-        let button = sender as UIButton
+        let button = sender as! UIButton
 
         let currentTimeIndicatorAnim = POPSpringAnimation(propertyNamed: kPOPLayoutConstraintConstant)
         currentTimeIndicatorAnim.springBounciness = 1
@@ -229,7 +230,7 @@ class TimesViewController: GAITrackedViewController {
 
         let buttonTitles = ["TT", "SAT", "HOL"]
 
-        for (i, title) in enumerate(buttonTitles) {
+        for (i, title) in buttonTitles.enumerate() {
             let button = UIButton()
             button.tag = i
             button.enabled = false
@@ -238,7 +239,7 @@ class TimesViewController: GAITrackedViewController {
             button.setTitleColor(UIColor.grayColor(), forState: .Disabled)
             button.titleLabel!.font = UIFont(name: "Avenir-Medium", size: 14)
             button.addTarget(self, action: "onButtonTap:", forControlEvents: .TouchUpInside)
-            button.setTranslatesAutoresizingMaskIntoConstraints(false)
+            button.translatesAutoresizingMaskIntoConstraints = false
             headerView.addSubview(button)
             buttonsArray.append(button)
         }

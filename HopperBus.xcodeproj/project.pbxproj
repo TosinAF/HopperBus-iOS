@@ -7,18 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C2DC5434F896406780D30A6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B1D2A1854F58C51EEDAB53 /* libPods.a */; };
-		4E1D257F1A2D791C00D210B7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1D257D1A2D791C00D210B7 /* Bolts.framework */; };
-		4E1D25801A2D791C00D210B7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1D257E1A2D791C00D210B7 /* Parse.framework */; };
 		4E29202419E6316700687C0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E29202319E6316700687C0D /* HomeViewController.swift */; };
 		4E2980B11A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */; };
 		4E3769851A276CC40079A20F /* MaterialActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */; };
 		4E3769871A27E2F60079A20F /* RouteUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3769861A27E2F60079A20F /* RouteUnavailableView.swift */; };
 		4E385A351A42B05F00351821 /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E385A331A42B05F00351821 /* OnboardingContentViewController.swift */; };
 		4E385A361A42B05F00351821 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E385A341A42B05F00351821 /* OnboardingViewController.swift */; };
-		4E42B2801A75D194006CF5A2 /* AlamoFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B26D1A75D194006CF5A2 /* AlamoFire.swift */; };
-		4E42B2811A75D194006CF5A2 /* AlamofireSwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B26E1A75D194006CF5A2 /* AlamofireSwiftyJSON.swift */; };
-		4E42B2821A75D194006CF5A2 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B26F1A75D194006CF5A2 /* SwiftyJSON.swift */; };
 		4E42B2911A75D194006CF5A2 /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B27F1A75D194006CF5A2 /* ZFRippleButton.swift */; };
 		4E42B29B1A75D260006CF5A2 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B29A1A75D260006CF5A2 /* InfoViewController.swift */; };
 		4E42B29D1A75DF1C006CF5A2 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42B29C1A75DF1C006CF5A2 /* InfoTableViewCell.swift */; };
@@ -29,6 +23,7 @@
 		4E527CD61A75EB8E00F20645 /* PresentMapTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */; };
 		4E527CD71A75EB8E00F20645 /* PresentTimesTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */; };
 		4E527CD91A75ECAF00F20645 /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */; };
+		4E57E2681BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57E2671BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
 		4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E678E201A068A4C007950BC /* TimesViewController.swift */; };
 		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
 		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
@@ -40,7 +35,6 @@
 		4E765ED71A780FFE00D68262 /* AboutDiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E765ED61A780FFE00D68262 /* AboutDiseViewController.swift */; };
 		4E765ED91A78104300D68262 /* AboutAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E765ED81A78104300D68262 /* AboutAppsViewController.swift */; };
 		4E765EDC1A7820DC00D68262 /* AboutAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E765EDB1A7820DC00D68262 /* AboutAppsTableViewCell.swift */; };
-		4E765EDE1A794A6100D68262 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E765EDD1A794A6100D68262 /* Reachability.swift */; };
 		4E7AA47C19CB9EF00048FB11 /* JubileeCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */; };
 		4E7AA47D19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */; };
 		4E7AA47E19CB9EF00048FB11 /* UniversityParkCampus.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */; };
@@ -78,6 +72,7 @@
 		4EE17F421A1069CB00728297 /* StopTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */; };
 		4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF52861A20C1A300A66DEB /* RouteTimesViewModel.swift */; };
 		4EFF52891A20C30900A66DEB /* RouteViewModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF52881A20C30900A66DEB /* RouteViewModelContainer.swift */; };
+		F421EC8C4F132EFCC204A560 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B269D09720D1E43BEFD994 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +86,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03B269D09720D1E43BEFD994 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BC5729BEAEFB941B8578E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4E1D257D1A2D791C00D210B7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
 		4E1D257E1A2D791C00D210B7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Frameworks/Parse.framework; sourceTree = "<group>"; };
@@ -100,9 +96,6 @@
 		4E3769861A27E2F60079A20F /* RouteUnavailableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteUnavailableView.swift; path = Views/RouteUnavailableView.swift; sourceTree = "<group>"; };
 		4E385A331A42B05F00351821 /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingContentViewController.swift; path = Controllers/OnboardingContentViewController.swift; sourceTree = "<group>"; };
 		4E385A341A42B05F00351821 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Controllers/OnboardingViewController.swift; sourceTree = "<group>"; };
-		4E42B26D1A75D194006CF5A2 /* AlamoFire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamoFire.swift; path = "Utility/Third Party Libraries/AlamoFire.swift"; sourceTree = "<group>"; };
-		4E42B26E1A75D194006CF5A2 /* AlamofireSwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireSwiftyJSON.swift; path = "Utility/Third Party Libraries/AlamofireSwiftyJSON.swift"; sourceTree = "<group>"; };
-		4E42B26F1A75D194006CF5A2 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "Utility/Third Party Libraries/SwiftyJSON.swift"; sourceTree = "<group>"; };
 		4E42B27F1A75D194006CF5A2 /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZFRippleButton.swift; path = "Utility/Third Party Libraries/ZFRippleButton.swift"; sourceTree = "<group>"; };
 		4E42B29A1A75D260006CF5A2 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = Controllers/InfoViewController.swift; sourceTree = "<group>"; };
 		4E42B29C1A75DF1C006CF5A2 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoTableViewCell.swift; path = Views/InfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +106,7 @@
 		4E527CD01A75EB8E00F20645 /* PresentMapTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMapTransitionManager.swift; sourceTree = "<group>"; };
 		4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentTimesTransitionManager.swift; sourceTree = "<group>"; };
 		4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoDetailViewController.swift; path = Controllers/InfoDetailViewController.swift; sourceTree = "<group>"; };
+		4E57E2671BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire-SwiftyJSON.swift"; path = "Utility/Third Party Libraries/Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
 		4E678E201A068A4C007950BC /* TimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimesViewController.swift; path = Controllers/TimesViewController.swift; sourceTree = "<group>"; };
 		4E6ED68619D61CC900D903F6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Models/Models.swift; sourceTree = "<group>"; };
 		4E6F0FA119D1DCF700EC776B /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = HopperBus/Resources/Fonts/Entypo.ttf; sourceTree = "<group>"; };
@@ -124,7 +118,6 @@
 		4E765ED61A780FFE00D68262 /* AboutDiseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutDiseViewController.swift; path = Controllers/AboutDiseViewController.swift; sourceTree = "<group>"; };
 		4E765ED81A78104300D68262 /* AboutAppsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutAppsViewController.swift; path = Controllers/AboutAppsViewController.swift; sourceTree = "<group>"; };
 		4E765EDB1A7820DC00D68262 /* AboutAppsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutAppsTableViewCell.swift; path = Views/AboutAppsTableViewCell.swift; sourceTree = "<group>"; };
-		4E765EDD1A794A6100D68262 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "Utility/Third Party Libraries/Reachability.swift"; sourceTree = "<group>"; };
 		4E7AA47919CB9EF00048FB11 /* JubileeCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = JubileeCampus.pdf; path = HopperBus/Resources/Maps/JubileeCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47A19CB9EF00048FB11 /* SuttonBoningtonCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = SuttonBoningtonCampus.pdf; path = HopperBus/Resources/Maps/SuttonBoningtonCampus.pdf; sourceTree = "<group>"; };
 		4E7AA47B19CB9EF00048FB11 /* UniversityParkCampus.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = UniversityParkCampus.pdf; path = HopperBus/Resources/Maps/UniversityParkCampus.pdf; sourceTree = "<group>"; };
@@ -167,7 +160,6 @@
 		4EE17F411A1069CB00728297 /* StopTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTimesTableViewCell.swift; path = Views/StopTimesTableViewCell.swift; sourceTree = "<group>"; };
 		4EFF52861A20C1A300A66DEB /* RouteTimesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteTimesViewModel.swift; path = Models/RouteTimesViewModel.swift; sourceTree = "<group>"; };
 		4EFF52881A20C30900A66DEB /* RouteViewModelContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteViewModelContainer.swift; path = Models/RouteViewModelContainer.swift; sourceTree = "<group>"; };
-		D4B1D2A1854F58C51EEDAB53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA14403E8B1B450553F9FF1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,9 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E1D25801A2D791C00D210B7 /* Parse.framework in Frameworks */,
-				4E1D257F1A2D791C00D210B7 /* Bolts.framework in Frameworks */,
-				4C2DC5434F896406780D30A6 /* libPods.a in Frameworks */,
+				F421EC8C4F132EFCC204A560 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,11 +262,8 @@
 		4E8248D51A258FD5008E5D53 /* ThirdPartyLibraries */ = {
 			isa = PBXGroup;
 			children = (
-				4E42B26D1A75D194006CF5A2 /* AlamoFire.swift */,
-				4E42B26E1A75D194006CF5A2 /* AlamofireSwiftyJSON.swift */,
-				4E42B26F1A75D194006CF5A2 /* SwiftyJSON.swift */,
 				4E42B27F1A75D194006CF5A2 /* ZFRippleButton.swift */,
-				4E765EDD1A794A6100D68262 /* Reachability.swift */,
+				4E57E2671BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift */,
 			);
 			name = ThirdPartyLibraries;
 			sourceTree = "<group>";
@@ -467,7 +454,7 @@
 			children = (
 				4E1D257D1A2D791C00D210B7 /* Bolts.framework */,
 				4E1D257E1A2D791C00D210B7 /* Parse.framework */,
-				D4B1D2A1854F58C51EEDAB53 /* libPods.a */,
+				03B269D09720D1E43BEFD994 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -484,6 +471,7 @@
 				4EDD4CEE19A7C08900892A7C /* Frameworks */,
 				4EDD4CEF19A7C08900892A7C /* Resources */,
 				CC4545332CFC4D6A8335F904 /* Copy Pods Resources */,
+				4BE45C58E422531092F99993 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -519,7 +507,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Tosin Afolabi";
 				TargetAttributes = {
 					4EDD4CF019A7C08900892A7C = {
@@ -589,6 +577,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4BE45C58E422531092F99993 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8E6C0F0F28B04398927CBF35 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -633,10 +636,8 @@
 				4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */,
 				4E765EDC1A7820DC00D68262 /* AboutAppsTableViewCell.swift in Sources */,
 				4E527CD41A75EB8E00F20645 /* DismissTimesTransitionManager.swift in Sources */,
-				4E42B2821A75D194006CF5A2 /* SwiftyJSON.swift in Sources */,
 				4E527CD61A75EB8E00F20645 /* PresentMapTransitionManager.swift in Sources */,
 				4E3769871A27E2F60079A20F /* RouteUnavailableView.swift in Sources */,
-				4E42B2811A75D194006CF5A2 /* AlamofireSwiftyJSON.swift in Sources */,
 				4E527CD51A75EB8E00F20645 /* PresentInfoTransitionManager.swift in Sources */,
 				4E385A361A42B05F00351821 /* OnboardingViewController.swift in Sources */,
 				4EFF52871A20C1A300A66DEB /* RouteTimesViewModel.swift in Sources */,
@@ -663,11 +664,10 @@
 				4EE17F3C1A0F352A00728297 /* UpcomingBusTimesView.swift in Sources */,
 				4EE17F401A1065C500728297 /* RouteTimesViewController.swift in Sources */,
 				4E29202419E6316700687C0D /* HomeViewController.swift in Sources */,
-				4E42B2801A75D194006CF5A2 /* AlamoFire.swift in Sources */,
-				4E765EDE1A794A6100D68262 /* Reachability.swift in Sources */,
 				4E765EC41A76FF4700D68262 /* AboutTeamViewController.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
 				4E765ED51A77DDED00D68262 /* AboutViewController.swift in Sources */,
+				4E57E2681BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift in Sources */,
 				4E42B2911A75D194006CF5A2 /* ZFRippleButton.swift in Sources */,
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,
 				4E385A351A42B05F00351821 /* OnboardingContentViewController.swift in Sources */,
@@ -715,6 +715,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -781,6 +782,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
@@ -790,6 +792,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.CreativeCode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/Supporting Files/HopperBus-Bridging-Header.h";
@@ -807,6 +810,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HopperBus",
@@ -816,6 +820,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HopperBus/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.CreativeCode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "HopperBus/Supporting Files/HopperBus-Bridging-Header.h";
@@ -837,6 +842,7 @@
 				);
 				INFOPLIST_FILE = HopperBusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.CreativeCode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HopperBus.app/HopperBus";
 			};
@@ -852,6 +858,7 @@
 				);
 				INFOPLIST_FILE = HopperBusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.CreativeCode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HopperBus.app/HopperBus";
 			};

@@ -28,7 +28,7 @@ class RouteTimesViewController: GAITrackedViewController {
         tableView.dataSource = self
         tableView.doubleTapDelegate = self
         tableView.separatorInset = UIEdgeInsetsZero
-        if iOS8 { tableView.layoutMargins = UIEdgeInsetsZero }
+        tableView.layoutMargins = UIEdgeInsetsZero
         tableView.separatorStyle = .None
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 64.0, 0.0);
         tableView.registerClass(StopTimesTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -102,7 +102,7 @@ extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource, 
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as StopTimesTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! StopTimesTableViewCell
         cell.stopTitle = routeViewModel.nameForStop(atIndex: indexPath.row)
         cell.times = routeViewModel.nextThreeStopTimes(atIndex: indexPath.row)
         return cell

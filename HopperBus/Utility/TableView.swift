@@ -17,7 +17,7 @@ class TableView: UITableView {
     weak var doubleTapDelegate: TableViewDoubleTapDelegate?
     private var isDoubleTap = false
 
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for t in touches {
             let touch = t as UITouch
             let touchPoint = touch.locationInView(self)

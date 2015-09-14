@@ -23,13 +23,13 @@ class TabBarItem: ZFRippleButton {
     lazy var topBorder: UIView = {
         let border = UIView()
         border.backgroundColor = UIColor.topBorderColorForNormalState()
-        border.setTranslatesAutoresizingMaskIntoConstraints(false)
+        border.translatesAutoresizingMaskIntoConstraints = false
         return border
     }()
 
     lazy var tbImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -52,8 +52,8 @@ class TabBarItem: ZFRippleButton {
             "imageView" : tbImageView
         ]
 
-        tbImageView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[imageView(20)]", options: nil, metrics: nil, views: views))
-        tbImageView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[imageView(20)]", options: nil, metrics: nil, views: views))
+        tbImageView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[imageView(20)]", options: [], metrics: nil, views: views))
+        tbImageView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[imageView(20)]", options: [], metrics: nil, views: views))
 
         addConstraint(NSLayoutConstraint(item: tbImageView, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0))
         addConstraint(NSLayoutConstraint(item: tbImageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0))
@@ -80,16 +80,16 @@ class TabBarItem: ZFRippleButton {
 
         addSubview(topBorder)
 
-        topBorder.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topBorder(borderHeight)]", options: nil, metrics: metrics, views:views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[topBorder]", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[topBorder]|", options: nil, metrics: nil, views: views))
+        topBorder.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topBorder(borderHeight)]", options: [], metrics: metrics, views:views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[topBorder]", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[topBorder]|", options: [], metrics: nil, views: views))
 
         shadowRippleEnable = true
         rippleColor = UIColor.backgroundColorForSelectedState()
         rippleBackgroundColor = UIColor.backgroundColorForNormalState()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 

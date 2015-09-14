@@ -35,8 +35,8 @@ extension UIImage {
 extension Array {
     func flattenToString() -> String {
         var finalString = ""
-        for (index, str) in enumerate(self) {
-            let s = str as String
+        for (_, str) in self.enumerate() {
+            let s = str as! String
             let ss = s.stringByReplacingOccurrencesOfString(":", withString: ".", options: .LiteralSearch, range: nil)
             finalString += "\(ss) "
         }
@@ -71,7 +71,7 @@ extension String {
 
         //whole number
         var factor: Double = 1
-        for var i = countElements(whole) - 1; i >= 0; i--
+        for var i = whole.count - 1; i >= 0; i--
         {
             res += Double(whole[i]) * factor
             factor *= 10
@@ -99,7 +99,7 @@ extension String {
     }
 
     subscript (i: Int) -> String {
-        return String(Array(self)[i])
+        return String(Array(arrayLiteral: self)[i])
     }
 
     func replace(target: String, withString: String) -> String {
@@ -194,16 +194,11 @@ extension NSDate {
 
     class func getDay() -> Int {
         let date = NSDate()
-        if iOS8 {
-            return NSCalendar.currentCalendar().component(.WeekdayCalendarUnit, fromDate: date)
-        } else {
-            let nsDateComponents = NSCalendar.currentCalendar().components(.WeekdayCalendarUnit, fromDate: date)
-            return nsDateComponents.weekday
-        }
+        return NSCalendar.currentCalendar().component(.Weekday, fromDate: date)
     }
 
     class func isSameDay(firstDate: NSDate, asSecondDate secondDate: NSDate) -> Bool {
-        let componentFlags = ( NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay )
+        let componentFlags: NSCalendarUnit = [ NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day ]
         let components1 = NSCalendar.currentCalendar().components(componentFlags, fromDate:firstDate)
         let components2 = NSCalendar.currentCalendar().components(componentFlags, fromDate:secondDate)
         return  ( (components1.year == components2.year) && (components1.month == components2.month) && (components1.day == components2.day) )

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import pop
 
 class RouteViewController: GAITrackedViewController {
 
@@ -124,14 +125,14 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource, Table
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as StopTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! StopTableViewCell
         let rvm = self.routeViewModel
         let index = indexPath.row
 
         cell.titleLabel.text = rvm.nameForStop(index)
         cell.timeLabel.text = index == rvm.stopIndex ? rvm.timeTillStop(index) : rvm.timeForStop(index)
         cell.isLastCell = index == rvm.numberOfStopsForCurrentRoute() - 1 ? true : false
-        cell.isSelected = index == rvm.stopIndex ? true : false
+        cell.isCurrent = index == rvm.stopIndex ? true : false
         cell.height = self.routeType == HopperBusRoutes.HB904 ? 65 : 55
 
         return cell
@@ -152,7 +153,7 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource, Table
         if let oldCell = tableView.cellForRowAtIndexPath(oldIndexPath) as? StopTableViewCell {
             self.animatedCircleView.center = self.animTranslationStart
             self.view.addSubview(self.animatedCircleView)
-            oldCell.isSelected = false
+            oldCell.isCurrent = false
             let timeStr = self.routeViewModel.timeForStop(oldIndexPath.row)
             oldCell.animateTimeLabelTextChange(timeStr)
         }
@@ -199,9 +200,9 @@ extension RouteViewController: POPAnimationDelegate {
         } else {
 
             let indexPath = NSIndexPath(forRow: routeViewModel.stopIndex , inSection: 0)
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as StopTableViewCell
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! StopTableViewCell
             let timeStr = routeViewModel.timeTillStop(indexPath.row)
-            cell.isSelected = true
+            cell.isCurrent = true
             cell.animateTimeLabelTextChange(timeStr)
 
             animatedCircleView.removeFromSuperview()
@@ -245,20 +246,20 @@ extension RouteViewController: POPAnimationDelegate {
 
             if selectedIndex > routeViewModel.stopIndex {
                 // Animation Going Down
-                let indexPath = tableView.indexPathsForVisibleRows()![1] as NSIndexPath
-                cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell
+                let indexPath = tableView.indexPathsForVisibleRows![1] as NSIndexPath
+                cell = tableView.cellForRowAtIndexPath(indexPath)! as! StopTableViewCell
             } else {
                 // Animation Going Up On A Tuesday lol
-                let visibleCellCount = tableView.indexPathsForVisibleRows()!.count
-                let indexPath = tableView.indexPathsForVisibleRows()![visibleCellCount - 1] as NSIndexPath
-                cell = tableView.cellForRowAtIndexPath(indexPath)! as StopTableViewCell
+                let visibleCellCount = tableView.indexPathsForVisibleRows!.count
+                let indexPath = tableView.indexPathsForVisibleRows![visibleCellCount - 1] as NSIndexPath
+                cell = tableView.cellForRowAtIndexPath(indexPath)! as! StopTableViewCell
             }
 
             start = cell.convertPoint(cell.circleView.center, toView: self.view)
         }
 
         let newIndexPath = NSIndexPath(forRow: selectedIndex, inSection: 0)
-        let newCell = tableView.cellForRowAtIndexPath(newIndexPath) as StopTableViewCell
+        let newCell = tableView.cellForRowAtIndexPath(newIndexPath) as! StopTableViewCell
         finish = newCell.convertPoint(newCell.circleView.center, toView: self.view)
         
         return (start, finish)

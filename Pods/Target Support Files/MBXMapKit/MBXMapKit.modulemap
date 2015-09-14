@@ -1,0 +1,6 @@
+framework module MBXMapKit {
+  umbrella header "MBXMapKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

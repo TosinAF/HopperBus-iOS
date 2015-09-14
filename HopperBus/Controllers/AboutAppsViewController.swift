@@ -70,14 +70,14 @@ class AboutAppsViewController: BaseAboutViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .None
         tableView.registerClass(AboutAppsTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
 
     lazy var diseLogo: UIImageView = {
         let image = UIImage(named: "DISELogo")!
         let imageView = UIImageView(image: image)
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -101,9 +101,9 @@ class AboutAppsViewController: BaseAboutViewController {
             "diseLogo": diseLogo
         ]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[diseLogo(100)]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]-[diseLogo(33)]-20-|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[diseLogo(100)]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]-[diseLogo(33)]-20-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: [], metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: diseLogo, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
     }
 }
@@ -121,7 +121,7 @@ extension AboutAppsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as AboutAppsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! AboutAppsTableViewCell
         let app = APPS(rawValue: indexPath.row)!
         cell.name = app.name
         cell.desc = app.desc
@@ -161,7 +161,7 @@ extension AboutAppsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AboutAppsViewController: SKStoreProductViewControllerDelegate {
 
-    func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
+    func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

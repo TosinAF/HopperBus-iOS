@@ -1,1 +1,0 @@
-../../../MBXMapKit/MBXMapKit/MBXPointAnnotation.h

@@ -61,14 +61,14 @@ class AboutTeamViewController: BaseAboutViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .None
         tableView.registerClass(AboutTeamTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
 
     lazy var diseLogo: UIImageView = {
         let image = UIImage(named: "DISELogo")!
         let imageView = UIImageView(image: image)
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -90,9 +90,9 @@ class AboutTeamViewController: BaseAboutViewController {
             "diseLogo": diseLogo
         ]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[diseLogo(100)]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]-[diseLogo(33)]-20-|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[diseLogo(100)]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]-[diseLogo(33)]-20-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tableView]|", options: [], metrics: nil, views: views))
         view.addConstraint(NSLayoutConstraint(item: diseLogo, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
     }
 }
@@ -110,7 +110,7 @@ extension AboutTeamViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as AboutTeamTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! AboutTeamTableViewCell
         let dev = DISE(rawValue: indexPath.row)!
         cell.name = dev.name
         cell.role = dev.role

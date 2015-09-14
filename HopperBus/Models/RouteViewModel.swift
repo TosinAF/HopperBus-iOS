@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Tosin Afolabi. All rights reserved.
 //
 
-
 // MARK: - ViewModel Class
+
+import SwiftyJSON
 
 class ViewModel {
 
@@ -218,9 +219,7 @@ private extension RouteViewModel {
 
         let currentTime = dateFormatter.dateFromString(NSDate.currentTimeAsString())
 
-        for (index, schedule) in enumerate(route.schedules) {
-
-            let time = schedule.stops[stopIndex].time
+        for (index, schedule) in route.schedules.enumerate() {
 
             let possibleRouteTimeStart = dateFormatter.dateFromString(schedule.stops[stopIndex].time)
             let result = currentTime!.compare(possibleRouteTimeStart!)

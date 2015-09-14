@@ -32,7 +32,7 @@ class AboutViewController: GAITrackedViewController {
         let fontSize: CGFloat = iPhone6Or6Plus ? 18.0 : 16.0
         label.font = UIFont(name: "Montserrat", size: fontSize)
         label.textColor = UIColor.HopperBusBrandColor()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -41,7 +41,7 @@ class AboutViewController: GAITrackedViewController {
         button.setTitle("\u{274C}", forState: .Normal)
         button.setTitleColor(UIColor.HopperBusBrandColor(), forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Entypo", size: 50.0)
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: "onDismissButtonTap", forControlEvents: .TouchUpInside)
         return button
     }()
@@ -61,7 +61,7 @@ class AboutViewController: GAITrackedViewController {
         pageControl.numberOfPages = AboutSection.count
         pageControl.pageIndicatorTintColor = UIColor(red:0.157, green:0.392, blue:0.494, alpha: 1)
         pageControl.currentPageIndicatorTintColor = UIColor(red:0.392, green:0.871, blue:0.733, alpha: 1)
-        pageControl.setTranslatesAutoresizingMaskIntoConstraints(false)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
         return pageControl
     }()
 
@@ -76,7 +76,7 @@ class AboutViewController: GAITrackedViewController {
 
         pageViewController.didMoveToParentViewController(self)
         addChildViewController(pageViewController)
-        pageViewController.view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pageViewController.view)
 
         layoutViews()
@@ -91,11 +91,11 @@ class AboutViewController: GAITrackedViewController {
             "containerView": pageViewController.view
         ]
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-15-[titleLabel]-20-[dismissButton(30)]-10-|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-16-[pageControl]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[dismissButton(30)]", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[titleLabel][pageControl]-10-[containerView]-20-|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[containerView]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-15-[titleLabel]-20-[dismissButton(30)]-10-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-16-[pageControl]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-15-[dismissButton(30)]", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[titleLabel][pageControl]-10-[containerView]-20-|", options: [], metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[containerView]|", options: [], metrics: nil, views: views))
     }
 
     // MARK: - Actions
@@ -111,7 +111,7 @@ extension AboutViewController: UIPageViewControllerDelegate, UIPageViewControlle
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
 
-        let vc = viewController as BaseAboutViewController
+        let vc = viewController as! BaseAboutViewController
 
         switch vc.type {
         case .Team:
@@ -125,7 +125,7 @@ extension AboutViewController: UIPageViewControllerDelegate, UIPageViewControlle
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
 
-        let vc = viewController as BaseAboutViewController
+        let vc = viewController as! BaseAboutViewController
 
         switch vc.type {
         case .Team:
@@ -136,9 +136,10 @@ extension AboutViewController: UIPageViewControllerDelegate, UIPageViewControlle
             return nil
         }
     }
+    
 
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
-        let previousVC = pendingViewControllers.first as BaseAboutViewController
+    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+        let previousVC = pendingViewControllers.first as! BaseAboutViewController
         currentIndex = previousVC.type.rawValue
 
         switch previousVC.type {
@@ -151,7 +152,7 @@ extension AboutViewController: UIPageViewControllerDelegate, UIPageViewControlle
         }
     }
 
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             pageControl.currentPage = currentIndex
             titleLabel.text = currentTitle

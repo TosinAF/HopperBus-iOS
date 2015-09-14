@@ -38,6 +38,8 @@ enum HopperBusRoutes: Int {
 
 // MARK: - RouteViewModelContainer Class
 
+import SwiftyJSON
+
 class RouteViewModelContainer {
 
     let routeViewModels: [String: ViewModel]
@@ -45,7 +47,10 @@ class RouteViewModelContainer {
     init() {
 
         let filePath = NSBundle.mainBundle().pathForResource("Routes", ofType: "json")!
-        let data = NSData(contentsOfFile: filePath, options: nil, error: nil)!
+        guard let data = NSData(contentsOfFile: filePath) else {
+            fatalError("Routes File could not be read.")
+        }
+        
         let json = JSON(data: data)
 
         let data901 = json["route901"].dictionaryValue
@@ -54,7 +59,7 @@ class RouteViewModelContainer {
         let data904 = json["route904"].dictionaryValue
         let dataRealTime = json["api_codes"].dictionaryValue
 
-        let route901 = RouteTimesViewModel(data: data901, type: .HB901)
+        let route901 = RouteTimesViewModel(data: data901, type: HopperBusRoutes.HB901)
         let route902 = RouteViewModel(data: data902, type: .HB902)
         let route903 = RouteViewModel(data: data903, type: .HB903)
         let route904 = RouteViewModel(data: data904, type: .HB904)
@@ -74,7 +79,7 @@ class RouteViewModelContainer {
     }
     
     func updateScheduleIndexForRoutes() {
-        for (key,routeVM) in routeViewModels {
+        for (_,routeVM) in routeViewModels {
             routeVM.updateScheduleIndex()
         }
     }

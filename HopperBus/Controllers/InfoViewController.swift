@@ -94,7 +94,7 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as InfoTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! InfoTableViewCell
         let section = InfoSection(rawValue: indexPath.row)!
         cell.titleLabel.text = section.title
         return cell

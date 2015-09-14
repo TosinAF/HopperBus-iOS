@@ -28,7 +28,7 @@ class RouteUnavailableView: UIView {
     lazy var routeHeaderView: RouteHeaderView = {
         let view = RouteHeaderView()
         view.titleLabel.text = self.routeType.title.uppercaseString
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -38,7 +38,7 @@ class RouteUnavailableView: UIView {
         label.font = UIFont(name: "Avenir-Book", size: 22.0)
         label.numberOfLines = 0
         label.textAlignment = .Center
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -58,15 +58,15 @@ class RouteUnavailableView: UIView {
 
     override func updateConstraints() {
 
-        var views = [
+        let views = [
             "headerView": routeHeaderView,
             "infoLabel": infoLabel
         ]
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(70)]", options: nil, metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[headerView]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[headerView(70)]", options: [], metrics: nil, views: views))
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[infoLabel]-20-|", options: nil, metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-20-[infoLabel]-20-|", options: [], metrics: nil, views: views))
         addConstraint(NSLayoutConstraint(item: infoLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: -50.0))
 
         super.updateConstraints()
