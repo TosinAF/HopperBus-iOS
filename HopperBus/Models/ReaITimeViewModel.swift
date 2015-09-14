@@ -108,7 +108,6 @@ class RealTimeViewModel: ViewModel {
         let apiRoute = routes[selectedRouteType]!
         let apiStopCode = apiRoute.stops[selectedStopIndex].code
         let url = "https://api.nctx.co.uk/api/v1/departures/\(apiStopCode)/realtime"
-        print(url)
         Alamofire.request(.GET, url).responseSwiftyJSON { (request, response, json, error) -> Void in
             
             var realTimeServices = [RealTimeService]()
@@ -119,7 +118,6 @@ class RealTimeViewModel: ViewModel {
                 }
                 
                 let timeTill = service["minutes"].stringValue
-                print(timeTill)
                 let arr = timeTill.characters.split {$0 == "."}.map { String($0) }
                 let minutesTill = arr.first!
                 

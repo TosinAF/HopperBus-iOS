@@ -23,7 +23,9 @@ class TabBar: UIView {
         }
         
         didSet(oldIndex) {
-            tabBarItems[oldIndex].selected = false
+            if selectedIndex != oldIndex {
+                tabBarItems[oldIndex].selected = false
+            }
         }
     }
     
