@@ -24,6 +24,7 @@
 		4E527CD71A75EB8E00F20645 /* PresentTimesTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */; };
 		4E527CD91A75ECAF00F20645 /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */; };
 		4E57E2681BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E57E2671BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
+		4E5D3BA81BA69E1900434B70 /* HopperBusRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D3BA71BA69E1900434B70 /* HopperBusRoutes.swift */; settings = {ASSET_TAGS = (); }; };
 		4E678E211A068A4C007950BC /* TimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E678E201A068A4C007950BC /* TimesViewController.swift */; };
 		4E6ED68719D61CC900D903F6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6ED68619D61CC900D903F6 /* Models.swift */; };
 		4E6F0FA219D1DCF700EC776B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E6F0FA119D1DCF700EC776B /* Entypo.ttf */; };
@@ -107,6 +108,7 @@
 		4E527CD11A75EB8E00F20645 /* PresentTimesTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentTimesTransitionManager.swift; sourceTree = "<group>"; };
 		4E527CD81A75ECAF00F20645 /* InfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoDetailViewController.swift; path = Controllers/InfoDetailViewController.swift; sourceTree = "<group>"; };
 		4E57E2671BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire-SwiftyJSON.swift"; path = "Utility/Third Party Libraries/Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
+		4E5D3BA71BA69E1900434B70 /* HopperBusRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HopperBusRoutes.swift; path = Enums/HopperBusRoutes.swift; sourceTree = "<group>"; };
 		4E678E201A068A4C007950BC /* TimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimesViewController.swift; path = Controllers/TimesViewController.swift; sourceTree = "<group>"; };
 		4E6ED68619D61CC900D903F6 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Models/Models.swift; sourceTree = "<group>"; };
 		4E6F0FA119D1DCF700EC776B /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = HopperBus/Resources/Fonts/Entypo.ttf; sourceTree = "<group>"; };
@@ -203,6 +205,14 @@
 			);
 			name = TransitionManagers;
 			path = Utility/TransitionManagers;
+			sourceTree = "<group>";
+		};
+		4E5D3BA61BA69DEF00434B70 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				4E5D3BA71BA69E1900434B70 /* HopperBusRoutes.swift */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 		4E765EB31A75F18B00D68262 /* Info */ = {
@@ -369,6 +379,7 @@
 			children = (
 				4EDD4CF619A7C08900892A7C /* AppDelegate.swift */,
 				4ECFBE5A19B837D500523219 /* Controllers */,
+				4E5D3BA61BA69DEF00434B70 /* Enums */,
 				4EDD4D1519A7C87F00892A7C /* Views */,
 				4ECE63421A30514700F483A4 /* ViewModels */,
 				4EFFD79D19D1A7E600127823 /* Models */,
@@ -667,6 +678,7 @@
 				4E765EC41A76FF4700D68262 /* AboutTeamViewController.swift in Sources */,
 				4ECFBE6819B8388900523219 /* RouteViewController.swift in Sources */,
 				4E765ED51A77DDED00D68262 /* AboutViewController.swift in Sources */,
+				4E5D3BA81BA69E1900434B70 /* HopperBusRoutes.swift in Sources */,
 				4E57E2681BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift in Sources */,
 				4E42B2911A75D194006CF5A2 /* ZFRippleButton.swift in Sources */,
 				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,

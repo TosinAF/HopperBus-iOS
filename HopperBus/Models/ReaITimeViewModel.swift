@@ -10,21 +10,6 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-extension HopperBusRoutes {
-
-    static func routeCodeToEnum(code: String) -> HopperBusRoutes {
-        let dict = [
-            "901": HopperBusRoutes.HB901,
-            "902": HopperBusRoutes.HB902,
-            "903": HopperBusRoutes.HB903,
-            "904": HopperBusRoutes.HB904,
-            "RT" : HopperBusRoutes.HBRealTime
-        ]
-
-        return dict[code]!
-    }
-}
-
 protocol RealTimeViewModelDelegate: class {
     func viewModel(viewModel: RealTimeViewModel, didGetRealTimeServices realTimeServices: [RealTimeService], withSuccess: Bool)
 }
