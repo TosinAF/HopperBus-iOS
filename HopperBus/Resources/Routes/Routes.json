@@ -441,250 +441,250 @@
 		"term_time_schedule": [
 			[
 				["UPED-1", "University Park, East Drive"		, "07:45"],
-				["AC", "Arts Centre"							, "07:47"],
+				["AC", "University Park, Arts Centre"			, "07:46"],
 				["KM", "Kings Meadow"							, "07:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "08:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "08:03"],
+				["UEE", "University East Entrance"		 		, "08:00"],
+				["9TR", "9 Triumph Road"						, "08:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "08:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "08:05"],
-				["GGL", "George Green Library"					, "08:10"],
+				["GGL", "University Park, George Green Library"	, "08:10"],
 				["UPED-2", "University Park, East Drive"		, "08:12"]
 			], 
 
 			[
 				["UPED-1", "University Park, East Drive"		, "08:15"],
-				["AC", "Arts Centre"							, "08:17"],
+				["AC", "University Park, Arts Centre"		    , "08:16"],
 				["KM", "Kings Meadow"							, "08:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "08:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "08:33"],
+				["UEE", "University East Entrance"				, "08:30"],
+				["9TR", "9 Triumph Road"						, "08:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "08:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "08:35"],
-				["GGL", "George Green Library"					, "08:40"],
+				["GGL", "University Park, George Green Library"	, "08:40"],
 				["UPED-2", "University Park, East Drive"		, "08:42"]
 			], 
 
 			[
 				["UPED-1", "University Park, East Drive"		, "08:45"],
-				["AC", "Arts Centre"							, "08:47"],
+				["AC", "University Park, Arts Centre"			, "08:46"],
 				["KM", "Kings Meadow"							, "08:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "09:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "09:03"],
+				["UEE", "University East Entrance"				, "09:00"],
+				["9TR", "9 Triumph Road"						, "09:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "09:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "09:05"],
-				["GGL", "George Green Library"					, "09:10"],
+				["GGL", "University Park, George Green Library"	, "09:10"],
 				["UPED-2", "University Park, East Drive"		, "09:12"]
 			], 
 
 			[
 				["UPED-1", "University Park, East Drive"		, "09:15"],
-				["AC", "Arts Centre"							, "09:17"],
+				["AC", "University Park, Arts Centre"			, "09:16"],
 				["KM", "Kings Meadow"							, "09:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "09:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "09:33"],
+				["UEE", "University East Entrance"				, "09:30"],
+				["9TR", "9 Triumph Road"						, "09:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "09:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "09:35"],
-				["GGL", "George Green Library"					, "09:40"],
+				["GGL", "University Park, George Green Library"	, "09:40"],
 				["UPED-2", "University Park, East Drive"		, "09:42"]
 			], 
 
 			[
 				["UPED-1", "University Park, East Drive"		, "09:45"],
-				["AC", "Arts Centre"							, "09:47"],
+				["AC", "University Park, Arts Centre"			, "09:46"],
 				["KM", "Kings Meadow"							, "09:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "10:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "10:03"],
+				["UEE", "University East Entrance"				, "10:00"],
+				["9TR", "9 Triumph Road"						, "10:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "10:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "10:05"],
-				["GGL", "George Green Library"					, "10:10"],
+				["GGL", "University Park, George Green Library"	, "10:10"],
 				["UPED-2", "University Park, East Drive"		, "10:12"]
 			], 
 
 			[
 				["UPED-1", "University Park, East Drive"		, "10:15"],
-				["AC", "Arts Centre"							, "10:17"],
+				["AC", "University Park, Arts Centre"			, "10:16"],
 				["KM", "Kings Meadow"							, "10:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "10:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "10:33"],
+				["UEE", "University East Entrance"				, "10:30"],
+				["9TR", "9 Triumph Road"						, "10:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "10:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "10:35"],
-				["GGL", "George Green Library"					, "10:40"],
+				["GGL", "University Park, George Green Library"	, "10:40"],
 				["UPED-2", "University Park, East Drive"		, "10:42"]
 			], 
 
 			[
 				["UPED-1", "University Park, East Drive"		, "10:45"],
-				["AC", "Arts Centre"							, "10:47"],
+				["AC", "University Park, Arts Centre"			, "10:46"],
 				["KM", "Kings Meadow"							, "10:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "11:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "11:03"],
+				["UEE", "University East Entrance"				, "11:00"],
+				["9TR", "9 Triumph Road"						, "11:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "11:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "11:05"],
-				["GGL", "George Green Library"					, "11:10"],
+				["GGL", "University Park, George Green Library"	, "11:10"],
 				["UPED-2", "University Park, East Drive"		, "11:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "11:15"],
-				["AC", "Arts Centre"							, "11:17"],
+				["AC", "University Park, Arts Centre"			, "11:16"],
 				["KM", "Kings Meadow"							, "11:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "11:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "11:33"],
+				["UEE", "University East Entrance"				, "11:30"],
+				["9TR", "9 Triumph Road"						, "11:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "11:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "11:35"],
-				["GGL", "George Green Library"					, "11:40"],
+				["GGL", "University Park, George Green Library"	, "11:40"],
 				["UPED-2", "University Park, East Drive"		, "11:42"]
 			], 
 
 			[
 				["UPED-1", "University Park, East Drive"		, "11:45"],
-				["AC", "Arts Centre"							, "11:47"],
+				["AC", "University Park, Arts Centre"			, "11:46"],
 				["KM", "Kings Meadow"							, "11:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "12:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "12:03"],
+				["UEE", "University East Entrance"				, "12:00"],
+				["9TR", "9 Triumph Road"						, "12:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "12:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "12:05"],
-				["GGL", "George Green Library"					, "12:10"],
+				["GGL", "University Park, George Green Library"	, "12:10"],
 				["UPED-2", "University Park, East Drive"		, "12:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "12:15"],
-				["AC", "Arts Centre"							, "12:17"],
+				["AC", "University Park, Arts Centre"			, "12:16"],
 				["KM", "Kings Meadow"							, "12:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "12:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "12:33"],
+				["UEE", "University East Entrance"				, "12:30"],
+				["9TR", "9 Triumph Road"						, "12:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "12:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "12:35"],
-				["GGL", "George Green Library"					, "12:40"],
+				["GGL", "University Park, George Green Library"	, "12:40"],
 				["UPED-2", "University Park, East Drive"		, "12:42"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "12:45"],
-				["AC", "Arts Centre"							, "12:47"],
+				["AC", "University Park, Arts Centre"			, "12:46"],
 				["KM", "Kings Meadow"							, "12:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "13:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "13:03"],
+				["UEE", "University East Entrance"				, "13:00"],
+				["9TR", "9 Triumph Road"						, "13:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "13:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "13:05"],
-				["GGL", "George Green Library"					, "13:10"],
+				["GGL", "University Park, George Green Library"	, "13:10"],
 				["UPED-2", "University Park, East Drive"		, "13:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "13:15"],
-				["AC", "Arts Centre"							, "13:17"],
+				["AC", "University Park, Arts Centre"			, "13:16"],
 				["KM", "Kings Meadow"							, "13:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "13:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "13:33"],
+				["UEE", "University East Entrance"				, "13:30"],
+				["9TR", "9 Triumph Road"						, "13:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "13:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "13:35"],
-				["GGL", "George Green Library"					, "13:40"],
+				["GGL", "University Park, George Green Library"	, "13:40"],
 				["UPED-2", "University Park, East Drive"		, "13:42"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "13:45"],
-				["AC", "Arts Centre"							, "13:47"],
+				["AC", "University Park, Arts Centre"			, "13:46"],
 				["KM", "Kings Meadow"							, "13:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "14:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "14:03"],
+				["UEE", "University East Entrance"				, "14:00"],
+				["9TR", "9 Triumph Road"						, "14:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "14:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "14:05"],
-				["GGL", "George Green Library"					, "14:10"],
+				["GGL", "University Park, George Green Library"	, "14:10"],
 				["UPED-2", "University Park, East Drive"		, "14:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "14:15"],
-				["AC", "Arts Centre"							, "14:17"],
+				["AC", "University Park, Arts Centre"			, "14:16"],
 				["KM", "Kings Meadow"							, "14:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "14:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "14:33"],
+				["UEE", "University East Entrance"				, "14:30"],
+				["9TR", "9 Triumph Road"						, "14:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "14:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "14:35"],
-				["GGL", "George Green Library"					, "14:40"],
+				["GGL", "University Park, George Green Library"	, "14:40"],
 				["UPED-2", "University Park, East Drive"		, "14:42"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "14:45"],
-				["AC", "Arts Centre"							, "14:47"],
+				["AC", "University Park, Arts Centre"			, "14:46"],
 				["KM", "Kings Meadow"							, "14:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "15:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "15:03"],
+				["UEE", "University East Entrance"				, "15:00"],
+				["9TR", "9 Triumph Road"						, "15:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "15:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "15:05"],
-				["GGL", "George Green Library"					, "15:10"],
+				["GGL", "University Park, George Green Library"	, "15:10"],
 				["UPED-2", "University Park, East Drive"		, "15:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "15:15"],
-				["AC", "Arts Centre"							, "15:17"],
+				["AC", "University Park, Arts Centre"			, "15:16"],
 				["KM", "Kings Meadow"							, "15:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "15:30"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "15:33"],
+				["UEE", "University East Entrance"				, "15:30"],
+				["9TR", "9 Triumph Road"						, "15:33"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "15:34"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "15:35"],
-				["GGL", "George Green Library"					, "15:40"],
+				["GGL", "University Park, George Green Library"	, "15:40"],
 				["UPED-2", "University Park, East Drive"		, "15:42"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "15:45"],
-				["AC", "Arts Centre"							, "15:47"],
+				["AC", "University Park, Arts Centre"			, "15:46"],
 				["KM", "Kings Meadow"							, "15:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "16:00"],
-				["9TR", "9 Triumph Road (stop RA55)"			, "16:03"],
+				["UEE", "University East Entrance"				, "16:00"],
+				["9TR", "9 Triumph Road"						, "16:03"],
 				["JCNH", "Jubilee Campus, Newark Hall"			, "16:04"],
 				["JCTE", "Jubilee Campus, The Exchange"			, "16:05"],
-				["GGL", "George Green Library"					, "16:10"],
+				["GGL", "University Park, George Green Library"	, "16:10"],
 				["UPED-2", "University Park, East Drive"		, "16:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "16:15"],
-				["AC", "Arts Centre"							, "16:17"],
+				["AC", "University Park, Arts Centre"			, "16:16"],
 				["KM", "Kings Meadow"							, "16:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "16:30"],
-				["GGL", "George Green Library"					, "16:40"],
+				["UEE", "University East Entrance"				, "16:30"],
+				["GGL", "University Park, George Green Library"	, "16:40"],
 				["UPED-2", "University Park, East Drive"		, "16:42"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "16:45"],
-				["AC", "Arts Centre"							, "16:47"],
+				["AC", "University Park, Arts Centre"			, "16:46"],
 				["KM", "Kings Meadow"							, "16:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "17:00"],
-				["GGL", "George Green Library"					, "17:10"],
+				["UEE", "University East Entrance"				, "17:00"],
+				["GGL", "University Park, George Green Library"	, "17:10"],
 				["UPED-2", "University Park, East Drive"		, "17:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "17:15"],
-				["AC", "Arts Centre"							, "17:17"],
+				["AC", "University Park, Arts Centre"			, "17:16"],
 				["KM", "Kings Meadow"							, "17:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "17:30"],
-				["GGL", "George Green Library"					, "17:40"],
+				["UEE", "University East Entrance"				, "17:30"],
+				["GGL", "University Park, George Green Library"	, "17:40"],
 				["UPED-2", "University Park, East Drive"		, "17:42"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "17:45"],
-				["AC", "Arts Centre"							, "17:47"],
+				["AC", "University Park, Arts Centre"			, "17:46"],
 				["KM", "Kings Meadow"							, "17:55"],
-				["UEE", "University East Entrance (stop QM01)"	, "18:00"],
-				["GGL", "George Green Library"					, "18:10"],
+				["UEE", "University East Entrance"				, "18:00"],
+				["GGL", "University Park, George Green Library"	, "18:10"],
 				["UPED-2", "University Park, East Drive"		, "18:12"]
 			],
 
 			[
 				["UPED-1", "University Park, East Drive"		, "18:15"],
-				["AC", "Arts Centre"							, "18:17"],
+				["AC", "University Park, Arts Centre"			, "18:16"],
 				["KM", "Kings Meadow"							, "18:25"],
-				["UEE", "University East Entrance (stop QM01)"	, "18:30"],
-				["GGL", "George Green Library"					, "18:40"],
+				["UEE", "University East Entrance"				, "18:30"],
+				["GGL", "University Park, George Green Library"	, "18:40"],
 				["UPED-2", "University Park, East Drive"		, "18:42"]
 			]
 		],
@@ -705,13 +705,13 @@
 
 	        {
 	        	"id": "AC",
-	            "name": "Arts Centre",
+	            "name": "University Park, Arts Centre",
 	            "term_time": [
-	                "07.47", "08.17", "08.47", "09.17", "09.47",
-	                "10.17", "10.47", "11.17", "11.47", "12.17",
-	                "12.47", "13.17", "13.47", "14.17", "14.47",
-	                "15.17", "15.47", "16.17", "16.47", "17.17",
-	                "17.47", "18.17"
+	                "07.46", "08.16", "08.46", "09.16", "09.46",
+	                "10.16", "10.46", "11.16", "11.46", "12.16",
+	                "12.46", "13.16", "13.46", "14.16", "14.46",
+	                "15.16", "15.46", "16.16", "16.46", "17.16",
+	                "17.46", "18.16"
 	            ]
 	        },
 
@@ -729,7 +729,7 @@
 
 	        {
 	        	"id": "UEE",
-	            "name": "University East Entrance (stop QM01)",
+	            "name": "University East Entrance",
 	            "term_time": [
 	              "08.00", "08.30", "09.00", "09.30", "10.00",
 	              "10.30", "11.00", "11.30", "12.00", "12.30", 
@@ -741,7 +741,7 @@
 
 	        {
 	        	"id": "9TR",
-	            "name": "9 Triumph Road (stop RA55)",
+	            "name": "9 Triumph Road",
 	            "term_time": [
 	                "08.03", "08.33", "09.03", "09.33", "10.03",
 	                "10.33", "11.03", "11.33", "12.03", "12.33",
@@ -774,7 +774,7 @@
 
 	        {
 	        	"id": "GGL",
-	            "name": "George Green Library",
+	            "name": "University Park, George Green Library",
 	            "term_time": [
 	                "08.10", "08.40", "09.10", "09.40", "10.10", 
 	                "10.40", "11.10", "11.40", "12.10", "12.40",
