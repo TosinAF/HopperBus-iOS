@@ -7,52 +7,38 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class HomeViewController: UIViewController {
 
     // MARK: - Properties
 
     let LastViewedRouteKey = "LastViewedRoute"
-    let routeViewModelContainer = RouteViewModelContainer()
+    var routeViewModelContainer = RouteViewModelContainer()
 
     var inInfoSection = false
     let infoViewController = InfoViewController()
 
     var initialRouteType: HopperBusRoutes {
         var route: HopperBusRoutes = HopperBusRoutes.HB903
-            if let lastViewedRoute = NSUserDefaults.standardUserDefaults().objectForKey(LastViewedRouteKey) as? Int {
-                route = HopperBusRoutes(rawValue: lastViewedRoute)!
-            }
-            return route
+        if let lastViewedRoute = NSUserDefaults.standardUserDefaults().objectForKey(LastViewedRouteKey) as? Int {
+            route = HopperBusRoutes(rawValue: lastViewedRoute)!
+        }
+        return route
     }
 
     lazy var currentRouteType: HopperBusRoutes = self.initialRouteType
-
-    lazy var viewControllers: [UIViewController] = {
-        var vcs = [UIViewController]()
-        for type in HopperBusRoutes.allCases {
-            if type == .HB901 {
-                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as! RouteTimesViewModel
-                let rtvc = RouteTimesViewController(type: type, routeViewModel: routeViewModel)
-                vcs.append(rtvc)
-            } else if type == .HBRealTime {
-                let viewModel = self.routeViewModelContainer.routeViewModel(type) as! RealTimeViewModel
-                let rtvc = RealTimeViewController(type: type, viewModel: viewModel)
-                vcs.append(rtvc)
-            } else {
-                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as! RouteViewModel
-                let rvc = RouteViewController(type: type, routeViewModel: routeViewModel)
-                vcs.append(rvc)
-            }
-        }
-        return vcs
-    }()
 
     lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    var viewControllers: [UIViewController] {
+        return self.routeViewModelContainer.routeViewControllers
+    }
 
     lazy var tabBar: TabBar = {
         let tabBarOptions: [String: AnyObject] = [
@@ -99,11 +85,13 @@ class HomeViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[tabBar]|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[containerView]|", options: [], metrics: nil, views: views))
 
-        let vc = viewControllers[currentRouteType.rawValue]
+        let vc = routeViewModelContainer.routeViewControllers[currentRouteType.rawValue]
         addChildViewController(vc)
         vc.view.frame = containerView.bounds
         containerView.addSubview(vc.view)
         vc.didMoveToParentViewController(self)
+        
+        checkForDataUpdates()
     }
 
     // MARK: - Actions
@@ -158,6 +146,25 @@ class HomeViewController: UIViewController {
         self.currentRouteType = HopperBusRoutes(rawValue: index)!
         inInfoSection = false
     }
+    
+    func getViewControllers() {
+        var vcs = [UIViewController]()
+        for type in HopperBusRoutes.allCases {
+            if type == .HB901 {
+                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as! RouteTimesViewModel
+                let rtvc = RouteTimesViewController(type: type, routeViewModel: routeViewModel)
+                vcs.append(rtvc)
+            } else if type == .HBRealTime {
+                let viewModel = self.routeViewModelContainer.routeViewModel(type) as! RealTimeViewModel
+                let rtvc = RealTimeViewController(type: type, viewModel: viewModel)
+                vcs.append(rtvc)
+            } else {
+                let routeViewModel = self.routeViewModelContainer.routeViewModel(type) as! RouteViewModel
+                let rvc = RouteViewController(type: type, routeViewModel: routeViewModel)
+                vcs.append(rvc)
+            }
+        }
+    }
 }
 
 // MARK: - TabBar Delegate
@@ -179,5 +186,35 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DismissMapTransitionManager()
+    }
+}
+
+// Background Download of Datastore
+
+extension HomeViewController {
+    
+    func checkForDataUpdates() {
+        
+        let url = "https://raw.githubusercontent.com/TosinAF/HopperBus-iOS/master/HopperBus/Resources/Routes/Routes.json"
+        Alamofire.request(.GET, url).response {
+            (request, response, data, error) -> Void in
+            
+            guard let jsonData = data else {
+                print("No Data")
+                return
+            }
+            
+            let json = JSON(data: jsonData)
+            let version = json["version"].floatValue
+            let currentVersion = NSUserDefaults.standardUserDefaults().floatForKey(kDataStoreVersion)
+            
+            if version > currentVersion {
+                
+                let p = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString
+                let path = p.stringByAppendingPathComponent("routeData")
+                jsonData.writeToFile(path, atomically: false)
+                self.routeViewModelContainer = RouteViewModelContainer()
+            }
+        }
     }
 }

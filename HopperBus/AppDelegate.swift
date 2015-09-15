@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let win = UIWindow(frame: UIScreen.mainScreen().bounds)
         win.backgroundColor = UIColor.whiteColor()
+        
+        if !NSUserDefaults.standardUserDefaults().boolForKey(kHasRouteDataBeenStoredInDocuments) {
+            
+            let jsonFilePath = NSBundle.mainBundle().pathForResource("Routes", ofType: "json")!
+            guard let data = NSData(contentsOfFile: jsonFilePath) else {
+                fatalError("Routes JSON File could not be read.")
+            }
+            
+            let p = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString
+            let path = p.stringByAppendingPathComponent("routeData")
+            data.writeToFile(path, atomically: false)
+            
+            let json = JSON(data: data)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: kHasRouteDataBeenStoredInDocuments)
+            NSUserDefaults.standardUserDefaults().setFloat(json["version"].float ?? 1.0, forKey: kDataStoreVersion)
+        }
 
         if NSUserDefaults.standardUserDefaults().boolForKey(kHasHomeViewBeenDisplayedYetKey) {
             win.rootViewController = UINavigationController(rootViewController: self.homeViewController)

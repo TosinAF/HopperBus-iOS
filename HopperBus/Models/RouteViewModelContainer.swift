@@ -8,16 +8,38 @@
 
 // MARK: - RouteViewModelContainer Class
 
+import UIKit
 import SwiftyJSON
 
 class RouteViewModelContainer {
 
     let routeViewModels: [String: ViewModel]
+    
+    lazy var routeViewControllers: [UIViewController] = {
+        var vcs = [UIViewController]()
+        for type in HopperBusRoutes.allCases {
+            if type == .HB901 {
+                let routeViewModel = self.routeViewModel(type) as! RouteTimesViewModel
+                let rtvc = RouteTimesViewController(type: type, routeViewModel: routeViewModel)
+                vcs.append(rtvc)
+            } else if type == .HBRealTime {
+                let viewModel = self.routeViewModel(type) as! RealTimeViewModel
+                let rtvc = RealTimeViewController(type: type, viewModel: viewModel)
+                vcs.append(rtvc)
+            } else {
+                let routeViewModel = self.routeViewModel(type) as! RouteViewModel
+                let rvc = RouteViewController(type: type, routeViewModel: routeViewModel)
+                vcs.append(rvc)
+            }
+        }
+        return vcs
+    }()
 
     init() {
 
-        let filePath = NSBundle.mainBundle().pathForResource("Routes", ofType: "json")!
-        guard let data = NSData(contentsOfFile: filePath) else {
+        let p = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString
+        let path = p.stringByAppendingPathComponent("routeData")
+        guard let data = NSData(contentsOfFile: path) else {
             fatalError("Routes File could not be read.")
         }
         

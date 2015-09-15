@@ -7,6 +7,8 @@
 //
 
 let kHasHomeViewBeenDisplayedYetKey = "hasHomwViewBeenDisplayedYet"
+let kHasRouteDataBeenStoredInDocuments = "hasRouteDataBeenStoredInDocuments"
+let kDataStoreVersion = "dataStoreVersion"
 
 let iPhone6Or6Plus = UIScreen.mainScreen().bounds.width > 320
 let iPhone6P = UIScreen.mainScreen().bounds.height == 736.0
