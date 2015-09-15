@@ -140,6 +140,24 @@ class HomeViewController: UIViewController {
         fromVC.removeFromParentViewController()
         self.containerView.addSubview(toVC.view)
     }
+    
+    func showTab(index: Int) {
+        if currentRouteType.rawValue == index && inInfoSection == false { return }
+        
+        if index == HopperBusRoutes.HBRealTime.rawValue {
+            self.title = "LIVE BUS DEPARTURES"
+        } else {
+            self.title = "HOPPER BUS"
+        }
+        
+        let fromVC = inInfoSection ? infoViewController : viewControllers[currentRouteType.rawValue]
+        let toVC = viewControllers[index]
+        
+        transition(fromVC, toVC: toVC)
+        
+        self.currentRouteType = HopperBusRoutes(rawValue: index)!
+        inInfoSection = false
+    }
 }
 
 // MARK: - TabBar Delegate
@@ -147,21 +165,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: TabBarDelegate {
 
     func tabBar(tabBar: TabBar, didSelectItem item: TabBarItem, atIndex index: Int) {
-       if currentRouteType.rawValue == index && inInfoSection == false { return }
-
-        if index == HopperBusRoutes.HBRealTime.rawValue {
-            self.title = "LIVE BUS DEPARTURES"
-        } else {
-            self.title = "HOPPER BUS"
-        }
-
-        let fromVC = inInfoSection ? infoViewController : viewControllers[currentRouteType.rawValue]
-        let toVC = viewControllers[index]
-
-        transition(fromVC, toVC: toVC)
-
-        self.currentRouteType = HopperBusRoutes(rawValue: index)!
-        inInfoSection = false
+        showTab(index)
     }
 }
 

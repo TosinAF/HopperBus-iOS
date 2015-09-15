@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-        
 
         Parse.setApplicationId("PLKK3ArZhBTROcCinEB5J6qeMwUkTrZL9P7U9XRf", clientKey: "94CjREf1puBASWRROTeNCJuzR6nmtyiK4tfGm9qN")
 
@@ -75,6 +74,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         homeViewController.saveCurrentRoute()
     }
+    
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        
+        if let query = url.query where query.characters.count > 0 {
+            
+            let parameters = parseURLQuery(query)
+            guard let route = parameters["route"] else {
+                print("Route Argument Not Passed")
+                return true
+            }
+            
+            switch route {
+            case "901", "902", "903", "904", "RT":
+                let hbRoute = HopperBusRoutes.routeCodeToEnum(route)
+                homeViewController.showTab(hbRoute.rawValue)
+                homeViewController.tabBar.selectedIndex = hbRoute.rawValue
+                break
+            default:
+                break
+            }
+        }
+        
+        return true
+    }
 
     // MARK: - Push Notifications
 
@@ -86,5 +109,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handlePush(userInfo)
+    }
+    
+    // MARK: - Helper Methods
+    
+    func parseURLQuery(query: String) -> [String: String] {
+        
+        var parameters = [String: String]()
+        let components = query.characters.split {$0 == "&"}.map { String($0) }
+        for c in components {
+            let subComponents = c.characters.split {$0 == "="}.map { String($0) }
+            if subComponents.count == 2 {
+                parameters[subComponents[0]] = subComponents[1]
+            }
+        }
+        return parameters
     }
 }

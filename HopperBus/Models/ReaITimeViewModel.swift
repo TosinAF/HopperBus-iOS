@@ -17,7 +17,8 @@ extension HopperBusRoutes {
             "901": HopperBusRoutes.HB901,
             "902": HopperBusRoutes.HB902,
             "903": HopperBusRoutes.HB903,
-            "904": HopperBusRoutes.HB904
+            "904": HopperBusRoutes.HB904,
+            "RT" : HopperBusRoutes.HBRealTime
         ]
 
         return dict[code]!
