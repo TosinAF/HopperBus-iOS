@@ -49,6 +49,7 @@ class RealTimeViewModel: ViewModel {
                 let apiStop = APIStop(name: name, code: code, coord: coord)
                 stops.append(apiStop)
             }
+            stops.sortInPlace({ $0.name < $1.name })
 
             let routeType = HopperBusRoutes.routeCodeToEnum(key)
             let apiRoute = APIRoute(stops: stops)
