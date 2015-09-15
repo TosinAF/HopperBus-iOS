@@ -133,12 +133,12 @@ extension NSDate {
         dateFormatter.dateFormat = "dd-MM-yyyy"
 
         let termDates = [
-            "autumnTermBeginDate": dateFormatter.dateFromString("22-09-2014")!,
-            "autumnTermEndDate": dateFormatter.dateFromString("12-12-2014")!,
-            "springTermBeginDate": dateFormatter.dateFromString("12-01-2015")!,
-            "springTermEndDate": dateFormatter.dateFromString("27-03-2015")!,
-            "summerTermBeginDate":  dateFormatter.dateFromString("27-04-2015")!,
-            "summerTermEndDate": dateFormatter.dateFromString("19-06-2015")!
+            "autumnTermBeginDate": dateFormatter.dateFromString("17-09-2015")!,
+            "autumnTermEndDate": dateFormatter.dateFromString("11-12-2015")!,
+            "springTermBeginDate": dateFormatter.dateFromString("11-01-2016")!,
+            "springTermEndDate": dateFormatter.dateFromString("18-03-2016")!,
+            "summerTermBeginDate":  dateFormatter.dateFromString("18-04-2016")!,
+            "summerTermEndDate": dateFormatter.dateFromString("17-06-2016")!
         ]
 
         let today = NSDate()
@@ -159,8 +159,8 @@ extension NSDate {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
 
-        let outOfServiceDay1 = dateFormatter.dateFromString("04-05-2015")!
-        let outOfServiceDay2 = dateFormatter.dateFromString("25-05-2015")!
+        let outOfServiceDay1 = dateFormatter.dateFromString("02-05-2016")!
+        let outOfServiceDay2 = dateFormatter.dateFromString("30-05-2016")!
 
         let today = NSDate()
 
@@ -169,12 +169,12 @@ extension NSDate {
         }
 
         let outOfServiceDates = [
-            "range1Start": dateFormatter.dateFromString("25-12-2014")!,
-            "range1End": dateFormatter.dateFromString("04-01-2015")!,
-            "range2Start": dateFormatter.dateFromString("03-04-2015")!,
-            "range2End": dateFormatter.dateFromString("07-04-2015")!,
-            "range3Start":  dateFormatter.dateFromString("29-08-2015")!,
-            "range3End": dateFormatter.dateFromString("31-08-2015")!
+            "range1Start": dateFormatter.dateFromString("24-12-2015")!,
+            "range1End": dateFormatter.dateFromString("03-01-2016")!,
+            "range2Start": dateFormatter.dateFromString("25-03-2016")!,
+            "range2End": dateFormatter.dateFromString("29-03-2016")!,
+            "range3Start":  dateFormatter.dateFromString("27-08-2015")!,
+            "range3End": dateFormatter.dateFromString("29-08-2015")!
         ]
 
         let isInRange1 = NSDate.isDate(today, inRangeFirstDate: outOfServiceDates["range1Start"]!, lastDate: outOfServiceDates["range1End"]!)
