@@ -76,13 +76,3 @@ class RouteViewModelContainer {
         }
     }
 }
-
-extension NSDate {
-    class func currentTimeAsString() -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = .ShortStyle
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.stringFromDate(NSDate())
-    }
-}

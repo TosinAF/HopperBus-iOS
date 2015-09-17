@@ -253,6 +253,10 @@ class RealTimeViewController: GAITrackedViewController {
 
 extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
+    var pickerViewComponentLabelHeight: CGFloat {
+        return UIFont.systemFontOfSize(UIFont.systemFontSize()).lineHeight * 2 * UIScreen.mainScreen().scale
+    }
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -270,16 +274,10 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
-        var label : UILabel
+        
+        let label : UILabel
         if view == nil {
-            let height = UIFont.systemFontOfSize(UIFont.systemFontSize()).lineHeight * 2 * UIScreen.mainScreen().scale
-            label = UILabel(frame: CGRectMake(0, 0, 0, height))
-            label.textAlignment = .Center
-            label.numberOfLines = 2
-            label.lineBreakMode = .ByTruncatingTail
-            label.autoresizingMask = .FlexibleWidth
-            label.textColor = UIColor.whiteColor()
-            label.font = UIFont(name: "Avenir-Book", size: 17.0)
+            label = createPickerViewLabel()
         } else {
             label = view as! UILabel
         }
@@ -307,11 +305,22 @@ extension RealTimeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return UIFont.systemFontOfSize(UIFont.systemFontSize()).lineHeight * 2 * UIScreen.mainScreen().scale
+        return pickerViewComponentLabelHeight
+    }
+    
+    func createPickerViewLabel() -> UILabel {
+        let label = UILabel(frame: CGRectMake(0, 0, 0, pickerViewComponentLabelHeight))
+        label.textAlignment = .Center
+        label.numberOfLines = 2
+        label.lineBreakMode = .ByTruncatingTail
+        label.autoresizingMask = .FlexibleWidth
+        label.textColor = .whiteColor()
+        label.font = UIFont(name: "Avenir-Book", size: 17.0)
+        return label
     }
 }
 
-// Mark: - RealTimeViewModel Delegate 
+// Mark: - RealTimeViewModel Delegate
 
 extension RealTimeViewController: RealTimeViewModelDelegate {
 

@@ -203,4 +203,12 @@ extension NSDate {
         let components2 = NSCalendar.currentCalendar().components(componentFlags, fromDate:secondDate)
         return  ( (components1.year == components2.year) && (components1.month == components2.month) && (components1.day == components2.day) )
     }
+    
+    class func currentTimeAsString() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.stringFromDate(NSDate())
+    }
 }
