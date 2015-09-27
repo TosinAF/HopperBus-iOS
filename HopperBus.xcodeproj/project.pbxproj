@@ -57,7 +57,6 @@
 		4EA8A04819DA21EA00DDCBAF /* Routes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EA8A04719DA21EA00DDCBAF /* Routes.json */; };
 		4ECE2C3C19DD6F7100E47755 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECE2C3B19DD6F7100E47755 /* Constants.swift */; };
 		4ECE2C3E19DD75A800E47755 /* Captain-icon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ECE2C3D19DD75A800E47755 /* Captain-icon.ttf */; };
-		4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECE2C4319DD98C000E47755 /* TableView.swift */; };
 		4ECFBE6319B8387C00523219 /* RouteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */; };
 		4ECFBE6419B8387C00523219 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */; };
 		4ECFBE6519B8387C00523219 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECFBE6119B8387C00523219 /* TabBar.swift */; };
@@ -140,7 +139,6 @@
 		4EB37D1819E0542B0000068C /* HopperBus-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HopperBus-Bridging-Header.h"; path = "Supporting Files/HopperBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		4ECE2C3B19DD6F7100E47755 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utility/Constants.swift; sourceTree = "<group>"; };
 		4ECE2C3D19DD75A800E47755 /* Captain-icon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Captain-icon.ttf"; path = "HopperBus/Resources/Fonts/Captain-icon.ttf"; sourceTree = "<group>"; };
-		4ECE2C4319DD98C000E47755 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableView.swift; path = Utility/TableView.swift; sourceTree = "<group>"; };
 		4ECFBE5D19B8387200523219 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		4ECFBE5F19B8387C00523219 /* RouteHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouteHeaderView.swift; path = Views/RouteHeaderView.swift; sourceTree = "<group>"; };
 		4ECFBE6019B8387C00523219 /* StopTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopTableViewCell.swift; path = Views/StopTableViewCell.swift; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 			children = (
 				4ECFBE6919B8389900523219 /* Extensions.swift */,
 				4ECE2C3B19DD6F7100E47755 /* Constants.swift */,
-				4ECE2C4319DD98C000E47755 /* TableView.swift */,
 				4E765EB71A76024800D68262 /* SyntaxHighlightTextStorage.swift */,
 				4E8248D51A258FD5008E5D53 /* ThirdPartyLibraries */,
 				4E527CCB1A75EB8E00F20645 /* TransitionManagers */,
@@ -677,7 +674,6 @@
 				4E5D3BA81BA69E1900434B70 /* HopperBusRoutes.swift in Sources */,
 				4E57E2681BA4B135003F51F9 /* Alamofire-SwiftyJSON.swift in Sources */,
 				4E42B2911A75D194006CF5A2 /* ZFRippleButton.swift in Sources */,
-				4ECE2C4419DD98C000E47755 /* TableView.swift in Sources */,
 				4E385A351A42B05F00351821 /* OnboardingContentViewController.swift in Sources */,
 				4E3769851A276CC40079A20F /* MaterialActivityIndicatorView.swift in Sources */,
 				4ECFBE6A19B8389900523219 /* Extensions.swift in Sources */,

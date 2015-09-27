@@ -53,9 +53,6 @@ struct Times {
     var holidays: [String]?
 
     var currentTimes : [String] {
-        /*if saturdays == nil || holidays == nil {
-            return termTime
-        }*/
 
         if let hol = holidays {
             if NSDate.isHoliday() { return hol }
