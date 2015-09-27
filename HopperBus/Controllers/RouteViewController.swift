@@ -27,11 +27,11 @@ class RouteViewController: GAITrackedViewController {
         return view
     }()
 
-    lazy var tableView: TableView = {
-        let tableView = TableView()
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.doubleTapDelegate = self
+        //tableView.doubleTapDelegate = self
         tableView.separatorStyle = .None
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 64.0, 0.0);
         tableView.registerClass(StopTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -89,6 +89,10 @@ class RouteViewController: GAITrackedViewController {
             if NSDate.isOutOfService() { routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service." }
             view.addSubview(routeUnavailableView)
         }
+        
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        longPressGestureRecognizer.minimumPressDuration = 0.4
+        tableView.addGestureRecognizer(longPressGestureRecognizer)
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -102,11 +106,34 @@ class RouteViewController: GAITrackedViewController {
         routeViewModel.updateScheduleIndex()
         tableView.reloadData()
     }
+    
+    // MARK: - Gesture Recognizers
+    
+    func handleLongPress(gestureRecognizer: UIGestureRecognizer) {
+        
+        if gestureRecognizer.state != .Began {
+            return
+        }
+        
+        let point = gestureRecognizer.locationInView(tableView)
+        guard let indexPath = tableView.indexPathForRowAtPoint(point) else {
+            print("No cell at that point")
+            return
+        }
+        
+        let rvm = self.routeViewModel
+        let times = rvm.stopTimingsForStop(rvm.idForStop(indexPath.row))
+        let timesViewController = TimesViewController()
+        timesViewController.times = times
+        timesViewController.modalPresentationStyle = .Custom
+        timesViewController.transitioningDelegate = self
+        presentViewController(timesViewController, animated: true, completion:nil)
+    }
 }
 
 // MARK: - TableViewDataSource & Delegate Methods
 
-extension RouteViewController: UITableViewDelegate, UITableViewDataSource, TableViewDoubleTapDelegate {
+extension RouteViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return routeHeaderView
@@ -160,16 +187,6 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource, Table
 
         self.routeViewModel.stopIndex = selectedIndex
     }
-
-    func tableView(tableView: TableView, didDoubleTapRowAtIndexPath indexPath: NSIndexPath) {
-        let rvm = self.routeViewModel
-        let times = rvm.stopTimingsForStop(rvm.idForStop(indexPath.row))
-        let timesViewController = TimesViewController()
-        timesViewController.times = times
-        timesViewController.modalPresentationStyle = .Custom
-        timesViewController.transitioningDelegate = self
-        presentViewController(timesViewController, animated: true, completion:nil)
-    }
 }
 
 // MARK: - POPAnimation Delegate
@@ -216,8 +233,8 @@ extension RouteViewController: POPAnimationDelegate {
         let routeScaleXYAnim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
         routeScaleXYAnim.name = name
         routeScaleXYAnim.delegate = self
-        routeScaleXYAnim.springBounciness = 5
-        routeScaleXYAnim.springSpeed = 18
+        routeScaleXYAnim.springBounciness = 10
+        routeScaleXYAnim.springSpeed = 20
         routeScaleXYAnim.fromValue = NSValue(CGSize: CGSizeMake(start, start))
         routeScaleXYAnim.toValue = NSValue(CGSize: CGSizeMake(finish, finish))
         return routeScaleXYAnim
@@ -225,6 +242,7 @@ extension RouteViewController: POPAnimationDelegate {
 
     func createYTranslationAnimation(name: String, from start: CGPoint, to final: CGPoint) -> POPBasicAnimation {
         let yTranslationAnimation = POPBasicAnimation(propertyNamed: kPOPViewCenter)
+        yTranslationAnimation.duration = 0.2
         yTranslationAnimation.name = name
         yTranslationAnimation.delegate = self
         yTranslationAnimation.fromValue = NSValue(CGPoint: start)

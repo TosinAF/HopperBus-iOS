@@ -22,11 +22,10 @@ class RouteTimesViewController: GAITrackedViewController {
         return view
     }()
 
-    lazy var tableView: TableView = {
-        let tableView = TableView()
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.doubleTapDelegate = self
         tableView.separatorInset = UIEdgeInsetsZero
         tableView.layoutMargins = UIEdgeInsetsZero
         tableView.separatorStyle = .None
@@ -73,17 +72,43 @@ class RouteTimesViewController: GAITrackedViewController {
             if NSDate.isOutOfService() { routeUnavailableView.infoLabel.text = "The HopperBus is currently out of service." }
             view.addSubview(routeUnavailableView)
         }
+        
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        longPressGestureRecognizer.minimumPressDuration = 0.4
+        tableView.addGestureRecognizer(longPressGestureRecognizer)
     }
-
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         timer?.invalidate()
+    }
+    
+    // MARK: - Gesture Recognizer
+    
+    func handleLongPress(gestureRecognizer: UIGestureRecognizer) {
+        
+        if gestureRecognizer.state != .Began {
+            return
+        }
+        
+        let point = gestureRecognizer.locationInView(tableView)
+        guard let indexPath = tableView.indexPathForRowAtPoint(point) else {
+            print("No cell at that point")
+            return
+        }
+        
+        let times = routeViewModel.stopTimingsForStop(atIndex: indexPath.row)
+        let timesViewController = TimesViewController()
+        timesViewController.times = times
+        timesViewController.modalPresentationStyle = .Custom
+        timesViewController.transitioningDelegate = self
+        presentViewController(timesViewController, animated: true, completion:nil)
     }
 }
 
 // MARK: - TableViewDataSource & Delegate Methods
 
-extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource, TableViewDoubleTapDelegate {
+extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return routeHeaderView
@@ -106,15 +131,6 @@ extension RouteTimesViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.stopTitle = routeViewModel.nameForStop(atIndex: indexPath.row)
         cell.times = routeViewModel.nextThreeStopTimes(atIndex: indexPath.row)
         return cell
-    }
-
-    func tableView(tableView: TableView, didDoubleTapRowAtIndexPath indexPath: NSIndexPath) {
-        let times = routeViewModel.stopTimingsForStop(atIndex: indexPath.row)
-        let timesViewController = TimesViewController()
-        timesViewController.times = times
-        timesViewController.modalPresentationStyle = .Custom
-        timesViewController.transitioningDelegate = self
-        presentViewController(timesViewController, animated: true, completion:nil)
     }
 }
 
