@@ -89,8 +89,6 @@
 /* Begin PBXFileReference section */
 		03B269D09720D1E43BEFD994 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BC5729BEAEFB941B8578E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		4E1D257D1A2D791C00D210B7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
-		4E1D257E1A2D791C00D210B7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Frameworks/Parse.framework; sourceTree = "<group>"; };
 		4E29202319E6316700687C0D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		4E2980B01A0F0E6C00DD8E8F /* RealTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealTimeTableViewCell.swift; path = Views/RealTimeTableViewCell.swift; sourceTree = "<group>"; };
 		4E3769841A276CC40079A20F /* MaterialActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialActivityIndicatorView.swift; path = Views/MaterialActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -463,8 +461,6 @@
 		9782702C7AE046DD969C2921 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4E1D257D1A2D791C00D210B7 /* Bolts.framework */,
-				4E1D257E1A2D791C00D210B7 /* Parse.framework */,
 				03B269D09720D1E43BEFD994 /* Pods.framework */,
 			);
 			name = Frameworks;

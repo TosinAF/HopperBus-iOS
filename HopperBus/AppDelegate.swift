@@ -94,26 +94,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         
-        if let query = url.query where query.characters.count > 0 {
-            
-            let parameters = parseURLQuery(query)
-            guard let route = parameters["route"] else {
-                print("Route Argument Not Passed")
-                return true
-            }
-            
-            switch route {
-            case "901", "902", "903", "904", "RT":
-                let hbRoute = HopperBusRoutes.routeCodeToEnum(route)
-                homeViewController.showTab(hbRoute.rawValue)
-                homeViewController.tabBar.selectedIndex = hbRoute.rawValue
-                break
-            default:
-                break
-            }
+        return handleURL(url)
+    }
+    
+    @available(iOS 9.0, *)
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
+        
+        guard let userInfo = shortcutItem.userInfo, let urlString = userInfo["url"] as? String else {
+            print("No user info passed or URL Field Missing")
+            return
         }
         
-        return true
+        let url = NSURL(string: urlString)!
+        let didHandle = handleURL(url)
+        completionHandler(didHandle)
     }
 
     // MARK: - Push Notifications
@@ -141,5 +135,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         return parameters
+    }
+    
+    func handleURL(url: NSURL) -> Bool {
+        
+        if let query = url.query where query.characters.count > 0 {
+            
+            let parameters = parseURLQuery(query)
+            guard let route = parameters["route"] else {
+                print("Route Argument Not Passed")
+                return false
+            }
+            
+            switch route {
+            case "901", "902", "903", "904", "RT":
+                let hbRoute = HopperBusRoutes.routeCodeToEnum(route)
+                homeViewController.showTab(hbRoute.rawValue)
+                homeViewController.tabBar.selectedIndex = hbRoute.rawValue
+                break
+            default:
+                break
+            }
+        }
+        
+        return true
     }
 }
