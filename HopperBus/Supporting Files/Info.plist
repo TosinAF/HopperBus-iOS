@@ -30,77 +30,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Live Bus Times</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).realtime</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>real-time-icon</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>url</key>
-				<string>tahopperbus://?route=RT</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Sutton Bonington Hopper</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route901</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>route-icon</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>url</key>
-				<string>tahopperbus://?route=901</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>King&apos;s Meadow Hopper</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route902</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>route-icon</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>url</key>
-				<string>tahopperbus://?route=902</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Jubilee Hopper</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route903</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>route-icon</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>url</key>
-				<string>tahopperbus://?route=903</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Royal Derby Hospital Centre Hopper</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route904</string>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>route-icon</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>url</key>
-				<string>tahopperbus://?route=904</string>
-			</dict>
-		</dict>
-	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -114,6 +46,74 @@
 		<string>Montserrat-Bold.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>Captain-icon.ttf</string>
+	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>real-time-icon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Live Bus Times</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).realtime</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>tahopperbus://?route=RT</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>route-icon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Sutton Bonington Hopper</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route901</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>tahopperbus://?route=901</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>route-icon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>King's Meadow Hopper</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route902</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>tahopperbus://?route=902</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>route-icon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Jubilee Hopper</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route903</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>tahopperbus://?route=903</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>route-icon</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Royal Derby Hospital Centre Hopper</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).route904</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>url</key>
+				<string>tahopperbus://?route=904</string>
+			</dict>
+		</dict>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
