@@ -41,12 +41,8 @@ class HomeViewController: UIViewController {
     }
 
     lazy var tabBar: TabBar = {
-        let tabBarOptions: [String: AnyObject] = [
-            "tabBarItemCount" : 5,
-            "image" : "realTime",
-            "titles" : ["901","902","REAL TIME","903","904"]
-        ]
-        let tabBar =  TabBar(options:tabBarOptions)
+        let titles: [String] = ["901","902","LIVE","903","904"]
+        let tabBar =  TabBar(titles: titles)
         tabBar.delegate = self
         tabBar.selectedIndex = self.initialRouteType.rawValue
         tabBar.translatesAutoresizingMaskIntoConstraints = false

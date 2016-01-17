@@ -26,9 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !NSUserDefaults.standardUserDefaults().boolForKey(kHasRouteDataBeenStoredInDocuments) {
             
             let jsonFilePath = NSBundle.mainBundle().pathForResource("Routes", ofType: "json")!
-            guard let data = NSData(contentsOfFile: jsonFilePath) else {
-                fatalError("Routes JSON File could not be read.")
-            }
+            guard let data = NSData(contentsOfFile: jsonFilePath)
+                else { fatalError("Routes JSON File could not be read.") }
             
             let p = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString
             let path = p.stringByAppendingPathComponent("routeData")

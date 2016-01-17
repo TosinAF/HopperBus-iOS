@@ -44,34 +44,25 @@ class TabBar: UIView {
         return vflString
     }
 
-    var imageTitle: String?
-    let imageTabBarIndex = 2
-
     // MARK: - Initializers
 
-    init(options: [String: AnyObject]) {
+    init(titles: [String]) {
         super.init(frame: CGRectZero)
         backgroundColor = UIColor.whiteColor()
 
         var views = [String: TabBarItem]()
-
-        let buttonTitles: [String] = options["titles"]! as! [String]
-        let count = options["tabBarItemCount"]! as! Int
+        let count = titles.count
 
         let tabWidth = Int(UIScreen.mainScreen().bounds.size.width) / count
-
-        if let title: AnyObject = options["image"] {
-            imageTitle = title as? String
-        }
 
         for i in 0..<count {
 
             var tabItem: TabBarItem
-
-            if i == imageTabBarIndex && imageTitle != nil {
-                tabItem = TabBarItem(image: UIImage(named: imageTitle!)!)
-            } else {
-                tabItem = TabBarItem(title: buttonTitles[i])
+            
+            tabItem = TabBarItem(title: titles[i])
+            
+            if titles[i] == "LIVE" {
+                tabItem.titleLabel!.font = UIFont(name: "Montserrat", size: 16.0)
             }
 
             tabItem.tag = i

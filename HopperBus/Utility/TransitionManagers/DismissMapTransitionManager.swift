@@ -61,7 +61,7 @@ class DismissMapTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
 
         toVC.view.layer.pop_addAnimation(routeTranslateYAnim, forKey: "transform.translation.y")
         toVC.view.layer.pop_addAnimation(routeScaleXYAnim, forKey: "transform.scale")
-        fromVC.view.pop_addAnimation(mapFrameAnim, forKey: "frame");
+        fromVC.view.pop_addAnimation(mapFrameAnim, forKey: "frame")
     }
 
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
